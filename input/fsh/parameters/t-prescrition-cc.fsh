@@ -1,9 +1,9 @@
 Profile: ERP_TPrescription_CarbonCopy
-Id: gem-erp-pr-t-carbon-copy
+Id: erp-tprescription-carbon-copy
 Parent: Parameters
 Title: "Digitaler Durchschlag T-Rezept"
 Description: "Parameters to send t-prescription Data to BfArM"
-* insert Profile(gem-erp-pr-t-carbon-copy)
+* insert Profile(erp-tprescription-carbon-copy)
 
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
@@ -47,14 +47,14 @@ and rxDispensation 1..1
     * name = "medicationRequest"
     * value[x] 0..0
     * resource 1..1
-    * resource only BfArMMedicationRequest
+    * resource only ERP_TPrescription_MedicationRequest
     * part 0..0 
   * part[medication]
     * name MS
     * name = "medication"
     * value[x] 0..0
     * resource 1..1
-    * resource only BfArMMedication
+    * resource only ERP_TPrescription_Medication
     * part 0..0 
 
 * parameter[rxDispensation]
@@ -75,21 +75,21 @@ and rxDispensation 1..1
     * name = "medicationDispense"
     * value[x] 0..0
     * resource 1..1
-    * resource only BfArMMedicationDispense
+    * resource only ERP_TPrescription_MedicationDispense
     * part 0..0 
   * part[medication]
     * name MS
     * name = "medication"
     * value[x] 0..0
     * resource 1..1
-    * resource only BfArMMedication
+    * resource only ERP_TPrescription_Medication
     * part 0..0 
   * part[organization]
     * name MS
     * name = "organization"
     * value[x] 0..0
     * resource 1..1
-    * resource only TIOrganization //TODO: BfArM Organization
+    * resource only ERP_TPrescription_Organization
     * part 0..0
 
 

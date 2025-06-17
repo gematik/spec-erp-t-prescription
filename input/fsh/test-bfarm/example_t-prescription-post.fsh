@@ -1,5 +1,5 @@
 Instance: Example-T-Prescription-CC-Post
-InstanceOf: GEM_ERP_PR_T_CarbonCopy
+InstanceOf: ERP_TPrescription_CarbonCopy
 Usage: #example
 
 * parameter[rxPrescription]

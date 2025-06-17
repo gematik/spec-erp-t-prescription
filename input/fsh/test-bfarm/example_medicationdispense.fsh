@@ -1,5 +1,5 @@
 Instance: ExampleMedicationDispense-T
-InstanceOf: BfArMMedicationDispense
+InstanceOf: ERP_TPrescription_MedicationDispense
 Title: "Example MedicationDispense"
 Description: "A MedicationDispense for Ibuprofen"
 * status = #completed
@@ -10,7 +10,7 @@ Description: "A MedicationDispense for Ibuprofen"
 * whenHandedOver = "2026-04-02"
 
 Instance: ExampleMedication2-Ibuprofen-T
-InstanceOf: BfArMMedication
+InstanceOf: ERP_TPrescription_Medication
 Title: "Example Medication - Ibuprofen"
 Description: "Ibuprofen 400 mg Filmtabletten"
 * code.coding[+]

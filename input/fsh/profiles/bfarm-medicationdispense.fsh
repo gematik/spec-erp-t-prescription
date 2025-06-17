@@ -1,8 +1,10 @@
-Profile: BfArMMedicationDispense
+Profile: ERP_TPrescription_MedicationDispense
 Parent: MedicationDispense
-Id: bfarm-medication-dispense
-Title: "BfArM Medication Dispense"
-Description: "MedicationDispense with Dispenseinformation for BfArM"
+Id: erp-tprescription-medication-dispense
+Title: "E-T-Rezept Medication Dispense"
+Description: "MedicationDispense with Dispenseinformation for BfArM T-Register"
+* insert Profile(erp-tprescription-medication-dispense)
+
 // Default FHIR Elements with 1..1 cardinality
 * status = #completed (exactly)
 

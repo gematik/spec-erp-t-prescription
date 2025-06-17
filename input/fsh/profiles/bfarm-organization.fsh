@@ -1,8 +1,10 @@
-Profile: BfArMOrganization
+Profile: ERP_TPrescription_Organization
 Parent: TIOrganization
-Id: bfarm-organization
-Title: "BfArM Organization"
-Description: "Organization Profile for exchange between E-Rezept-Fachdienst and BfArM"
+Id: erp-tprescription-organization
+Title: "E-T-Rezept Organization"
+Description: "Organization Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register"
+* insert Profile(erp-tprescription-organization)
+
 * telecom MS
 * name MS
 * address MS

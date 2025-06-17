@@ -1,8 +1,9 @@
-Profile: BfArMMedicationRequest
+Profile: ERP_TPrescription_MedicationRequest
 Parent: MedicationRequest
-Id: bfarm-medication-request
-Title: "BfArM Medication Request"
-Description: "MedicationRequest with Requestinformation for BfArM"
+Id: erp-tprescription-medication-request
+Title: "E-T-Rezept Medication Request"
+Description: "MedicationRequest with Requestinformation for BfArM T-Register"
+* insert Profile(erp-tprescription-medication-request)
 
 // Default FHIR Elements with 1..1 cardinality
 * status = #completed (exactly)

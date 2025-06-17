@@ -1,8 +1,10 @@
-Profile: BfArMMedication
+Profile: ERP_TPrescription_Medication
 Parent: Medication
-Id: bfarm-medication
-Title: "BfArM Medication"
-Description: "Medication for BfArM"
+Id: erp-tprescription-medication
+Title: "E-T-Rezept Medication"
+Description: "Medication for BfArM T-Register"
+* insert Profile(erp-tprescription-medication)
+
 * code MS
 * form MS
 * amount MS

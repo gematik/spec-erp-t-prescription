@@ -1,5 +1,5 @@
 Instance: ExampleOrganization-T
-InstanceOf: BfArMOrganization
+InstanceOf: ERP_TPrescription_Organization
 Title: "Example Organization"
 Description: "An example pharmacy organization"
 * name = "Stadt-Apotheke"

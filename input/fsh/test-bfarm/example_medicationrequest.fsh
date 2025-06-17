@@ -1,5 +1,5 @@
 Instance: ExampleMedicationRequest-T
-InstanceOf: BfArMMedicationRequest
+InstanceOf: ERP_TPrescription_MedicationRequest
 Title: "Example MedicationRequest"
 Description: "A MedicationRequest for Paracetamol"
 * status = #completed
@@ -24,7 +24,7 @@ Description: "A MedicationRequest for Paracetamol"
   * extension[=].valueBoolean = true
 
 Instance: ExampleMedication1-Paracetamol-T
-InstanceOf: BfArMMedication
+InstanceOf: ERP_TPrescription_Medication
 Title: "Example Medication - Paracetamol"
 Description: "Paracetamol 500 mg Tabletten"
 * code.coding[+]
