@@ -14,7 +14,7 @@ RuleSet: trezept-structuremap-prescription
   * insert sd_input(kbvMedicationIngredient, source)
   * insert sd_input(kbvMedicationFreeText, source)
   * insert sd_input(kbvMedicationCompounding, source)
-  * insert sd_input(gem-erp-pr-t-carbon-copy, target)
+  * insert sd_input(erpTCarbonCopy, target)
   * insert sd_input(bfarmPrescribedMedication, target)
   * insert sd_input(bfarmMedicationRequest, target)
   
@@ -25,7 +25,7 @@ RuleSet: trezept-structuremap-prescription
       * context = "pkcs7"
       * element = "2.840.113549.1.9.5"
     * target[+]
-      * context = "gem-erp-pr-t-carbon-copy"
+      * context = "erpTCarbonCopy"
       * contextType = #variable
       * element = "parameter[rxPrescription].part[prescriptionSignatureDate].value"
       * transform = #dateOp
@@ -37,7 +37,7 @@ RuleSet: trezept-structuremap-prescription
       * context = "pkcs7"
       * element = "2.840.113549.1.9.5"
     * target[+]
-      * context = "gem-erp-pr-t-carbon-copy"
+      * context = "erpTCarbonCopy"
       * contextType = #variable
       * element = "parameter.part.value"
       * transform = #dateOp
@@ -49,7 +49,7 @@ RuleSet: trezept-structuremap-prescription
       * context = "pkcs7"
       * element = "2.840.113549.1.9.5"
     * target[+]
-      * context = "gem-erp-pr-t-carbon-copy"
+      * context = "erpTCarbonCopy"
       * contextType = #variable
       * element = "parameter[0].part[0].value"
       * transform = #dateOp
@@ -61,7 +61,7 @@ RuleSet: trezept-structuremap-prescription
     * source[+]
       * context = "kbvBundle"
       * element = "identifier.where(system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId').value"
-    * insert targetCopyVariable(gem-erp-pr-t-carbon-copy, parameter:rxPrescription.part:prescriptionId.value)
+    * insert targetCopyVariable(erpTCarbonCopy, parameter:rxPrescription.part:prescriptionId.value)
     * documentation = "Copy the prescription ID"
 
 // Rules for MedicationRequest

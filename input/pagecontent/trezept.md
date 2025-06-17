@@ -2,7 +2,7 @@
 
 Nach geltenden gesetzlichen Regelungen ist dem BfArM nach Abgabe einer Verordnung von einem teratogenen Wirkstoff ein digitaler Durschlag zu übermitteln. Das BfArM ist in der Pflicht die Verordnung und Abgabe zu prüfen.
 
-Nach Abschluss eines Workflows von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-gem-erp-pr-t-carbon-copy.html) und überträgt das an den Webdienst des BfArM.
+Nach Abschluss eines Workflows von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt das an den Webdienst des BfArM.
 
 Hintergründe zum Datenmodell und Designentscheidungen siehe [Informationen zum Datenmodell](./datamodel.html).
 
