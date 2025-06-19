@@ -11,6 +11,7 @@ RuleSet: trezept-structuremap-organization
   * insert sd_input(HealthcareServiceDirectory, source)
   * insert sd_input(bfarmOrganization, target)
 
+/*
 // Directory Rules
   * rule[+]
     * name = "name"
@@ -35,3 +36,5 @@ RuleSet: trezept-structuremap-organization
     * source.element = "address"
     * insert targetCopyVariable(bfarmOrganization, address)
     * documentation = "Copy address to Organization"
+
+    */

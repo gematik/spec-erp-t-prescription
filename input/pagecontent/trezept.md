@@ -9,4 +9,4 @@ Hintergründe zum Datenmodell und Designentscheidungen siehe [Informationen zum 
 ## Erstellen des Digitalen Durchschlags
 
 Der E-Rezept-Fachdienst erstellt ein Artefakt mit dem Profil Digitaler Durchschlag T-Rezept. Dabei werden Informationen aus der Verordnung, Dispensierung und dem FHIR-VZD genutzt.
-Das Mapping der Quelldaten zu dem Profil werden in der [StructureMap für digitalen Durchschlag](./StructureMap-BfArMStructureMap.html) definiert.
+Das Mapping der Quelldaten zu dem Profil werden in der [StructureMap für digitalen Durchschlag](./StructureMap-ERP-TPrescription-StructureMap.html) definiert.

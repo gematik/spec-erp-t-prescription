@@ -10,6 +10,7 @@ RuleSet: trezept-structuremap-dispense
   * insert sd_input(bfarmDispensedMedication, target)
   * insert sd_input(bfarmMedicationDispense, target)
 
+/*
 // Rules for MedicationDispense
   * rule[+]
     * name = "medicationReference"
@@ -62,3 +63,4 @@ RuleSet: trezept-structuremap-dispense
       * transform = #reference
       * parameter.valueString = "Organization/{identifier.value}"
     * documentation = "Map performer.identifier to a reference to Organization with the identifier value"
+*/

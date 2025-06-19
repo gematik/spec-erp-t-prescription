@@ -17,18 +17,7 @@ Description: "MedicationDispense with Dispenseinformation for BfArM T-Register"
 * medicationReference MS
 
 // Forbidden Elements
-
-// Allow only the data-absent-reason extension on subject
-* subject
-  * reference 0..0
-  * identifier 0..0
-  * display 0..0
-  * type 0..0
-  * extension contains data-absent-reason named dataAbsentReason 1..1
-  * extension[dataAbsentReason].valueCode 1..1
-  * extension[dataAbsentReason].valueCode = #not-permitted
-
-// remaining
+* subject 0..0
 * identifier 0..0
 * partOf 0..0
 * statusReason[x] 0..0

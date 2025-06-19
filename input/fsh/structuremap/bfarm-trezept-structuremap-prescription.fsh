@@ -20,47 +20,40 @@ RuleSet: trezept-structuremap-prescription
   
 // Rules for Parameters
   * rule[+]
-    * name = "signatureDate"
+    * name = "signatureDate0"
     * source[+]
       * context = "pkcs7"
       * element = "2.840.113549.1.9.5"
+      * variable = "srcSigndate"
     * target[+]
       * context = "erpTCarbonCopy"
       * contextType = #variable
-      * element = "parameter[rxPrescription].part[prescriptionSignatureDate].value"
-      * transform = #dateOp
-      * parameter.valueString = "yyyy-MM-dd'T'HH:mm:ss[.SSS]"
+      * element = "parameter"
+      * variable = "erpTCarbonCopyParameter"
     * documentation = "Get the signing time from the pkcs#7 signature and transform to FHIR Instant"
-  * rule[+]
-    * name = "signatureDate"
-    * source[+]
-      * context = "pkcs7"
-      * element = "2.840.113549.1.9.5"
-    * target[+]
-      * context = "erpTCarbonCopy"
-      * contextType = #variable
-      * element = "parameter.part.value"
-      * transform = #dateOp
-      * parameter.valueString = "yyyy-MM-dd'T'HH:mm:ss[.SSS]"
-    * documentation = "Get the signing time from the pkcs#7 signature and transform to FHIR Instant"
-  * rule[+]
-    * name = "signatureDate"
-    * source[+]
-      * context = "pkcs7"
-      * element = "2.840.113549.1.9.5"
-    * target[+]
-      * context = "erpTCarbonCopy"
-      * contextType = #variable
-      * element = "parameter[0].part[0].value"
-      * transform = #dateOp
-      * parameter.valueString = "yyyy-MM-dd'T'HH:mm:ss[.SSS]"
-    * documentation = "Get the signing time from the pkcs#7 signature and transform to FHIR Instant"
-
+    * rule[+]
+      * name = "signatureDate1"
+      * source.context = "srcSigndate"
+      * target[+]
+        * context = "erpTCarbonCopyParameter"
+        * contextType = #variable
+        * variable = "erpTCarbonCopyParameterPart"
+        * element = "part"
+      * rule[+]
+        * name = "signatureDate2"
+        * source.context = "srcSigndate"
+        * target[+]
+          * context = "erpTCarbonCopyParameterPart"
+          * contextType = #variable
+          * element = "value"
+          * transform = #dateOp
+          * parameter.valueString = "yyyy-MM-dd'T'HH:mm:ss[.SSS]"
+/*
   * rule[+]
     * name = "prescriptionId"
     * source[+]
       * context = "kbvBundle"
-      * element = "identifier.where(system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId').value"
+      * element = "identifier.value"
     * insert targetCopyVariable(erpTCarbonCopy, parameter:rxPrescription.part:prescriptionId.value)
     * documentation = "Copy the prescription ID"
 
@@ -235,3 +228,4 @@ RuleSet: trezept-structuremap-prescription
         * element = "text"
       * insert targetCopyVariable(bfarmPrescribedMedication.form, text)
 
+*/

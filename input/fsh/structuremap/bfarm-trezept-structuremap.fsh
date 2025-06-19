@@ -1,3 +1,4 @@
+/*
 Instance: ERP-TPrescription-StructureMap
 InstanceOf: StructureMap
 Usage: #example
@@ -18,13 +19,14 @@ Description: "Maps KBV ERP Prescription, GEM ERP CloseOperation Input, and Direc
 * insert sd_structure(https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory, source, OrganizationDirectory)
 * insert sd_structure(https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory, source, LocationDirectory)
 * insert sd_structure(https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory, source, HealthcareServiceDirectory)
-* insert sd_structure(https://gematik.de/fhir/bfarm/StructureDefinition/erp-tprescription-carbon-copy, target, erpTCarbonCopy)
-* insert sd_structure(https://gematik.de/fhir/bfarm/StructureDefinition/erp-tprescription-medication, target, bfarmPrescribedMedication)
-* insert sd_structure(https://gematik.de/fhir/bfarm/StructureDefinition/erp-tprescription-medication, target, bfarmDispensedMedication)
-* insert sd_structure(https://gematik.de/fhir/bfarm/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
-* insert sd_structure(https://gematik.de/fhir/bfarm/StructureDefinition/erp-tprescription-medication-dispense, target, bfarmMedicationDispense)
-* insert sd_structure(https://gematik.de/fhir/bfarm/StructureDefinition/erp-tprescription-organization, target, bfarmOrganization)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy, target, erpTCarbonCopy)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication, target, bfarmPrescribedMedication)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication, target, bfarmDispensedMedication)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense, target, bfarmMedicationDispense)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization, target, bfarmOrganization)
 
 * insert trezept-structuremap-prescription
 * insert trezept-structuremap-dispense
 * insert trezept-structuremap-organization
+*/
