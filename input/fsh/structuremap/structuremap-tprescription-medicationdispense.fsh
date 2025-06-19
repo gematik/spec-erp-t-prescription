@@ -51,21 +51,13 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
     * name = "medicationDispenseStatus"
     * source.context = "gematikMedicationDispense"
     * source.element = "status"
-    * target[+]
-      * context = "bfarmMedicationDispense"
-      * contextType = #variable
-      * element = "status"
-      * transform = #copy
-      * parameter.valueString = "completed"
+    * insert targetSetStringVariable(bfarmMedicationRequest, status, completed)
     * documentation = "TODO"
   
 // quantity
   * rule[+]
     * name = "medicationDispenseQuantity"
-    * source[+]
-      * context = "gematikMedicationDispense"
-      * element = "quantity"
-      * variable = "quantityVar"
+    * insert treeSource(gematikMedicationDispense, quantity, quantityVar)
     * insert targetCopyVariable(bfarmMedicationDispense, quantity, quantityVar)
     * documentation = "TODO"
   

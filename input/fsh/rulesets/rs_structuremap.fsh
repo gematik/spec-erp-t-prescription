@@ -18,6 +18,23 @@ RuleSet: targetCopyVariable(context, to, id)
   * transform = #copy
   * parameter.valueId = "{id}"
 
+RuleSet: targetSetStringVariable(context, to, string)
+* target[+]
+  * context = "{context}"
+  * contextType = #variable
+  * element = "{to}"
+  * transform = #copy
+  * parameter.valueString = "{string}"
+
+RuleSet: targetSetCodeVariable(context, to, code)
+* target[+]
+  * context = "{context}"
+  * contextType = #variable
+  * element = "{to}"
+  * transform = #cast
+  * parameter[+].valueString = "{code}"
+  * parameter[+].valueString = "code"
+
 RuleSet: treeSource(context, element, variable)
 * source[+]
   * context = "{context}"

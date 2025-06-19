@@ -2,10 +2,10 @@ Instance: ERP-TPrescription-StructureMap-MedicationRequest
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for MedicationRequest"
-Description: "Maps GEM ERP MedicationRequest BfArM T-Prescription MedicationRequest format"
+Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-MedicationRequest)
 //TODO
-* insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationRequest, source, gematikMedicationRequest)
+* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription, source, kbvMedicationRequest)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
 
 * group[+]
@@ -13,107 +13,73 @@ Description: "Maps GEM ERP MedicationRequest BfArM T-Prescription MedicationRequ
   * typeMode = #none
   * documentation = "Mapping group for Request information transformation"
 
-  * insert sd_input(gematikMedicationRequest, source)
+  * insert sd_input(kbvMedicationRequest, source)
   * insert sd_input(bfarmMedicationRequest, target)
 
 // Rules for MedicationRequest
 
-// dosageInstruction
-  * rule[+]
-    * name = "medicationRequestDosageInstruction"
-    * source[+]
-      * context = "gematikMedicationRequest"
-      * element = "dosageInstruction"
-      * variable = "dosageInstructionVar"
-    * insert targetCopyVariable(bfarmMedicationRequest, dosageInstruction, dosageInstructionVar)
-    * documentation = "TODO"
-  * rule[+]
-    * name = "medicationRequestDosageInstruction"
-    * source[+]
-      * context = "gematikMedicationRequest"
-      * element = "whenHandedOver"
-      * variable = "whenHandedOverVar"
-    * insert targetCopyVariable(bfarmMedicationRequest, whenHandedOver, whenHandedOverVar)
-    * documentation = "TODO"
-  
-// reference to Medication
-  * rule[+]
-    * name = "medicationReference"
-    * source[+]
-      * context = "gematikMedicationRequest"
-      * element = "medication"
-      * variable = "medicationVar"
-    * insert targetCopyVariable(bfarmMedicationRequest, medication, medicationVar)
-    * documentation = "Copy medication; ensure correct mapping from reference is stated"
+/*
+
+// Fields that are to be supported by systems
+* medication[x] MS
+* medication[x] only Reference
+*/
 
 // set status to completed
   * rule[+]
     * name = "medicationRequestStatus"
-    * source.context = "gematikMedicationRequest"
-    * source.element = "status"
-    * target[+]
-      * context = "bfarmMedicationRequest"
-      * contextType = #variable
-      * element = "status"
-      * transform = #copy
-      * parameter.valueString = "completed"
+    * insert treeSource(kbvMedicationRequest, status, srcStatus)
+    * insert targetSetStringVariable(bfarmMedicationRequest, status, completed)
     * documentation = "TODO"
-  
-// quantity
+
+// set intent to completed
   * rule[+]
-    * name = "medicationRequestQuantity"
-    * source[+]
-      * context = "gematikMedicationRequest"
-      * element = "quantity"
-      * variable = "quantityVar"
-    * insert targetCopyVariable(bfarmMedicationRequest, quantity, quantityVar)
+    * name = "medicationRequestIntent"
+    * source.context = "kbvMedicationRequest"
+    * source.element = "intent"
+    * insert targetSetStringVariable(bfarmMedicationRequest, intent, order)
     * documentation = "TODO"
-  
-// Sets Organization/<telematik-id> as reference
+
+// set subject to not-permitted
   * rule[+]
-    * name = "medicationRequestPerformer"
-    * source[+]
-      * context = "gematikMedicationRequest"
-      * element = "performer"
-      * variable = "performerVar"
-    * target[+]      
-      * context = "bfarmMedicationRequest"
-      * contextType = #variable
-      * element = "performer"
-      * variable = "tgtPerformerVar"
+    * name = "medicationRequestsubject"
+    * insert treeSource(kbvMedicationRequest, subject, srcSubject)
+    * insert treeTarget(bfarmMedicationRequest, subject, tgtSubject)
     * rule[+]
-      * name = "medicationRequestPerformerActor"
-      * source[+]
-        * context = "performerVar"
-        * element = "actor"
-        * variable = "performerActorVar"
-      * target[+]      
-        * context = "tgtPerformerVar"
-        * contextType = #variable
-        * element = "actor"
-        * variable = "tgtPerformerActorVar"
+      * name = "medicationRequestsubjectExtension"
+      * insert treeSource(kbvMedicationRequest, subject, srcSubject)
+      * insert treeTarget(tgtSubject, extension, tgtSubjectExtension)
       * rule[+]
-        * name = "medicationRequestPerformerActorIdentifier"
-        * source[+]
-          * context = "performerActorVar"
-          * element = "identifier"
-          * variable = "performerActorIdentifierVar"
-        // * target[+]      
-        //   * context = "tgtPerformerActorVar"
-        //   * contextType = #variable
-        //   * element = "reference"
-        //   * variable = "tgtPerformerActorReferenceVar"
-        * rule[+]
-          * name = "medicationRequestPerformerActorIdentifierValue"
-          * source[+]
-            * context = "performerActorIdentifierVar"
-            * element = "value"
-            * variable = "performerActorIdentifierValueVar"
-          * target[+]
-            * context = "tgtPerformerActorVar"
-            * contextType = #variable
-            * element = "reference"
-            * transform = #append
-            * parameter[+].valueString = "Organization/"
-            * parameter[+].valueId = "performerActorIdentifierValueVar"
-    * documentation = "Map performer.identifier to a reference to Organization with the identifier value"
+        * name = "medicationRequestsubjectExtensionContent"
+        * insert treeSource(kbvMedicationRequest, subject, srcSubject)
+        * insert targetSetStringVariable(tgtSubjectExtension, url, http://hl7.org/fhir/StructureDefinition/data-absent-reason)
+        * insert targetSetCodeVariable(tgtSubjectExtension, valueMarkdown, not-permitted)
+    * documentation = "TODO"
+
+// authoredOn
+  * rule[+]
+    * name = "medicationRequestAuthoredOn"
+    * insert treeSource(kbvMedicationRequest, authoredOn, srcAuthoredOnVar)
+    * insert targetCopyVariable(bfarmMedicationRequest, authoredOn, srcAuthoredOnVar)
+    * documentation = "TODO"
+
+// dosageInstruction
+  * rule[+]
+    * name = "medicationRequestDosageInstruction"
+    * insert treeSource(kbvMedicationRequest, dosageInstruction, srcDosageInstructionVar)
+    * insert targetCopyVariable(bfarmMedicationRequest, dosageInstruction, srcDosageInstructionVar)
+    * documentation = "TODO"
+
+// dispenseRequest
+  * rule[+]
+    * name = "medicationRequestDispenseRequest"
+    * insert treeSource(kbvMedicationRequest, dispenseRequest, srcDispenseRequestVar)
+    * insert targetCopyVariable(bfarmMedicationRequest, dispenseRequest, srcDispenseRequestVar)
+    * documentation = "TODO"
+
+// reference to Medication
+  * rule[+]
+    * name = "medicationReference"
+    * insert treeSource(kbvMedicationRequest, medication, medicationVar)
+    * insert targetCopyVariable(bfarmMedicationRequest, medication, medicationVar)
+    * documentation = "Copy medication; ensure correct mapping from reference is stated"

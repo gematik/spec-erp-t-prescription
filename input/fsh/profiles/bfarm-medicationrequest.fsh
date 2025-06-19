@@ -22,6 +22,8 @@ Description: "MedicationRequest with Requestinformation for BfArM T-Register"
 * authoredOn MS
 * dosageInstruction MS
 * dispenseRequest MS
+  * expectedSupplyDuration MS
+  // TODO elemente rausstreichen
 * medication[x] MS
 * medication[x] only Reference
 
