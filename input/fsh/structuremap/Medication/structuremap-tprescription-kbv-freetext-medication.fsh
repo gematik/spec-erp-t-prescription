@@ -26,7 +26,7 @@ Description: "Maps KBV FreeText Medication to BfArM T-Prescription Medication fo
     * rule[+]
       * name = "medicationCodeText"
       * insert treeSource(srcCodeVar, text, srcCodeTextVar)
-      * insert targetCopyVariable(tgtCodeVar, text, srcCodeTextVar)
+      * insert targetSetIdVariable(tgtCodeVar, text, srcCodeTextVar)
       * documentation = "Copies the Medication Code Text"
   
   // form
@@ -38,5 +38,5 @@ Description: "Maps KBV FreeText Medication to BfArM T-Prescription Medication fo
     * rule[+]
       * name = "medicationFormText"
       * insert treeSource(srcFormVar, text, srcformTextVar)
-      * insert targetCopyVariable(tgtFormVar, text, srcformTextVar)
+      * insert targetSetIdVariable(tgtFormVar, text, srcformTextVar)
       * documentation = "Copies the Medication form Text"

@@ -20,27 +20,27 @@ Description: "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication for
   * rule[+]
     * name = "medicationCode"
     * insert treeSource(kbvMedicationPZN, code, codeVar)
-    * insert targetCopyVariable(bfarmMedication, code, codeVar)
+    * insert targetSetIdVariable(bfarmMedication, code, codeVar)
     * documentation = "Copies the Medication Code"
 
   // form
   * rule[+]
     * name = "medicationForm"
     * insert treeSource(kbvMedicationPZN, form, formVar)
-    * insert targetCopyVariable(bfarmMedication, form, formVar)
+    * insert targetSetIdVariable(bfarmMedication, form, formVar)
     * documentation = "Copies the Medication Form"
   
   // amount
   * rule[+]
     * name = "medicationAmount"
     * insert treeSource(kbvMedicationPZN, amount, amountVar)
-    * insert targetCopyVariable(bfarmMedication, amount, amountVar)
+    * insert targetSetIdVariable(bfarmMedication, amount, amountVar)
     * documentation = "Copies the Medication Amount"
   
   // ingredient
   * rule[+]
     * name = "medicationIngredient"
     * insert treeSource(kbvMedicationPZN, ingredient, ingredientVar)
-    * insert targetCopyVariable(bfarmMedication, ingredient, ingredientVar)
+    * insert targetSetIdVariable(bfarmMedication, ingredient, ingredientVar)
     * documentation = "Copies the Medication Ingredient"
   

@@ -30,7 +30,7 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
   * rule[+]
     * name = "medicationCode"
     * insert treeSource(gematikMedication, code, codeVar)
-    * insert targetCopyVariable(bfarmMedication, code, codeVar)
+    * insert targetSetIdVariable(bfarmMedication, code, codeVar)
     * documentation = "Copies the Medication Code"
   
 
@@ -38,7 +38,7 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
   * rule[+]
     * name = "medicationForm"
     * insert treeSource(gematikMedication, form, formVar)
-    * insert targetCopyVariable(bfarmMedication, form, formVar)
+    * insert targetSetIdVariable(bfarmMedication, form, formVar)
     * documentation = "Copies the Medication Form"
   
 
@@ -46,7 +46,7 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
   * rule[+]
     * name = "medicationAmount"
     * insert treeSource(gematikMedication, amount, amountVar)
-    * insert targetCopyVariable(bfarmMedication, amount, amountVar)
+    * insert targetSetIdVariable(bfarmMedication, amount, amountVar)
     * documentation = "Copies the Medication Amount"
   
 
@@ -54,6 +54,6 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
   * rule[+]
     * name = "medicationIngredient"
     * insert treeSource(gematikMedication, ingredient, ingredientVar)
-    * insert targetCopyVariable(bfarmMedication, ingredient, ingredientVar)
+    * insert targetSetIdVariable(bfarmMedication, ingredient, ingredientVar)
     * documentation = "Copies the Medication Ingredient"
   

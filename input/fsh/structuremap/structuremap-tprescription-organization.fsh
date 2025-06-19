@@ -27,7 +27,7 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * rule[+]
         * name = "name"
         * insert treeSource(srcEntryOrganizationVar, name, srcOrgNameVar)
-        * insert targetCopyVariable(bfarmOrganization, name, srcOrgNameVar)
+        * insert targetSetIdVariable(bfarmOrganization, name, srcOrgNameVar)
         * documentation = "Copy Name to Organization"
 
   * rule[+]
@@ -41,7 +41,7 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * rule[+]
         * name = "telecom"
         * insert treeSource(srcEntryHealthcareServiceVar, telecom, srcHcsTelecomVar)
-        * insert targetCopyVariable(bfarmOrganization, telecom, srcHcsTelecomVar)
+        * insert targetSetIdVariable(bfarmOrganization, telecom, srcHcsTelecomVar)
         * documentation = "Copy telecom to HealthcareService"
 
   * rule[+]
@@ -55,5 +55,5 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * rule[+]
         * name = "address"
         * insert treeSource(srcEntryLocationVar, address, srcLocationAddressVar)
-        * insert targetCopyVariable(bfarmOrganization, address, srcLocationAddressVar)
+        * insert targetSetIdVariable(bfarmOrganization, address, srcLocationAddressVar)
         * documentation = "Copy address to Location"

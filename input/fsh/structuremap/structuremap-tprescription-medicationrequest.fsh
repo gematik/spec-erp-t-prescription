@@ -60,26 +60,26 @@ Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest 
   * rule[+]
     * name = "medicationRequestAuthoredOn"
     * insert treeSource(kbvMedicationRequest, authoredOn, srcAuthoredOnVar)
-    * insert targetCopyVariable(bfarmMedicationRequest, authoredOn, srcAuthoredOnVar)
+    * insert targetSetIdVariable(bfarmMedicationRequest, authoredOn, srcAuthoredOnVar)
     * documentation = "TODO"
 
 // dosageInstruction
   * rule[+]
     * name = "medicationRequestDosageInstruction"
     * insert treeSource(kbvMedicationRequest, dosageInstruction, srcDosageInstructionVar)
-    * insert targetCopyVariable(bfarmMedicationRequest, dosageInstruction, srcDosageInstructionVar)
+    * insert targetSetIdVariable(bfarmMedicationRequest, dosageInstruction, srcDosageInstructionVar)
     * documentation = "TODO"
 
 // dispenseRequest
   * rule[+]
     * name = "medicationRequestDispenseRequest"
     * insert treeSource(kbvMedicationRequest, dispenseRequest, srcDispenseRequestVar)
-    * insert targetCopyVariable(bfarmMedicationRequest, dispenseRequest, srcDispenseRequestVar)
+    * insert targetSetIdVariable(bfarmMedicationRequest, dispenseRequest, srcDispenseRequestVar)
     * documentation = "TODO"
 
 // reference to Medication
   * rule[+]
     * name = "medicationReference"
     * insert treeSource(kbvMedicationRequest, medication, medicationVar)
-    * insert targetCopyVariable(bfarmMedicationRequest, medication, medicationVar)
+    * insert targetSetIdVariable(bfarmMedicationRequest, medication, medicationVar)
     * documentation = "Copy medication; ensure correct mapping from reference is stated"

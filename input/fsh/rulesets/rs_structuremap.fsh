@@ -10,21 +10,21 @@ RuleSet: sd_input(name, mode)
   * type = "{name}"
   * mode = #{mode}
 
-RuleSet: targetCopyVariable(context, to, id)
+RuleSet: targetBase(context, to)
 * target[+]
   * context = "{context}"
   * contextType = #variable
   * element = "{to}"
   * transform = #copy
-  * parameter.valueId = "{id}"
+
+
+RuleSet: targetSetIdVariable(context, to, id)
+* insert targetBase({context}, {to})
+* target[=].parameter.valueId = "{id}"
 
 RuleSet: targetSetStringVariable(context, to, string)
-* target[+]
-  * context = "{context}"
-  * contextType = #variable
-  * element = "{to}"
-  * transform = #copy
-  * parameter.valueString = "{string}"
+* insert targetBase({context}, {to})
+* target[=].parameter.valueString = "{string}"
 
 RuleSet: targetSetCodeVariable(context, to, code)
 * target[+]
@@ -34,6 +34,24 @@ RuleSet: targetSetCodeVariable(context, to, code)
   * transform = #cast
   * parameter[+].valueString = "{code}"
   * parameter[+].valueString = "code"
+
+RuleSet: targetSetIdentifierVariable(context, to, system, value)
+* target[+]
+  * context = "{context}"
+  * contextType = #variable
+  * element = "{to}"
+  * transform = #id
+  * parameter[+].valueString = "{system}"
+  * parameter[+].valueString = "{value}"
+
+RuleSet: createType(context, to, variable, type)
+* target[+]
+  * context = "{context}"
+  * contextType = #variable
+  * element = "{to}"
+  * transform = #create
+  * variable = "{variable}"
+  * parameter[+].valueString = "{type}"
 
 RuleSet: treeSource(context, element, variable)
 * source[+]
@@ -47,3 +65,10 @@ RuleSet: treeTarget(context, element, variable)
   * context = "{context}"
   * element = "{element}"
   * variable = "{variable}"
+
+RuleSet: dependent(name, src, tgt)
+* dependent[+]
+  * name = "{name}"
+  * variable[+] = "{src}"
+  * variable[+] = "{tgt}"
+        

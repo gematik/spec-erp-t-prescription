@@ -25,27 +25,27 @@ Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medica
     * rule[+]
       * name = "medicationCodeText"
       * insert treeSource(srcCodeVar, text, srcCodeTextVar)
-      * insert targetCopyVariable(tgtCodeVar, text, srcCodeTextVar)
+      * insert targetSetIdVariable(tgtCodeVar, text, srcCodeTextVar)
       * documentation = "Copies the Medication Code Text"
   
   // form
   * rule[+]
     * name = "medicationForm"
     * insert treeSource(kbvMedicationCompounding, form, formVar)
-    * insert targetCopyVariable(bfarmMedication, form, formVar)
+    * insert targetSetIdVariable(bfarmMedication, form, formVar)
     * documentation = "Copies the Medication Form"
   
   // amount
   * rule[+]
     * name = "medicationAmount"
     * insert treeSource(kbvMedicationCompounding, amount, amountVar)
-    * insert targetCopyVariable(bfarmMedication, amount, amountVar)
+    * insert targetSetIdVariable(bfarmMedication, amount, amountVar)
     * documentation = "Copies the Medication Amount"
   
   // Compounding
   * rule[+]
     * name = "medicationIngredient"
     * insert treeSource(kbvMedicationCompounding, ingredient, ingredientVar)
-    * insert targetCopyVariable(bfarmMedication, ingredient, ingredientVar)
+    * insert targetSetIdVariable(bfarmMedication, ingredient, ingredientVar)
     * documentation = "Copies the Medication Ingredient"
   

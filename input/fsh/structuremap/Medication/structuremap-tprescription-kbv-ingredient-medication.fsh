@@ -20,20 +20,20 @@ Description: "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medicat
   * rule[+]
     * name = "medicationForm"
     * insert treeSource(kbvMedicationIngredient, form, formVar)
-    * insert targetCopyVariable(bfarmMedication, form, formVar)
+    * insert targetSetIdVariable(bfarmMedication, form, formVar)
     * documentation = "Copies the Medication Form"
   
   // amount
   * rule[+]
     * name = "medicationAmount"
     * insert treeSource(kbvMedicationIngredient, amount, amountVar)
-    * insert targetCopyVariable(bfarmMedication, amount, amountVar)
+    * insert targetSetIdVariable(bfarmMedication, amount, amountVar)
     * documentation = "Copies the Medication Amount"
   
   // ingredient
   * rule[+]
     * name = "medicationIngredient"
     * insert treeSource(kbvMedicationIngredient, ingredient, ingredientVar)
-    * insert targetCopyVariable(bfarmMedication, ingredient, ingredientVar)
+    * insert targetSetIdVariable(bfarmMedication, ingredient, ingredientVar)
     * documentation = "Copies the Medication Ingredient"
   

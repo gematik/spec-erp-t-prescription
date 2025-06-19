@@ -5,11 +5,11 @@ Title: "E-T-Rezept Structure Map for MedicationDispense"
 Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-MedicationDispense)
 
-* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense, target, bfarmMedicationDispense)
 * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense, source, gematikMedicationDispense)
+* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense, target, bfarmMedicationDispense)
 
 * group[+]
-  * name = "DispenseMapping"
+  * name = "erpTDispenseMapping"
   * typeMode = #none
   * documentation = "Mapping group for dispense information transformation"
 
@@ -25,7 +25,7 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
       * context = "gematikMedicationDispense"
       * element = "dosageInstruction"
       * variable = "dosageInstructionVar"
-    * insert targetCopyVariable(bfarmMedicationDispense, dosageInstruction, dosageInstructionVar)
+    * insert targetSetIdVariable(bfarmMedicationDispense, dosageInstruction, dosageInstructionVar)
     * documentation = "TODO"
   * rule[+]
     * name = "medicationDispenseDosageInstruction"
@@ -33,7 +33,7 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
       * context = "gematikMedicationDispense"
       * element = "whenHandedOver"
       * variable = "whenHandedOverVar"
-    * insert targetCopyVariable(bfarmMedicationDispense, whenHandedOver, whenHandedOverVar)
+    * insert targetSetIdVariable(bfarmMedicationDispense, whenHandedOver, whenHandedOverVar)
     * documentation = "TODO"
   
 // reference to Medication
@@ -43,22 +43,22 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
       * context = "gematikMedicationDispense"
       * element = "medication"
       * variable = "medicationVar"
-    * insert targetCopyVariable(bfarmMedicationDispense, medication, medicationVar)
+    * insert targetSetIdVariable(bfarmMedicationDispense, medication, medicationVar)
     * documentation = "Copy medication; ensure correct mapping from reference is stated"
 
 // set status to completed
   * rule[+]
     * name = "medicationDispenseStatus"
-    * source.context = "gematikMedicationDispense"
-    * source.element = "status"
-    * insert targetSetStringVariable(bfarmMedicationRequest, status, completed)
+    * insert treeSource(gematikMedicationDispense, status, gematikMedicationDispenseStatus)
+    * source[=].logMessage = "$this"
+    * insert targetSetStringVariable(bfarmMedicationDispense, status, completed)
     * documentation = "TODO"
   
 // quantity
   * rule[+]
     * name = "medicationDispenseQuantity"
     * insert treeSource(gematikMedicationDispense, quantity, quantityVar)
-    * insert targetCopyVariable(bfarmMedicationDispense, quantity, quantityVar)
+    * insert targetSetIdVariable(bfarmMedicationDispense, quantity, quantityVar)
     * documentation = "TODO"
   
 // Sets Organization/<telematik-id> as reference
