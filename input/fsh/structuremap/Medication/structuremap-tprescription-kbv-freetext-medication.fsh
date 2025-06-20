@@ -17,6 +17,13 @@ Description: "Maps KBV FreeText Medication to BfArM T-Prescription Medication fo
   * insert sd_input(kbvMedicationFreeText, source)
   * insert sd_input(bfarmMedication, target)
 
+  // Id
+  * rule[+]
+    * name = "medicationId"
+    * insert treeSource(kbvMedicationFreeText, id, IdVar)
+    * insert targetSetIdVariable(bfarmMedication, id, IdVar)
+    * documentation = "Copies the Medication Id"
+
   // code
   * rule[+]
     * name = "medicationCode"

@@ -30,6 +30,8 @@ dependencies:
   de.gematik.fhir.directory: 0.11.25
   de.gematik.erezept-workflow.r4: 1.5.1
   kbv.all.st: 1.22.0
+  de.basisprofil.r4: 1.5.2
+  de.gematik.epa.medication: 1.0.6-2
 #
 #
 # The pages property corresponds to IG.definition.page. SUSHI can

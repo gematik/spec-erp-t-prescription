@@ -26,6 +26,13 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
   * insert sd_input(gematikMedication, source)
   * insert sd_input(bfarmMedication, target)
 
+  // Id
+  * rule[+]
+    * name = "medicationId"
+    * insert treeSource(gematikMedication, id, IdVar)
+    * insert targetSetIdVariable(bfarmMedication, id, IdVar)
+    * documentation = "Copies the Medication Id"
+  
   // code
   * rule[+]
     * name = "medicationCode"

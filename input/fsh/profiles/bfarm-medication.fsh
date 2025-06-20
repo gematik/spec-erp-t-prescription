@@ -1,14 +1,15 @@
 Profile: ERP_TPrescription_Medication
-Parent: Medication
+Parent: GEM_ERP_PR_Medication
 Id: erp-tprescription-medication
 Title: "E-T-Rezept Medication"
 Description: "Medication for BfArM T-Register"
 * insert Profile(erp-tprescription-medication)
 
-* code MS
-* form MS
-* amount MS
-* ingredient MS
+* extension[rxPrescriptionProcessIdentifier] 0..0
+* extension[isVaccine] 0..0
+* extension[drugCategory] 0..0
+* extension[manufacturingInstructions] 0..0
+* extension[type] 0..0
 
 * identifier 0..0
 * status 0..0

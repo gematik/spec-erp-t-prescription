@@ -16,6 +16,13 @@ Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medica
   * insert sd_input(kbvMedicationCompounding, source)
   * insert sd_input(bfarmMedication, target)
 
+  // Id
+  * rule[+]
+    * name = "medicationId"
+    * insert treeSource(kbvMedicationCompounding, id, IdVar)
+    * insert targetSetIdVariable(bfarmMedication, id, IdVar)
+    * documentation = "Copies the Medication Id"
+
   // code
   * rule[+]
     * name = "medicationCode"

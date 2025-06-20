@@ -10,8 +10,8 @@ Description: "Parameters to send t-prescription Data to BfArM"
 * parameter ^slicing.rules = #closed
 
 * parameter contains 
-rxPrescription 1..1 
-and rxDispensation 1..1 
+rxPrescription 1..1
+and rxDispensation 1..1
 
 * parameter[rxPrescription]
   * name 1..1 MS
