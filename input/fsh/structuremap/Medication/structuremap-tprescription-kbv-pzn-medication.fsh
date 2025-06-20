@@ -20,6 +20,7 @@ Description: "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication for
   * rule[+]
     * name = "medicationCode"
     * insert treeSource(kbvMedicationPZN, code, codeVar)
+    // * source[=].logMessage = "$this"
     * insert targetSetIdVariable(bfarmMedication, code, codeVar)
     * documentation = "Copies the Medication Code"
 

@@ -50,7 +50,7 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
   * rule[+]
     * name = "medicationDispenseStatus"
     * insert treeSource(gematikMedicationDispense, status, gematikMedicationDispenseStatus)
-    * source[=].logMessage = "$this"
+    // * source[=].logMessage = "$this"
     * insert targetSetStringVariable(bfarmMedicationDispense, status, completed)
     * documentation = "TODO"
   

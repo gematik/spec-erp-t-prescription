@@ -9,7 +9,7 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization, target, bfarmOrganization)
 
 * group[+]
-  * name = "SearchBundleMapping"
+  * name = "erpTOrganizationMapping"
   * typeMode = #none
   * documentation = "Mapping group for VZD SearchSet"
 
@@ -23,7 +23,7 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * name = "entry"
       * insert treeSource(srcEntryOrgVar, resource, srcEntryOrganizationVar)
       * source[=].condition = "ofType(Organization)"
-      * source[=].logMessage = "ofType(Organization)"
+      // * source[=].logMessage = "ofType(Organization)"
       * rule[+]
         * name = "name"
         * insert treeSource(srcEntryOrganizationVar, name, srcOrgNameVar)
@@ -37,7 +37,7 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * name = "entry"
       * insert treeSource(srcEntryHCSVar, resource, srcEntryHealthcareServiceVar)
       * source[=].condition = "ofType(HealthcareService)"
-      * source[=].logMessage = "ofType(HealthcareService)"
+      // * source[=].logMessage = "ofType(HealthcareService)"
       * rule[+]
         * name = "telecom"
         * insert treeSource(srcEntryHealthcareServiceVar, telecom, srcHcsTelecomVar)
@@ -51,7 +51,7 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * name = "entry"
       * insert treeSource(srcEntryHCSVar, resource, srcEntryLocationVar)
       * source[=].condition = "ofType(Location)"
-      * source[=].logMessage = "ofType(Location)"
+      // * source[=].logMessage = "ofType(Location)"
       * rule[+]
         * name = "address"
         * insert treeSource(srcEntryLocationVar, address, srcLocationAddressVar)

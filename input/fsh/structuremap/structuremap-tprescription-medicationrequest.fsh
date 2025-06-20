@@ -9,21 +9,12 @@ Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest 
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
 
 * group[+]
-  * name = "RequestMapping"
+  * name = "erpTRequestMapping"
   * typeMode = #none
   * documentation = "Mapping group for Request information transformation"
 
   * insert sd_input(kbvMedicationRequest, source)
   * insert sd_input(bfarmMedicationRequest, target)
-
-// Rules for MedicationRequest
-
-/*
-
-// Fields that are to be supported by systems
-* medication[x] MS
-* medication[x] only Reference
-*/
 
 // set status to completed
   * rule[+]

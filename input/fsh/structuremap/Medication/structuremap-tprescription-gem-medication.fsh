@@ -19,7 +19,7 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
 */
 
 * group[+]
-  * name = "GemMedicationMapping"
+  * name = "erpTGemMedicationMapping"
   * typeMode = #none
   * documentation = "Mapping group for medication information transformation"
 
