@@ -9,11 +9,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
 * import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationRequest)
 * import[+] = Canonical(ERP-TPrescription-StructureMap-Organization)
 * import[+] = Canonical(ERP-TPrescription-StructureMap-Task)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-GEM-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-Compounding-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-PZN-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-FreeText-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-Ingredient-Medication)
+* import[+] = Canonical(ERP-TPrescription-StructureMap-Medication)
 
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Bundle, source, bundle)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy, target, erpTCarbonCopy)
@@ -82,7 +78,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
           * source[+].context = "srcEntryVar"
           * source[=].variable = "srcMedicationRequestId"
           * source[=].condition = "resource.ofType(MedicationRequest)"
-          * source[=].logMessage = "resource.ofType(MedicationRequest)"
+          // * source[=].logMessage = "resource.ofType(MedicationRequest)"
           * insert targetSetStringVariable(tgtRxPrescriptionPartMed, name, medication)
           * rule[+]
             * name = "prepMedication"
@@ -92,50 +88,15 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
               * source[+].context = "srcEntryVar2"
               * source[=].variable = "srcEntryBundleMRMedIdVar"
               * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
-              * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
+              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
               * insert createType(tgtRxPrescriptionPartMed, resource, newMedicationPrescriptionMedication, Medication)
               * rule[+]
                 * name = "entryMedicationPrescriptionMedicationPartResourceSet"
                 * source[+].context = "srcEntryBundleMRMedIdVar"
                 * source[=].variable = "srcEntryBundleMRMedIdVarRes"
                 * source[=].element = "resource"
-                * source[=].logMessage = "%srcEntryBundleMRMedIdVar"
-                * insert dependent(KBVPZNMedicationMapping, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
-                * insert dependent(KBVCompoundingMedicationMapping, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
-                * insert dependent(KBVIngredientMedicationMapping, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
-                * insert dependent(KBVFreeTextMedicationMapping, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
-
-      // part medication
-        // * rule[+]
-        //   * name = "entryMedication"
-        //   * source[+].context = "bundle"
-        //   * source[=].variable = "srcEntryBundlerxPrescriptionMedVar"
-        //   // * source[=].condition = "ofType(Medication).where(id=%context.ofType(MedicationRequest).first().medication.reference.replace('Medication/', '')).first()"
-        //   * source[=].condition = "%context.entry.where(resource.ofType(Medication) and resource.id=%context.entry.resource.ofType(MedicationRequest).medication.reference.replace('Medication/', ''))"
-        //   // * source[=].logMessage = "%context"
-        //   * source[=].element = "entry"
-        //   * insert targetSetStringVariable(tgtRxPrescriptionPartMed, name, medication)
-        //   * insert createType(tgtRxPrescriptionPartMed, resource, newPrescriptionMedication, Medication)
-        //   * rule[+]
-        //     * name = "entryMedicationPartResourceSet"
-        //     * insert treeSource(srcEntryBundlerxPrescriptionMedVar, entry, srcEntryXXVar)
-        //     * insert targetSetIdVariable(tgtRxPrescriptionPartMed, resource, srcEntryXXVar)
-        //     * rule[+]
-            //   * name = "lalala"
-            //   * source.context = "srcEntryXXVar"
-            // // * source.condition = "ofType(Medication)"
-            // // * source.logMessage = "ofType(Medication)"
-            //   * insert targetSetIdVariable(tgtRxPrescriptionPartMed, resource, srcEntryXXVar)
-            //* insert dependent(KBVPZNMedicationMapping, srcEntryBundlerxPrescriptionMedVar, newPrescriptionMedication)
-            // * rule[+]
-            //   * name = "createrxPrescriptionMedication"
-            //   * source.context = "srcEntryBundlerxPrescriptionMedVar"
-            //   // * insert dependent(KBVPZNMedicationMapping, srcEntryBundlerxPrescriptionMedVar, newPrescriptionMedication)
-        //   * insert dependent(KBVCompoundingMedicationMapping, srcEntryBundlerxPrescriptionMedVar, newPrescriptionMedication)
-        //   * insert dependent(KBVIngredientMedicationMapping, srcEntryBundlerxPrescriptionMedVar, newPrescriptionMedication)
-        //   * insert dependent(KBVFreeTextMedicationMapping, srcEntryBundlerxPrescriptionMedVar, newPrescriptionMedication)
-
-
+                // * source[=].logMessage = "%srcEntryBundleMRMedIdVar"
+                * insert dependent(erpTMedicationMapping, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
 
   // Parameter rxDispensation
   * rule[+]
@@ -143,8 +104,6 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
     * source.context = "bundle"
     * insert treeTarget(erpTCarbonCopy, parameter, tgtRxDispensation)
     * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartOrg)
-    * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartMD)
-    * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartDispMed)
     * insert targetSetStringVariable(tgtRxDispensation, name, rxDispensation)
 
     * rule[+]
@@ -178,17 +137,44 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
           * source[+].context = "srcEntryResourceVar"
           * source[=].variable = "srcEntryBundleMDVar"
           * source[=].condition = "ofType(MedicationDispense)"
-          // * source[=].logMessage = "ofType(MedicationDispense)"
-          * insert targetSetStringVariable(tgtRxDispensationPartMD, name, medicationDispense)
+          //* source[=].logMessage = "ofType(MedicationDispense)"
+          * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartMD)
           * rule[+]
             * name = "entryMedicationDispensePart"
             * source.context = "srcEntryBundleMDVar"
+            * insert targetSetStringVariable(tgtRxDispensationPartMD, name, medicationDispense)
             * insert createType(tgtRxDispensationPartMD, resource, newMedicationDispense, MedicationDispense)
             * rule[+]
               * name = "entryMedicationDispensePartResourceSet"
               * source.context = "srcEntryBundleMDVar"
               * insert dependent(erpTDispenseMapping, srcEntryBundleMDVar, newMedicationDispense)
         
+        // part Medication
+        * rule[+]
+          * name = "entryMedicationDispenseMedication"
+          * source[+].context = "srcEntryVar"
+          * source[=].variable = "srcMedicationDispenseId"
+          * source[=].condition = "resource.ofType(MedicationDispense)"
+          //* source[=].logMessage = "resource.ofType(MedicationDispense)"
+          * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartDispMed)
+          * insert targetSetStringVariable(tgtRxDispensationPartDispMed, name, medication)
+          * rule[+]
+            * name = "prepMedication"
+            * insert treeSource(bundle, entry, srcEntryVar2)
+            * rule[+]
+              * name = "entryMedicationDispensationMedicationPart"
+              * source[+].context = "srcEntryVar2"
+              * source[=].variable = "srcEntryBundleMDMedIdVar"
+              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
+              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
+              * insert createType(tgtRxDispensationPartDispMed, resource, newMedicationDispensationMedication, Medication)
+              * rule[+]
+                * name = "entryMedicationDispensationMedicationPartResourceSet"
+                * source[+].context = "srcEntryBundleMDMedIdVar"
+                * source[=].variable = "srcEntryBundleMDMedIdVarRes"
+                * source[=].element = "resource"
+                // * source[=].logMessage = "%srcEntryBundleMDMedIdVar"
+                * insert dependent(erpTMedicationMapping, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)
 
 
 
