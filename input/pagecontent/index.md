@@ -2,15 +2,13 @@
 
 Dieser Implementation Guide beschreibt Profile und deren Verwendung in Anwendungsfällen zum Datenaustausch zwischen der gematik und dem Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM).
 
-Folgende Anwendungsfälle werden in diesem IG Beschrieben:
-
-- [Übertragung digitaler Durchschlag zum T-Rezept](./trezept.html)
-  
-In weiteren Ausbaustufen dieses IG's kommen weitere Anwendungsfälle hinzu.
+In diesem IG wird der Anwendungsfall "[Übertragung digitaler Durchschlag zum T-Rezept](./trezept.html)", sowie die dazugehörigen Profile und Mappingdaten beschrieben.
 
 ## Wie dieser IG zu lesen ist.
 
 Die Übersichtsseite des Anwendungsfalls (s.o.) beschreibt die fachlichen Anforderungen und gibt eine allgemeine Beschreibung dessen, was erreicht werden soll. Die Profilseiten enthalten jeweils eine Beschreibung der Profile und deren Verwendung.
+
+Dieser IG stellt ebenfalls Mappingdaten zur Verfügung, die entwicklungsunterstützend genutzt werden können, um digitale Durchschläge für das T-Rezept zu erstellen. Weiterführende Beschreibung hierzu findet sich unter [Mapping für den digitalen Durchschlag](./t-mapping.html).
 
 Die API des BfArM Webdienstes wird in der API Dokumentation des E-Rezeptes beschreiben. Der IG beschreibt Hintergründe und Entscheidungen zum Datenmodell.
 

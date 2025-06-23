@@ -50,6 +50,8 @@ pages:
     title: Einführung BfArM <> Gematik
   datamodel.md:
     title: Datenmodell
+  t-mapping.md:
+    title: Mapping digitaler Durchschlag
   trezept.md:
     title: Digitaler Durchschlag T-Rezept
 #
@@ -79,6 +81,7 @@ menu:
   Start: 
     Einführung: index.html
     Datenmodell: datamodel.html
+    Mapping: t-mapping.html
   Anwendungsfälle:
     T-Rezept: trezept.html
   Artifacts: artifacts.html
