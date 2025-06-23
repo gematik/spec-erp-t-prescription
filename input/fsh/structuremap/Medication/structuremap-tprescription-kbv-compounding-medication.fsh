@@ -136,11 +136,11 @@ Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medica
         * source[+].context = "IngredientExtVar"
         * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Form'"
         * insert targetSetStringVariable(tgtIngredientExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension)
-      * rule[+]
-        * name = "copyExtensionValue"
-        * documentation = "Copies the the value for each Extension"
-        * insert treeSource(IngredientExtVar, value, extValVar)
-        * insert targetSetIdVariable(tgtIngredientExtVar, value, extValVar)
+        * rule[+]
+          * name = "copyExtensionValue"
+          * documentation = "Copies the the value for each Extension"
+          * insert treeSource(IngredientExtVar, value, extValVar)
+          * insert targetSetIdVariable(tgtIngredientExtVar, value, extValVar)
 
     // Copy strength
     * rule[+]
@@ -151,12 +151,12 @@ Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medica
       // Copy numerator and denominator
       * rule[+]
         * name = "medicationIngredientDenominator"
-        * insert treeSource(ingredientVar, denominator, ingredientDenominatorVar)
-        * insert targetSetIdVariable(tgtIngredientVar, denominator, ingredientDenominatorVar)
+        * insert treeSource(IngredientStrengthValueVar, denominator, ingredientDenominatorVar)
+        * insert targetSetIdVariable(IngredientStrengthValueVar, denominator, ingredientDenominatorVar)
       * rule[+]
         * name = "medicationIngredientNumerator"
-        * insert treeSource(ingredientVar, numerator, ingredientNumeratorVar)
-        * insert targetSetIdVariable(tgtIngredientVar, numerator, ingredientNumeratorVar)
+        * insert treeSource(IngredientStrengthValueVar, numerator, ingredientNumeratorVar)
+        * insert targetSetIdVariable(IngredientStrengthValueVar, numerator, ingredientNumeratorVar)
 
       // Strength Extension
       * rule[+]
@@ -166,12 +166,12 @@ Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medica
         * documentation = "Copies the Ingredient Strength Extensions"
         * rule[+]
           * name = "copyPackagingSizeExtensionUrl"
-          * source[+].context = "IngredientExtVar"
+          * source[+].context = "IngredientStrExtVar"
           * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount'"
           * insert targetSetStringVariable(tgtIngredientStrExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension)
-        * rule[+]
-          * name = "copyExtensionValue"
-          * documentation = "Copies the the value for each Extension"
-          * insert treeSource(IngredientStrExtVar, value, extValVar)
-          * insert targetSetIdVariable(tgtIngredientStrExtVar, value, extValVar)
+          * rule[+]
+            * name = "copyExtensionValue"
+            * documentation = "Copies the the value for each Extension"
+            * insert treeSource(IngredientStrExtVar, value, extValVar)
+            * insert targetSetIdVariable(tgtIngredientStrExtVar, value, extValVar)
   

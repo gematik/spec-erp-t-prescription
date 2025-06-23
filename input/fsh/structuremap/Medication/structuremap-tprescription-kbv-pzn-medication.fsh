@@ -28,11 +28,11 @@ Description: "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication for
       * source[+].context = "extVar"
       * source[=].condition = "url='http://fhir.de/StructureDefinition/normgroesse'"
       * insert targetSetStringVariable(tgtExtVar, url, http://fhir.de/StructureDefinition/normgroesse)
-    * rule[+]
-      * name = "copyExtensionValue"
-      * documentation = "Copies the the value for each Extension"
-      * insert treeSource(extVar, value, extValVar)
-      * insert targetSetIdVariable(tgtExtVar, value, extValVar)
+      * rule[+]
+        * name = "copyExtensionValue"
+        * documentation = "Copies the the value for each Extension"
+        * insert treeSource(extVar, value, extValVar)
+        * insert targetSetIdVariable(tgtExtVar, value, extValVar)
 
   
   // Id
@@ -85,11 +85,11 @@ Description: "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication for
           * source[+].context = "amountNumExtVar"
           * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize'"
           * insert targetSetStringVariable(tgtAmountNumExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension)
-        * rule[+]
-          * name = "copyExtensionValue"
-          * documentation = "Copies the the value for each Extension"
-          * insert treeSource(amountNumExtVar, value, extValVar)
-          * insert targetSetIdVariable(tgtAmountNumExtVar, value, extValVar)
+          * rule[+]
+            * name = "copyExtensionValue"
+            * documentation = "Copies the the value for each Extension"
+            * insert treeSource(amountNumExtVar, value, extValVar)
+            * insert targetSetIdVariable(tgtAmountNumExtVar, value, extValVar)
 
       // Amount Numerator Values
       * rule[+]

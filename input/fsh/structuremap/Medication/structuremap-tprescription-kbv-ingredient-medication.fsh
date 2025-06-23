@@ -59,11 +59,11 @@ Description: "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medicat
           * source[+].context = "amountNumExtVar"
           * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize'"
           * insert targetSetStringVariable(tgtAmountNumExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension)
-        * rule[+]
-          * name = "copyExtensionValue"
-          * documentation = "Copies the the value for each Extension"
-          * insert treeSource(amountNumExtVar, value, extValVar)
-          * insert targetSetIdVariable(tgtAmountNumExtVar, value, extValVar)
+          * rule[+]
+            * name = "copyExtensionValue"
+            * documentation = "Copies the the value for each Extension"
+            * insert treeSource(amountNumExtVar, value, extValVar)
+            * insert targetSetIdVariable(tgtAmountNumExtVar, value, extValVar)
 
       // Amount Numerator Values
       * rule[+]
@@ -83,8 +83,6 @@ Description: "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medicat
         * insert treeSource(amountNumeratorVar, code, amountNumeratorCodeVar)
         * insert targetSetIdVariable(tgtAmountNumeratorVar, code, amountNumeratorCodeVar)
 
-  
-  
   // ingredient
   * rule[+]
     * name = "medicationIngredient"

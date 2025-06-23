@@ -6,17 +6,7 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-GEM-Medication)
 
 * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication, source, gematikMedication)
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN, source, kbvMedicationPZN)
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient, source, kbvMedicationIngredient)
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText, source, kbvMedicationFreeText)
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding, source, kbvMedicationCompounding)
-
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication, target, bfarmMedication)
-/* TODO
-  * insert sd_input(kbvMedicationPZN, source)
-  * insert sd_input(kbvMedicationIngredient, source)
-  * insert sd_input(kbvMedicationCompounding, source)
-*/
 
 * group[+]
   * name = "erpTGemMedicationMapping"
@@ -32,6 +22,13 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
     * insert treeSource(gematikMedication, id, IdVar)
     * insert targetSetIdVariable(bfarmMedication, id, IdVar)
     * documentation = "Copies the Medication Id"
+
+  // Extension
+  * rule[+]
+    * name = "medicationExtension"
+    * insert treeSource(gematikMedication, extension, extVar)
+    * insert targetSetIdVariable(bfarmMedication, extension, extVar)
+    * documentation = "Copies the Medication Extension"
   
   // code
   * rule[+]
