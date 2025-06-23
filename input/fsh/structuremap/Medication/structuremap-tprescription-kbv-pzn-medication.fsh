@@ -5,8 +5,8 @@ Title: "E-T-Rezept Structure Map for KBV PZN Medication"
 Description: "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-KBV-PZN-Medication)
 
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN, source, kbvMedicationPZN)
-* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication, target, bfarmMedication)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, kbvMedicationPZN)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
 * group[+]
   * name = "KBVPZNMedicationMapping"

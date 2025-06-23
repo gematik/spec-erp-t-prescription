@@ -44,7 +44,7 @@ Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest 
         * name = "medicationRequestsubjectExtensionContent"
         * insert treeSource(kbvMedicationRequest, subject, srcSubject)
         * insert targetSetStringVariable(tgtSubjectExtension, url, http://hl7.org/fhir/StructureDefinition/data-absent-reason)
-        * insert targetSetCodeVariable(tgtSubjectExtension, valueMarkdown, not-permitted)
+        * insert targetSetCodeVariable(tgtSubjectExtension, value, not-permitted)
     * documentation = "TODO"
 
 // authoredOn

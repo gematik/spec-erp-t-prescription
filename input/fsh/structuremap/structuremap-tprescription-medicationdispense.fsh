@@ -5,7 +5,8 @@ Title: "E-T-Rezept Structure Map for MedicationDispense"
 Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-MedicationDispense)
 
-* insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense, source, gematikMedicationDispense)
+// * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense, source, gematikMedicationDispense)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/MedicationDispense, source, gematikMedicationDispense)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense, target, bfarmMedicationDispense)
 
 * group[+]

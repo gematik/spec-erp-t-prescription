@@ -25,7 +25,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
 
   // Parameter rxPrescription
   * rule[+]
-    * name = "r-rxPrescription"
+    * name = "rxPrescriptionRule"
     * source.context = "bundle"
     * insert treeTarget(erpTCarbonCopy, parameter, tgtRxPrescription)
     * insert treeTarget(tgtRxPrescription, part, tgtRxPrescriptionPartId)
@@ -49,11 +49,12 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
           * source[=].condition = "ofType(Task)"
           // * source[=].logMessage = "ofType(Task)"
           * insert targetSetStringVariable(tgtRxPrescriptionPartId, name, prescriptionId)
-          * insert treeTarget(tgtRxPrescriptionPartId, valueIdentifier, tgtRxPrescriptionPartIdValue)
+          //* insert treeTarget(tgtRxPrescriptionPartId, value, tgtRxPrescriptionPartIdValue)
+          * insert createType(tgtRxPrescriptionPartId, value, newIdentifier, Identifier)
           * rule[+]
             * name = "parameterrXPrescriptionPartIdentifier"
             * source.context = "srcEntryTaskVar"
-            * insert dependent(erpTTaskMapping, srcEntryTaskVar, tgtRxPrescriptionPartIdValue)
+            * insert dependent(erpTTaskMapping, srcEntryTaskVar, newIdentifier)
         
         // part medicationRequest
         * rule[+]

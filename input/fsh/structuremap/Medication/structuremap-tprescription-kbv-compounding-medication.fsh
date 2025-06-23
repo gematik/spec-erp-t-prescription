@@ -5,8 +5,8 @@ Title: "E-T-Rezept Structure Map for KBV Compounding Medication"
 Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medication format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-KBV-Compounding-Medication)
 
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding, source, kbvMedicationCompounding)
-* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication, target, bfarmMedication)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, kbvMedicationCompounding)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
 * group[+]
   * name = "KBVCompoundingMedicationMapping"

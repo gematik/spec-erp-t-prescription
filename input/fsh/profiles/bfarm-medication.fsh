@@ -1,5 +1,5 @@
 Profile: ERP_TPrescription_Medication
-Parent: GEM_ERP_PR_Medication
+Parent: EPAMedication
 Id: erp-tprescription-medication
 Title: "E-T-Rezept Medication"
 Description: "Medication for BfArM T-Register"

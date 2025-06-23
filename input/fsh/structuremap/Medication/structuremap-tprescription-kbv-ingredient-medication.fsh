@@ -5,8 +5,8 @@ Title: "E-T-Rezept Structure Map for KBV Ingredient Medication"
 Description: "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medication format"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-KBV-Ingredient-Medication)
 
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient, source, kbvMedicationIngredient)
-* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication, target, bfarmMedication)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, kbvMedicationIngredient)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
 * group[+]
   * name = "KBVIngredientMedicationMapping"
@@ -34,7 +34,7 @@ Description: "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medicat
    // amount
   * rule[+]
     * name = "medicationAmount"
-    * insert treeSource(kbvMedicationPZN, amount, amountVar)
+    * insert treeSource(kbvMedicationIngredient, amount, amountVar)
     * insert treeTarget(bfarmMedication, amount, tgtAmountVar)
     * documentation = "Copies the Medication Amount"
 
