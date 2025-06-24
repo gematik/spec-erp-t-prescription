@@ -44,16 +44,18 @@ dependencies:
 # file name extension.  Any subproperties that are valid filenames
 # with supported extensions (e.g., .md/.xml) will be treated as
 # sub-pages.
-#
+# TODO
 pages:
   index.md:
-    title: Einführung BfArM <> Gematik
+    title: Einführung
   datamodel.md:
     title: Datenmodell
   t-mapping.md:
     title: Mapping digitaler Durchschlag
   trezept.md:
     title: Digitaler Durchschlag T-Rezept
+  bfarm-openapi.md:
+    title: Open API BfArM
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
@@ -80,11 +82,14 @@ pages:
 menu:
   Start: 
     Einführung: index.html
+  Fachliche Themen:
     Datenmodell: datamodel.html
     Mapping: t-mapping.html
   Anwendungsfälle:
     T-Rezept: trezept.html
-  Artifacts: artifacts.html
+  FHIR-Artefakte: artifacts.html
+  # Anhänge:
+  #   OpenAPI: bfarm-openapi.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
@@ -219,3 +224,7 @@ instanceOptions:
   # if InstanceOf references a profile:
   #
   # setId: always # always | standalone-only
+
+parameters:
+  path-pages:
+    - input/content

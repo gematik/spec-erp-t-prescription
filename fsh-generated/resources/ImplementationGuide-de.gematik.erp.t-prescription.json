@@ -218,6 +218,13 @@
       },
       {
         "reference": {
+          "reference": "OperationOutcome/ERP-TPrescription-OperationOutcome-1"
+        },
+        "name": "ERP-TPrescription-OperationOutcome-1",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
           "reference": "Medication/ExampleMedication2-Ibuprofen-T"
         },
         "name": "Example Medication - Ibuprofen",
@@ -279,7 +286,7 @@
       "page": [
         {
           "nameUrl": "index.html",
-          "title": "Einführung BfArM <> Gematik",
+          "title": "Einführung",
           "generation": "markdown"
         },
         {
@@ -296,6 +303,11 @@
           "nameUrl": "trezept.html",
           "title": "Digitaler Durchschlag T-Rezept",
           "generation": "markdown"
+        },
+        {
+          "nameUrl": "bfarm-openapi.html",
+          "title": "Open API BfArM",
+          "generation": "markdown"
         }
       ]
     },
@@ -307,6 +319,10 @@
       {
         "code": "releaselabel",
         "value": "ci-build"
+      },
+      {
+        "code": "path-pages",
+        "value": "input/content"
       }
     ]
   }

@@ -15,6 +15,7 @@
 [ERP-TPrescription-StructureMap-Organization]: StructureMap-ERP-TPrescription-StructureMap-Organization.html
 [ERP-TPrescription-StructureMap-Task]: StructureMap-ERP-TPrescription-StructureMap-Task.html
 [ERP_TPrescription_VZD_SearchSet]: StructureDefinition-erp-tprescription-vzd-searchset.html
+[ERP-TPrescription-OperationOutcome-1]: OperationOutcome-ERP-TPrescription-OperationOutcome-1.html
 [ExampleMedication2-Ibuprofen-T]: Medication-ExampleMedication2-Ibuprofen-T.html
 [ExampleMedication1-Paracetamol-T]: Medication-ExampleMedication1-Paracetamol-T.html
 [ExampleMedicationDispense-T]: MedicationDispense-ExampleMedicationDispense-T.html

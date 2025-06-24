@@ -1,0 +1,28 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "ERP-TPrescription-OperationOutcome-1",
+  "issue": [
+    {
+      "details": {
+        "text": "Invalid request payload"
+      },
+      "expression": [
+        "parameter[rxPrescription].part[prescriptionId].value"
+      ],
+      "severity": "error",
+      "code": "invalid",
+      "diagnostics": "This field is required"
+    },
+    {
+      "details": {
+        "text": "Invalid format for field"
+      },
+      "expression": [
+        "parameter[rxPrescription].part[medicationRequest].resource.authoredOn"
+      ],
+      "severity": "error",
+      "code": "value",
+      "diagnostics": "Value must be a date"
+    }
+  ]
+}

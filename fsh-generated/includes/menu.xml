@@ -18,6 +18,13 @@
       <li>
         <a href="index.html">Einführung</a>
       </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Fachliche Themen
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
       <li>
         <a href="datamodel.html">Datenmodell</a>
       </li>
@@ -37,6 +44,6 @@
     </ul>
   </li>
   <li>
-    <a href="artifacts.html">Artifacts</a>
+    <a href="artifacts.html">FHIR-Artefakte</a>
   </li>
 </ul>
