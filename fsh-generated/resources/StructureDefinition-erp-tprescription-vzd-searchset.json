@@ -1,0 +1,94 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "erp-tprescription-vzd-searchset",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-vzd-searchset",
+  "version": "0.1.0",
+  "name": "ERP_TPrescription_VZD_SearchSet",
+  "title": "E-T-Rezept vzd-searchset",
+  "status": "draft",
+  "date": "2025-07-01",
+  "description": "vzd-searchset Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle.entry",
+        "path": "Bundle.entry",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "resource"
+            }
+          ],
+          "rules": "open",
+          "description": "Slicing for Bundle Entries of VZD Searchset",
+          "ordered": false
+        },
+        "min": 3
+      },
+      {
+        "id": "Bundle.entry:organization",
+        "path": "Bundle.entry",
+        "sliceName": "organization",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:organization.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Organization",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:healthcareservice",
+        "path": "Bundle.entry",
+        "sliceName": "healthcareservice",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:healthcareservice.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "HealthcareService",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:location",
+        "path": "Bundle.entry",
+        "sliceName": "location",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Bundle.entry:location.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Location",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

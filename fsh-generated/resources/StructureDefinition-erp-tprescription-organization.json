@@ -1,0 +1,71 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "erp-tprescription-organization",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization",
+  "version": "0.1.0",
+  "name": "ERP_TPrescription_Organization",
+  "title": "E-T-Rezept Organization",
+  "status": "draft",
+  "date": "2025-07-01",
+  "description": "Organization Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Organization.active",
+        "path": "Organization.active",
+        "max": "0"
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "max": "0"
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "max": "0"
+      },
+      {
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address",
+        "path": "Organization.address",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
+        "max": "0"
+      },
+      {
+        "id": "Organization.contact",
+        "path": "Organization.contact",
+        "max": "0"
+      },
+      {
+        "id": "Organization.endpoint",
+        "path": "Organization.endpoint",
+        "max": "0"
+      }
+    ]
+  }
+}

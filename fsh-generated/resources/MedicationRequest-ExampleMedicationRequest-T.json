@@ -1,0 +1,61 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "ExampleMedicationRequest-T",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
+    ]
+  },
+  "dosageInstruction": [
+    {
+      "text": "1-1-1-1"
+    }
+  ],
+  "dispenseRequest": {
+    "quantity": {
+      "value": 10,
+      "unit": "Tablette"
+    }
+  },
+  "extension": [
+    {
+      "extension": [
+        {
+          "url": "safetyMeasures",
+          "valueBoolean": true
+        },
+        {
+          "url": "informationMaterial",
+          "valueBoolean": true
+        },
+        {
+          "url": "offLabelUse",
+          "valueBoolean": false
+        },
+        {
+          "url": "prescriptionForWoman",
+          "valueBoolean": false
+        },
+        {
+          "url": "expertiseConfirmation",
+          "valueBoolean": true
+        }
+      ],
+      "url": "http://example.org/fhir/StructureDefinition/confirmations"
+    }
+  ],
+  "status": "completed",
+  "intent": "order",
+  "subject": {
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "valueCode": "not-permitted"
+      }
+    ]
+  },
+  "authoredOn": "2026-04-01",
+  "medicationReference": {
+    "reference": "Medication/ExampleMedication1-Paracetamol-T"
+  }
+}

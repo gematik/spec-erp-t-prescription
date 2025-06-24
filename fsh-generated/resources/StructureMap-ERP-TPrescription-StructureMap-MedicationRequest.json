@@ -1,0 +1,266 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-MedicationRequest",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationRequest",
+  "title": "E-T-Rezept Structure Map for MedicationRequest",
+  "description": "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest format",
+  "structure": [
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription",
+      "mode": "source",
+      "alias": "kbvMedicationRequest"
+    },
+    {
+      "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request",
+      "mode": "target",
+      "alias": "bfarmMedicationRequest"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "kbvMedicationRequest",
+          "type": "kbvMedicationRequest",
+          "mode": "source"
+        },
+        {
+          "name": "bfarmMedicationRequest",
+          "type": "bfarmMedicationRequest",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "status",
+              "variable": "srcStatus"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueString": "completed"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "status",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestStatus",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "intent"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueString": "order"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "intent",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestIntent",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "subject",
+              "variable": "srcSubject"
+            }
+          ],
+          "target": [
+            {
+              "contextType": "variable",
+              "context": "bfarmMedicationRequest",
+              "element": "subject",
+              "variable": "tgtSubject"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "kbvMedicationRequest",
+                  "element": "subject",
+                  "variable": "srcSubject"
+                }
+              ],
+              "target": [
+                {
+                  "contextType": "variable",
+                  "context": "tgtSubject",
+                  "element": "extension",
+                  "variable": "tgtSubjectExtension"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "kbvMedicationRequest",
+                      "element": "subject",
+                      "variable": "srcSubject"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueString": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+                        }
+                      ],
+                      "context": "tgtSubjectExtension",
+                      "contextType": "variable",
+                      "element": "url",
+                      "transform": "copy"
+                    },
+                    {
+                      "parameter": [
+                        {
+                          "valueString": "not-permitted"
+                        },
+                        {
+                          "valueString": "code"
+                        }
+                      ],
+                      "context": "tgtSubjectExtension",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "cast"
+                    }
+                  ],
+                  "name": "medicationRequestsubjectExtensionContent"
+                }
+              ],
+              "name": "medicationRequestsubjectExtension"
+            }
+          ],
+          "name": "medicationRequestsubject",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "authoredOn",
+              "variable": "srcAuthoredOnVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "srcAuthoredOnVar"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "authoredOn",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestAuthoredOn",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "dosageInstruction",
+              "variable": "srcDosageInstructionVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "srcDosageInstructionVar"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "dosageInstruction",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestDosageInstruction",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "dispenseRequest",
+              "variable": "srcDispenseRequestVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "srcDispenseRequestVar"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "dispenseRequest",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestDispenseRequest",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "medication",
+              "variable": "medicationVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "medicationVar"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "medication",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationReference",
+          "documentation": "Copy medication; ensure correct mapping from reference is stated"
+        }
+      ],
+      "name": "erpTRequestMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for Request information transformation"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-MedicationRequest",
+  "experimental": false
+}

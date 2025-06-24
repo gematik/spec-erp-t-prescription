@@ -1,0 +1,159 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
+  "title": "E-T-Rezept Structure Map for KBV FreeText Medication",
+  "description": "Maps KBV FreeText Medication to BfArM T-Prescription Medication format",
+  "structure": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "mode": "source",
+      "alias": "kbvMedicationFreeText"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "mode": "target",
+      "alias": "bfarmMedication"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "kbvMedicationFreeText",
+          "type": "kbvMedicationFreeText",
+          "mode": "source"
+        },
+        {
+          "name": "bfarmMedication",
+          "type": "bfarmMedication",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "kbvMedicationFreeText",
+              "element": "id",
+              "variable": "IdVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "IdVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "id",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationId",
+          "documentation": "Copies the Medication Id"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationFreeText",
+              "element": "code",
+              "variable": "srcCodeVar"
+            }
+          ],
+          "target": [
+            {
+              "contextType": "variable",
+              "context": "bfarmMedication",
+              "element": "code",
+              "variable": "tgtCodeVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcCodeVar",
+                  "element": "text",
+                  "variable": "srcCodeTextVar"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueId": "srcCodeTextVar"
+                    }
+                  ],
+                  "context": "tgtCodeVar",
+                  "contextType": "variable",
+                  "element": "text",
+                  "transform": "copy"
+                }
+              ],
+              "name": "medicationCodeText",
+              "documentation": "Copies the Medication Code Text"
+            }
+          ],
+          "name": "medicationCode",
+          "documentation": "Copies the Medication Code"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationFreeText",
+              "element": "form",
+              "variable": "srcFormVar"
+            }
+          ],
+          "target": [
+            {
+              "contextType": "variable",
+              "context": "bfarmMedication",
+              "element": "form",
+              "variable": "tgtFormVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcFormVar",
+                  "element": "text",
+                  "variable": "srcformTextVar"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueId": "srcformTextVar"
+                    }
+                  ],
+                  "context": "tgtFormVar",
+                  "contextType": "variable",
+                  "element": "text",
+                  "transform": "copy"
+                }
+              ],
+              "name": "medicationFormText",
+              "documentation": "Copies the Medication form Text"
+            }
+          ],
+          "name": "medicationForm",
+          "documentation": "Copies the Medication Form"
+        }
+      ],
+      "name": "KBVFreeTextMedicationMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for medication information transformation"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
+  "experimental": false
+}

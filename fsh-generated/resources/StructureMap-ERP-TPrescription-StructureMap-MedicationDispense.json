@@ -1,0 +1,244 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-MedicationDispense",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationDispense",
+  "title": "E-T-Rezept Structure Map for MedicationDispense",
+  "description": "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format",
+  "structure": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+      "mode": "source",
+      "alias": "gematikMedicationDispense"
+    },
+    {
+      "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense",
+      "mode": "target",
+      "alias": "bfarmMedicationDispense"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "gematikMedicationDispense",
+          "type": "gematikMedicationDispense",
+          "mode": "source"
+        },
+        {
+          "name": "bfarmMedicationDispense",
+          "type": "bfarmMedicationDispense",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "dosageInstruction",
+              "variable": "dosageInstructionVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "dosageInstructionVar"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "dosageInstruction",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationDispenseDosageInstruction",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "whenHandedOver",
+              "variable": "whenHandedOverVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "whenHandedOverVar"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "whenHandedOver",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationDispenseDosageInstruction",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "medication",
+              "variable": "medicationVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "medicationVar"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "medication",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationReference",
+          "documentation": "Copy medication; ensure correct mapping from reference is stated"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "status",
+              "variable": "gematikMedicationDispenseStatus"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueString": "completed"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "status",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationDispenseStatus",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "quantity",
+              "variable": "quantityVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "quantityVar"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "quantity",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationDispenseQuantity",
+          "documentation": "TODO"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "performer",
+              "variable": "srcPerformerVar"
+            }
+          ],
+          "target": [
+            {
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "performer",
+              "variable": "tgtPerformerVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcPerformerVar",
+                  "element": "actor",
+                  "variable": "srcPerformerActorVar"
+                }
+              ],
+              "target": [
+                {
+                  "contextType": "variable",
+                  "context": "tgtPerformerVar",
+                  "element": "actor",
+                  "variable": "tgtPerformerActorVar"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "srcPerformerActorVar",
+                      "element": "identifier",
+                      "variable": "srcPerformerActorIdentifierVar"
+                    }
+                  ],
+                  "rule": [
+                    {
+                      "source": [
+                        {
+                          "context": "srcPerformerActorIdentifierVar",
+                          "element": "value",
+                          "variable": "srcPerformerActorIdentifierValueVar"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "parameter": [
+                            {
+                              "valueString": "Organization/"
+                            },
+                            {
+                              "valueId": "srcPerformerActorIdentifierValueVar"
+                            }
+                          ],
+                          "context": "tgtPerformerActorVar",
+                          "contextType": "variable",
+                          "element": "reference",
+                          "transform": "append"
+                        }
+                      ],
+                      "name": "medicationDispensePerformerActorIdentifierValue"
+                    }
+                  ],
+                  "name": "medicationDispensePerformerActorIdentifier"
+                }
+              ],
+              "name": "medicationDispensePerformerActor"
+            }
+          ],
+          "name": "medicationDispensePerformer",
+          "documentation": "Map performer.identifier to a reference to Organization with the identifier value"
+        }
+      ],
+      "name": "erpTDispenseMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for dispense information transformation"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-MedicationDispense",
+  "experimental": false
+}

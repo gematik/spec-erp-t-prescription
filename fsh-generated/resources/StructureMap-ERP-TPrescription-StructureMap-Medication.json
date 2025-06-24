@@ -1,0 +1,197 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-Medication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Medication",
+  "title": "E-T-Rezept Structure Map for Medication",
+  "description": "Maps a Medication to BfArM T-Prescription Medication format",
+  "import": [
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-GEM-Medication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-Compounding-Medication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-PZN-Medication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-Ingredient-Medication"
+  ],
+  "structure": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "mode": "source",
+      "alias": "srcMedication"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "mode": "target",
+      "alias": "tgtMedication"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "srcMedication",
+          "type": "srcMedication",
+          "mode": "source"
+        },
+        {
+          "name": "tgtMedication",
+          "type": "tgtMedication",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "srcMedication",
+              "variable": "srcPZN",
+              "condition": "meta.profile.contains('KBV_PR_ERP_Medication_PZN')"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcPZN"
+                }
+              ],
+              "dependent": [
+                {
+                  "variable": [
+                    "srcMedication",
+                    "tgtMedication"
+                  ],
+                  "name": "KBVPZNMedicationMapping"
+                }
+              ],
+              "name": "mapPZN"
+            }
+          ],
+          "name": "decideOnMedication"
+        },
+        {
+          "source": [
+            {
+              "context": "srcMedication",
+              "variable": "srcFreeText",
+              "condition": "meta.profile.contains('KBV_PR_ERP_Medication_FreeText')"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcFreeText"
+                }
+              ],
+              "dependent": [
+                {
+                  "variable": [
+                    "srcMedication",
+                    "tgtMedication"
+                  ],
+                  "name": "KBVFreeTextMedicationMapping"
+                }
+              ],
+              "name": "mapFreeText"
+            }
+          ],
+          "name": "decideOnMedication"
+        },
+        {
+          "source": [
+            {
+              "context": "srcMedication",
+              "variable": "srcIngredient",
+              "condition": "meta.profile.contains('KBV_PR_ERP_Medication_Ingredient')"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcIngredient"
+                }
+              ],
+              "dependent": [
+                {
+                  "variable": [
+                    "srcMedication",
+                    "tgtMedication"
+                  ],
+                  "name": "KBVIngredientMedicationMapping"
+                }
+              ],
+              "name": "mapIngredient"
+            }
+          ],
+          "name": "decideOnMedication"
+        },
+        {
+          "source": [
+            {
+              "context": "srcMedication",
+              "variable": "srcCompounding",
+              "condition": "meta.profile.contains('KBV_PR_ERP_Medication_Compounding')"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcCompounding"
+                }
+              ],
+              "dependent": [
+                {
+                  "variable": [
+                    "srcMedication",
+                    "tgtMedication"
+                  ],
+                  "name": "KBVCompoundingMedicationMapping"
+                }
+              ],
+              "name": "mapCompounding"
+            }
+          ],
+          "name": "decideOnMedication"
+        },
+        {
+          "source": [
+            {
+              "context": "srcMedication",
+              "variable": "srcGemMed",
+              "condition": "meta.profile.contains('GEM_ERP_PR_Medication')"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcGemMed"
+                }
+              ],
+              "dependent": [
+                {
+                  "variable": [
+                    "srcMedication",
+                    "tgtMedication"
+                  ],
+                  "name": "erpTGemMedicationMapping"
+                }
+              ],
+              "name": "mapGemMed"
+            }
+          ],
+          "name": "decideOnMedication"
+        }
+      ],
+      "name": "erpTMedicationMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for medication information transformation"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-Medication",
+  "experimental": false
+}

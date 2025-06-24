@@ -1,0 +1,94 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-Task",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Task",
+  "title": "E-T-Rezept Structure Map for Task",
+  "description": "Maps resources to BfArM T-Prescription format",
+  "structure": [
+    {
+      "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task",
+      "mode": "source",
+      "alias": "task"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Identifier",
+      "mode": "target",
+      "alias": "tgtIdentifier"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "task",
+          "type": "task",
+          "mode": "source"
+        },
+        {
+          "name": "tgtIdentifier",
+          "type": "tgtIdentifier",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "task",
+              "element": "identifier",
+              "variable": "srcTaskIdentifier",
+              "condition": "$this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId'",
+              "logMessage": "'Prescription ID Identifier present: ' + ($this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId').toString()"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcTaskIdentifier",
+                  "element": "value",
+                  "variable": "srcTaskIdentifierValue",
+                  "logMessage": "tgtIdentifier"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
+                    }
+                  ],
+                  "context": "tgtIdentifier",
+                  "contextType": "variable",
+                  "element": "system",
+                  "transform": "copy"
+                },
+                {
+                  "parameter": [
+                    {
+                      "valueId": "srcTaskIdentifierValue"
+                    }
+                  ],
+                  "context": "tgtIdentifier",
+                  "contextType": "variable",
+                  "element": "value",
+                  "transform": "copy"
+                }
+              ],
+              "name": "prescriptionIdValue"
+            }
+          ],
+          "name": "prescriptionId"
+        }
+      ],
+      "name": "erpTTaskMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for Task"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-Task",
+  "experimental": false
+}

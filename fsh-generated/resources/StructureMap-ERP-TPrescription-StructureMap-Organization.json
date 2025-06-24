@@ -1,0 +1,192 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-Organization",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Organization",
+  "title": "E-T-Rezept Structure Map for Organization",
+  "description": "Maps VZD-Organization-Information to BfArM T-Prescription Organization format",
+  "structure": [
+    {
+      "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-vzd-searchset",
+      "mode": "source",
+      "alias": "vzdSearchSet"
+    },
+    {
+      "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization",
+      "mode": "target",
+      "alias": "bfarmOrganization"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "vzdSearchSet",
+          "type": "vzdSearchSet",
+          "mode": "source"
+        },
+        {
+          "name": "bfarmOrganization",
+          "type": "bfarmOrganization",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "vzdSearchSet",
+              "element": "entry",
+              "variable": "srcEntryOrgVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcEntryOrgVar",
+                  "element": "resource",
+                  "variable": "srcEntryOrganizationVar",
+                  "condition": "ofType(Organization)"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "srcEntryOrganizationVar",
+                      "element": "name",
+                      "variable": "srcOrgNameVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "srcOrgNameVar"
+                        }
+                      ],
+                      "context": "bfarmOrganization",
+                      "contextType": "variable",
+                      "element": "name",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "name",
+                  "documentation": "Copy Name to Organization"
+                }
+              ],
+              "name": "entry"
+            }
+          ],
+          "name": "mapOrganization"
+        },
+        {
+          "source": [
+            {
+              "context": "vzdSearchSet",
+              "element": "entry",
+              "variable": "srcEntryHCSVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcEntryHCSVar",
+                  "element": "resource",
+                  "variable": "srcEntryHealthcareServiceVar",
+                  "condition": "ofType(HealthcareService)"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "srcEntryHealthcareServiceVar",
+                      "element": "telecom",
+                      "variable": "srcHcsTelecomVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "srcHcsTelecomVar"
+                        }
+                      ],
+                      "context": "bfarmOrganization",
+                      "contextType": "variable",
+                      "element": "telecom",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "telecom",
+                  "documentation": "Copy telecom to HealthcareService"
+                }
+              ],
+              "name": "entry"
+            }
+          ],
+          "name": "mapHealthcareService"
+        },
+        {
+          "source": [
+            {
+              "context": "vzdSearchSet",
+              "element": "entry",
+              "variable": "srcEntryHCSVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "srcEntryHCSVar",
+                  "element": "resource",
+                  "variable": "srcEntryLocationVar",
+                  "condition": "ofType(Location)"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "srcEntryLocationVar",
+                      "element": "address",
+                      "variable": "srcLocationAddressVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "srcLocationAddressVar"
+                        }
+                      ],
+                      "context": "bfarmOrganization",
+                      "contextType": "variable",
+                      "element": "address",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "address",
+                  "documentation": "Copy address to Location"
+                }
+              ],
+              "name": "entry"
+            }
+          ],
+          "name": "mapLocation"
+        }
+      ],
+      "name": "erpTOrganizationMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for VZD SearchSet"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-Organization",
+  "experimental": false
+}

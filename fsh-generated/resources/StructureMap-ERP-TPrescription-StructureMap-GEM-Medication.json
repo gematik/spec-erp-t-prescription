@@ -1,0 +1,189 @@
+{
+  "resourceType": "StructureMap",
+  "id": "ERP-TPrescription-StructureMap-GEM-Medication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-GEM-Medication",
+  "title": "E-T-Rezept Structure Map for Medication",
+  "description": "Maps GEM ERP Medication to BfArM T-Prescription Medication format",
+  "structure": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "mode": "source",
+      "alias": "gematikMedication"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "mode": "target",
+      "alias": "bfarmMedication"
+    }
+  ],
+  "group": [
+    {
+      "input": [
+        {
+          "name": "gematikMedication",
+          "type": "gematikMedication",
+          "mode": "source"
+        },
+        {
+          "name": "bfarmMedication",
+          "type": "bfarmMedication",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
+              "element": "id",
+              "variable": "IdVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "IdVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "id",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationId",
+          "documentation": "Copies the Medication Id"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
+              "element": "extension",
+              "variable": "extVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "extVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "extension",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationExtension",
+          "documentation": "Copies the Medication Extension"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
+              "element": "code",
+              "variable": "codeVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "codeVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "code",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationCode",
+          "documentation": "Copies the Medication Code"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
+              "element": "form",
+              "variable": "formVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "formVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "form",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationForm",
+          "documentation": "Copies the Medication Form"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
+              "element": "amount",
+              "variable": "amountVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "amountVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "amount",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationAmount",
+          "documentation": "Copies the Medication Amount"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
+              "element": "ingredient",
+              "variable": "ingredientVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "ingredientVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "ingredient",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationIngredient",
+          "documentation": "Copies the Medication Ingredient"
+        }
+      ],
+      "name": "erpTGemMedicationMapping",
+      "typeMode": "none",
+      "documentation": "Mapping group for medication information transformation"
+    }
+  ],
+  "status": "draft",
+  "version": "0.1.0",
+  "date": "2025-07-01",
+  "name": "ERP-TPrescription-StructureMap-GEM-Medication",
+  "experimental": false
+}

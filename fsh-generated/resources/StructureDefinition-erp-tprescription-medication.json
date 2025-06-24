@@ -1,0 +1,83 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "erp-tprescription-medication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication",
+  "version": "0.1.0",
+  "name": "ERP_TPrescription_Medication",
+  "title": "E-T-Rezept Medication",
+  "status": "draft",
+  "date": "2025-07-01",
+  "description": "Medication for BfArM T-Register",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Medication",
+  "baseDefinition": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Medication.extension:rxPrescriptionProcessIdentifier",
+        "path": "Medication.extension",
+        "sliceName": "rxPrescriptionProcessIdentifier",
+        "max": "0"
+      },
+      {
+        "id": "Medication.extension:isVaccine",
+        "path": "Medication.extension",
+        "sliceName": "isVaccine",
+        "max": "0"
+      },
+      {
+        "id": "Medication.extension:drugCategory",
+        "path": "Medication.extension",
+        "sliceName": "drugCategory",
+        "max": "0"
+      },
+      {
+        "id": "Medication.extension:manufacturingInstructions",
+        "path": "Medication.extension",
+        "sliceName": "manufacturingInstructions",
+        "max": "0"
+      },
+      {
+        "id": "Medication.extension:type",
+        "path": "Medication.extension",
+        "sliceName": "type",
+        "max": "0"
+      },
+      {
+        "id": "Medication.identifier",
+        "path": "Medication.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Medication.identifier:EPAMedicationUniqueIdentifier",
+        "path": "Medication.identifier",
+        "sliceName": "EPAMedicationUniqueIdentifier",
+        "max": "0"
+      },
+      {
+        "id": "Medication.identifier:RxOriginatorProcessIdentifier",
+        "path": "Medication.identifier",
+        "sliceName": "RxOriginatorProcessIdentifier",
+        "max": "0"
+      },
+      {
+        "id": "Medication.status",
+        "path": "Medication.status",
+        "max": "0"
+      },
+      {
+        "id": "Medication.manufacturer",
+        "path": "Medication.manufacturer",
+        "max": "0"
+      },
+      {
+        "id": "Medication.batch",
+        "path": "Medication.batch",
+        "max": "0"
+      }
+    ]
+  }
+}
