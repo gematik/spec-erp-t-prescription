@@ -2,7 +2,12 @@ Instance: ERP-TPrescription-StructureMap-CarbonCopy
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for CarbonCopy"
-Description: "Maps resources to BfArM T-Prescription CarbonCopy format"
+Description: """Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)
+
+## Header 2
+
+this is test if that would work too
+"""
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-CarbonCopy)
 
 * import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationDispense)
