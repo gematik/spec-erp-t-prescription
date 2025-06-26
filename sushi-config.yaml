@@ -88,8 +88,8 @@ menu:
   Anwendungsfälle:
     T-Rezept: trezept.html
   FHIR-Artefakte: artifacts.html
-  # Anhänge:
-  #   OpenAPI: bfarm-openapi.html
+  Anhänge:
+    OpenAPI: bfarm-openapi.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │

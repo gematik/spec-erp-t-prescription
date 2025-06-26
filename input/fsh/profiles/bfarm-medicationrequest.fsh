@@ -23,7 +23,12 @@ Description: "MedicationRequest with Requestinformation for BfArM T-Register"
 * dosageInstruction MS
 * dispenseRequest MS
   * expectedSupplyDuration MS
-  // TODO elemente rausstreichen
+  * quantity MS
+  * initialFill 0..0
+  * dispenseInterval 0..0
+  * validityPeriod 0..0
+  * numberOfRepeatsAllowed 0..0
+  * performer 0..0
 * medication[x] MS
 * medication[x] only Reference
 

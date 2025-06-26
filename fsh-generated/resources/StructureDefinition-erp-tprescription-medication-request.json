@@ -205,9 +205,39 @@
         "mustSupport": true
       },
       {
+        "id": "MedicationRequest.dispenseRequest.initialFill",
+        "path": "MedicationRequest.dispenseRequest.initialFill",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.dispenseInterval",
+        "path": "MedicationRequest.dispenseRequest.dispenseInterval",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.validityPeriod",
+        "path": "MedicationRequest.dispenseRequest.validityPeriod",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
+        "path": "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity",
+        "path": "MedicationRequest.dispenseRequest.quantity",
+        "mustSupport": true
+      },
+      {
         "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration",
         "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration",
         "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.performer",
+        "path": "MedicationRequest.dispenseRequest.performer",
+        "max": "0"
       },
       {
         "id": "MedicationRequest.substitution",
