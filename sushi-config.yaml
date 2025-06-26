@@ -80,8 +80,7 @@ pages:
 # │ property below.                                                                                │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Start: 
-    Einführung: index.html
+  Start: index.html
   Fachliche Themen:
     Datenmodell: datamodel.html
     Mapping: t-mapping.html

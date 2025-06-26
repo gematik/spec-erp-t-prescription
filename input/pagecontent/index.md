@@ -10,6 +10,8 @@ Die Übersichtsseite des Anwendungsfalls (s.o.) beschreibt die fachlichen Anford
 
 Dieser IG stellt ebenfalls Mappingdaten zur Verfügung, die entwicklungsunterstützend genutzt werden können, um digitale Durchschläge für das T-Rezept zu erstellen. Weiterführende Beschreibung hierzu findet sich unter [Mapping für den digitalen Durchschlag](./t-mapping.html).
 
+Bezüglich des Datenmodells ist der [digitiale Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) die übergreifende Ressource, die alle relevanten Profile referenziert. Dieses Artefakt wird vom E-Rezept-Fachdienst an das BfArM T-Register übertragen. Weitere Informationen hierzu sind unter [Datenmodell digitaler Durchschlag E-T-Rezept](./datamodel.html) zu finden.
+
 Die API des BfArM Webdienstes wird in der API Dokumentation des E-Rezeptes beschreiben. Der IG beschreibt Hintergründe und Entscheidungen zum Datenmodell.
 
 ## Weitere Referenzen und Dokumente

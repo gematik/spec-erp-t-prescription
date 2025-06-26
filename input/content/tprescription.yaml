@@ -47,22 +47,15 @@ paths:
           - "Internet"
         requestBody:
           required: true
-          x-fhir-profile: 
-            - "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-CarbonCopy"
+          description: Optional description in *Markdown*
           content: 
-            application/json+fhir: {}
+            application/json+fhir:
+              schema:
+                type: object
+                description: FHIR-Instanz nach dem Profil https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy
         responses:
           '201':
             description: Die Anfrage wurde erfolgreich bearbeitet. Der digitale Durchschlag wurde im T-Register eingestellt.
-            headers:
-              X-Request-ID:
-                description: The unique identifier for tracking the request, echoed back in the response.
-                schema:
-                  type: string
-                  format: uuid
-                  example: "123e4567-e89b-12d3-a456-426614174000"
-            content:
-              application/json+fhir: {}    
           '400':
             description: Die Anfrage-Nachricht war fehlerhaft aufgebaut.
           '401':
@@ -74,7 +67,10 @@ paths:
           '422':
             description: Die Anfrage konnte nicht verarbeitet werden, da die übermittelten Daten ungültig sind oder gegen die Validierungsregeln verstoßen.
             content:
-              application/json+fhir: {}
+              application/json+fhir:
+                schema:
+                  type: object
+                  description: FHIR-Instanz nach dem Profil http://hl7.org/fhir/StructureDefinition/OperationOutcome
           '429':
             description: Der Client hat zu viele Anfragen in einem bestimmten Zeitraum gesendet.
           '500':

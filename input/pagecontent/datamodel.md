@@ -2,26 +2,24 @@
 
 Im Laufe der Durchführung eines E-Rezept Workflows erhält der E-Rezept-Fachdienst diverse Artefakte die für die Erstellung des digitalen Durchschlags notwendig sind:
 
-- Die Verordnung des Arztes
-- Die Dispensierinformationen der Apotheke
+- [Die Verordnung des Arztes](https://simplifier.net/erezept/kbv_pr_erp_bundle)
+- [Die Dispensierinformationen der Apotheke](https://simplifier.net/erezept-workflow/gem_erp_pr_par_closeoperation_input)
 
-Zusätzlich ruft der E-Rezept-Fachdienst den Verzeichnisdienst der TI auf, um Apothekendaten anzufragen.
+Zusätzlich ruft der E-Rezept-Fachdienst den[ Verzeichnisdienst der TI](https://simplifier.net/VZD-FHIR-Directory/~introduction) auf, um die Adress-, Telefon- und Namensinformationen der abgebenden Apotheke abzufragen.
+Aus diesen Informationen wird der digitale Durchschlag E-T-Rezept erstellt.
 
 ## Fachliche Informationseinheiten
 
-Zur Übertragung der fachlichen Informationseinheiten wurde sich auf konkrete Daten geeinigt, diese sind in [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) aufgelistet.
+Zur Übertragung der fachlichen Informationseinheiten wurde sich auf konkrete Daten geeinigt, diese sind in [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) aufgelistet und im Logical Model [ERP_TPrescription_CarbonCopy_Logical](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet.
 
-## Entscheidung zur Abbildung des Datenmodells
+## Quell- und Zielartefakte
 
-Für die Erstellung des Datenmodells gab es verschiedene Lösungsmöglichkeiten den digitalen Durschlag abzubilden. Es wurde evaluiert zwischen:
+Folgende Profile und Artefakte sind grundlegend für die Erstellung des digitalen Durchschlags T-Rezept und werden in entsprechende Zielprofile gemappt.
 
-- proprietäres JSON
-- Hybrid zwischen JSON und FHIR Datenmodell
-- FHIR Datenmodell
+Die Zielartefakte enthalten jeweils Beschreibungen und Definitionen zur Bedeutung der Felder.
+Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) beschrieben.
 
-Ein eigen definiertes JSON hätte ggf. Komplexität reduziert, gleichzeitig aber dazu geführt, dass der E-Rezept-Fachdienst z.B. kodierte Daten auflösen, interpretieren und als textuelle Repräsentation hätte darstellen müssen.
-
-Da der E-Rezept-Fachdienst als Workflow-Engine fungiert und keine Interpretation von fachlichen und medizinischen Daten vornimmt wurde sich darauf verständigt, dass der E-Rezept-Fachdienst die FHIR-Ressourcen, die erhalten wurden auch weitergibt und an das BfArM überträgt. Die Interpretation der fachlichen Daten wird dann auf Seiten des BfArM durchgeführt und dem Endanwender in geeigneter Darstellung angezeigt.
+Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./t-mapping.html#einzelne-mappings).
 
 ## Designentscheidung zur restriktiven Datenmodellierung
 

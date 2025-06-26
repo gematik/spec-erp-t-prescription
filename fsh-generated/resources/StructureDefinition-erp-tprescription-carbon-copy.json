@@ -34,6 +34,7 @@
         "id": "Parameters.parameter:rxPrescription",
         "path": "Parameters.parameter",
         "sliceName": "rxPrescription",
+        "short": "Angaben zur Verordnung",
         "min": 1,
         "max": "1"
       },
@@ -72,6 +73,8 @@
         "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate",
         "path": "Parameters.parameter.part",
         "sliceName": "prescriptionSignatureDate",
+        "short": "Signaturzeitpunkt der Verordnung",
+        "comment": "Der Zeitpunkt wird aus der QES extrahiert (1.2.840.113549.1.9.5 signingTime) und muss in das FHIR Format für instant transformiert werden. Hierbei ist der höchstmögliche Genauigkeitsgrad anzugeben. Fachlich wird maximal Sekundengenauigkeit gefordert.",
         "min": 1,
         "max": "1",
         "type": [
@@ -111,6 +114,8 @@
         "id": "Parameters.parameter:rxPrescription.part:prescriptionId",
         "path": "Parameters.parameter.part",
         "sliceName": "prescriptionId",
+        "short": "Rezept-ID der Verordnung",
+        "comment": "Das Format der Rezept ID wird in [gemSpec_DM_eRp#E-Rezept-ID](https://gemspec.gematik.de/docs/gemSpec/gemSpec_DM_eRp/latest/#2.2) beschrieben und hat das Format aaa.bbb.bbb.bbb.bbb.cc",
         "min": 1,
         "max": "1",
         "type": [
@@ -153,6 +158,7 @@
         "id": "Parameters.parameter:rxPrescription.part:medicationRequest",
         "path": "Parameters.parameter.part",
         "sliceName": "medicationRequest",
+        "short": "Verordnung",
         "min": 1,
         "max": "1",
         "type": [
@@ -194,6 +200,7 @@
         "id": "Parameters.parameter:rxPrescription.part:medication",
         "path": "Parameters.parameter.part",
         "sliceName": "medication",
+        "short": "Verordnetes Medikament",
         "min": 1,
         "max": "1",
         "type": [
@@ -235,6 +242,7 @@
         "id": "Parameters.parameter:rxDispensation",
         "path": "Parameters.parameter",
         "sliceName": "rxDispensation",
+        "short": "Angaben zur Dispensierung",
         "min": 1,
         "max": "1"
       },
@@ -273,6 +281,7 @@
         "id": "Parameters.parameter:rxDispensation.part:medicationDispense",
         "path": "Parameters.parameter.part",
         "sliceName": "medicationDispense",
+        "short": "Dispensierinformationen",
         "min": 1,
         "max": "*",
         "type": [
@@ -314,6 +323,7 @@
         "id": "Parameters.parameter:rxDispensation.part:medication",
         "path": "Parameters.parameter.part",
         "sliceName": "medication",
+        "short": "Abgegebenes Medikament",
         "min": 1,
         "max": "*",
         "type": [
@@ -355,6 +365,8 @@
         "id": "Parameters.parameter:rxDispensation.part:organization",
         "path": "Parameters.parameter.part",
         "sliceName": "organization",
+        "short": "Abgebende Apotheke",
+        "comment": "Bei der Dispensierung überträgt die Apotheke an den E-Rezept-Fachdienst nur die Telematik-ID. Angaben zu Name, Adresse und Telefonnummer bezieht der E-Rezept-Fachdienst aus dem FHIR-VZD der TI. Falls aktuelle Daten benötigt werden, können diese am FHIR-VZD unter bezugnahme der Telematik-ID bezogen werden. A_27825 beschreibt textuell den Abruf.",
         "min": 1,
         "max": "1",
         "type": [
