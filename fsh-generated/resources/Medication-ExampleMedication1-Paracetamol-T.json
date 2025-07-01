@@ -1,11 +1,6 @@
 {
   "resourceType": "Medication",
   "id": "ExampleMedication1-Paracetamol-T",
-  "meta": {
-    "profile": [
-      "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-    ]
-  },
   "code": {
     "coding": [
       {

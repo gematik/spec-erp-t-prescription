@@ -89,11 +89,6 @@
           "resource": {
             "resourceType": "Medication",
             "id": "ExampleMedication1-Paracetamol-T",
-            "meta": {
-              "profile": [
-                "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-              ]
-            },
             "code": {
               "coding": [
                 {
@@ -151,11 +146,6 @@
           "resource": {
             "resourceType": "Medication",
             "id": "ExampleMedication2-Ibuprofen-T",
-            "meta": {
-              "profile": [
-                "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-              ]
-            },
             "code": {
               "coding": [
                 {

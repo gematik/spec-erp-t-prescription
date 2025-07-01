@@ -157,7 +157,7 @@
           "reference": "StructureMap/ERP-TPrescription-StructureMap-KBV-PZN-Medication"
         },
         "name": "E-T-Rezept Structure Map for KBV PZN Medication",
-        "description": "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format",
+        "description": "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format\n\n{% shell python3 fml2md_hier.py temp/pages/_includes/StructureMap-ERP-TPrescription-StructureMap-KBV-PZN-Medication-script-plain.xhtml %}",
         "exampleBoolean": false
       },
       {
@@ -165,7 +165,7 @@
           "reference": "StructureMap/ERP-TPrescription-StructureMap-GEM-Medication"
         },
         "name": "E-T-Rezept Structure Map for Medication",
-        "description": "Maps GEM ERP Medication to BfArM T-Prescription Medication format",
+        "description": "Maps GEM ERP Medication to BfArM T-Prescription Medication format\n\nTable for mapping:\n\n| Quell-Element (gematikMedication) | Ziel-Element (bfarmMedication) | Beschreibung                        |\n|-----------------------------------|-------------------------------|-------------------------------------|\n| id                                | id                            | Copies the Medication Id            |\n| extension                         | extension                     | Copies the Medication Extension     |\n| code                              | code                          | Copies the Medication Code          |\n| form                              | form                          | Copies the Medication Form          |\n| amount                            | amount                        | Copies the Medication Amount        |\n| ingredient                        | ingredient                    | Copies the Medication Ingredient    |\n",
         "exampleBoolean": false
       },
       {

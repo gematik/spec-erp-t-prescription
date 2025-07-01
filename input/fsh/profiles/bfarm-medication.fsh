@@ -11,6 +11,10 @@ Description: "Medication for BfArM T-Register"
 * extension[manufacturingInstructions] 0..0
 * extension[type] 0..0
 
+* meta 0..0
+* implicitRules 0..0
+* language 0..0
+* text 0..0
 * identifier 0..0
 * status 0..0
 * manufacturer 0..0

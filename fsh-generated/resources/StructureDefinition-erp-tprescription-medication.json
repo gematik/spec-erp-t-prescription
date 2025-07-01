@@ -17,6 +17,26 @@
   "differential": {
     "element": [
       {
+        "id": "Medication.meta",
+        "path": "Medication.meta",
+        "max": "0"
+      },
+      {
+        "id": "Medication.implicitRules",
+        "path": "Medication.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "Medication.language",
+        "path": "Medication.language",
+        "max": "0"
+      },
+      {
+        "id": "Medication.text",
+        "path": "Medication.text",
+        "max": "0"
+      },
+      {
         "id": "Medication.extension:rxPrescriptionProcessIdentifier",
         "path": "Medication.extension",
         "sliceName": "rxPrescriptionProcessIdentifier",

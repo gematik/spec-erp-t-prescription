@@ -31,6 +31,8 @@ echo "✅ PUBLISH_URL: ${PUBLISH_URL}"
 
 ./_genonce.sh
 
+#gcloud auth login  
+
 if gsutil ls gs://$BUCKET_NAME$BUCKET_PATH/$TARGET > /dev/null 2>&1; then
     echo "TARGET directory already exists: ${TARGET}"
     if [ -n "$PREV" ]; then
