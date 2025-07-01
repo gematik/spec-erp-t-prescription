@@ -23,12 +23,37 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
     * insert targetSetIdVariable(bfarmMedication, id, IdVar)
     * documentation = "Copies the Medication Id"
 
-  // Extension
+  // Extensions
   * rule[+]
     * name = "medicationExtension"
     * insert treeSource(gematikMedication, extension, extVar)
-    * insert targetSetIdVariable(bfarmMedication, extension, extVar)
-    * documentation = "Copies the Medication Extension"
+    * insert treeTarget(bfarmMedication, extension, tgtExtVar)
+    * documentation = "Copies the Medication Extensions"
+    // Normgroesse
+    * rule[+]
+      * name = "copyNormgroesseExtensionUrl"
+      * documentation = "Copies the 'normgroesse' extension"
+      * source[+].context = "extVar"
+      * source[=].condition = "url='http://fhir.de/StructureDefinition/normgroesse'"
+      * insert targetSetStringVariable(tgtExtVar, url, http://fhir.de/StructureDefinition/normgroesse)
+      * rule[+]
+        * name = "copyExtensionValue"
+        * documentation = "Copies the the value for each Extension"
+        * insert treeSource(extVar, value, extValVar)
+        * insert targetSetIdVariable(tgtExtVar, value, extValVar)
+
+    //Packaging
+    * rule[+]
+      * name = "copyPackagingExtensionUrl"
+      * documentation = "Copies the 'packaging' extension"
+      * source[+].context = "extVar"
+      * source[=].condition = "url='https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension'"
+      * insert targetSetStringVariable(tgtExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension)
+      * rule[+]
+        * name = "copyExtensionValue"
+        * documentation = "Copies the the value for each Extension"
+        * insert treeSource(extVar, value, extValVar)
+        * insert targetSetIdVariable(tgtExtVar, value, extValVar)
   
   // code
   * rule[+]

@@ -82,6 +82,76 @@
           "source": [
             {
               "context": "kbvMedicationRequest",
+              "element": "extension",
+              "variable": "extVar"
+            }
+          ],
+          "target": [
+            {
+              "contextType": "variable",
+              "context": "bfarmMedicationRequest",
+              "element": "extension",
+              "variable": "tgtExtVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "variable": "extMatchVar",
+                  "condition": "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "extMatchVar",
+                      "element": "extension",
+                      "variable": "extValVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "extValVar"
+                        }
+                      ],
+                      "context": "tgtExtVar",
+                      "contextType": "variable",
+                      "element": "extension",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "copyExtensionValue",
+                  "documentation": "Copies the the value for the T-Prescription Extension"
+                }
+              ],
+              "name": "copyTPrescriptionExtensionUrl"
+            }
+          ],
+          "name": "medicationRequestExt",
+          "documentation": "Copies the MedicationRequest T-Rezept Extensions"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
               "element": "subject",
               "variable": "srcSubject"
             }

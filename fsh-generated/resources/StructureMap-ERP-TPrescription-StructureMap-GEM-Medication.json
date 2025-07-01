@@ -65,19 +65,114 @@
           ],
           "target": [
             {
-              "parameter": [
+              "contextType": "variable",
+              "context": "bfarmMedication",
+              "element": "extension",
+              "variable": "tgtExtVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
                 {
-                  "valueId": "extVar"
+                  "context": "extVar",
+                  "condition": "url='http://fhir.de/StructureDefinition/normgroesse'"
                 }
               ],
-              "context": "bfarmMedication",
-              "contextType": "variable",
-              "element": "extension",
-              "transform": "copy"
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "http://fhir.de/StructureDefinition/normgroesse"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "extVar",
+                      "element": "value",
+                      "variable": "extValVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "extValVar"
+                        }
+                      ],
+                      "context": "tgtExtVar",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "copyExtensionValue",
+                  "documentation": "Copies the the value for each Extension"
+                }
+              ],
+              "name": "copyNormgroesseExtensionUrl",
+              "documentation": "Copies the 'normgroesse' extension"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "condition": "url='https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "extVar",
+                      "element": "value",
+                      "variable": "extValVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "extValVar"
+                        }
+                      ],
+                      "context": "tgtExtVar",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "copyExtensionValue",
+                  "documentation": "Copies the the value for each Extension"
+                }
+              ],
+              "name": "copyPackagingExtensionUrl",
+              "documentation": "Copies the 'packaging' extension"
             }
           ],
           "name": "medicationExtension",
-          "documentation": "Copies the Medication Extension"
+          "documentation": "Copies the Medication Extensions"
         },
         {
           "source": [

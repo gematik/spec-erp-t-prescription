@@ -16,14 +16,14 @@ Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest 
   * insert sd_input(kbvMedicationRequest, source)
   * insert sd_input(bfarmMedicationRequest, target)
 
-// set status to completed
+  // set status to completed
   * rule[+]
     * name = "medicationRequestStatus"
     * insert treeSource(kbvMedicationRequest, status, srcStatus)
     * insert targetSetStringVariable(bfarmMedicationRequest, status, completed)
     * documentation = "TODO"
 
-// set intent to completed
+  // set intent to completed
   * rule[+]
     * name = "medicationRequestIntent"
     * source.context = "kbvMedicationRequest"
@@ -31,7 +31,25 @@ Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest 
     * insert targetSetStringVariable(bfarmMedicationRequest, intent, order)
     * documentation = "TODO"
 
-// set subject to not-permitted
+  //Copy T-Prescription Extensions
+  * rule[+]
+    * name = "medicationRequestExt"
+    * insert treeSource(kbvMedicationRequest, extension, extVar)
+    * insert treeTarget(bfarmMedicationRequest, extension, tgtExtVar)
+    * documentation = "Copies the MedicationRequest T-Rezept Extensions"
+    * rule[+]
+      * name = "copyTPrescriptionExtensionUrl"
+      * source[+].context = "extVar"
+      * source[=].variable = "extMatchVar"
+      * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic'"
+      * insert targetSetStringVariable(tgtExtVar, url,  https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic)
+      * rule[+]
+        * name = "copyExtensionValue"
+        * documentation = "Copies the the value for the T-Prescription Extension"
+        * insert treeSource(extMatchVar, extension, extValVar)
+        * insert targetSetIdVariable(tgtExtVar, extension, extValVar)
+
+  // set subject to not-permitted
   * rule[+]
     * name = "medicationRequestsubject"
     * insert treeSource(kbvMedicationRequest, subject, srcSubject)
@@ -47,28 +65,28 @@ Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest 
         * insert targetSetCodeVariable(tgtSubjectExtension, value, not-permitted)
     * documentation = "TODO"
 
-// authoredOn
+  // authoredOn
   * rule[+]
     * name = "medicationRequestAuthoredOn"
     * insert treeSource(kbvMedicationRequest, authoredOn, srcAuthoredOnVar)
     * insert targetSetIdVariable(bfarmMedicationRequest, authoredOn, srcAuthoredOnVar)
     * documentation = "TODO"
 
-// dosageInstruction
+  // dosageInstruction
   * rule[+]
     * name = "medicationRequestDosageInstruction"
     * insert treeSource(kbvMedicationRequest, dosageInstruction, srcDosageInstructionVar)
     * insert targetSetIdVariable(bfarmMedicationRequest, dosageInstruction, srcDosageInstructionVar)
     * documentation = "TODO"
 
-// dispenseRequest
+  // dispenseRequest
   * rule[+]
     * name = "medicationRequestDispenseRequest"
     * insert treeSource(kbvMedicationRequest, dispenseRequest, srcDispenseRequestVar)
     * insert targetSetIdVariable(bfarmMedicationRequest, dispenseRequest, srcDispenseRequestVar)
     * documentation = "TODO"
 
-// reference to Medication
+  // reference to Medication
   * rule[+]
     * name = "medicationReference"
     * insert treeSource(kbvMedicationRequest, medication, medicationVar)

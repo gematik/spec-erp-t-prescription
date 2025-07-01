@@ -125,7 +125,7 @@
           "reference": "StructureMap/ERP-TPrescription-StructureMap-CarbonCopy"
         },
         "name": "E-T-Rezept Structure Map for CarbonCopy",
-        "description": "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)\n\n## Header 2\n\nthis is test if that would work too",
+        "description": "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)",
         "exampleBoolean": false
       },
       {

@@ -3,7 +3,7 @@
   "id": "ERP-TPrescription-StructureMap-CarbonCopy",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-CarbonCopy",
   "title": "E-T-Rezept Structure Map for CarbonCopy",
-  "description": "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)\n\n## Header 2\n\nthis is test if that would work too",
+  "description": "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)",
   "import": [
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationDispense",
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationRequest",
@@ -38,6 +38,46 @@
         }
       ],
       "rule": [
+        {
+          "source": [
+            {
+              "context": "bundle"
+            }
+          ],
+          "target": [
+            {
+              "contextType": "variable",
+              "context": "erpTCarbonCopy",
+              "element": "meta",
+              "variable": "erpTCarbonCopyMeta"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "bundle"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
+                    }
+                  ],
+                  "context": "erpTCarbonCopyMeta",
+                  "contextType": "variable",
+                  "element": "profile",
+                  "transform": "copy"
+                }
+              ],
+              "name": "tgtMetaProfile"
+            }
+          ],
+          "name": "tgtMeta",
+          "documentation": "TODO"
+        },
         {
           "source": [
             {
@@ -597,7 +637,7 @@
           "name": "MedicationDispenseFromBundle"
         }
       ],
-      "name": "rxDispenseMapping",
+      "name": "erpTPrescriptionCarbonCopy",
       "typeMode": "none",
       "documentation": "Mapping group for Bundle to CarbonCopy for rxDispensation"
     }

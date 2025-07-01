@@ -2,12 +2,7 @@ Instance: ERP-TPrescription-StructureMap-CarbonCopy
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for CarbonCopy"
-Description: """Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)
-
-## Header 2
-
-this is test if that would work too
-"""
+Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)"
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-CarbonCopy)
 
 * import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationDispense)
@@ -21,12 +16,23 @@ this is test if that would work too
 
 // Map rxDispense
 * group[+]
-  * name = "rxDispenseMapping"
+  * name = "erpTPrescriptionCarbonCopy"
   * typeMode = #none
   * documentation = "Mapping group for Bundle to CarbonCopy for rxDispensation"
 
   * insert sd_input(bundle, source)
   * insert sd_input(erpTCarbonCopy, target)
+
+  // set status to completed
+  * rule[+]
+    * name = "tgtMeta"
+    * source.context = "bundle"
+    * insert treeTarget(erpTCarbonCopy, meta, erpTCarbonCopyMeta)
+    * rule[+]
+      * name = "tgtMetaProfile"
+      * source.context = "bundle"
+      * insert targetSetStringVariable(erpTCarbonCopyMeta, profile, https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy)
+    * documentation = "TODO"
 
   // Parameter rxPrescription
   * rule[+]
