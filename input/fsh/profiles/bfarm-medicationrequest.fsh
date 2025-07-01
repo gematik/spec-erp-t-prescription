@@ -9,14 +9,19 @@ Description: "MedicationRequest with Requestinformation for BfArM T-Register"
 * status = #completed (exactly)
 * intent = #order (exactly)
 
+// KBV T-Rezept Extensions
+* extension MS
+* extension contains KBV_EX_ERP_Teratogenic named T-Rezept 1..1 MS
+
 // Allow only the data-absent-reason extension on subject
-* subject.reference 0..0
-* subject.identifier 0..0
-* subject.display 0..0
-* subject.type 0..0
-* subject.extension contains data-absent-reason named dataAbsentReason 1..1
-* subject.extension[dataAbsentReason].valueCode 1..1
-* subject.extension[dataAbsentReason].valueCode = #not-permitted
+* subject
+  * reference 0..0
+  * identifier 0..0
+  * display 0..0
+  * type 0..0
+  * extension contains data-absent-reason named dataAbsentReason 1..1
+  * extension[dataAbsentReason].valueCode 1..1
+  * extension[dataAbsentReason].valueCode = #not-permitted
 
 // Fields that are to be supported by systems
 * authoredOn MS
