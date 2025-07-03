@@ -12,6 +12,8 @@ Description: "MedicationRequest with Requestinformation for BfArM T-Register"
 // KBV T-Rezept Extensions
 * extension MS
 * extension contains KBV_EX_ERP_Teratogenic named T-Rezept 1..1 MS
+* extension[T-Rezept].url
+  * ^short = "identifies the meaning of the extension via identifying url"
 
 // Allow only the data-absent-reason extension on subject
 * subject

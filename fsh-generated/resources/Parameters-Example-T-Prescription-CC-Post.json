@@ -30,6 +30,14 @@
                 "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
               ]
             },
+            "subject": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "not-permitted"
+                }
+              ]
+            },
             "dosageInstruction": [
               {
                 "text": "1-1-1-1"
@@ -45,39 +53,31 @@
               {
                 "extension": [
                   {
-                    "url": "safetyMeasures",
+                    "url": "EinhaltungSicherheitsmassnahmen",
                     "valueBoolean": true
                   },
                   {
-                    "url": "informationMaterial",
+                    "url": "AushaendigungInformationsmaterialien",
                     "valueBoolean": true
                   },
                   {
-                    "url": "offLabelUse",
+                    "url": "Off-Label",
                     "valueBoolean": false
                   },
                   {
-                    "url": "prescriptionForWoman",
+                    "url": "GebaerfaehigeFrau",
                     "valueBoolean": false
                   },
                   {
-                    "url": "expertiseConfirmation",
+                    "url": "ErklaerungSachkenntnis",
                     "valueBoolean": true
                   }
                 ],
-                "url": "http://example.org/fhir/StructureDefinition/confirmations"
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
               }
             ],
             "status": "completed",
             "intent": "order",
-            "subject": {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                  "valueCode": "not-permitted"
-                }
-              ]
-            },
             "authoredOn": "2026-04-01",
             "medicationReference": {
               "reference": "Medication/ExampleMedication1-Paracetamol-T"

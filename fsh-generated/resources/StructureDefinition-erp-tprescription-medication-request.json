@@ -49,6 +49,11 @@
         "mustSupport": true
       },
       {
+        "id": "MedicationRequest.extension:T-Rezept.url",
+        "path": "MedicationRequest.extension.url",
+        "short": "identifies the meaning of the extension via identifying url"
+      },
+      {
         "id": "MedicationRequest.identifier",
         "path": "MedicationRequest.identifier",
         "max": "0"

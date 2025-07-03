@@ -1,4 +1,4 @@
-# Implementation Guide für den Datenaustausch zwischen Gematik und BfArM
+# Implementation Guide: Übertragung digitaler Durchschlag T-Rezept
 
 Dieser Implementation Guide beschreibt Profile und deren Verwendung in Anwendungsfällen zum Datenaustausch zwischen der gematik und dem Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM).
 

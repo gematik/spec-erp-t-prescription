@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Error handling: The script will terminate on error.
 set -e
 
@@ -11,6 +13,28 @@ if [ -z "$ENVIRONMENT" ]; then
   exit 1
 fi
 
+# Check GCloud Login 
+
+# Function: Check if gcloud is authenticated and credentials are valid
+function gcloud_is_authenticated() {
+  ACCOUNT=$(gcloud auth list --filter=status:ACTIVE --format="value(account)")
+  if [ -z "$ACCOUNT" ]; then
+    return 1
+  fi
+  # Try a simple gcloud command to verify credentials are valid (e.g., list projects)
+  if ! gcloud projects list --limit=1 > /dev/null 2>&1; then
+    return 1
+  fi
+  return 0
+}
+
+if gcloud_is_authenticated; then
+  echo "✅ Already authenticated with gcloud and credentials are valid."
+else
+  echo "No valid gcloud authentication found. Trying authentication..."
+
+  gcloud auth login
+fi
 
 if [ "$ENVIRONMENT" = "DEV" ]; then
   BUCKET_NAME="$DEV_BUCKET"
@@ -29,9 +53,10 @@ fi
 
 echo "✅ PUBLISH_URL: ${PUBLISH_URL}"
 
-./_genonce.sh
+# TODO Add Simplifier cli
 
-#gcloud auth login  
+#"$SCRIPT_DIR/build-ig.sh"
+ 
 
 if gsutil ls gs://$BUCKET_NAME$BUCKET_PATH/$TARGET > /dev/null 2>&1; then
     echo "TARGET directory already exists: ${TARGET}"
