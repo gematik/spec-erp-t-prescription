@@ -55,7 +55,7 @@
     },
     {
       "packageId": "de.gematik.erezept-workflow.r4",
-      "version": "1.5.1",
+      "version": "1.5.2",
       "uri": "http://fhir.org/packages/de.gematik.erezept-workflow.r4/ImplementationGuide/de.gematik.erezept-workflow.r4",
       "id": "de_gematik_erezept_workflow_r4"
     },
@@ -241,6 +241,14 @@
       },
       {
         "reference": {
+          "reference": "MedicationDispense/Src-GEM-MedicationDispense"
+        },
+        "name": "Example Medication Dispense",
+        "description": "Example of a Medication Dispense.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
           "reference": "MedicationDispense/ExampleMedicationDispense-T"
         },
         "name": "Example MedicationDispense",
@@ -277,6 +285,20 @@
         "name": "Logisches Modell digitaler Durchschlag E-T-Rezept",
         "description": "Logical Model zur Abbildung der im digitalen Durchschlag E-T-Rezept erforderlichen fachlichen Informationen.",
         "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Medication/PomalidomidMedication"
+        },
+        "name": "Sample Medication Pomalidomid",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Bundle/SRC-KBV-TRP-Bundle"
+        },
+        "name": "SRC-KBV-TRP-Bundle",
+        "exampleBoolean": true
       }
     ],
     "page": {
