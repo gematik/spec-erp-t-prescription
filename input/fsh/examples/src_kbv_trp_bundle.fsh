@@ -1,22 +1,3 @@
-Alias: $KBV_CS_ERP_Section_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type
-Alias: $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN
-Alias: $KBV_CS_SFHIR_KBV_FORMULAR_ART = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_FORMULAR_ART
-Alias: $KBV_CS_ERP_Dosage_Category = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Dosage_Category
-Alias: $KBV_CS_FOR_StatusCoPayment = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment
-Alias: $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM
-Alias: $sct = http://snomed.info/sct
-Alias: $KBV_CS_ERP_Medication_Category = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category
-Alias: $pzn = http://fhir.de/CodeSystem/ifa/pzn
-Alias: $identifier-type-de-basis = http://fhir.de/CodeSystem/identifier-type-de-basis
-Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
-Alias: $KBV_CS_FOR_Qualification_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Qualification_Type
-Alias: $KBV_CS_FOR_Berufsbezeichnung = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung
-Alias: $KBV_CS_SFHIR_KBV_PERSONENGRUPPE = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE
-Alias: $KBV_CS_SFHIR_KBV_DMP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DMP
-Alias: $KBV_CS_SFHIR_ITA_WOP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP
-Alias: $KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS
-Alias: $versicherungsart-de-basis = http://fhir.de/CodeSystem/versicherungsart-de-basis
-
 Instance: SRC-KBV-TRP-Bundle
 InstanceOf: Bundle
 Usage: #example
