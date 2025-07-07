@@ -24,7 +24,7 @@
           {
             "entry": [
               {
-                "reference": "KBV_TRP_MedicationRequest"
+                "reference": "MedicationRequest/KBV-TRP-MedicationRequest"
               }
             ],
             "code": {
@@ -218,7 +218,7 @@
           "reference": "Practitioner/0c4e1a54-8a42-4d3d-a12c-0bbf2db48570"
         },
         "medicationReference": {
-          "reference": "KBV_TRP_Medication"
+          "reference": "Medication/KBV-TRP-Medication"
         },
         "status": "active"
       },

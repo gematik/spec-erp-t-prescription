@@ -1,3 +1,14 @@
+// General rule for to handle versions for all structure definitions
+RuleSet: Versioning
+* ^status = #draft
+* ^version = "0.1.0"
+* ^date = "2025-08-01"
+
+RuleSet: InstanceVersioning
+* status = #draft
+* version = "0.1.0"
+* date = "2025-08-01"
+
 // Dates for Examples (Date of actual release)
 RuleSet: Date(field)
 * {field} = "2026-04-01"
@@ -10,3 +21,7 @@ RuleSet: DateTimeStamp(field)
 
 RuleSet: DateTimeStampPlus1Hr(field)
 * {field} = "2026-04-01T16:44:00.434+00:00"
+
+RuleSet: setMetaProfileCC(context, to)
+* insert targetBase({context}, {to})
+* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"

@@ -27,7 +27,7 @@ Usage: #inline
 * date = "2025-05-20T08:00:00Z"
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.4"
 * section[0].code = $KBV_CS_ERP_Section_Type#Prescription
-* section[=].entry = Reference(KBV_TRP_MedicationRequest)
+* section[=].entry = Reference(KBV-TRP-MedicationRequest)
 * section[+].code = $KBV_CS_ERP_Section_Type#Coverage
 * section[=].entry = Reference(e51239e1-ba74-48e0-97fb-9754d2b05c60)
 * author[0] = Reference(0c4e1a54-8a42-4d3d-a12c-0bbf2db48570)
@@ -86,7 +86,7 @@ Usage: #inline
 * extension[+].valueBoolean = true
 * extension[=].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag"
 * requester = Reference(0c4e1a54-8a42-4d3d-a12c-0bbf2db48570)
-* medicationReference = Reference(KBV_TRP_Medication)
+* medicationReference = Reference(KBV-TRP-Medication)
 * status = #active
 
 Instance: KBV-TRP-Medication

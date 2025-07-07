@@ -2,7 +2,7 @@ Instance: ERP-TPrescription-StructureMap-CarbonCopy
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for CarbonCopy"
-Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)"
+Description: "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) eingesehen werden."
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-CarbonCopy)
 
 * import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationDispense)
@@ -18,7 +18,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
 * group[+]
   * name = "erpTPrescriptionCarbonCopy"
   * typeMode = #none
-  * documentation = "Mapping group for Bundle to CarbonCopy for rxDispensation"
+  * documentation = "Mapping des digitalen Durchschlags T-Rezept"
 
   * insert sd_input(bundle, source)
   * insert sd_input(erpTCarbonCopy, target)
@@ -31,13 +31,14 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
     * rule[+]
       * name = "tgtMetaProfile"
       * source.context = "bundle"
-      * insert targetSetStringVariable(erpTCarbonCopyMeta, profile, https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy)
-    * documentation = "TODO"
+      * insert setMetaProfileCC(erpTCarbonCopyMeta, profile)
+      * documentation = "Setzt das meta.profile des digitalen Durchschlags T-Rezept"
 
   // Parameter rxPrescription
   * rule[+]
     * name = "rxPrescriptionRule"
     * source.context = "bundle"
+    * documentation = "Mapping der Rezeptinformationen"
     * insert treeTarget(erpTCarbonCopy, parameter, tgtRxPrescription)
     * insert treeTarget(tgtRxPrescription, part, tgtRxPrescriptionPartId)
     * insert treeTarget(tgtRxPrescription, part, tgtRxPrescriptionPartMR)
@@ -60,12 +61,13 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
           * source[=].condition = "ofType(Task)"
           // * source[=].logMessage = "ofType(Task)"
           * insert targetSetStringVariable(tgtRxPrescriptionPartId, name, prescriptionId)
-          //* insert treeTarget(tgtRxPrescriptionPartId, value, tgtRxPrescriptionPartIdValue)
           * insert createType(tgtRxPrescriptionPartId, value, newIdentifier, Identifier)
+          * documentation = "Mappt die E-Rezept-ID des Tasks in den digitalen Durchschlag"
           * rule[+]
             * name = "parameterrXPrescriptionPartIdentifier"
             * source.context = "srcEntryTaskVar"
             * insert dependent(erpTTaskMapping, srcEntryTaskVar, newIdentifier)
+          
         
         // part medicationRequest
         * rule[+]
@@ -79,6 +81,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
             * name = "entryMedicationRequestPart"
             * source.context = "srcEntryBundleMRVar"
             * insert createType(tgtRxPrescriptionPartMR, resource, newMedicationRequest, MedicationRequest)
+            * documentation = "Mappt den KBV-MedicationRequest auf das BfArM MedicationRequest Zielprofil"
             * rule[+]
               * name = "entryMedicationRequestPartResourceSet"
               * source.context = "srcEntryBundleMRVar"
@@ -102,6 +105,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
               * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
               // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
               * insert createType(tgtRxPrescriptionPartMed, resource, newMedicationPrescriptionMedication, Medication)
+              * documentation = "Mappt die KBV-Medication auf das BfArM Medication Zielprofil"
               * rule[+]
                 * name = "entryMedicationPrescriptionMedicationPartResourceSet"
                 * source[+].context = "srcEntryBundleMRMedIdVar"
@@ -114,6 +118,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
   * rule[+]
     * name = "MedicationDispenseFromBundle"
     * source.context = "bundle"
+    * documentation = "Mapping der Abgabeinformationen"
     * insert treeTarget(erpTCarbonCopy, parameter, tgtRxDispensation)
     * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartOrg)
     * insert targetSetStringVariable(tgtRxDispensation, name, rxDispensation)
@@ -138,6 +143,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
             * name = "entryOrganizationPart"
             * source.context = "srcEntryBundleOrgVar"
             * insert createType(tgtRxDispensationPartOrg, resource, newOrganization, Organization)
+            * documentation = "Mapping des FHIR-VZD Search Sets in eine BfArM Organization"
             * rule[+]
               * name = "entryOrganizationPartResourceSet"
               * source.context = "srcEntryBundleOrgVar"
@@ -156,6 +162,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
             * source.context = "srcEntryBundleMDVar"
             * insert targetSetStringVariable(tgtRxDispensationPartMD, name, medicationDispense)
             * insert createType(tgtRxDispensationPartMD, resource, newMedicationDispense, MedicationDispense)
+            * documentation = "Mappt die Abgabeinforamtionen der Apotheke auf das BfArM MedicationDispense Zielprofil"
             * rule[+]
               * name = "entryMedicationDispensePartResourceSet"
               * source.context = "srcEntryBundleMDVar"
@@ -179,6 +186,7 @@ Description: "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed
               * source[=].variable = "srcEntryBundleMDMedIdVar"
               * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
               // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
+              * documentation = "Mappt die Informationen des abgegebenen Arzneimittels auf das BfArM Medication Zielprofil"
               * insert createType(tgtRxDispensationPartDispMed, resource, newMedicationDispensationMedication, Medication)
               * rule[+]
                 * name = "entryMedicationDispensationMedicationPartResourceSet"

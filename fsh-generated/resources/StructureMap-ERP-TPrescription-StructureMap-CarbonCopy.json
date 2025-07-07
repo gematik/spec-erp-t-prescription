@@ -3,7 +3,7 @@
   "id": "ERP-TPrescription-StructureMap-CarbonCopy",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-CarbonCopy",
   "title": "E-T-Rezept Structure Map for CarbonCopy",
-  "description": "Maps resources to BfArM T-Prescription CarbonCopy format. Detailed information can be found in [This page](./t-mapping.html)",
+  "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) eingesehen werden.",
   "import": [
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationDispense",
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationRequest",
@@ -63,7 +63,7 @@
                 {
                   "parameter": [
                     {
-                      "valueString": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
+                      "valueString": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"
                     }
                   ],
                   "context": "erpTCarbonCopyMeta",
@@ -72,11 +72,11 @@
                   "transform": "copy"
                 }
               ],
-              "name": "tgtMetaProfile"
+              "name": "tgtMetaProfile",
+              "documentation": "Setzt das meta.profile des digitalen Durchschlags T-Rezept"
             }
           ],
-          "name": "tgtMeta",
-          "documentation": "TODO"
+          "name": "tgtMeta"
         },
         {
           "source": [
@@ -192,7 +192,8 @@
                           "name": "parameterrXPrescriptionPartIdentifier"
                         }
                       ],
-                      "name": "parameterrXPrescriptionPart"
+                      "name": "parameterrXPrescriptionPart",
+                      "documentation": "Mappt die E-Rezept-ID des Tasks in den digitalen Durchschlag"
                     },
                     {
                       "source": [
@@ -255,7 +256,8 @@
                               "name": "entryMedicationRequestPartResourceSet"
                             }
                           ],
-                          "name": "entryMedicationRequestPart"
+                          "name": "entryMedicationRequestPart",
+                          "documentation": "Mappt den KBV-MedicationRequest auf das BfArM MedicationRequest Zielprofil"
                         }
                       ],
                       "name": "entryMedicationRequest"
@@ -334,7 +336,8 @@
                                   "name": "entryMedicationPrescriptionMedicationPartResourceSet"
                                 }
                               ],
-                              "name": "entryMedicationPrescriptionMedicationPart"
+                              "name": "entryMedicationPrescriptionMedicationPart",
+                              "documentation": "Mappt die KBV-Medication auf das BfArM Medication Zielprofil"
                             }
                           ],
                           "name": "prepMedication"
@@ -349,7 +352,8 @@
               "name": "bundleEntries"
             }
           ],
-          "name": "rxPrescriptionRule"
+          "name": "rxPrescriptionRule",
+          "documentation": "Mapping der Rezeptinformationen"
         },
         {
           "source": [
@@ -462,7 +466,8 @@
                               "name": "entryOrganizationPartResourceSet"
                             }
                           ],
-                          "name": "entryOrganizationPart"
+                          "name": "entryOrganizationPart",
+                          "documentation": "Mapping des FHIR-VZD Search Sets in eine BfArM Organization"
                         }
                       ],
                       "name": "entryVZDSearchSet"
@@ -534,7 +539,8 @@
                               "name": "entryMedicationDispensePartResourceSet"
                             }
                           ],
-                          "name": "entryMedicationDispensePart"
+                          "name": "entryMedicationDispensePart",
+                          "documentation": "Mappt die Abgabeinforamtionen der Apotheke auf das BfArM MedicationDispense Zielprofil"
                         }
                       ],
                       "name": "entryMedicationDispense"
@@ -619,7 +625,8 @@
                                   "name": "entryMedicationDispensationMedicationPartResourceSet"
                                 }
                               ],
-                              "name": "entryMedicationDispensationMedicationPart"
+                              "name": "entryMedicationDispensationMedicationPart",
+                              "documentation": "Mappt die Informationen des abgegebenen Arzneimittels auf das BfArM Medication Zielprofil"
                             }
                           ],
                           "name": "prepMedication"
@@ -634,12 +641,13 @@
               "name": "bundleEntries"
             }
           ],
-          "name": "MedicationDispenseFromBundle"
+          "name": "MedicationDispenseFromBundle",
+          "documentation": "Mapping der Abgabeinformationen"
         }
       ],
       "name": "erpTPrescriptionCarbonCopy",
       "typeMode": "none",
-      "documentation": "Mapping group for Bundle to CarbonCopy for rxDispensation"
+      "documentation": "Mapping des digitalen Durchschlags T-Rezept"
     }
   ],
   "status": "draft",
