@@ -4,7 +4,7 @@
   "url": "https://gematik.de/fhir/erp-t-prescription/ImplementationGuide/de.gematik.erp.t-prescription",
   "version": "0.1.0",
   "name": "ERPTPrescription",
-  "title": "E-Rezept T-Rezept Datenaustausch",
+  "title": "E-T-Rezept Datenaustausch",
   "status": "draft",
   "publisher": "gematik GmbH",
   "contact": [
@@ -14,11 +14,15 @@
         {
           "system": "url",
           "value": "https://gematik.de"
+        },
+        {
+          "system": "email",
+          "value": "erp-umsetzung@gematik.de"
         }
       ]
     }
   ],
-  "description": "Dieser IG Beschreibt schnittstellen und Profile für den Datenaustauch in Anwendungsfällen zwischen E-Rezept-Fachdienst und BfArM T-Register",
+  "description": "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register",
   "jurisdiction": [
     {
       "coding": [

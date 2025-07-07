@@ -12,13 +12,37 @@
   "kind": "resource",
   "abstract": false,
   "type": "Organization",
-  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "baseDefinition": "https://gematik.de/fhir/ti/StructureDefinition/ti-organization",
   "derivation": "constraint",
   "differential": {
     "element": [
       {
         "id": "Organization.identifier",
         "path": "Organization.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:TelematikID",
+        "path": "Organization.identifier",
+        "sliceName": "TelematikID",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:BSNR",
+        "path": "Organization.identifier",
+        "sliceName": "BSNR",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:KZVA",
+        "path": "Organization.identifier",
+        "sliceName": "KZVA",
+        "max": "0"
+      },
+      {
+        "id": "Organization.identifier:IKNR",
+        "path": "Organization.identifier",
+        "sliceName": "IKNR",
         "max": "0"
       },
       {
@@ -32,9 +56,16 @@
         "max": "0"
       },
       {
-        "id": "Organization.name",
-        "path": "Organization.name",
-        "mustSupport": true
+        "id": "Organization.type:providerType",
+        "path": "Organization.type",
+        "sliceName": "providerType",
+        "max": "0"
+      },
+      {
+        "id": "Organization.type:profession",
+        "path": "Organization.type",
+        "sliceName": "profession",
+        "max": "0"
       },
       {
         "id": "Organization.alias",
@@ -44,11 +75,6 @@
       {
         "id": "Organization.telecom",
         "path": "Organization.telecom",
-        "mustSupport": true
-      },
-      {
-        "id": "Organization.address",
-        "path": "Organization.address",
         "mustSupport": true
       },
       {

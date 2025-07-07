@@ -1,6 +1,5 @@
 Profile: ERP_TPrescription_Organization
-//Parent: TIOrganization
-Parent: Organization // TODO Change when TI 1.1.0 is released
+Parent: TIOrganization
 Id: erp-tprescription-organization
 Title: "E-T-Rezept Organization"
 Description: "Organization Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register"

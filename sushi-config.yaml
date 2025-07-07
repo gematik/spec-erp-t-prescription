@@ -6,8 +6,8 @@
 id: de.gematik.erp.t-prescription
 canonical: https://gematik.de/fhir/erp-t-prescription
 name: ERP-T-Prescription
-title: "E-Rezept T-Rezept Datenaustausch"
-description: Dieser IG Beschreibt schnittstellen und Profile für den Datenaustauch in Anwendungsfällen zwischen E-Rezept-Fachdienst und BfArM T-Register
+title: "E-T-Rezept Datenaustausch"
+description: Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register
 status: draft # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
@@ -18,7 +18,7 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany" # https://www.hl7.org/fhir/value
 publisher:
   name: gematik GmbH
   url: https://gematik.de
-  # email: test@example.org
+  email: erp-umsetzung@gematik.de
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
