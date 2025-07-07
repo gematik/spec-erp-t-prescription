@@ -3,7 +3,7 @@
   "id": "ERP-TPrescription-StructureMap-CarbonCopy",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-CarbonCopy",
   "title": "E-T-Rezept Structure Map for CarbonCopy",
-  "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) eingesehen werden.",
+  "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) eingesehen werden.",
   "import": [
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationDispense",
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationRequest",
@@ -186,7 +186,7 @@
                                 "srcEntryTaskVar",
                                 "newIdentifier"
                               ],
-                              "name": "erpTTaskMapping"
+                              "name": "ERP-TPrescription-StructureMap-Task"
                             }
                           ],
                           "name": "parameterrXPrescriptionPartIdentifier"
@@ -250,7 +250,7 @@
                                     "srcEntryBundleMRVar",
                                     "newMedicationRequest"
                                   ],
-                                  "name": "erpTRequestMapping"
+                                  "name": "ERP-TPrescription-StructureMap-MedicationRequest"
                                 }
                               ],
                               "name": "entryMedicationRequestPartResourceSet"
@@ -330,7 +330,7 @@
                                         "srcEntryBundleMRMedIdVarRes",
                                         "newMedicationPrescriptionMedication"
                                       ],
-                                      "name": "erpTMedicationMapping"
+                                      "name": "ERP-TPrescription-StructureMap-Medication"
                                     }
                                   ],
                                   "name": "entryMedicationPrescriptionMedicationPartResourceSet"
@@ -460,7 +460,7 @@
                                     "srcEntryBundleOrgVar",
                                     "newOrganization"
                                   ],
-                                  "name": "erpTOrganizationMapping"
+                                  "name": "ERP-TPrescription-StructureMap-Organization"
                                 }
                               ],
                               "name": "entryOrganizationPartResourceSet"
@@ -533,7 +533,7 @@
                                     "srcEntryBundleMDVar",
                                     "newMedicationDispense"
                                   ],
-                                  "name": "erpTDispenseMapping"
+                                  "name": "ERP-TPrescription-StructureMap-MedicationDispense"
                                 }
                               ],
                               "name": "entryMedicationDispensePartResourceSet"
@@ -619,7 +619,7 @@
                                         "srcEntryBundleMDMedIdVarRes",
                                         "newMedicationDispensationMedication"
                                       ],
-                                      "name": "erpTMedicationMapping"
+                                      "name": "ERP-TPrescription-StructureMap-Medication"
                                     }
                                   ],
                                   "name": "entryMedicationDispensationMedicationPartResourceSet"

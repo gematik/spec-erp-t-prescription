@@ -2,7 +2,7 @@ Instance: ERP-TPrescription-StructureMap-CarbonCopy
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for CarbonCopy"
-Description: "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) eingesehen werden."
+Description: "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) eingesehen werden."
 * insert Instance(StructureMap, ERP-TPrescription-StructureMap-CarbonCopy)
 
 * import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationDispense)
@@ -66,7 +66,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
           * rule[+]
             * name = "parameterrXPrescriptionPartIdentifier"
             * source.context = "srcEntryTaskVar"
-            * insert dependent(erpTTaskMapping, srcEntryTaskVar, newIdentifier)
+            * insert dependent(ERP-TPrescription-StructureMap-Task, srcEntryTaskVar, newIdentifier)
           
         
         // part medicationRequest
@@ -85,7 +85,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
             * rule[+]
               * name = "entryMedicationRequestPartResourceSet"
               * source.context = "srcEntryBundleMRVar"
-              * insert dependent(erpTRequestMapping, srcEntryBundleMRVar, newMedicationRequest)
+              * insert dependent(ERP-TPrescription-StructureMap-MedicationRequest, srcEntryBundleMRVar, newMedicationRequest)
 
         // part Medication
         * rule[+]
@@ -112,7 +112,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
                 * source[=].variable = "srcEntryBundleMRMedIdVarRes"
                 * source[=].element = "resource"
                 // * source[=].logMessage = "%srcEntryBundleMRMedIdVar"
-                * insert dependent(erpTMedicationMapping, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
+                * insert dependent(ERP-TPrescription-StructureMap-Medication, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
 
   // Parameter rxDispensation
   * rule[+]
@@ -147,7 +147,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
             * rule[+]
               * name = "entryOrganizationPartResourceSet"
               * source.context = "srcEntryBundleOrgVar"
-              * insert dependent(erpTOrganizationMapping, srcEntryBundleOrgVar, newOrganization)
+              * insert dependent(ERP-TPrescription-StructureMap-Organization, srcEntryBundleOrgVar, newOrganization)
 
         // part MedicationDispense
         * rule[+]
@@ -166,7 +166,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
             * rule[+]
               * name = "entryMedicationDispensePartResourceSet"
               * source.context = "srcEntryBundleMDVar"
-              * insert dependent(erpTDispenseMapping, srcEntryBundleMDVar, newMedicationDispense)
+              * insert dependent(ERP-TPrescription-StructureMap-MedicationDispense, srcEntryBundleMDVar, newMedicationDispense)
         
         // part Medication
         * rule[+]
@@ -194,7 +194,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
                 * source[=].variable = "srcEntryBundleMDMedIdVarRes"
                 * source[=].element = "resource"
                 // * source[=].logMessage = "%srcEntryBundleMDMedIdVar"
-                * insert dependent(erpTMedicationMapping, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)
+                * insert dependent(ERP-TPrescription-StructureMap-Medication, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)
 
 
 

@@ -129,7 +129,7 @@
           "reference": "StructureMap/ERP-TPrescription-StructureMap-CarbonCopy"
         },
         "name": "E-T-Rezept Structure Map for CarbonCopy",
-        "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) eingesehen werden.",
+        "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) eingesehen werden.",
         "exampleBoolean": false
       },
       {
@@ -318,11 +318,6 @@
         {
           "nameUrl": "datamodel.html",
           "title": "Datenmodell",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "t-mapping.html",
-          "title": "Mapping digitaler Durchschlag",
           "generation": "markdown"
         },
         {

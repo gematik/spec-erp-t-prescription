@@ -50,8 +50,6 @@ pages:
     title: Einführung
   datamodel.md:
     title: Datenmodell
-  t-mapping.md:
-    title: Mapping digitaler Durchschlag
   trezept.md:
     title: Digitaler Durchschlag T-Rezept
   bfarm-openapi.md:
@@ -83,7 +81,6 @@ menu:
   Start: index.html
   Fachliche Themen:
     Datenmodell: datamodel.html
-    Mapping: t-mapping.html
   Anwendungsfälle:
     T-Rezept: trezept.html
   FHIR-Artefakte: artifacts.html

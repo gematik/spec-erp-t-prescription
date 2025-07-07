@@ -5,7 +5,7 @@ Im Laufe der Durchführung eines E-Rezept Workflows erhält der E-Rezept-Fachdie
 - [Die Verordnung des Arztes](https://simplifier.net/erezept/kbv_pr_erp_bundle)
 - [Die Dispensierinformationen der Apotheke](https://simplifier.net/erezept-workflow/gem_erp_pr_par_closeoperation_input)
 
-Zusätzlich ruft der E-Rezept-Fachdienst den[ Verzeichnisdienst der TI](https://simplifier.net/VZD-FHIR-Directory/~introduction) auf, um die Adress-, Telefon- und Namensinformationen der abgebenden Apotheke abzufragen.
+In den Dispensierinformationen ist die Telematik-ID der Apotheke angegeben. Da der digitale Durchschlag die Adress-, Telefon- und Namensinformationen der Apotheke aufführen muss ruft der E-Rezept-Fachdienst zusätzlich den [Verzeichnisdienst der TI](https://simplifier.net/VZD-FHIR-Directory/~introduction) auf, um die benötigten Informationen der abgebenden Apotheke abzufragen.
 Aus diesen Informationen wird der digitale Durchschlag E-T-Rezept erstellt.
 
 ## Fachliche Informationseinheiten
@@ -17,9 +17,9 @@ Zur Übertragung der fachlichen Informationseinheiten wurde sich auf konkrete Da
 Folgende Profile und Artefakte sind grundlegend für die Erstellung des digitalen Durchschlags T-Rezept und werden in entsprechende Zielprofile gemappt.
 
 Die Zielartefakte enthalten jeweils Beschreibungen und Definitionen zur Bedeutung der Felder.
-Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./t-mapping.html) beschrieben.
+Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) beschrieben.
 
-Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./t-mapping.html#einzelne-mappings).
+Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./trezept.html#einzelne-mappings).
 
 ## Designentscheidung zur restriktiven Datenmodellierung
 

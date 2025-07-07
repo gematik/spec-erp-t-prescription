@@ -1,17 +1,13 @@
 | Quell-Element (Source) | Ziel-Element (Target) | Beschreibung |
 |------------------------|-----------------------|--------------|
-| `bundle` | `erpTCarbonCopy.meta` | TODO |
-| `bundle.bundle` | `erpTCarbonCopy.meta.erpTCarbonCopyMeta.profile` |  |
-| `bundle` | `erpTCarbonCopy.parameter` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(Task)]` | `tgtRxPrescriptionPartId.name` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(MedicationRequest)]` | `tgtRxPrescriptionPartMR.name` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(MedicationRequest)].srcEntryBundleMRVar` | `tgtRxPrescriptionPartMR.name.tgtRxPrescriptionPartMR.resource` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryVar [where resource.ofType(MedicationRequest)]` | `tgtRxPrescriptionPartMed.name` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryVar [where resource.ofType(MedicationRequest)].bundle.entry.srcEntryVar2 [where resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())]` | `tgtRxPrescriptionPartMed.resource` |  |
-| `bundle` | `erpTCarbonCopy.parameter` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(Bundle).where(entry.first().fullUrl.contains('fhir-directory'))]` | `tgtRxDispensationPartOrg.name` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(Bundle).where(entry.first().fullUrl.contains('fhir-directory'))].srcEntryBundleOrgVar` | `tgtRxDispensationPartOrg.name.tgtRxDispensationPartOrg.resource` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(MedicationDispense)]` | `tgtRxDispensation.part` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryResourceVar [where ofType(MedicationDispense)].srcEntryBundleMDVar` | `tgtRxDispensation.part.tgtRxDispensationPartMD.name` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryVar [where resource.ofType(MedicationDispense)]` | `tgtRxDispensation.part` |  |
-| `bundle.bundle.entry.srcEntryVar.resource.srcEntryVar [where resource.ofType(MedicationDispense)].bundle.entry.srcEntryVar2 [where resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())]` | `tgtRxDispensationPartDispMed.resource` |  |
+| `bundle.bundle` | `erpTCarbonCopy.meta.erpTCarbonCopyMeta.profile` | Setzt das meta.profile des digitalen Durchschlags T-Rezept |
+| `bundle` | `erpTCarbonCopy.parameter` | Mapping der Rezeptinformationen |
+| `bundle.bundle.entry.resource [where ofType(Task)]` | `name` | Mappt die E-Rezept-ID des Tasks in den digitalen Durchschlag<br>Verwendet Mapping: [ERP-TPrescription-StructureMap-Task](./StructureMap-ERP-TPrescription-StructureMap-Task.html) |
+| `bundle.bundle.entry.resource [where ofType(MedicationRequest)]` | `name.resource` | Mappt den KBV-MedicationRequest auf das BfArM MedicationRequest Zielprofil<br>Verwendet Mapping: [ERP-TPrescription-StructureMap-MedicationRequest](./StructureMap-ERP-TPrescription-StructureMap-MedicationRequest.html) |
+| `bundle.bundle.entry.resource [where resource.ofType(MedicationRequest)].bundle.entry [where resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())]` | `resource` | Mappt die KBV-Medication auf das BfArM Medication Zielprofil |
+| `bundle.bundle.entry.resource [where resource.ofType(MedicationRequest)].bundle.entry [where resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())].resource` | `` | Verwendet Mapping: [ERP-TPrescription-StructureMap-Medication](./StructureMap-ERP-TPrescription-StructureMap-Medication.html) |
+| `bundle` | `erpTCarbonCopy.parameter` | Mapping der Abgabeinformationen |
+| `bundle.bundle.entry.resource [where ofType(Bundle).where(entry.first().fullUrl.contains('fhir-directory'))]` | `name.resource` | Mapping des FHIR-VZD Search Sets in eine BfArM Organization<br>Verwendet Mapping: [ERP-TPrescription-StructureMap-Organization](./StructureMap-ERP-TPrescription-StructureMap-Organization.html) |
+| `bundle.bundle.entry.resource [where ofType(MedicationDispense)]` | `part.name` | Mappt die Abgabeinforamtionen der Apotheke auf das BfArM MedicationDispense Zielprofil<br>Verwendet Mapping: [ERP-TPrescription-StructureMap-MedicationDispense](./StructureMap-ERP-TPrescription-StructureMap-MedicationDispense.html) |
+| `bundle.bundle.entry.resource [where resource.ofType(MedicationDispense)].bundle.entry [where resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())]` | `resource` | Mappt die Informationen des abgegebenen Arzneimittels auf das BfArM Medication Zielprofil |
+| `bundle.bundle.entry.resource [where resource.ofType(MedicationDispense)].bundle.entry [where resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())].resource` | `` | Verwendet Mapping: [ERP-TPrescription-StructureMap-Medication](./StructureMap-ERP-TPrescription-StructureMap-Medication.html) |
