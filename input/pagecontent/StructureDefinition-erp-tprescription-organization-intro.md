@@ -2,4 +2,4 @@
 
 Folgende Tabelle gibt eine grobe Darstellung des Mappings für dieses Profil:
 
-{% include StructureMapERPTPrescriptionStructureMapOrganization.md %}
+{% include StructureMap-ERPTPrescriptionStructureMapOrganization.md %}

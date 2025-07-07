@@ -4,22 +4,22 @@ Folgende Tabellen geben eine grobe Darstellung der Mappings für dieses Profil:
 
 ### Mapping von Gematik Medication
 
-{% include StructureMapERPTPrescriptionStructureMapGEMMedication.md %}
+{% include StructureMap-ERPTPrescriptionStructureMapGEMMedication.md %}
 
 ### Mapping von KBV PZN Medication
 
-{% include StructureMapERPTPrescriptionStructureMapKBVPZNMedication.md %}
+{% include StructureMap-ERPTPrescriptionStructureMapKBVPZNMedication.md %}
 
 ### Mapping von KBV Ingredient Medication
 
-{% include StructureMapERPTPrescriptionStructureMapKBVIngredientMedication.md %}
+{% include StructureMap-ERPTPrescriptionStructureMapKBVIngredientMedication.md %}
 
 ### Mapping von KBV FreeText Medication
 
-{% include StructureMapERPTPrescriptionStructureMapKBVFreeTextMedication.md %}
+{% include StructureMap-ERPTPrescriptionStructureMapKBVFreeTextMedication.md %}
 
 ### Mapping von KBV Compounding Medication
 
-{% include StructureMapERPTPrescriptionStructureMapKBVCompoundingMedication.md %}
+{% include StructureMap-ERPTPrescriptionStructureMapKBVCompoundingMedication.md %}
 
 
