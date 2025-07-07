@@ -2,4 +2,4 @@
 
 Folgende Tabelle gibt eine grobe Darstellung des Mappings für dieses Profil:
 
-{% include StructureMap-ERP-TPrescription-StructureMap-CarbonCopy.md %}
+{% include StructureMapERPTPrescriptionStructureMapCarbonCopy.md %}
