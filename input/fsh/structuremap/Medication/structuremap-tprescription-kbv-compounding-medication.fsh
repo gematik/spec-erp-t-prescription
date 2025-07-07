@@ -4,7 +4,7 @@ Usage: #definition
 Title: "E-T-Rezept Structure Map for KBV Compounding Medication"
 Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medication format"
 * insert Instance(StructureMap, ERPTPrescriptionStructureMapKBVCompoundingMedication)
-//TODO: check for contained resources
+
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, kbvMedicationCompounding)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
@@ -15,7 +15,7 @@ Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medica
 
   * insert sd_input(kbvMedicationCompounding, source)
   * insert sd_input(bfarmMedication, target)
-
+  
   // Extensions
   * rule[+]
     * name = "medicationExt"

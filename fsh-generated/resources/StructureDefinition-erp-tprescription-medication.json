@@ -37,6 +37,12 @@
         "max": "0"
       },
       {
+        "id": "Medication.contained",
+        "path": "Medication.contained",
+        "short": "Enthaltene Medikationen",
+        "comment": "Im Falle einer Rezeptur oder Kombipackung sind die Bestandteile der Rezeptur, bzw. Kombipackung hier als Medications gelistet."
+      },
+      {
         "id": "Medication.extension:rxPrescriptionProcessIdentifier",
         "path": "Medication.extension",
         "sliceName": "rxPrescriptionProcessIdentifier",

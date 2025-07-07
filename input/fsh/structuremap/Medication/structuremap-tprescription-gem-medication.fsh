@@ -23,6 +23,12 @@ Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
     * insert targetSetIdVariable(bfarmMedication, id, IdVar)
     * documentation = "Copies the Medication Id"
 
+  // Contained Medications
+  * rule[+]
+    * name = "mapContainedRessources"
+    * insert treeSource(gematikMedication, contained, ContainedVar)
+    * insert targetSetIdVariable(bfarmMedication, contained, ContainedVar)
+
   // Extensions
   * rule[+]
     * name = "medicationExtension"

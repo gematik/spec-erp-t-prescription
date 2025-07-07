@@ -59,6 +59,29 @@
           "source": [
             {
               "context": "gematikMedication",
+              "element": "contained",
+              "variable": "ContainedVar"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "ContainedVar"
+                }
+              ],
+              "context": "bfarmMedication",
+              "contextType": "variable",
+              "element": "contained",
+              "transform": "copy"
+            }
+          ],
+          "name": "mapContainedRessources"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedication",
               "element": "extension",
               "variable": "extVar"
             }
