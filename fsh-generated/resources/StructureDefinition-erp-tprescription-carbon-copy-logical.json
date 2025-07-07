@@ -25,6 +25,7 @@
         "path": "erp-tprescription-carbon-copy-logical.datumSignatur",
         "short": "Zeitpunkt der Signatur",
         "definition": "Zeitpunkt der Signatur",
+        "comment": "Dieses Datum wird aus der QES Signatur 1.2.840.113549.1.9.5 signingTime herangezogen und muss in ein FHIR Instant Datenformat überführt werden.",
         "min": 1,
         "max": "1",
         "type": [
@@ -62,21 +63,8 @@
       {
         "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.bezeichnung",
         "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.bezeichnung",
-        "short": "Freitzext Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (verordnet)",
-        "definition": "Freitzext Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (verordnet)",
-        "min": 1,
-        "max": "1",
-        "type": [
-          {
-            "code": "string"
-          }
-        ]
-      },
-      {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.bezeichnungStrukturiert",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.bezeichnungStrukturiert",
-        "short": "strukturierte Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (verordnet)",
-        "definition": "strukturierte Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (verordnet)",
+        "short": "Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (verordnet). Je nach dem welcher Rezepttyp angewandt wurde liegt diese Angabe als Freitext oder strukturiert vor.",
+        "definition": "Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (verordnet). Je nach dem welcher Rezepttyp angewandt wurde liegt diese Angabe als Freitext oder strukturiert vor.",
         "min": 0,
         "max": "1",
         "type": [
@@ -142,7 +130,7 @@
         "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.reichdauer",
         "short": "Reichdauer (verordnetes Arzneimittel)",
         "definition": "Reichdauer (verordnetes Arzneimittel)",
-        "min": 0,
+        "min": 1,
         "max": "1",
         "type": [
           {
@@ -151,8 +139,8 @@
         ]
       },
       {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben",
+        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen",
+        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen",
         "short": "Bestätigungen des Arztes nach §3a Abs. 2, 5 AMVV",
         "definition": "Bestätigungen des Arztes nach §3a Abs. 2, 5 AMVV",
         "min": 1,
@@ -164,8 +152,8 @@
         ]
       },
       {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.bestaetigungSicherheitsmassnahmen",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.bestaetigungSicherheitsmassnahmen",
+        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.bestaetigungSicherheitsmassnahmen",
+        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.bestaetigungSicherheitsmassnahmen",
         "short": "Bestätigung Sicherheitsmaßnahmen (T-Rezept)",
         "definition": "Bestätigung Sicherheitsmaßnahmen (T-Rezept)",
         "min": 1,
@@ -177,8 +165,8 @@
         ]
       },
       {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.aushaendigungInformationsmaterialien",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.aushaendigungInformationsmaterialien",
+        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.aushaendigungInformationsmaterialien",
+        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.aushaendigungInformationsmaterialien",
         "short": "Aushändigung Informationsmaterialien (T-Rezept)",
         "definition": "Aushändigung Informationsmaterialien (T-Rezept)",
         "min": 1,
@@ -190,8 +178,8 @@
         ]
       },
       {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.offLabelUse",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.offLabelUse",
+        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.offLabelUse",
+        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.offLabelUse",
         "short": "Behandlung außerhalb der zugelassenen Anwendungsgebiete (Off-Label)",
         "definition": "Behandlung außerhalb der zugelassenen Anwendungsgebiete (Off-Label)",
         "min": 1,
@@ -203,8 +191,8 @@
         ]
       },
       {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.gebaerfaehigeFrau",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.gebaerfaehigeFrau",
+        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.gebaerfaehigeFrau",
+        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.gebaerfaehigeFrau",
         "short": "Verschreibung für gebärfähige Frau",
         "definition": "Verschreibung für gebärfähige Frau",
         "min": 1,
@@ -216,8 +204,8 @@
         ]
       },
       {
-        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.erklaerungSachkenntnis",
-        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptAngaben.erklaerungSachkenntnis",
+        "id": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.erklaerungSachkenntnis",
+        "path": "erp-tprescription-carbon-copy-logical.rxVerordnung.rxTRezeptBestaetigungen.erklaerungSachkenntnis",
         "short": "Bestätigung der Sachkenntnis",
         "definition": "Bestätigung der Sachkenntnis",
         "min": 1,
@@ -244,22 +232,9 @@
       {
         "id": "erp-tprescription-carbon-copy-logical.rxAbgabe.bezeichnung",
         "path": "erp-tprescription-carbon-copy-logical.rxAbgabe.bezeichnung",
-        "short": "Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (abgegeben)",
-        "definition": "Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (abgegeben)",
+        "short": "Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (abgegeben). Diese Angabe kann als Freitext oder strukturiert vorliegen.",
+        "definition": "Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (abgegeben). Diese Angabe kann als Freitext oder strukturiert vorliegen.",
         "min": 1,
-        "max": "1",
-        "type": [
-          {
-            "code": "string"
-          }
-        ]
-      },
-      {
-        "id": "erp-tprescription-carbon-copy-logical.rxAbgabe.bezeichnungStrukturiert",
-        "path": "erp-tprescription-carbon-copy-logical.rxAbgabe.bezeichnungStrukturiert",
-        "short": "strukturierte Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (abgegeben)",
-        "definition": "strukturierte Bezeichnung Fertigarzneimittel/Wirkstoff ODER Rezeptur (abgegeben)",
-        "min": 0,
         "max": "1",
         "type": [
           {
@@ -322,8 +297,8 @@
       {
         "id": "erp-tprescription-carbon-copy-logical.rxAbgabe.datumAbgabe",
         "path": "erp-tprescription-carbon-copy-logical.rxAbgabe.datumAbgabe",
-        "short": "Datum der Abgabe YYYY-MM-DD",
-        "definition": "Datum der Abgabe YYYY-MM-DD",
+        "short": "Datum der Abgabe im Format YYYY-MM-DD",
+        "definition": "Datum der Abgabe im Format YYYY-MM-DD",
         "min": 1,
         "max": "1",
         "type": [
