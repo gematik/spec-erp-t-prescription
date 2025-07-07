@@ -4,10 +4,10 @@
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-vzd-searchset",
   "version": "0.1.0",
   "name": "ERP_TPrescription_VZD_SearchSet",
-  "title": "E-T-Rezept vzd-searchset",
+  "title": "E-T-Rezept VZD-Searchset",
   "status": "draft",
-  "date": "2025-07-01",
-  "description": "vzd-searchset Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register",
+  "date": "2025-08-01",
+  "description": "Dieses Profil beschreibt die Datenstruktur, die der E-Rezept-Fachdienst nach Suche am FHIR-VZD zurück erhält. Die Angaben einer Apotheke zu Name, Adresse und Telefonnummer sind in den FHIR-Ressourcen Organization, HealthcareService und Location am FHIR-VZD hinterlegt. Dieses Profil dient dazu das Mapping zu beschreiben und zu verstehen.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -30,7 +30,7 @@
           "description": "Slicing for Bundle Entries of VZD Searchset",
           "ordered": false
         },
-        "min": 3
+        "min": 2
       },
       {
         "id": "Bundle.entry:organization",
@@ -74,7 +74,7 @@
         "id": "Bundle.entry:location",
         "path": "Bundle.entry",
         "sliceName": "location",
-        "min": 1,
+        "min": 0,
         "max": "1"
       },
       {

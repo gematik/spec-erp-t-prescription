@@ -2,7 +2,7 @@ Profile: ERP_TPrescription_Medication
 Parent: EPAMedication
 Id: erp-tprescription-medication
 Title: "E-T-Rezept Medication"
-Description: "Medication for BfArM T-Register"
+Description: "Medikationsprofil, welches Informationen zum verordneten oder abgegebenen Arzneimittel enthält."
 * insert Profile(erp-tprescription-medication)
 
 * extension[rxPrescriptionProcessIdentifier] 0..0

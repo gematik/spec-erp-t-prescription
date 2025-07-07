@@ -2,7 +2,7 @@ Profile: ERP_TPrescription_MedicationRequest
 Parent: MedicationRequest
 Id: erp-tprescription-medication-request
 Title: "E-T-Rezept Medication Request"
-Description: "MedicationRequest with Requestinformation for BfArM T-Register"
+Description: "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept angegeben hat."
 * insert Profile(erp-tprescription-medication-request)
 
 // Default FHIR Elements with 1..1 cardinality

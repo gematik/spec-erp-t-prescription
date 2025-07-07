@@ -2,7 +2,7 @@ Profile: ERP_TPrescription_MedicationDispense
 Parent: MedicationDispense
 Id: erp-tprescription-medication-dispense
 Title: "E-T-Rezept Medication Dispense"
-Description: "MedicationDispense with Dispenseinformation for BfArM T-Register"
+Description: "Abgabeinformationen einer Apotheke, die es im Rahmen der Belieferung eines T-Rezeptes an den E-Rezept-Fachdienst übermittelt hat."
 * insert Profile(erp-tprescription-medication-dispense)
 
 // Default FHIR Elements with 1..1 cardinality

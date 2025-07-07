@@ -2,7 +2,7 @@ Profile: ERP_TPrescription_CarbonCopy
 Id: erp-tprescription-carbon-copy
 Parent: Parameters
 Title: "Digitaler Durchschlag T-Rezept"
-Description: "Parameters to send t-prescription Data to BfArM"
+Description: "Dieses Profil beschreibt den digitalen Durchschlag T-Rezept der alle Informationen zusammenführt und verlinkt. Alle für den Anwendungsfall relevanten Ressourcen sind hier aufgelistet."
 * insert Profile(erp-tprescription-carbon-copy)
 
 * parameter ^slicing.discriminator.type = #value

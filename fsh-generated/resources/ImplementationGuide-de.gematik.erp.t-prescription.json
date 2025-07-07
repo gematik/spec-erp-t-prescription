@@ -89,7 +89,7 @@
           "reference": "StructureDefinition/erp-tprescription-carbon-copy"
         },
         "name": "Digitaler Durchschlag T-Rezept",
-        "description": "Parameters to send t-prescription Data to BfArM",
+        "description": "Dieses Profil beschreibt den digitalen Durchschlag T-Rezept der alle Informationen zusammenführt und verlinkt. Alle für den Anwendungsfall relevanten Ressourcen sind hier aufgelistet.",
         "exampleBoolean": false
       },
       {
@@ -97,7 +97,7 @@
           "reference": "StructureDefinition/erp-tprescription-medication"
         },
         "name": "E-T-Rezept Medication",
-        "description": "Medication for BfArM T-Register",
+        "description": "Medikationsprofil, welches Informationen zum verordneten oder abgegebenen Arzneimittel enthält.",
         "exampleBoolean": false
       },
       {
@@ -105,7 +105,7 @@
           "reference": "StructureDefinition/erp-tprescription-medication-dispense"
         },
         "name": "E-T-Rezept Medication Dispense",
-        "description": "MedicationDispense with Dispenseinformation for BfArM T-Register",
+        "description": "Abgabeinformationen einer Apotheke, die es im Rahmen der Belieferung eines T-Rezeptes an den E-Rezept-Fachdienst übermittelt hat.",
         "exampleBoolean": false
       },
       {
@@ -113,7 +113,7 @@
           "reference": "StructureDefinition/erp-tprescription-medication-request"
         },
         "name": "E-T-Rezept Medication Request",
-        "description": "MedicationRequest with Requestinformation for BfArM T-Register",
+        "description": "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept angegeben hat.",
         "exampleBoolean": false
       },
       {
@@ -121,7 +121,7 @@
           "reference": "StructureDefinition/erp-tprescription-organization"
         },
         "name": "E-T-Rezept Organization",
-        "description": "Organization Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register",
+        "description": "Anagaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
         "exampleBoolean": false
       },
       {
@@ -216,8 +216,8 @@
         "reference": {
           "reference": "StructureDefinition/erp-tprescription-vzd-searchset"
         },
-        "name": "E-T-Rezept vzd-searchset",
-        "description": "vzd-searchset Profile for exchange between E-Rezept-Fachdienst and BfArM T-Register",
+        "name": "E-T-Rezept VZD-Searchset",
+        "description": "Dieses Profil beschreibt die Datenstruktur, die der E-Rezept-Fachdienst nach Suche am FHIR-VZD zurück erhält. Die Angaben einer Apotheke zu Name, Adresse und Telefonnummer sind in den FHIR-Ressourcen Organization, HealthcareService und Location am FHIR-VZD hinterlegt. Dieses Profil dient dazu das Mapping zu beschreiben und zu verstehen.",
         "exampleBoolean": false
       },
       {
