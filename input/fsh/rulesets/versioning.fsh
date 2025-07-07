@@ -1,13 +1,16 @@
 // General rule for to handle versions for all structure definitions
+
+//WICHTIG: Auch die OpenAPI Version anpassen!
+
 RuleSet: Versioning
 * ^status = #draft
-* ^version = "0.1.0"
-* ^date = "2025-08-01"
+* ^version = "1.0.0-ballot-1"
+* ^date = "2025-07-07"
 
 RuleSet: InstanceVersioning
 * status = #draft
-* version = "0.1.0"
-* date = "2025-08-01"
+* version = "1.0.0-ballot-1"
+* date = "2025-07-07"
 
 // Dates for Examples (Date of actual release)
 RuleSet: Date(field)
