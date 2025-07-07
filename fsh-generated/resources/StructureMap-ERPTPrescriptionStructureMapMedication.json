@@ -1,15 +1,15 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-Medication",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Medication",
+  "id": "ERPTPrescriptionStructureMapMedication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedication",
   "title": "E-T-Rezept Structure Map for Medication",
   "description": "Maps a Medication to BfArM T-Prescription Medication format",
   "import": [
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-GEM-Medication",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-Compounding-Medication",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-PZN-Medication",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-Ingredient-Medication"
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapGEMMedication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVCompoundingMedication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVPZNMedication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVFreeTextMedication",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVIngredientMedication"
   ],
   "structure": [
     {
@@ -59,7 +59,7 @@
                     "srcMedication",
                     "tgtMedication"
                   ],
-                  "name": "KBVPZNMedicationMapping"
+                  "name": "ERPTPrescriptionStructureMapKBVPZNMedication"
                 }
               ],
               "name": "mapPZN"
@@ -88,7 +88,7 @@
                     "srcMedication",
                     "tgtMedication"
                   ],
-                  "name": "KBVFreeTextMedicationMapping"
+                  "name": "ERPTPrescriptionStructureMapKBVFreeTextMedication"
                 }
               ],
               "name": "mapFreeText"
@@ -117,7 +117,7 @@
                     "srcMedication",
                     "tgtMedication"
                   ],
-                  "name": "KBVIngredientMedicationMapping"
+                  "name": "ERPTPrescriptionStructureMapKBVIngredientMedication"
                 }
               ],
               "name": "mapIngredient"
@@ -146,7 +146,7 @@
                     "srcMedication",
                     "tgtMedication"
                   ],
-                  "name": "KBVCompoundingMedicationMapping"
+                  "name": "ERPTPrescriptionStructureMapKBVCompoundingMedication"
                 }
               ],
               "name": "mapCompounding"
@@ -175,7 +175,7 @@
                     "srcMedication",
                     "tgtMedication"
                   ],
-                  "name": "erpTGemMedicationMapping"
+                  "name": "ERPTPrescriptionStructureMapGEMMedication"
                 }
               ],
               "name": "mapGemMed"
@@ -184,7 +184,7 @@
           "name": "decideOnMedication"
         }
       ],
-      "name": "erpTMedicationMapping",
+      "name": "ERPTPrescriptionStructureMapMedication",
       "typeMode": "none",
       "documentation": "Mapping group for medication information transformation"
     }
@@ -192,6 +192,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-Medication",
+  "name": "ERPTPrescriptionStructureMapMedication",
   "experimental": false
 }

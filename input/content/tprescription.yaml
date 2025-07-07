@@ -47,14 +47,13 @@ paths:
           - "Internet"
         requestBody:
           required: true
-          description: Optional description in *Markdown*
+          description: Der E-Rezept-Fachdienst übergibt eine FHIR-Instanz nach dem Profil https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy
           content: 
             application/json+fhir:
               schema:
                 type: object
-                description: FHIR-Instanz nach dem Profil https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy
         responses:
-          '201':
+          '200':
             description: Die Anfrage wurde erfolgreich bearbeitet. Der digitale Durchschlag wurde im T-Register eingestellt.
           '400':
             description: Die Anfrage-Nachricht war fehlerhaft aufgebaut.
@@ -65,12 +64,11 @@ paths:
           '405':
             description: Die Anfrage darf nur mit anderen HTTP-Methoden (zum Beispiel GET statt POST) gestellt werden. Gültige Methoden für die betreffende Ressource werden im "Allow"-Header-Feld der Antwort übermittelt.
           '422':
-            description: Die Anfrage konnte nicht verarbeitet werden, da die übermittelten Daten ungültig sind oder gegen die Validierungsregeln verstoßen.
+            description: Die Anfrage konnte nicht verarbeitet werden, da die übermittelten Daten ungültig sind oder gegen die Validierungsregeln verstoßen. Der BfArM Webdienst antwortet mit einer FHIR-Instanz nach dem Profil http://hl7.org/fhir/StructureDefinition/OperationOutcome.
             content:
               application/json+fhir:
                 schema:
                   type: object
-                  description: FHIR-Instanz nach dem Profil http://hl7.org/fhir/StructureDefinition/OperationOutcome
           '429':
             description: Der Client hat zu viele Anfragen in einem bestimmten Zeitraum gesendet.
           '500':

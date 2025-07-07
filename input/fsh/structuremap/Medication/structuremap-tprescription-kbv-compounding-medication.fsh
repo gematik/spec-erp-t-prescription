@@ -1,15 +1,15 @@
-Instance: ERP-TPrescription-StructureMap-KBV-Compounding-Medication
+Instance: ERPTPrescriptionStructureMapKBVCompoundingMedication
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for KBV Compounding Medication"
 Description: "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medication format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-KBV-Compounding-Medication)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapKBVCompoundingMedication)
 //TODO: check for contained resources
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, kbvMedicationCompounding)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
 * group[+]
-  * name = "KBVCompoundingMedicationMapping"
+  * name = "ERPTPrescriptionStructureMapKBVCompoundingMedication"
   * typeMode = #none
   * documentation = "Mapping group for medication information transformation"
 

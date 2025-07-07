@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
+  "id": "ERPTPrescriptionStructureMapKBVFreeTextMedication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVFreeTextMedication",
   "title": "E-T-Rezept Structure Map for KBV FreeText Medication",
   "description": "Maps KBV FreeText Medication to BfArM T-Prescription Medication format",
   "structure": [
@@ -146,7 +146,7 @@
           "documentation": "Copies the Medication Form"
         }
       ],
-      "name": "KBVFreeTextMedicationMapping",
+      "name": "ERPTPrescriptionStructureMapKBVFreeTextMedication",
       "typeMode": "none",
       "documentation": "Mapping group for medication information transformation"
     }
@@ -154,6 +154,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-KBV-FreeText-Medication",
+  "name": "ERPTPrescriptionStructureMapKBVFreeTextMedication",
   "experimental": false
 }

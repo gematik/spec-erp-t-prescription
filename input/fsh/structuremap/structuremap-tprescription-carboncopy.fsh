@@ -1,15 +1,15 @@
-Instance: ERP-TPrescription-StructureMap-CarbonCopy
+Instance: ERPTPrescriptionStructureMapCarbonCopy
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for CarbonCopy"
 Description: "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) eingesehen werden."
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-CarbonCopy)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapCarbonCopy)
 
-* import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationDispense)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-MedicationRequest)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-Organization)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-Task)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-Medication)
+* import[+] = Canonical(ERPTPrescriptionStructureMapMedicationDispense)
+* import[+] = Canonical(ERPTPrescriptionStructureMapMedicationRequest)
+* import[+] = Canonical(ERPTPrescriptionStructureMapOrganization)
+* import[+] = Canonical(ERPTPrescriptionStructureMapTask)
+* import[+] = Canonical(ERPTPrescriptionStructureMapMedication)
 
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Bundle, source, bundle)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy, target, erpTCarbonCopy)
@@ -66,7 +66,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
           * rule[+]
             * name = "parameterrXPrescriptionPartIdentifier"
             * source.context = "srcEntryTaskVar"
-            * insert dependent(ERP-TPrescription-StructureMap-Task, srcEntryTaskVar, newIdentifier)
+            * insert dependent(ERPTPrescriptionStructureMapTask, srcEntryTaskVar, newIdentifier)
           
         
         // part medicationRequest
@@ -85,7 +85,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
             * rule[+]
               * name = "entryMedicationRequestPartResourceSet"
               * source.context = "srcEntryBundleMRVar"
-              * insert dependent(ERP-TPrescription-StructureMap-MedicationRequest, srcEntryBundleMRVar, newMedicationRequest)
+              * insert dependent(ERPTPrescriptionStructureMapMedicationRequest, srcEntryBundleMRVar, newMedicationRequest)
 
         // part Medication
         * rule[+]
@@ -112,7 +112,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
                 * source[=].variable = "srcEntryBundleMRMedIdVarRes"
                 * source[=].element = "resource"
                 // * source[=].logMessage = "%srcEntryBundleMRMedIdVar"
-                * insert dependent(ERP-TPrescription-StructureMap-Medication, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
+                * insert dependent(ERPTPrescriptionStructureMapMedication, srcEntryBundleMRMedIdVarRes, newMedicationPrescriptionMedication)
 
   // Parameter rxDispensation
   * rule[+]
@@ -147,7 +147,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
             * rule[+]
               * name = "entryOrganizationPartResourceSet"
               * source.context = "srcEntryBundleOrgVar"
-              * insert dependent(ERP-TPrescription-StructureMap-Organization, srcEntryBundleOrgVar, newOrganization)
+              * insert dependent(ERPTPrescriptionStructureMapOrganization, srcEntryBundleOrgVar, newOrganization)
 
         // part MedicationDispense
         * rule[+]
@@ -166,7 +166,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
             * rule[+]
               * name = "entryMedicationDispensePartResourceSet"
               * source.context = "srcEntryBundleMDVar"
-              * insert dependent(ERP-TPrescription-StructureMap-MedicationDispense, srcEntryBundleMDVar, newMedicationDispense)
+              * insert dependent(ERPTPrescriptionStructureMapMedicationDispense, srcEntryBundleMDVar, newMedicationDispense)
         
         // part Medication
         * rule[+]
@@ -194,7 +194,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
                 * source[=].variable = "srcEntryBundleMDMedIdVarRes"
                 * source[=].element = "resource"
                 // * source[=].logMessage = "%srcEntryBundleMDMedIdVar"
-                * insert dependent(ERP-TPrescription-StructureMap-Medication, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)
+                * insert dependent(ERPTPrescriptionStructureMapMedication, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)
 
 
 

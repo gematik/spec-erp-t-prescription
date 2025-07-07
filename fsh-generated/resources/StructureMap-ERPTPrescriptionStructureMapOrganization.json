@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-Organization",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Organization",
+  "id": "ERPTPrescriptionStructureMapOrganization",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapOrganization",
   "title": "E-T-Rezept Structure Map for Organization",
   "description": "Maps VZD-Organization-Information to BfArM T-Prescription Organization format",
   "structure": [
@@ -179,7 +179,7 @@
           "name": "mapLocation"
         }
       ],
-      "name": "erpTOrganizationMapping",
+      "name": "ERPTPrescriptionStructureMapOrganization",
       "typeMode": "none",
       "documentation": "Mapping group for VZD SearchSet"
     }
@@ -187,6 +187,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-Organization",
+  "name": "ERPTPrescriptionStructureMapOrganization",
   "experimental": false
 }

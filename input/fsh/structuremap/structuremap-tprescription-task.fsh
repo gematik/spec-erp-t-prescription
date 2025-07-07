@@ -1,16 +1,16 @@
 
-Instance: ERP-TPrescription-StructureMap-Task
+Instance: ERPTPrescriptionStructureMapTask
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for Task"
 Description: "Maps resources to BfArM T-Prescription format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-Task)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapTask)
 
 * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task, source, task)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Identifier, target, tgtIdentifier)
 
 * group[+]
-  * name = "erpTTaskMapping"
+  * name = "ERPTPrescriptionStructureMapTask"
   * typeMode = #none
   * documentation = "Mapping group for Task"
 

@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-MedicationDispense",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationDispense",
+  "id": "ERPTPrescriptionStructureMapMedicationDispense",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedicationDispense",
   "title": "E-T-Rezept Structure Map for MedicationDispense",
   "description": "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format",
   "structure": [
@@ -231,7 +231,7 @@
           "documentation": "Map performer.identifier to a reference to Organization with the identifier value"
         }
       ],
-      "name": "erpTDispenseMapping",
+      "name": "ERPTPrescriptionStructureMapMedicationDispense",
       "typeMode": "none",
       "documentation": "Mapping group for dispense information transformation"
     }
@@ -239,6 +239,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-MedicationDispense",
+  "name": "ERPTPrescriptionStructureMapMedicationDispense",
   "experimental": false
 }

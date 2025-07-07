@@ -1,16 +1,16 @@
-Instance: ERP-TPrescription-StructureMap-KBV-FreeText-Medication
+Instance: ERPTPrescriptionStructureMapKBVFreeTextMedication
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for KBV FreeText Medication"
 Description: "Maps KBV FreeText Medication to BfArM T-Prescription Medication format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-KBV-FreeText-Medication)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapKBVFreeTextMedication)
 
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, kbvMedicationFreeText)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
 // KBV FreeText Medication
 * group[+]
-  * name = "KBVFreeTextMedicationMapping"
+  * name = "ERPTPrescriptionStructureMapKBVFreeTextMedication"
   * typeMode = #none
   * documentation = "Mapping group for medication information transformation"
 

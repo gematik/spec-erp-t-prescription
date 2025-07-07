@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-GEM-Medication",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-GEM-Medication",
+  "id": "ERPTPrescriptionStructureMapGEMMedication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapGEMMedication",
   "title": "E-T-Rezept Structure Map for Medication",
   "description": "Maps GEM ERP Medication to BfArM T-Prescription Medication format",
   "structure": [
@@ -271,7 +271,7 @@
           "documentation": "Copies the Medication Ingredient"
         }
       ],
-      "name": "erpTGemMedicationMapping",
+      "name": "ERPTPrescriptionStructureMapGEMMedication",
       "typeMode": "none",
       "documentation": "Mapping group for medication information transformation"
     }
@@ -279,6 +279,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-GEM-Medication",
+  "name": "ERPTPrescriptionStructureMapGEMMedication",
   "experimental": false
 }

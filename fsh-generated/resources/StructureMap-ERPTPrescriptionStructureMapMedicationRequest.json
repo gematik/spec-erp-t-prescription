@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-MedicationRequest",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationRequest",
+  "id": "ERPTPrescriptionStructureMapMedicationRequest",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedicationRequest",
   "title": "E-T-Rezept Structure Map for MedicationRequest",
   "description": "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest format",
   "structure": [
@@ -323,7 +323,7 @@
           "documentation": "Copy medication; ensure correct mapping from reference is stated"
         }
       ],
-      "name": "erpTRequestMapping",
+      "name": "ERPTPrescriptionStructureMapMedicationRequest",
       "typeMode": "none",
       "documentation": "Mapping group for Request information transformation"
     }
@@ -331,6 +331,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-MedicationRequest",
+  "name": "ERPTPrescriptionStructureMapMedicationRequest",
   "experimental": false
 }

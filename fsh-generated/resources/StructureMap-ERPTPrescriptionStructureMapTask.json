@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-Task",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Task",
+  "id": "ERPTPrescriptionStructureMapTask",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapTask",
   "title": "E-T-Rezept Structure Map for Task",
   "description": "Maps resources to BfArM T-Prescription format",
   "structure": [
@@ -81,7 +81,7 @@
           "name": "prescriptionId"
         }
       ],
-      "name": "erpTTaskMapping",
+      "name": "ERPTPrescriptionStructureMapTask",
       "typeMode": "none",
       "documentation": "Mapping group for Task"
     }
@@ -89,6 +89,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-Task",
+  "name": "ERPTPrescriptionStructureMapTask",
   "experimental": false
 }

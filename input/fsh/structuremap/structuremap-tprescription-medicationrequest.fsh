@@ -1,15 +1,15 @@
-Instance: ERP-TPrescription-StructureMap-MedicationRequest
+Instance: ERPTPrescriptionStructureMapMedicationRequest
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for MedicationRequest"
 Description: "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-MedicationRequest)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapMedicationRequest)
 //TODO
 * insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription, source, kbvMedicationRequest)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
 
 * group[+]
-  * name = "erpTRequestMapping"
+  * name = "ERPTPrescriptionStructureMapMedicationRequest"
   * typeMode = #none
   * documentation = "Mapping group for Request information transformation"
 

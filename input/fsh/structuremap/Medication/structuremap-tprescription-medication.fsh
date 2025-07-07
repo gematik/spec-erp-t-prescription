@@ -1,21 +1,21 @@
-Instance: ERP-TPrescription-StructureMap-Medication
+Instance: ERPTPrescriptionStructureMapMedication
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for Medication"
 Description: "Maps a Medication to BfArM T-Prescription Medication format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-Medication)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapMedication)
 
-* import[+] = Canonical(ERP-TPrescription-StructureMap-GEM-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-Compounding-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-PZN-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-FreeText-Medication)
-* import[+] = Canonical(ERP-TPrescription-StructureMap-KBV-Ingredient-Medication)
+* import[+] = Canonical(ERPTPrescriptionStructureMapGEMMedication)
+* import[+] = Canonical(ERPTPrescriptionStructureMapKBVCompoundingMedication)
+* import[+] = Canonical(ERPTPrescriptionStructureMapKBVPZNMedication)
+* import[+] = Canonical(ERPTPrescriptionStructureMapKBVFreeTextMedication)
+* import[+] = Canonical(ERPTPrescriptionStructureMapKBVIngredientMedication)
 
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, srcMedication)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, tgtMedication)
 
 * group[+]
-  * name = "erpTMedicationMapping"
+  * name = "ERPTPrescriptionStructureMapMedication"
   * typeMode = #none
   * documentation = "Mapping group for medication information transformation"
 
@@ -32,7 +32,7 @@ Description: "Maps a Medication to BfArM T-Prescription Medication format"
     * rule[+]
       * name = "mapPZN"
       * source[+].context = "srcPZN"
-      * insert dependent(KBVPZNMedicationMapping, srcMedication, tgtMedication)
+      * insert dependent(ERPTPrescriptionStructureMapKBVPZNMedication, srcMedication, tgtMedication)
   
   // FreeText
   * rule[+]
@@ -44,7 +44,7 @@ Description: "Maps a Medication to BfArM T-Prescription Medication format"
     * rule[+]
       * name = "mapFreeText"
       * source[+].context = "srcFreeText"
-      * insert dependent(KBVFreeTextMedicationMapping, srcMedication, tgtMedication)
+      * insert dependent(ERPTPrescriptionStructureMapKBVFreeTextMedication, srcMedication, tgtMedication)
   
   // Ingredient
   * rule[+]
@@ -56,7 +56,7 @@ Description: "Maps a Medication to BfArM T-Prescription Medication format"
     * rule[+]
       * name = "mapIngredient"
       * source[+].context = "srcIngredient"
-      * insert dependent(KBVIngredientMedicationMapping, srcMedication, tgtMedication)
+      * insert dependent(ERPTPrescriptionStructureMapKBVIngredientMedication, srcMedication, tgtMedication)
   
   // Compounding
   * rule[+]
@@ -68,7 +68,7 @@ Description: "Maps a Medication to BfArM T-Prescription Medication format"
     * rule[+]
       * name = "mapCompounding"
       * source[+].context = "srcCompounding"
-      * insert dependent(KBVCompoundingMedicationMapping, srcMedication, tgtMedication)
+      * insert dependent(ERPTPrescriptionStructureMapKBVCompoundingMedication, srcMedication, tgtMedication)
   
   // GematikMedication
   * rule[+]
@@ -80,6 +80,6 @@ Description: "Maps a Medication to BfArM T-Prescription Medication format"
     * rule[+]
       * name = "mapGemMed"
       * source[+].context = "srcGemMed"
-      * insert dependent(erpTGemMedicationMapping, srcMedication, tgtMedication)
+      * insert dependent(ERPTPrescriptionStructureMapGEMMedication, srcMedication, tgtMedication)
     
 

@@ -1,16 +1,16 @@
-Instance: ERP-TPrescription-StructureMap-MedicationDispense
+Instance: ERPTPrescriptionStructureMapMedicationDispense
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for MedicationDispense"
 Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-MedicationDispense)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapMedicationDispense)
 
 // * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense, source, gematikMedicationDispense)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/MedicationDispense, source, gematikMedicationDispense)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense, target, bfarmMedicationDispense)
 
 * group[+]
-  * name = "erpTDispenseMapping"
+  * name = "ERPTPrescriptionStructureMapMedicationDispense"
   * typeMode = #none
   * documentation = "Mapping group for dispense information transformation"
 

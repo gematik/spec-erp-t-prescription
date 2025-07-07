@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-KBV-Ingredient-Medication",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-KBV-Ingredient-Medication",
+  "id": "ERPTPrescriptionStructureMapKBVIngredientMedication",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVIngredientMedication",
   "title": "E-T-Rezept Structure Map for KBV Ingredient Medication",
   "description": "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medication format",
   "structure": [
@@ -329,7 +329,7 @@
           "documentation": "Copies the Medication Ingredient"
         }
       ],
-      "name": "KBVIngredientMedicationMapping",
+      "name": "ERPTPrescriptionStructureMapKBVIngredientMedication",
       "typeMode": "none",
       "documentation": "Mapping group for medication information transformation"
     }
@@ -337,6 +337,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-KBV-Ingredient-Medication",
+  "name": "ERPTPrescriptionStructureMapKBVIngredientMedication",
   "experimental": false
 }

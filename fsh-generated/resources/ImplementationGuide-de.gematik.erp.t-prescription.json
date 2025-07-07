@@ -126,7 +126,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-CarbonCopy"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapCarbonCopy"
         },
         "name": "E-T-Rezept Structure Map for CarbonCopy",
         "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) eingesehen werden.",
@@ -134,7 +134,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-KBV-Compounding-Medication"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVCompoundingMedication"
         },
         "name": "E-T-Rezept Structure Map for KBV Compounding Medication",
         "description": "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medication format",
@@ -142,7 +142,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-KBV-FreeText-Medication"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVFreeTextMedication"
         },
         "name": "E-T-Rezept Structure Map for KBV FreeText Medication",
         "description": "Maps KBV FreeText Medication to BfArM T-Prescription Medication format",
@@ -150,7 +150,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-KBV-Ingredient-Medication"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVIngredientMedication"
         },
         "name": "E-T-Rezept Structure Map for KBV Ingredient Medication",
         "description": "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medication format",
@@ -158,7 +158,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-KBV-PZN-Medication"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVPZNMedication"
         },
         "name": "E-T-Rezept Structure Map for KBV PZN Medication",
         "description": "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format",
@@ -166,7 +166,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-GEM-Medication"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapGEMMedication"
         },
         "name": "E-T-Rezept Structure Map for Medication",
         "description": "Maps GEM ERP Medication to BfArM T-Prescription Medication format",
@@ -174,7 +174,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-Medication"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapMedication"
         },
         "name": "E-T-Rezept Structure Map for Medication",
         "description": "Maps a Medication to BfArM T-Prescription Medication format",
@@ -182,7 +182,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-MedicationDispense"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapMedicationDispense"
         },
         "name": "E-T-Rezept Structure Map for MedicationDispense",
         "description": "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format",
@@ -190,7 +190,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-MedicationRequest"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapMedicationRequest"
         },
         "name": "E-T-Rezept Structure Map for MedicationRequest",
         "description": "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest format",
@@ -198,7 +198,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-Organization"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapOrganization"
         },
         "name": "E-T-Rezept Structure Map for Organization",
         "description": "Maps VZD-Organization-Information to BfArM T-Prescription Organization format",
@@ -206,7 +206,7 @@
       },
       {
         "reference": {
-          "reference": "StructureMap/ERP-TPrescription-StructureMap-Task"
+          "reference": "StructureMap/ERPTPrescriptionStructureMapTask"
         },
         "name": "E-T-Rezept Structure Map for Task",
         "description": "Maps resources to BfArM T-Prescription format",

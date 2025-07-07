@@ -1,15 +1,15 @@
-Instance: ERP-TPrescription-StructureMap-Organization
+Instance: ERPTPrescriptionStructureMapOrganization
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for Organization"
 Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organization format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-Organization)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapOrganization)
 
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-vzd-searchset, source, vzdSearchSet)
 * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization, target, bfarmOrganization)
 
 * group[+]
-  * name = "erpTOrganizationMapping"
+  * name = "ERPTPrescriptionStructureMapOrganization"
   * typeMode = #none
   * documentation = "Mapping group for VZD SearchSet"
 

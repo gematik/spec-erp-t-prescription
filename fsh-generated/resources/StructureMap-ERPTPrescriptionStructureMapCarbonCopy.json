@@ -1,15 +1,15 @@
 {
   "resourceType": "StructureMap",
-  "id": "ERP-TPrescription-StructureMap-CarbonCopy",
-  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-CarbonCopy",
+  "id": "ERPTPrescriptionStructureMapCarbonCopy",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapCarbonCopy",
   "title": "E-T-Rezept Structure Map for CarbonCopy",
   "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) eingesehen werden.",
   "import": [
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationDispense",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-MedicationRequest",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Organization",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Task",
-    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERP-TPrescription-StructureMap-Medication"
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedicationDispense",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedicationRequest",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapOrganization",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapTask",
+    "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedication"
   ],
   "structure": [
     {
@@ -186,7 +186,7 @@
                                 "srcEntryTaskVar",
                                 "newIdentifier"
                               ],
-                              "name": "ERP-TPrescription-StructureMap-Task"
+                              "name": "ERPTPrescriptionStructureMapTask"
                             }
                           ],
                           "name": "parameterrXPrescriptionPartIdentifier"
@@ -250,7 +250,7 @@
                                     "srcEntryBundleMRVar",
                                     "newMedicationRequest"
                                   ],
-                                  "name": "ERP-TPrescription-StructureMap-MedicationRequest"
+                                  "name": "ERPTPrescriptionStructureMapMedicationRequest"
                                 }
                               ],
                               "name": "entryMedicationRequestPartResourceSet"
@@ -330,7 +330,7 @@
                                         "srcEntryBundleMRMedIdVarRes",
                                         "newMedicationPrescriptionMedication"
                                       ],
-                                      "name": "ERP-TPrescription-StructureMap-Medication"
+                                      "name": "ERPTPrescriptionStructureMapMedication"
                                     }
                                   ],
                                   "name": "entryMedicationPrescriptionMedicationPartResourceSet"
@@ -460,7 +460,7 @@
                                     "srcEntryBundleOrgVar",
                                     "newOrganization"
                                   ],
-                                  "name": "ERP-TPrescription-StructureMap-Organization"
+                                  "name": "ERPTPrescriptionStructureMapOrganization"
                                 }
                               ],
                               "name": "entryOrganizationPartResourceSet"
@@ -533,7 +533,7 @@
                                     "srcEntryBundleMDVar",
                                     "newMedicationDispense"
                                   ],
-                                  "name": "ERP-TPrescription-StructureMap-MedicationDispense"
+                                  "name": "ERPTPrescriptionStructureMapMedicationDispense"
                                 }
                               ],
                               "name": "entryMedicationDispensePartResourceSet"
@@ -619,7 +619,7 @@
                                         "srcEntryBundleMDMedIdVarRes",
                                         "newMedicationDispensationMedication"
                                       ],
-                                      "name": "ERP-TPrescription-StructureMap-Medication"
+                                      "name": "ERPTPrescriptionStructureMapMedication"
                                     }
                                   ],
                                   "name": "entryMedicationDispensationMedicationPartResourceSet"
@@ -653,6 +653,6 @@
   "status": "draft",
   "version": "0.1.0",
   "date": "2025-08-01",
-  "name": "ERP-TPrescription-StructureMap-CarbonCopy",
+  "name": "ERPTPrescriptionStructureMapCarbonCopy",
   "experimental": false
 }

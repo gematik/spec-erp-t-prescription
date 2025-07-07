@@ -1,15 +1,15 @@
-Instance: ERP-TPrescription-StructureMap-GEM-Medication
+Instance: ERPTPrescriptionStructureMapGEMMedication
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for Medication"
 Description: "Maps GEM ERP Medication to BfArM T-Prescription Medication format"
-* insert Instance(StructureMap, ERP-TPrescription-StructureMap-GEM-Medication)
+* insert Instance(StructureMap, ERPTPrescriptionStructureMapGEMMedication)
 
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, source, gematikMedication)
 * insert sd_structure(http://hl7.org/fhir/StructureDefinition/Medication, target, bfarmMedication)
 
 * group[+]
-  * name = "erpTGemMedicationMapping"
+  * name = "ERPTPrescriptionStructureMapGEMMedication"
   * typeMode = #none
   * documentation = "Mapping group for medication information transformation"
 
