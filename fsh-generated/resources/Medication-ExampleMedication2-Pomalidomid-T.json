@@ -1,0 +1,21 @@
+{
+  "resourceType": "Medication",
+  "id": "ExampleMedication2-Pomalidomid-T",
+  "code": {
+    "text": "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln",
+    "coding": [
+      {
+        "code": "19201712",
+        "system": "http://fhir.de/CodeSystem/ifa/pzn"
+      }
+    ]
+  },
+  "form": {
+    "coding": [
+      {
+        "code": "HKP",
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+      }
+    ]
+  }
+}

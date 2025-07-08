@@ -229,18 +229,18 @@
       },
       {
         "reference": {
-          "reference": "Medication/ExampleMedication2-Ibuprofen-T"
-        },
-        "name": "Example Medication - Ibuprofen",
-        "description": "Ibuprofen 400 mg Filmtabletten",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-      },
-      {
-        "reference": {
           "reference": "Medication/ExampleMedication1-Paracetamol-T"
         },
         "name": "Example Medication - Paracetamol",
         "description": "Paracetamol 500 mg Tabletten",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
+          "reference": "Medication/ExampleMedication2-Pomalidomid-T"
+        },
+        "name": "Example Medication - Pomalidomid",
+        "description": "Pomalidomid Accord 1 mg",
         "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
       },
       {
@@ -256,7 +256,7 @@
           "reference": "MedicationDispense/ExampleMedicationDispense-T"
         },
         "name": "Example MedicationDispense",
-        "description": "A MedicationDispense for Ibuprofen",
+        "description": "A MedicationDispense for Pomalidomid",
         "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense"
       },
       {

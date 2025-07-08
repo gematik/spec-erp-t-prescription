@@ -14,5 +14,5 @@ Usage: #example
 
 * parameter[rxDispensation]
   * part[medicationDispense].resource = ExampleMedicationDispense-T
-  * part[medication].resource = ExampleMedication2-Ibuprofen-T
+  * part[medication].resource = ExampleMedication2-Pomalidomid-T
   * part[organization].resource = ExampleOrganization-T

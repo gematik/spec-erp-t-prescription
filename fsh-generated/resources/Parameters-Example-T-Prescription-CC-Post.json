@@ -134,9 +134,19 @@
                 "text": "1-1-1-1 nach Bedarf"
               }
             ],
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "value": "3-07.2.1234560000.10.789",
+                    "system": "https://gematik.de/fhir/sid/telematik-id"
+                  }
+                }
+              }
+            ],
             "status": "completed",
             "medicationReference": {
-              "reference": "Medication/ExampleMedication2-Ibuprofen-T"
+              "reference": "Medication/ExampleMedication2-Pomalidomid-T"
             },
             "whenHandedOver": "2026-04-02"
           }
@@ -145,23 +155,21 @@
           "name": "medication",
           "resource": {
             "resourceType": "Medication",
-            "id": "ExampleMedication2-Ibuprofen-T",
+            "id": "ExampleMedication2-Pomalidomid-T",
             "code": {
+              "text": "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln",
               "coding": [
                 {
-                  "system": "http://www.whocc.no/atc",
-                  "code": "M01AE01",
-                  "display": "Ibuprofen"
+                  "code": "19201712",
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn"
                 }
-              ],
-              "text": "Ibuprofen 400 mg Tablette"
+              ]
             },
             "form": {
               "coding": [
                 {
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-                  "code": "TAB",
-                  "display": "Tabletten"
+                  "code": "HKP",
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
                 }
               ]
             }

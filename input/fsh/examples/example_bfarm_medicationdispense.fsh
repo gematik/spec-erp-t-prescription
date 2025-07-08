@@ -1,24 +1,20 @@
 Instance: ExampleMedicationDispense-T
 InstanceOf: ERP_TPrescription_MedicationDispense
 Title: "Example MedicationDispense"
-Description: "A MedicationDispense for Ibuprofen"
+Description: "A MedicationDispense for Pomalidomid"
 * status = #completed
-* medicationReference = Reference(ExampleMedication2-Ibuprofen-T)
+* medicationReference = Reference(ExampleMedication2-Pomalidomid-T)
 * quantity.value = 10
 * quantity.unit = "Tablette"
 * dosageInstruction[+].text = "1-1-1-1 nach Bedarf"
 * whenHandedOver = "2026-04-02"
+* performer.actor.identifier.value = "3-07.2.1234560000.10.789"
+* performer.actor.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 
-Instance: ExampleMedication2-Ibuprofen-T
+Instance: ExampleMedication2-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication
-Title: "Example Medication - Ibuprofen"
-Description: "Ibuprofen 400 mg Filmtabletten"
-* code.coding[+]
-  * system = "http://www.whocc.no/atc"
-  * code = #M01AE01
-  * display = "Ibuprofen"
-* code.text = "Ibuprofen 400 mg Tablette"
-* form.coding[+]
-  * system = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM
-  * code = #TAB
-  * display = "Tabletten"
+Title: "Example Medication - Pomalidomid"
+Description: "Pomalidomid Accord 1 mg"
+* code.text = "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
+* code = $pzn#19201712
+* form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#HKP

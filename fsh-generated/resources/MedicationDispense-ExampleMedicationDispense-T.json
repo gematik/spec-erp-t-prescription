@@ -15,9 +15,19 @@
       "text": "1-1-1-1 nach Bedarf"
     }
   ],
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "value": "3-07.2.1234560000.10.789",
+          "system": "https://gematik.de/fhir/sid/telematik-id"
+        }
+      }
+    }
+  ],
   "status": "completed",
   "medicationReference": {
-    "reference": "Medication/ExampleMedication2-Ibuprofen-T"
+    "reference": "Medication/ExampleMedication2-Pomalidomid-T"
   },
   "whenHandedOver": "2026-04-02"
 }
