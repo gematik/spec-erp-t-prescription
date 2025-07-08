@@ -1,0 +1,34 @@
+name: "IG Verbesserung"
+description: Create a new ticket for an improvement for the FHIR IG.
+title: "[IG] - <title>"
+labels: [
+  "IG",
+  "issue",
+  "improvement"
+]
+body:
+  - type: input
+    id: reprod-url
+    attributes:
+      label: "URL in the IG"
+      description: Please enter the corresponding URL to provide a source for reproduction of the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Please enter an explicit description of what to improve.
+    validations:
+      required: true
+  
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "Screenshots"
+      description: If applicable, add screenshots to help explain your problem.
+      value: |
+        ![DESCRIPTION](LINK.png)
+      render: bash
+    validations:
+      required: false
