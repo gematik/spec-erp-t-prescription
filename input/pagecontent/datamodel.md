@@ -1,27 +1,35 @@
 # Informationen zum Datenmodell
 
-Im Laufe der Durchführung eines E-Rezept Workflows erhält der E-Rezept-Fachdienst diverse Artefakte die für die Erstellung des digitalen Durchschlags notwendig sind:
+Dieses Projekt listet diverse Artefakte auf, die helfen sollen den Anwendungsfall der Übertragung des digitalen Durchschlags E-T-Rezept umzusetzen. 
+
+## Fachliches Modell
+
+Das fachliche Modell dafür, welche Informationen übertragen werden, sind in [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet. Diese sind ebenfalls im von der gematik veröffentlichten Feature Dokument [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) angegeben.
+
+Dieses Logical Model soll dafür Verständnis schaffen, welche Informationen vom E-Rezept-Fachdienst an den BfArM Webdienst übertragen werden.
+
+Im Laufe der Durchführung eines E-Rezept Workflows erhält der E-Rezept-Fachdienst diverse Artefakte die als Grundlage für die Erstellung des digitalen Durchschlags notwendig sind:
 
 - [Die Verordnung des Arztes](https://simplifier.net/erezept/kbv_pr_erp_bundle)
 - [Die Dispensierinformationen der Apotheke](https://simplifier.net/erezept-workflow/gem_erp_pr_par_closeoperation_input)
 
-In den Dispensierinformationen ist die Telematik-ID der Apotheke angegeben. Da der digitale Durchschlag die Adress-, Telefon- und Namensinformationen der Apotheke aufführen muss ruft der E-Rezept-Fachdienst zusätzlich den [Verzeichnisdienst der TI](https://simplifier.net/VZD-FHIR-Directory/~introduction) auf, um die benötigten Informationen der abgebenden Apotheke abzufragen.
-Aus diesen Informationen wird der digitale Durchschlag E-T-Rezept erstellt.
+Aus diesen grundlegenden Daten wird dann ein Artefakt, der digitale Durchschlag E-T-Rezept, erstellt und an das BfArM übermittelt.
 
-## Fachliche Informationseinheiten
+## Profile
 
-Zur Übertragung der fachlichen Informationseinheiten wurde sich auf konkrete Daten geeinigt, diese sind in [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) aufgelistet und im Logical Model [ERP_TPrescription_CarbonCopy_Logical](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet.
+Weiterhin stellt dieses Projekt Profile bereit, welche darüber informieren, wie das zu erwartende Datenmodell an den jeweiligen Schnittstellen aussehen muss.
 
-## Quell- und Zielartefakte
+Der [digitale Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) ist die Klammernde Ressourcendefinition, die an das BfArM übertragen wird. Darin enthalten sind die folgenden Strukturen:
 
-Folgende Profile und Artefakte sind grundlegend für die Erstellung des digitalen Durchschlags T-Rezept und werden in entsprechende Zielprofile gemappt.
+{% capture profiles %}
+StructureDefinition/erp-tprescription-medication-dispense,
+StructureDefinition/erp-tprescription-medication-request,
+StructureDefinition/erp-tprescription-medication,
+StructureDefinition/erp-tprescription-organization,
+{% endcapture %}
+{% include artifacts-table-generator.html render=profiles %}
 
-Die Zielartefakte enthalten jeweils Beschreibungen und Definitionen zur Bedeutung der Felder.
-Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlags-e-t-rezept) beschrieben.
-
-Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./trezept.html#anwendung-der-structuremap).
-
-## Designentscheidung zur restriktiven Datenmodellierung
+### Designentscheidung zur restriktiven Datenmodellierung
 
 Entgegen der Best Practice zur FHIR Modellierung der [HL7 International](https://build.fhir.org/ig/FHIR/ig-guidance/best-practice.html) und [HL7 Deutschland](https://ig.fhir.de/best-practice/1.0.0/Home.html) sind die Profile in diesem Projekt sehr restriktiv designed.
 

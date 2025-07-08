@@ -45,15 +45,15 @@ dependencies:
 # with supported extensions (e.g., .md/.xml) will be treated as
 # sub-pages.
 # TODO
-pages:
-  index.md:
-    title: Einführung
-  datamodel.md:
-    title: Datenmodell
-  trezept.md:
-    title: Digitaler Durchschlag T-Rezept
-  bfarm-openapi.md:
-    title: Open API BfArM
+# pages:
+#   index.md:
+#     title: Einführung
+#   datamodel.md:
+#     title: Datenmodell
+#   trezept.md:
+#     title: Digitaler Durchschlag T-Rezept
+#   bfarm-openapi.md:
+#     title: Open API BfArM
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
@@ -79,13 +79,10 @@ pages:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Start: index.html
-  Fachliche Themen:
-    Datenmodell: datamodel.html
-  Anwendungsfälle:
-    T-Rezept: trezept.html
+  Datenmodell: datamodel.html
+  Übertragung für E-T-Rezept: trezept.html
   FHIR-Artefakte: artifacts.html
-  Anhänge:
-    OpenAPI: bfarm-openapi.html
+  OpenAPI: bfarm-openapi.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │

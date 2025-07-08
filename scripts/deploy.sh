@@ -55,7 +55,7 @@ echo "✅ PUBLISH_URL: ${PUBLISH_URL}"
 
 # TODO Add Simplifier cli
 
-#"$SCRIPT_DIR/build-ig.sh"
+"$SCRIPT_DIR/build-ig.sh"
  
 
 if gsutil ls gs://$BUCKET_NAME$BUCKET_PATH/$TARGET > /dev/null 2>&1; then

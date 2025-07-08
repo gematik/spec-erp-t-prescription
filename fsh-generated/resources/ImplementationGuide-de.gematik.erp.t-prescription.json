@@ -333,22 +333,22 @@
       "page": [
         {
           "nameUrl": "index.html",
-          "title": "Einführung",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "datamodel.html",
-          "title": "Datenmodell",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "trezept.html",
-          "title": "Digitaler Durchschlag T-Rezept",
+          "title": "Home",
           "generation": "markdown"
         },
         {
           "nameUrl": "bfarm-openapi.html",
-          "title": "Open API BfArM",
+          "title": "Bfarm Openapi",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "datamodel.html",
+          "title": "Datamodel",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "trezept.html",
+          "title": "Trezept",
           "generation": "markdown"
         }
       ]
