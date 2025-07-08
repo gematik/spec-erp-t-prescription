@@ -1,12 +1,12 @@
 Instance: ExampleMedicationRequest-T
 InstanceOf: ERP_TPrescription_MedicationRequest
-Title: "Example MedicationRequest"
-Description: "A MedicationRequest for Paracetamol"
+Title: "Beispiel BfArM MedicationRequest"
+Description: "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1"
 * status = #completed
 * intent = #order
 * authoredOn = "2026-04-01"
 * subject.extension[dataAbsentReason].valueCode = #not-permitted
-* medicationReference = Reference(ExampleMedication1-Paracetamol-T)
+* medicationReference = Reference(ExampleMedication1-Pomalidomid-T)
 * dosageInstruction[+].text = "1-1-1-1"
 * dispenseRequest
   * quantity.value = 10
@@ -18,16 +18,15 @@ Description: "A MedicationRequest for Paracetamol"
   * extension[GebaerfaehigeFrau].valueBoolean = false
   * extension[ErklaerungSachkenntnis].valueBoolean = true
 
-Instance: ExampleMedication1-Paracetamol-T
+Instance: ExampleMedication1-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication
-Title: "Example Medication - Paracetamol"
-Description: "Paracetamol 500 mg Tabletten"
+Title: "Beispiel Medication - Pomalidomid"
+Description: "Pomalidomid Hartkapseln"
 * code.coding[+]
   * system = "http://www.whocc.no/atc"
-  * code = #N02BE01
-  * display = "Paracetamol"
-* code.text = "Paracetamol 500 mg Tabletten"
+  * code = #L04AX06
+  * display = "Pomalidomid"
 * form.coding[+]
   * system = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM
-  * code = #TAB
-  * display = "Tabletten"
+  * code = #HKP
+  * display = "Hartkapseln"

@@ -1,9 +1,8 @@
-Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
-Alias: $OrganizationProfessionOID = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID
-
 Instance: VZD-SearchSet-Bundle
 InstanceOf: Bundle
 Usage: #example
+Title: "Beispiel VZD SearchSet Bundle"
+Description: "Beispiel für eine Response des FHIR-VZD nach einer Suchanfrage zu Name, Telefonnummer und Adresse einer Apotheke via Telematik-ID"
 * meta.lastUpdated = "2025-06-19T08:42:40.732+02:00"
 * type = #searchset
 * total = 3

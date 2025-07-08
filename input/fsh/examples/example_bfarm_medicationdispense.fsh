@@ -1,7 +1,7 @@
 Instance: ExampleMedicationDispense-T
 InstanceOf: ERP_TPrescription_MedicationDispense
-Title: "Example MedicationDispense"
-Description: "A MedicationDispense for Pomalidomid"
+Title: "Beispiel BfArM MedicationDispense"
+Description: "Ein MedicationDispense für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1 nach Bedarf"
 * status = #completed
 * medicationReference = Reference(ExampleMedication2-Pomalidomid-T)
 * quantity.value = 10
@@ -13,7 +13,7 @@ Description: "A MedicationDispense for Pomalidomid"
 
 Instance: ExampleMedication2-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication
-Title: "Example Medication - Pomalidomid"
+Title: "Beispiel Medication - Pomalidomid"
 Description: "Pomalidomid Accord 1 mg"
 * code.text = "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
 * code = $pzn#19201712

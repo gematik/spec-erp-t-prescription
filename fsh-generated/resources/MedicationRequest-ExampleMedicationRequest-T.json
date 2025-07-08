@@ -56,6 +56,6 @@
   "intent": "order",
   "authoredOn": "2026-04-01",
   "medicationReference": {
-    "reference": "Medication/ExampleMedication1-Paracetamol-T"
+    "reference": "Medication/ExampleMedication1-Pomalidomid-T"
   }
 }

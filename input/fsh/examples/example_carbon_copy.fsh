@@ -12,7 +12,7 @@ Description: "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digita
   * part[+]
     * name = "prescriptionId"
     * valueIdentifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-    * valueIdentifier.value = "160.000.033.491.280.78"
+    * valueIdentifier.value = "160.100.000.000.001.39"
   * part[+]
     * name = "medicationRequest"
     * resource = TRP-Carbon-Copy-MedicationRequest

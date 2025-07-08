@@ -86,6 +86,22 @@
     "resource": [
       {
         "reference": {
+          "reference": "MedicationDispense/ExampleMedicationDispense-T"
+        },
+        "name": "Beispiel BfArM MedicationDispense",
+        "description": "Ein MedicationDispense für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1 nach Bedarf",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense"
+      },
+      {
+        "reference": {
+          "reference": "MedicationRequest/ExampleMedicationRequest-T"
+        },
+        "name": "Beispiel BfArM MedicationRequest",
+        "description": "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
+      },
+      {
+        "reference": {
           "reference": "Organization/ExampleOrganization-T"
         },
         "name": "Beispiel BfArM Organisation",
@@ -98,6 +114,46 @@
         },
         "name": "Beispiel digitaler Durchschlag E-T-Rezept",
         "description": "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digitalen Durchschlags abzubilden",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "MedicationDispense/GEM-MedicationDispense"
+        },
+        "name": "Beispiel Gemetik MedicationDispense",
+        "description": "Diese MedicationDispense wird von der Apotheke eingestellt, um einen Workflow zu einem E-Rezept abzuschließen.",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Medication/ExampleMedication2-Pomalidomid-T"
+        },
+        "name": "Beispiel Medication - Pomalidomid",
+        "description": "Pomalidomid Accord 1 mg",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
+          "reference": "Medication/ExampleMedication1-Pomalidomid-T"
+        },
+        "name": "Beispiel Medication - Pomalidomid",
+        "description": "Pomalidomid Hartkapseln",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
+          "reference": "Medication/PomalidomidMedication"
+        },
+        "name": "Beispiel Medication Pomalidomid",
+        "description": "Diese Medication ist im Format einer Gematik Medikation und enthält Informationen zum Arzneimittel",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Bundle/VZD-SearchSet-Bundle"
+        },
+        "name": "Beispiel VZD SearchSet Bundle",
+        "description": "Beispiel für eine Response des FHIR-VZD nach einer Suchanfrage zu Name, Telefonnummer und Adresse einer Apotheke via Telematik-ID",
         "exampleBoolean": true
       },
       {
@@ -238,53 +294,6 @@
       },
       {
         "reference": {
-          "reference": "Medication/ExampleMedication1-Paracetamol-T"
-        },
-        "name": "Example Medication - Paracetamol",
-        "description": "Paracetamol 500 mg Tabletten",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-      },
-      {
-        "reference": {
-          "reference": "Medication/ExampleMedication2-Pomalidomid-T"
-        },
-        "name": "Example Medication - Pomalidomid",
-        "description": "Pomalidomid Accord 1 mg",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-      },
-      {
-        "reference": {
-          "reference": "MedicationDispense/GEM-MedicationDispense"
-        },
-        "name": "Example Medication Dispense",
-        "description": "Example of a Medication Dispense.",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "MedicationDispense/ExampleMedicationDispense-T"
-        },
-        "name": "Example MedicationDispense",
-        "description": "A MedicationDispense for Pomalidomid",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense"
-      },
-      {
-        "reference": {
-          "reference": "MedicationRequest/ExampleMedicationRequest-T"
-        },
-        "name": "Example MedicationRequest",
-        "description": "A MedicationRequest for Paracetamol",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
-      },
-      {
-        "reference": {
-          "reference": "Parameters/Example-T-Prescription-CC-Post"
-        },
-        "name": "Example-T-Prescription-CC-Post",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
-      },
-      {
-        "reference": {
           "reference": "OperationOutcome/ERP-TPrescription-OperationOutcome-1"
         },
         "name": "Fehlermeldung BfArM Webdienst",
@@ -308,23 +317,10 @@
       },
       {
         "reference": {
-          "reference": "Medication/PomalidomidMedication"
-        },
-        "name": "Sample Medication Pomalidomid",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
           "reference": "Task/TaskInClosedState"
         },
-        "name": "Task finished by pharmacy via $close operation",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "Bundle/VZD-SearchSet-Bundle"
-        },
-        "name": "VZD-SearchSet-Bundle",
+        "name": "Task im status 'completed'",
+        "description": "Dieses Beispiel bildet den Status für einen Task ab, an dem eine Apotheke den Workflow via Aufruf der $close-Operation abgeschlossen hat",
         "exampleBoolean": true
       }
     ],

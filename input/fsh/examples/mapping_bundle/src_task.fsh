@@ -1,6 +1,7 @@
 Instance: TaskInClosedState
 InstanceOf: GEM_ERP_PR_Task
-Title:   "Task finished by pharmacy via $close operation"
+Title: "Task im status 'completed'"
+Description: "Dieses Beispiel bildet den Status für einen Task ab, an dem eine Apotheke den Workflow via Aufruf der $close-Operation abgeschlossen hat"
 Usage: #example
 * extension[flowType].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#166 "Flowtype für Arzneimittel nach § 3a AMVV"
@@ -9,7 +10,7 @@ Usage: #example
 * extension[expiryDate].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate"
 * insert Date(extension[expiryDate].valueDate)
 * identifier[PrescriptionID].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* identifier[PrescriptionID].value = "160.000.033.491.280.78"
+* identifier[PrescriptionID].value = "160.100.000.000.001.39"
 * identifier[AccessCode].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_AccessCode"
 * identifier[AccessCode].value = "777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
 * status = #completed
