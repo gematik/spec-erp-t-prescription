@@ -28,13 +28,12 @@ Die jeweiligen Zielprofile in diesem Projekt enthalten eine Tabelle, die aufzeig
 
 Die umklammernde Mappingdefinition von Quelldaten zum digitalen Durchschlag werden in der [StructureMap für digitalen Durchschlag](./StructureMap-ERPTPrescriptionStructureMapCarbonCopy.html) definiert. Diese importiert alle im Projekt vorhandenen Mappingdaten. Als Eingangsartefakt benötigt diese Structure Map ein FHIR-Bundle, welches alle notwendigen Eingangsartefakte enthält:
 
-- Verordnungsdatensatz nach [eRezept der KBV](https://simplifier.net/eRezept)
+- Medikationsanfrage und Arzneimittel der Verordnung nach [eRezept der KBV](https://simplifier.net/eRezept)
 - Vorgangs- und Dispensierinformationen nach [E-Rezept-Workflow der gematik](https://simplifier.net/erezept-workflow)
 - Informationen der Apotheke aus dem [FHIR-VZD](https://simplifier.net/VZD-FHIR-Directory)
 
 >!WARNING:  
-> Der Signaturzeitpunkt ist in den Mappingartefakten nicht abgebildet, da dieser nicht aus einer FHIR Struktur hervorgeht, sondern aus der QES am Element ´1.2.840.113549.1.9.5 signingTime´ extrahiert werden muss.
-> Der E-Rezept-Fachdienst transformiert den Wert aus der QES in den FHIR-Datentyp ´instant´ mit maximal Sekundengenauigkeit (YYYY-MM-DDThh:mm:ss+zz:zz, bsp: 2026-01-01T00:00:00Z).
+> Der Signaturzeitpunkt ist in den Mappingartefakten nicht abgebildet, da dieser nicht aus einer FHIR Struktur hervorgeht, sondern aus der QES am Element ´1.2.840.113549.1.9.5 signingTime´ extrahiert werden muss. Der E-Rezept-Fachdienst transformiert den Wert aus der QES in den FHIR-Datentyp ´instant´ mit maximal Sekundengenauigkeit (YYYY-MM-DDThh:mm:ss+zz:zz, bsp: 2026-01-01T00:00:00Z).
 
 #### Bundle zum Mapping
 
@@ -44,7 +43,7 @@ Diese zum Mapping erforderlichen Informationen können im Mapping Bundle mit typ
         {% include bundle-concept.svg %}
     </div>
 
-Ein Beispiel für solch ein Bundle ist [hier]() abgebildet. //TODO: Beispiel Mapping Bundle erstellen
+Ein Beispiel für solch ein Mapping-Bundle ist im Beispiel [Bundle-Mapping-Bundle](./Bundle-Mapping-Bundle.html) abgebildet.
 
 Im Folgenden wird beschrieben, wie das Mapping mit StructureMaps umgesetzt werden kann.
 

@@ -284,13 +284,6 @@
       },
       {
         "reference": {
-          "reference": "Bundle/KBV-TRP-Bundle"
-        },
-        "name": "KBV-TRP-Bundle",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
           "reference": "StructureDefinition/erp-tprescription-carbon-copy-logical"
         },
         "name": "Logisches Modell digitaler Durchschlag E-T-Rezept",
@@ -316,6 +309,13 @@
           "reference": "Task/TaskInClosedState"
         },
         "name": "Task finished by pharmacy via $close operation",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Parameters/TRP-Carbon-Copy"
+        },
+        "name": "TRP-Carbon-Copy",
         "exampleBoolean": true
       },
       {
