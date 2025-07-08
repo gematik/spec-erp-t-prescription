@@ -86,6 +86,22 @@
     "resource": [
       {
         "reference": {
+          "reference": "Organization/ExampleOrganization-T"
+        },
+        "name": "Beispiel BfArM Organisation",
+        "description": "Beispiel, wie eine BfArM Organisation maximal ausgefüllt wäre",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization"
+      },
+      {
+        "reference": {
+          "reference": "Parameters/TRP-Carbon-Copy"
+        },
+        "name": "Beispiel digitaler Durchschlag E-T-Rezept",
+        "description": "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digitalen Durchschlags abzubilden",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
           "reference": "StructureDefinition/erp-tprescription-carbon-copy"
         },
         "name": "Digitaler Durchschlag T-Rezept",
@@ -121,7 +137,7 @@
           "reference": "StructureDefinition/erp-tprescription-organization"
         },
         "name": "E-T-Rezept Organization",
-        "description": "Anagaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
+        "description": "Angaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
         "exampleBoolean": false
       },
       {
@@ -222,13 +238,6 @@
       },
       {
         "reference": {
-          "reference": "OperationOutcome/ERP-TPrescription-OperationOutcome-1"
-        },
-        "name": "ERP-TPrescription-OperationOutcome-1",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
           "reference": "Medication/ExampleMedication1-Paracetamol-T"
         },
         "name": "Example Medication - Paracetamol",
@@ -269,18 +278,18 @@
       },
       {
         "reference": {
-          "reference": "Organization/ExampleOrganization-T"
-        },
-        "name": "Example Organization",
-        "description": "An example pharmacy organization",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization"
-      },
-      {
-        "reference": {
           "reference": "Parameters/Example-T-Prescription-CC-Post"
         },
         "name": "Example-T-Prescription-CC-Post",
         "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
+      },
+      {
+        "reference": {
+          "reference": "OperationOutcome/ERP-TPrescription-OperationOutcome-1"
+        },
+        "name": "Fehlermeldung BfArM Webdienst",
+        "description": "Beispielhafte Fehlermeldung des BfArM Webdienstes bei einem invaliden digitalen Durchschlag",
+        "exampleBoolean": true
       },
       {
         "reference": {
@@ -309,13 +318,6 @@
           "reference": "Task/TaskInClosedState"
         },
         "name": "Task finished by pharmacy via $close operation",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "Parameters/TRP-Carbon-Copy"
-        },
-        "name": "TRP-Carbon-Copy",
         "exampleBoolean": true
       },
       {

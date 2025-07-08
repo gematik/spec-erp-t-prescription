@@ -37,8 +37,7 @@
               "context": "task",
               "element": "identifier",
               "variable": "srcTaskIdentifier",
-              "condition": "$this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId'",
-              "logMessage": "'Prescription ID Identifier present: ' + ($this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId').toString()"
+              "condition": "$this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId'"
             }
           ],
           "rule": [

@@ -61,7 +61,8 @@
                   "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
                   "valueCode": "not-permitted"
                 }
-              ]
+              ],
+              "display": "DataAbsentReason-Extension: #not-permitted, dieser Wert wird leer gelassen"
             },
             "dosageInstruction": [
               {

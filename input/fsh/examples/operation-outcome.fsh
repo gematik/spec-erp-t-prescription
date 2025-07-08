@@ -1,6 +1,8 @@
 Instance: ERP-TPrescription-OperationOutcome-1
 InstanceOf: OperationOutcome
 Usage: #example
+Title: "Fehlermeldung BfArM Webdienst"
+Description: "Beispielhafte Fehlermeldung des BfArM Webdienstes bei einem invaliden digitalen Durchschlag"
 * issue[+]
   * severity = #error
   * code = #invalid

@@ -24,11 +24,27 @@ Description: "Maps VZD-Organization-Information to BfArM T-Prescription Organiza
       * insert treeSource(srcEntryOrgVar, resource, srcEntryOrganizationVar)
       * source[=].condition = "ofType(Organization)"
       // * source[=].logMessage = "ofType(Organization)"
+      // Name
       * rule[+]
         * name = "name"
         * insert treeSource(srcEntryOrganizationVar, name, srcOrgNameVar)
         * insert targetSetIdVariable(bfarmOrganization, name, srcOrgNameVar)
         * documentation = "Copy Name to Organization"
+      
+      // TelematikID
+      * rule[+]
+        * name = "tid"
+        * insert treeSource(srcEntryOrganizationVar, identifier, srcOrgIdentifierVar)
+        * source[=].condition = "$this.system='https://gematik.de/fhir/sid/telematik-id'"
+        // * source[=].logMessage = "'Telematik-ID Identifier present: ' + ($this.system='https://gematik.de/fhir/sid/telematik-id').toString()"
+        * insert treeTarget(bfarmOrganization, identifier, bfarmOrganizationIdentifierVar)
+        * rule[+]
+          * name = "tidValue"
+          * insert treeSource(srcOrgIdentifierVar, value, srcOrgIdentifierValueVar)
+          * source[=].logMessage = "tgtTidIdentifier"
+          * insert targetSetStringVariable(bfarmOrganizationIdentifierVar, system, https://gematik.de/fhir/sid/telematik-id)
+          * insert targetSetIdVariable(bfarmOrganizationIdentifierVar, value, srcOrgIdentifierValueVar)
+          * documentation = "Copy TelematikID to Organization"
 
   * rule[+]
     * name = "mapHealthcareService"

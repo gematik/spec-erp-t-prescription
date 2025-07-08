@@ -6,6 +6,12 @@
       "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization"
     ]
   },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "3-Test-APO000053"
+    }
+  ],
   "address": [
     {
       "line": [

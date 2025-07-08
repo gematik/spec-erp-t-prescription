@@ -1,6 +1,8 @@
 Instance: TRP-Carbon-Copy
 InstanceOf: Parameters
 Usage: #example
+Title: "Beispiel digitaler Durchschlag E-T-Rezept"
+Description: "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digitalen Durchschlags abzubilden"
 * meta.profile = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"
 * parameter[+]
   * name = "rxPrescription"
@@ -104,6 +106,7 @@ Usage: #inline
 * medicationReference.reference = "Medication/TRP-Carbon-Copy-Medication"
 * subject.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * subject.extension.valueCode = #not-permitted
+* subject.display = "DataAbsentReason-Extension: #not-permitted, dieser Wert wird leer gelassen"
 * authoredOn = "2025-05-20"
 * dosageInstruction.extension.url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageCategory"
 * dosageInstruction.extension.valueCoding.system = "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Dosage_Category"

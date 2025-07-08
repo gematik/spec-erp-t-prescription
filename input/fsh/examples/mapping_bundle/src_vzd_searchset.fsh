@@ -50,11 +50,11 @@ Usage: #inline
 * identifier[=].value = "44bb2f53-cdd7-4098-9d52-a6c5ac0ddc8d"
 * identifier[+].type = $v2-0203#PRN
 * identifier[=].system = "https://gematik.de/fhir/sid/telematik-id"
-* identifier[=].value = "1-2arvtst-ap000053"
+* identifier[=].value = "3-Test-APO000053"
 * active = true
 * type = $OrganizationProfessionOID#1.2.276.0.76.4.54 "Öffentliche Apotheke"
-* name = "Organisation 1-2arvtst-ap000053"
-* alias = "Organisation 1-2arvtst-ap000053"
+* name = "Organisation 3-Test-APO000053"
+* alias = "Organisation 3-Test-APO000053"
 
 Instance: 9514f96e-897d-492d-950f-aea11d6f2bb4
 InstanceOf: Location

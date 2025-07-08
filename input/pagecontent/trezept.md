@@ -30,9 +30,6 @@ Die zentrale Mappingdefinition von Quelldaten zum digitalen Durchschlag ist in d
 - Vorgangs- und Dispensierinformationen nach [E-Rezept-Workflow der gematik](https://simplifier.net/erezept-workflow)
 - Informationen der Apotheke aus dem [FHIR-VZD](https://simplifier.net/VZD-FHIR-Directory)
 
-Der Signaturzeitpunkt als Quelle ist in den Mappingartefakten nicht enthalten, da dieser nicht aus einer FHIR-Struktur hervorgeht, sondern aus der QES am Element `1.2.840.113549.1.9.5 signingTime` extrahiert werden muss. Der E-Rezept-Fachdienst transformiert diesen Wert in den FHIR-Datentyp `instant` mit maximaler Sekundengenauigkeit (Format: YYYY-MM-DDThh:mm:ss+zz:zz, z.B. 2026-01-01T00:00:00Z).
-{:.dragon}
-
 ##### Bundle zum Mapping
 
 Die für das Mapping erforderlichen Informationen können im Mapping-Bundle mit `type: collection` wie folgt zusammengefasst und erstellt werden:
@@ -53,6 +50,9 @@ Das Mapping sieht im Wesentlichen die folgende Übertragung vor:
     {% include mapping-concept.svg %}
 </div>
 
+Der Signaturzeitpunkt als Quelle ist in den Mappingartefakten nicht enthalten, da dieser nicht aus einer FHIR-Struktur hervorgeht, sondern aus der QES am Element `1.2.840.113549.1.9.5 signingTime` extrahiert werden muss. Der E-Rezept-Fachdienst transformiert diesen Wert in den FHIR-Datentyp `instant` mit maximaler Sekundengenauigkeit (Format: YYYY-MM-DDThh:mm:ss+zz:zz, z.B. 2026-01-01T00:00:00Z).
+{:.dragon}
+
 Die StructureMap überführt das Mapping-Bundle in den digitalen Durchschlag und ruft dabei selbst weitere StructureMaps auf, die die jeweiligen Unterprofile mappen. Diese können auch entwicklungsunterstützend genutzt werden:
 
 | Quellartefakt  | Zielprofil | StructureMap |
@@ -68,17 +68,18 @@ Die StructureMap überführt das Mapping-Bundle in den digitalen Durchschlag und
 
 #### HAPI FHIR Transformation
 
-Um HAPI FHIR zur Transformation zu nutzen, müssen FHIR-Version, die verwendeten FHIR-Packages für das Mapping sowie der Output-Pfad angegeben werden:
+Um HAPI FHIR zur Transformation zu nutzen, müssen FHIR-Version, die verwendeten FHIR-Packages für das Mapping sowie der Output-Pfad angegeben werden. Zum Test kann der folgende Befehl auf der Root Ebene des [GitHub Repositories](https://github.com/gematik/spec-erp-t-prescription) ausgeführt werden (Lokaler Pfad zum [HAPI FHIR](https://github.com/hapifhir/org.hl7.fhir.core/releases) muss angegeben werden):
 ```
-java -jar <path-to>/fhir_hapi.jar <path-to>/mapping_bundle.json \
+sushi && \
+java -jar <path-to>/fhir_hapi.jar fsh-generated/resources/Bundle-Mapping-Bundle.json \
 -transform https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapCarbonCopy \
 -version 4.0.1 \
--ig de.gematik.erp.t-prescription#dev \
+-ig ./fsh-generated/resources \
 -ig de.gematik.erezept-workflow.r4 \
 -ig kbv.ita.erp \
 -ig de.gematik.fhir.directory \
 -ig de.gematik.ti \
--output <path-to>/output.json
+-output ./digitaler_durchschlag_e_t_rezept.json
 ```
 
 Die Mapping-Engine im FHIR-HAPI transformiert das Bundle in einen digitalen Durchschlag E-T-Rezept.

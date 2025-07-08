@@ -92,7 +92,7 @@
               ]
             },
             "system": "https://gematik.de/fhir/sid/telematik-id",
-            "value": "1-2arvtst-ap000053"
+            "value": "3-Test-APO000053"
           }
         ],
         "type": [
@@ -107,10 +107,10 @@
           }
         ],
         "alias": [
-          "Organisation 1-2arvtst-ap000053"
+          "Organisation 3-Test-APO000053"
         ],
         "active": true,
-        "name": "Organisation 1-2arvtst-ap000053"
+        "name": "Organisation 3-Test-APO000053"
       }
     },
     {

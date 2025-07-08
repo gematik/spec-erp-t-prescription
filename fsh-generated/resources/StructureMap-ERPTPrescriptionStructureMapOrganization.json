@@ -73,6 +73,63 @@
                   ],
                   "name": "name",
                   "documentation": "Copy Name to Organization"
+                },
+                {
+                  "source": [
+                    {
+                      "context": "srcEntryOrganizationVar",
+                      "element": "identifier",
+                      "variable": "srcOrgIdentifierVar",
+                      "condition": "$this.system='https://gematik.de/fhir/sid/telematik-id'"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "contextType": "variable",
+                      "context": "bfarmOrganization",
+                      "element": "identifier",
+                      "variable": "bfarmOrganizationIdentifierVar"
+                    }
+                  ],
+                  "rule": [
+                    {
+                      "source": [
+                        {
+                          "context": "srcOrgIdentifierVar",
+                          "element": "value",
+                          "variable": "srcOrgIdentifierValueVar",
+                          "logMessage": "tgtTidIdentifier"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "parameter": [
+                            {
+                              "valueString": "https://gematik.de/fhir/sid/telematik-id"
+                            }
+                          ],
+                          "context": "bfarmOrganizationIdentifierVar",
+                          "contextType": "variable",
+                          "element": "system",
+                          "transform": "copy"
+                        },
+                        {
+                          "parameter": [
+                            {
+                              "valueId": "srcOrgIdentifierValueVar"
+                            }
+                          ],
+                          "context": "bfarmOrganizationIdentifierVar",
+                          "contextType": "variable",
+                          "element": "value",
+                          "transform": "copy"
+                        }
+                      ],
+                      "name": "tidValue",
+                      "documentation": "Copy TelematikID to Organization"
+                    }
+                  ],
+                  "name": "tid"
                 }
               ],
               "name": "entry"

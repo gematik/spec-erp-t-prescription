@@ -21,7 +21,7 @@ Description: "Maps resources to BfArM T-Prescription format"
     * name = "prescriptionId"
     * insert treeSource(task, identifier, srcTaskIdentifier)
     * source[=].condition = "$this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId'"
-    * source[=].logMessage = "'Prescription ID Identifier present: ' + ($this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId').toString()"
+    // * source[=].logMessage = "'Prescription ID Identifier present: ' + ($this.system='https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId').toString()"
     * rule[+]
       * name = "prescriptionIdValue"
       * insert treeSource(srcTaskIdentifier, value, srcTaskIdentifierValue)

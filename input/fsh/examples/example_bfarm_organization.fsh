@@ -1,8 +1,10 @@
 Instance: ExampleOrganization-T
 InstanceOf: ERP_TPrescription_Organization
-Title: "Example Organization"
-Description: "An example pharmacy organization"
+Title: "Beispiel BfArM Organisation"
+Description: "Beispiel, wie eine BfArM Organisation maximal ausgefüllt wäre"
 * name = "Stadt-Apotheke"
+* identifier[TelematikID].value = "3-Test-APO000053"
+
 * address[+]
   * line[+] = "Hauptstraße 10"
   * city = "Beispielstadt"

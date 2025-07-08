@@ -7,7 +7,7 @@
   "title": "E-T-Rezept Organization",
   "status": "draft",
   "date": "2025-07-07",
-  "description": "Anagaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
+  "description": "Angaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -19,31 +19,14 @@
       {
         "id": "Organization.identifier",
         "path": "Organization.identifier",
-        "max": "0"
-      },
-      {
-        "id": "Organization.identifier:TelematikID",
-        "path": "Organization.identifier",
-        "sliceName": "TelematikID",
-        "max": "0"
-      },
-      {
-        "id": "Organization.identifier:BSNR",
-        "path": "Organization.identifier",
-        "sliceName": "BSNR",
-        "max": "0"
-      },
-      {
-        "id": "Organization.identifier:KZVA",
-        "path": "Organization.identifier",
-        "sliceName": "KZVA",
-        "max": "0"
+        "min": 1,
+        "max": "1"
       },
       {
         "id": "Organization.identifier:IKNR",
         "path": "Organization.identifier",
         "sliceName": "IKNR",
-        "max": "0"
+        "max": "1"
       },
       {
         "id": "Organization.active",
