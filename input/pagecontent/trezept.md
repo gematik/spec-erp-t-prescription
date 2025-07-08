@@ -30,8 +30,8 @@ Die zentrale Mappingdefinition von Quelldaten zum digitalen Durchschlag ist in d
 - Vorgangs- und Dispensierinformationen nach [E-Rezept-Workflow der gematik](https://simplifier.net/erezept-workflow)
 - Informationen der Apotheke aus dem [FHIR-VZD](https://simplifier.net/VZD-FHIR-Directory)
 
->!warning
-> Der Signaturzeitpunkt ist in den Mappingartefakten nicht enthalten, da dieser nicht aus einer FHIR-Struktur hervorgeht, sondern aus der QES am Element `1.2.840.113549.1.9.5 signingTime` extrahiert werden muss. Der E-Rezept-Fachdienst transformiert diesen Wert in den FHIR-Datentyp `instant` mit maximaler Sekundengenauigkeit (Format: YYYY-MM-DDThh:mm:ss+zz:zz, z.B. 2026-01-01T00:00:00Z).
+Der Signaturzeitpunkt ist in den Mappingartefakten nicht enthalten, da dieser nicht aus einer FHIR-Struktur hervorgeht, sondern aus der QES am Element `1.2.840.113549.1.9.5 signingTime` extrahiert werden muss. Der E-Rezept-Fachdienst transformiert diesen Wert in den FHIR-Datentyp `instant` mit maximaler Sekundengenauigkeit (Format: YYYY-MM-DDThh:mm:ss+zz:zz, z.B. 2026-01-01T00:00:00Z).
+{:.dragon}
 
 #### Bundle zum Mapping
 
