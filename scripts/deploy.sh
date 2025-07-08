@@ -60,21 +60,21 @@ echo "✅ PUBLISH_URL: ${PUBLISH_URL}"
 
 # TODO Add Simplifier cli
 
-"$SCRIPT_DIR/build-ig.sh"
+# "$SCRIPT_DIR/build-ig.sh"
  
 
-if gsutil ls gs://$BUCKET_NAME$BUCKET_PATH/$TARGET > /dev/null 2>&1; then
-    echo "TARGET directory already exists: ${TARGET}"
-    if [ -n "$PREV" ]; then
-        echo "Moving TARGET to PREV: ${PREV}"
-        gcloud storage mv gs://$BUCKET_NAME$BUCKET_PATH/$TARGET gs://$BUCKET_NAME$BUCKET_PATH/$PREV
-    fi
-    echo "Deleting existing TARGET: $TARGET"
-    gcloud storage rm --recursive gs://$BUCKET_NAME$BUCKET_PATH/$TARGET
-else
-    echo "TARGET directory does not exist"
-fi
+# if gsutil ls gs://$BUCKET_NAME$BUCKET_PATH/$TARGET > /dev/null 2>&1; then
+#     echo "TARGET directory already exists: ${TARGET}"
+#     if [ -n "$PREV" ]; then
+#         echo "Moving TARGET to PREV: ${PREV}"
+#         gcloud storage mv gs://$BUCKET_NAME$BUCKET_PATH/$TARGET gs://$BUCKET_NAME$BUCKET_PATH/$PREV
+#     fi
+#     echo "Deleting existing TARGET: $TARGET"
+#     gcloud storage rm --recursive gs://$BUCKET_NAME$BUCKET_PATH/$TARGET
+# else
+#     echo "TARGET directory does not exist"
+# fi
 
-echo "Uploading new version to TARGET: ${TARGET}"
-# gcloud storage cp --recursive --cache-control="no-cache" ./output/ gs://$BUCKET_NAME$BUCKET_PATH/$TARGET
-gsutil -m -h "Cache-Control:no-cache" cp -r ./output/* gs://$BUCKET_NAME$BUCKET_PATH/$TARGET/
+# echo "Uploading new version to TARGET: ${TARGET}"
+# # gcloud storage cp --recursive --cache-control="no-cache" ./output/ gs://$BUCKET_NAME$BUCKET_PATH/$TARGET
+# gsutil -m -h "Cache-Control:no-cache" cp -r ./output/* gs://$BUCKET_NAME$BUCKET_PATH/$TARGET/

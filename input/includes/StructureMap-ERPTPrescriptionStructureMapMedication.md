@@ -1,7 +1,17 @@
-| Quell-Element (Source) | Ziel-Element (Target) | Beschreibung |
-|------------------------|-----------------------|--------------|
-| ` [where meta.profile.contains('KBV_PR_ERP_Medication_PZN')]` | `` | Verwendet Mapping: [ERPTPrescriptionStructureMapKBVPZNMedication](./StructureMap-ERPTPrescriptionStructureMapKBVPZNMedication.html) |
-| ` [where meta.profile.contains('KBV_PR_ERP_Medication_FreeText')]` | `` | Verwendet Mapping: [ERPTPrescriptionStructureMapKBVFreeTextMedication](./StructureMap-ERPTPrescriptionStructureMapKBVFreeTextMedication.html) |
-| ` [where meta.profile.contains('KBV_PR_ERP_Medication_Ingredient')]` | `` | Verwendet Mapping: [ERPTPrescriptionStructureMapKBVIngredientMedication](./StructureMap-ERPTPrescriptionStructureMapKBVIngredientMedication.html) |
-| ` [where meta.profile.contains('KBV_PR_ERP_Medication_Compounding')]` | `` | Verwendet Mapping: [ERPTPrescriptionStructureMapKBVCompoundingMedication](./StructureMap-ERPTPrescriptionStructureMapKBVCompoundingMedication.html) |
-| ` [where meta.profile.contains('GEM_ERP_PR_Medication')]` | `` | Verwendet Mapping: [ERPTPrescriptionStructureMapGEMMedication](./StructureMap-ERPTPrescriptionStructureMapGEMMedication.html) |
+
+**Titel:** E-T-Rezept Structure Map for Medication
+
+**Beschreibung:** Maps a Medication to BfArM T-Prescription Medication format
+
+| Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
+|------------------------|---------------------|-------------------------------|
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_PZN')]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_PZN')]` | *(wird bestimmt durch Kontext)* | Verwendet Mapping: [KBVPZNMedication](./StructureMap-ERPTPrescriptionStructureMapKBVPZNMedication.html) |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_FreeText')]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_FreeText')]` | *(wird bestimmt durch Kontext)* | Verwendet Mapping: [KBVFreeTextMedication](./StructureMap-ERPTPrescriptionStructureMapKBVFreeTextMedication.html) |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_Ingredient')]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_Ingredient')]` | *(wird bestimmt durch Kontext)* | Verwendet Mapping: [KBVIngredientMedication](./StructureMap-ERPTPrescriptionStructureMapKBVIngredientMedication.html) |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_Compounding')]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
+| ` [Bedingung: meta.profile.contains('KBV_PR_ERP_Medication_Compounding')]` | *(wird bestimmt durch Kontext)* | Verwendet Mapping: [KBVCompoundingMedication](./StructureMap-ERPTPrescriptionStructureMapKBVCompoundingMedication.html) |
+| ` [Bedingung: meta.profile.contains('GEM_ERP_PR_Medication')]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
+| ` [Bedingung: meta.profile.contains('GEM_ERP_PR_Medication')]` | *(wird bestimmt durch Kontext)* | Verwendet Mapping: [GEMMedication](./StructureMap-ERPTPrescriptionStructureMapGEMMedication.html) |

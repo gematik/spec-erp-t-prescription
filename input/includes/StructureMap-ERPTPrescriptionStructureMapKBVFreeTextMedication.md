@@ -1,5 +1,10 @@
-| Quell-Element (Source) | Ziel-Element (Target) | Beschreibung |
-|------------------------|-----------------------|--------------|
+
+**Titel:** E-T-Rezept Structure Map for KBV FreeText Medication
+
+**Beschreibung:** Maps KBV FreeText Medication to BfArM T-Prescription Medication format
+
+| Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
+|------------------------|---------------------|-------------------------------|
 | `kbvMedicationFreeText.id` | `bfarmMedication.id` | Copies the Medication Id |
 | `kbvMedicationFreeText.code` | `bfarmMedication.code` | Copies the Medication Code |
 | `kbvMedicationFreeText.code.text` | `bfarmMedication.code.text` | Copies the Medication Code Text |
