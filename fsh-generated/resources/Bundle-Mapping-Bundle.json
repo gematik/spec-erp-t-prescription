@@ -129,7 +129,8 @@
           "reference": "Medication/KBV-TRP-Medication"
         },
         "status": "active"
-      }
+      },
+      "fullUrl": "https://erp-t-prescription-test.de/MedicationRequest/KBV-TRP-MedicationRequest"
     },
     {
       "resource": {
@@ -218,7 +219,8 @@
             }
           ]
         }
-      }
+      },
+      "fullUrl": "https://erp-t-prescription-test.de/Medication/KBV-TRP-Medication"
     },
     {
       "resource": {
@@ -256,7 +258,8 @@
         "medicationReference": {
           "reference": "Medication/PomalidomidMedication"
         }
-      }
+      },
+      "fullUrl": "https://erp-t-prescription-test.de/MedicationDispense/GEM-MedicationDispense"
     },
     {
       "resource": {
@@ -318,7 +321,8 @@
             "value": 1
           }
         }
-      }
+      },
+      "fullUrl": "https://erp-t-prescription-test.de/Medication/PomalidomidMedication"
     },
     {
       "resource": {
@@ -424,7 +428,8 @@
         "status": "completed",
         "authoredOn": "2026-04-01T15:29:00+00:00",
         "lastModified": "2026-04-01T16:44:00.434+00:00"
-      }
+      },
+      "fullUrl": "https://erp-t-prescription-test.de/Task/TaskInClosedState"
     },
     {
       "resource": {
@@ -443,6 +448,12 @@
               "resourceType": "HealthcareService",
               "id": "a4f1b52e-c5de-47eb-874c-990c2b39bb77",
               "meta": {
+                "tag": [
+                  {
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                    "code": "owner"
+                  }
+                ],
                 "profile": [
                   "http://hl7.org/fhir/StructureDefinition/HealthcareService",
                   "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
@@ -487,13 +498,18 @@
               "resourceType": "Organization",
               "id": "4f5a9754-2a9d-486d-9eec-a5c6b5f95016",
               "meta": {
+                "tag": [
+                  {
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                    "code": "owner"
+                  }
+                ],
                 "profile": [
                   "http://hl7.org/fhir/StructureDefinition/Organization",
                   "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
                 ],
                 "versionId": "1",
-                "lastUpdated": "2023-03-23T14:14:28.492+01:00",
-                "source": "#v68ESEnDr61X7J6N"
+                "lastUpdated": "2023-03-23T14:14:28.492+01:00"
               },
               "identifier": [
                 {
@@ -540,13 +556,18 @@
               "resourceType": "Location",
               "id": "9514f96e-897d-492d-950f-aea11d6f2bb4",
               "meta": {
+                "tag": [
+                  {
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                    "code": "owner"
+                  }
+                ],
                 "profile": [
                   "http://hl7.org/fhir/StructureDefinition/Location",
                   "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
                 ],
                 "versionId": "1",
-                "lastUpdated": "2023-03-23T14:14:28.492+01:00",
-                "source": "#v68ESEnDr61X7J6N"
+                "lastUpdated": "2023-03-23T14:14:28.492+01:00"
               },
               "identifier": [
                 {
@@ -572,7 +593,8 @@
         ],
         "type": "searchset",
         "total": 3
-      }
+      },
+      "fullUrl": "https://erp-t-prescription-test.de/Bundle/VZD-SearchSet-Bundle"
     }
   ],
   "type": "collection"

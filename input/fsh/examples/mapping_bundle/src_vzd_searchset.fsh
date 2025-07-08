@@ -22,6 +22,9 @@ InstanceOf: HealthcareService
 Usage: #inline
 * meta.versionId = "2"
 * meta.lastUpdated = "2024-03-27T17:49:37.898+01:00"
+* meta.tag[+]
+  * system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
+  * code = #owner
 * meta.profile[0] = "http://hl7.org/fhir/StructureDefinition/HealthcareService"
 * meta.profile[+] = "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
 * identifier.system = "http://hl7.org/fhir/sid/us-npi"
@@ -38,7 +41,9 @@ InstanceOf: Organization
 Usage: #inline
 * meta.versionId = "1"
 * meta.lastUpdated = "2023-03-23T14:14:28.492+01:00"
-* meta.source = "#v68ESEnDr61X7J6N"
+* meta.tag[+]
+  * system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
+  * code = #owner
 * meta.profile[0] = "http://hl7.org/fhir/StructureDefinition/Organization"
 * meta.profile[+] = "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
 * identifier[0].system = "http://hl7.org/fhir/sid/us-npi"
@@ -56,7 +61,9 @@ InstanceOf: Location
 Usage: #inline
 * meta.versionId = "1"
 * meta.lastUpdated = "2023-03-23T14:14:28.492+01:00"
-* meta.source = "#v68ESEnDr61X7J6N"
+* meta.tag[+]
+  * system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
+  * code = #owner
 * meta.profile[0] = "http://hl7.org/fhir/StructureDefinition/Location"
 * meta.profile[+] = "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
 * identifier.system = "http://hl7.org/fhir/sid/us-npi"
