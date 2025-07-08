@@ -2,7 +2,7 @@
 
 Nach geltenden gesetzlichen Regelungen ist dem BfArM nach Abgabe einer Verordnung eines Arzneimittels nach §3a Abs. 1 Satz 1 AMVV, also die teratogenen Wirkstoffe Lenalidomid, Pomalidomid oder Thalidomid, ein digitaler Durchschlag des E-T-Rezepts zu übermitteln.
 
-Nach Abschluss eines Workflows von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt dieses an den Webdienst des BfArM. Die Übermittlung erfolgt asynchron und unabhängig vom Abschluss des Apothekenvorgangs, sodass auch bei temporärer Nicht-Erreichbarkeit des BfArM eine zuverlässige Übertragung durch Backoff-Retry-Mechanismen gewährleistet ist.
+Nach Abschluss eines Workflows von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt dieses an den Webdienst des BfArM. Bei temporärer Nicht-Erreichbarkeit des BfArM wird eine zuverlässige Übertragung durch Backoff-Retry-Mechanismen gewährleistet.
 
 Hintergründe zum Datenmodell und zu den Designentscheidungen finden sich unter [Informationen zum Datenmodell](./datamodel.html).
 
@@ -10,7 +10,7 @@ Hintergründe zum Datenmodell und zu den Designentscheidungen finden sich unter 
 
 Der E-Rezept-Fachdienst erstellt ein Artefakt mit dem Profil „Digitaler Durchschlag T-Rezept“. Dabei werden Informationen aus der Verordnung, der Dispensierung (Abgabe) und dem FHIR-VZD (Verzeichnisdienst) genutzt. Die fachlichen Inhalte, die hierbei übertragen werden, sind im [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet.
 
-Der E-Rezept-Fachdienst erzeugt diesen Datensatz aus den Eingangsdaten, die nach Abschluss eines E-Rezept-Workflows zur Verfügung stehen. Der relevante Workflow-Typ ist der [Flowtype 166](https://simplifier.net/erezept-workflow/gem-erp-cs-flowtype) („Flowtype für Arzneimittel nach § 3a AMVV“), der speziell für diesen Anwendungsfall eingeführt wurde.
+Der E-Rezept-Fachdienst erzeugt diesen Datensatz aus den Eingangsdaten, die nach erfolgreichem Abschluss eines E-Rezept-Workflows zur Verfügung stehen. Der relevante Workflow-Typ ist der [Flowtype 166](https://simplifier.net/erezept-workflow/gem-erp-cs-flowtype) („Flowtype für Arzneimittel nach § 3a AMVV“), der speziell für diesen Anwendungsfall eingeführt wurde.
 
 ### Mapping des digitalen Durchschlags E-T-Rezept
 
