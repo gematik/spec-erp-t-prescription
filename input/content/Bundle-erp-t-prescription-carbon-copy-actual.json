@@ -9,7 +9,7 @@
       "name" : "prescriptionId",
       "valueIdentifier" : {
         "system" : "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-        "value" : "160.000.033.491.280.78"
+        "value" : "160.100.000.000.001.39"
       }
     },
     {
@@ -146,7 +146,11 @@
       "name" : "organization",
       "resource" : {
         "resourceType" : "Organization",
-        "name" : "Organisation 1-2arvtst-ap000053",
+        "identifier" : [{
+          "system" : "https://gematik.de/fhir/sid/telematik-id",
+          "value" : "3-Test-APO000053"
+        }],
+        "name" : "Organisation 3-Test-APO000053",
         "telecom" : [{
           "system" : "phone",
           "value" : "1234",
