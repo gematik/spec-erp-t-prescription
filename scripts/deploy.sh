@@ -38,10 +38,15 @@ fi
 
 if [ "$ENVIRONMENT" = "DEV" ]; then
   BUCKET_NAME="$DEV_BUCKET"
+  BUCKET_PATH="$DEV_BUCKET_PATH"
+elif [ "$ENVIRONMENT" = "BALLOT" ]; then
+  BUCKET_NAME="$BALLOT_BUCKET"
+  BUCKET_PATH="$BALLOT_BUCKET_PATH"
 elif [ "$ENVIRONMENT" = "PROD" ]; then
   BUCKET_NAME="$PROD_BUCKET"
+  BUCKET_PATH="$PROD_BUCKET_PATH"
 else
-  echo "❌ Error: ENVIRONMENT must be either 'DEV' or 'PROD'."
+  echo "❌ Error: ENVIRONMENT must be either 'DEV', 'BALLOT' or 'PROD'."
   exit 1
 fi
 

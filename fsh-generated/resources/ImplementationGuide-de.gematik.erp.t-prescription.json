@@ -360,7 +360,7 @@
       },
       {
         "code": "releaselabel",
-        "value": "ci-build"
+        "value": "ballot"
       },
       {
         "code": "path-pages",

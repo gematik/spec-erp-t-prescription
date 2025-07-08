@@ -1,8 +1,8 @@
-# Informationen zum Datenmodell
+## Informationen zum Datenmodell
 
 Dieses Projekt listet diverse Artefakte auf, die helfen sollen den Anwendungsfall der Übertragung des digitalen Durchschlags E-T-Rezept umzusetzen. 
 
-## Fachliches Modell
+### Fachliches Modell
 
 Das fachliche Modell dafür, welche Informationen übertragen werden, sind in [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet. Diese sind ebenfalls im von der gematik veröffentlichten Feature Dokument [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) angegeben.
 
@@ -15,7 +15,7 @@ Im Laufe der Durchführung eines E-Rezept Workflows erhält der E-Rezept-Fachdie
 
 Aus diesen grundlegenden Daten wird dann ein Artefakt, der digitale Durchschlag E-T-Rezept, erstellt und an das BfArM übermittelt.
 
-## Profile
+### Profile
 
 Weiterhin stellt dieses Projekt Profile bereit, welche darüber informieren, wie das zu erwartende Datenmodell an den jeweiligen Schnittstellen aussehen muss.
 
@@ -29,7 +29,7 @@ StructureDefinition/erp-tprescription-organization,
 {% endcapture %}
 {% include artifacts-table-generator.html render=profiles %}
 
-### Designentscheidung zur restriktiven Datenmodellierung
+#### Designentscheidung zur restriktiven Datenmodellierung
 
 Entgegen der Best Practice zur FHIR Modellierung der [HL7 International](https://build.fhir.org/ig/FHIR/ig-guidance/best-practice.html) und [HL7 Deutschland](https://ig.fhir.de/best-practice/1.0.0/Home.html) sind die Profile in diesem Projekt sehr restriktiv designed.
 

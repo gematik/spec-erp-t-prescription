@@ -1,4 +1,4 @@
-# Übertragen des digitalen Durchschlags zum T-Rezept
+## Übertragen des digitalen Durchschlags zum T-Rezept
 
 Nach geltenden gesetzlichen Regelungen ist dem BfArM nach Abgabe einer Verordnung eines teratogenen Wirkstoffs (z.B. Lenalidomid, Pomalidomid, Thalidomid) ein digitaler Durchschlag des E-T-Rezepts zu übermitteln.
 
@@ -6,23 +6,23 @@ Nach Abschluss eines Workflows von einem E-T-Rezept erstellt der E-Rezept-Fachdi
 
 Hintergründe zum Datenmodell und zu den Designentscheidungen finden sich unter [Informationen zum Datenmodell](./datamodel.html).
 
-## Erstellen des Digitalen Durchschlags
+### Erstellen des Digitalen Durchschlags
 
 Der E-Rezept-Fachdienst erstellt ein Artefakt mit dem Profil „Digitaler Durchschlag T-Rezept“. Dabei werden Informationen aus der Verordnung, der Dispensierung (Abgabe) und dem FHIR-VZD (Verzeichnisdienst) genutzt. Die fachlichen Inhalte, die hierbei übertragen werden, sind im [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet.
 
-Der E-Rezept-Fachdienst erzeugt diesen Datensatz aus den Eingangsdaten, die nach Abschluss eines E-Rezept-Workflows zur Verfügung stehen. Der relevante Workflow-Typ ist der Flowtype 166 („Flowtype für Arzneimittel nach § 3a AMVV“), der speziell für diesen Anwendungsfall eingeführt wurde.
+Der E-Rezept-Fachdienst erzeugt diesen Datensatz aus den Eingangsdaten, die nach Abschluss eines E-Rezept-Workflows zur Verfügung stehen. Der relevante Workflow-Typ ist der [Flowtype 166](https://simplifier.net/erezept-workflow/gem-erp-cs-flowtype) („Flowtype für Arzneimittel nach § 3a AMVV“), der speziell für diesen Anwendungsfall eingeführt wurde.
 
-## Mapping des digitalen Durchschlags E-T-Rezept
+### Mapping des digitalen Durchschlags E-T-Rezept
 
 Zur Unterstützung der Implementierung stehen in diesem Projekt StructureMaps bereit, mit denen das Mapping der Eingangsdaten automatisiert erfolgen kann. Die Vorgehensweise ist wie folgt:
 
-### Grundlegender Mapping-Ansatz
+#### Grundlegender Mapping-Ansatz
 
 - Es werden alle vorhandenen Quellinformationen in den digitalen Durchschlag übernommen, sofern sie im Zielprofil erlaubt und nicht wegprofiliert sind.
 - KBV-Extensions werden in EPA-Extensions gemappt.
 - Die jeweiligen Zielprofile enthalten Mapping-Tabellen, die aufzeigen, welche Daten aus der Quelle übernommen und wie sie im Ziel abgebildet werden.
 
-### Vorgehen zur Nutzung der StructureMaps
+#### Vorgehen zur Nutzung der StructureMaps
 
 Die zentrale Mappingdefinition von Quelldaten zum digitalen Durchschlag ist in der [StructureMap für digitalen Durchschlag](./StructureMap-ERPTPrescriptionStructureMapCarbonCopy.html) beschrieben. Diese importiert alle projektrelevanten Mappingdaten. Als Eingangsartefakt wird ein FHIR-Bundle benötigt, das folgende Elemente enthält:
 
@@ -30,10 +30,10 @@ Die zentrale Mappingdefinition von Quelldaten zum digitalen Durchschlag ist in d
 - Vorgangs- und Dispensierinformationen nach [E-Rezept-Workflow der gematik](https://simplifier.net/erezept-workflow)
 - Informationen der Apotheke aus dem [FHIR-VZD](https://simplifier.net/VZD-FHIR-Directory)
 
-Der Signaturzeitpunkt ist in den Mappingartefakten nicht enthalten, da dieser nicht aus einer FHIR-Struktur hervorgeht, sondern aus der QES am Element `1.2.840.113549.1.9.5 signingTime` extrahiert werden muss. Der E-Rezept-Fachdienst transformiert diesen Wert in den FHIR-Datentyp `instant` mit maximaler Sekundengenauigkeit (Format: YYYY-MM-DDThh:mm:ss+zz:zz, z.B. 2026-01-01T00:00:00Z).
+Der Signaturzeitpunkt als Quelle ist in den Mappingartefakten nicht enthalten, da dieser nicht aus einer FHIR-Struktur hervorgeht, sondern aus der QES am Element `1.2.840.113549.1.9.5 signingTime` extrahiert werden muss. Der E-Rezept-Fachdienst transformiert diesen Wert in den FHIR-Datentyp `instant` mit maximaler Sekundengenauigkeit (Format: YYYY-MM-DDThh:mm:ss+zz:zz, z.B. 2026-01-01T00:00:00Z).
 {:.dragon}
 
-#### Bundle zum Mapping
+##### Bundle zum Mapping
 
 Die für das Mapping erforderlichen Informationen können im Mapping-Bundle mit `type: collection` wie folgt zusammengefasst und erstellt werden:
 
@@ -43,7 +43,7 @@ Die für das Mapping erforderlichen Informationen können im Mapping-Bundle mit 
 
 Im Folgenden wird beschrieben, wie das Mapping mit StructureMaps umgesetzt werden kann.
 
-### Anwendung der StructureMap
+#### Anwendung der StructureMap
 
 Die StructureMap [ERP-TPrescription-StructureMap-CarbonCopy](./StructureMap-ERPTPrescriptionStructureMapCarbonCopy.html) kann mittels [Java HAPI-FHIR](https://github.com/hapifhir/org.hl7.fhir.core) auf ein Mapping-Bundle angewendet werden.
 
@@ -66,7 +66,7 @@ Die StructureMap überführt das Mapping-Bundle in den digitalen Durchschlag und
 | [GEM_MedicationDispense](https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense) | [E-T-Rezept Medication Dispense](./StructureDefinition-erp-tprescription-medication-dispense.html) | [StructureMap-StructureMap-MedicationDispense](./StructureMap-ERPTPrescriptionStructureMapMedicationDispense.html) |
 | [VZD Searchset](./StructureDefinition-erp-tprescription-vzd-searchset.html) | [E-T-Rezept Organization](./StructureDefinition-erp-tprescription-organization.html) | [StructureMap-StructureMap-Organization](./StructureMap-ERPTPrescriptionStructureMapOrganization.html) |
 
-### HAPI FHIR Transformation
+#### HAPI FHIR Transformation
 
 Um HAPI FHIR zur Transformation zu nutzen, müssen FHIR-Version, die verwendeten FHIR-Packages für das Mapping sowie der Output-Pfad angegeben werden:
 ```
@@ -91,7 +91,7 @@ Die folgenden Beispiele können als Referenz herangezogen werden:
 |[TRP-Carbon-Copy](./Parameters-TRP-Carbon-Copy.html)|Manuell erzeugter digitaler Durchschlag E-T-Rezept|
 |[Mapped CarbonCopy](./Bundle-erp-t-prescription-carbon-copy-actual.json)|Von der HAPI Transformation Engine erzeugtes JSON|
 
-## Übertragen des digitalen Durchschlags
+### Übertragen des digitalen Durchschlags
 
 Nachdem der digitale Durchschlag E-T-Rezept erzeugt wurde, wird dieser RESTful über das Internet an den BfArM Webdienst übertragen. Die Übertragung erfolgt asynchron zur Abgabe in der Apotheke gegenüber dem E-Rezept-Fachdienst.
 
@@ -100,3 +100,12 @@ Vorgaben zur Authentifizierung des E-Rezept-Fachdienstes gegenüber dem Webdiens
 Die folgende OpenAPI-Definition dient als Hilfestellung bei der Implementierung des Aufrufs am BfArM Webdienst:
 
 {% include openapi.html openapiurl="tprescription.yaml" %}
+
+### Fehlerbehandlung der Übertragung
+
+Im Falle, dass der BfArM Webdienst die übertragene Instanz abweist, z.B. aufgrund von invaliden Datenfeldern, wird ein Fehlercode `400 Bad Request`, sowie eine FHIR-OperationOutcome bereitgestellt. Diese enthält wesentliche Angaben dazu, was für eine Art von Fehler aufgetreten ist.
+Es gibt keine enummerierte Liste von Fehlerkategorien, sondern jeweils eine Freitextangabe der Fehlerauswertung. 
+
+Folgende Instanz dient als Beispiel für eine Response mit Fehlercode 400:
+
+{% fragment OperationOutcome/ERP-TPrescription-OperationOutcome-1 JSON %}

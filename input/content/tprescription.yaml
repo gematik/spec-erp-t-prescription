@@ -12,15 +12,6 @@ info:
 tags:
   - name: T-Register
     description: Endpunkte zur Bereitstellung von digitalen Durchschlägen zum E-T-Rezept
-  
-components:
-  securitySchemes:
-    OAuth2ClientCredentials:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://webapps-public.bfarm.de/ords/rezepte/oauth/token
-          scopes: {}
 
 security:
   - OAuth2ClientCredentials: []
@@ -57,6 +48,13 @@ paths:
             description: Die Anfrage wurde erfolgreich bearbeitet. Der digitale Durchschlag wurde im T-Register eingestellt.
           '400':
             description: Die Anfrage-Nachricht war fehlerhaft aufgebaut.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/OperationOutcome'
+                examples:
+                  invalidRequest:
+                    $ref: '#/components/examples/OperationOutcomeExample'
           '401':
             description: Die Anfrage kann nicht ohne gültige Authentifizierung durchgeführt werden. Wie die Authentifizierung durchgeführt werden soll, wird im "WWW-Authenticate"-Header-Feld der Antwort übermittelt.
           '403':
@@ -73,4 +71,61 @@ paths:
             description: Der Client hat zu viele Anfragen in einem bestimmten Zeitraum gesendet.
           '500':
             description: Unerwarteter Serverfehler.
- 
+            
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://webapps-public.bfarm.de/ords/rezepte/oauth/token
+          scopes: {}
+  schemas:
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              details:
+                type: object
+                properties:
+                  text:
+                    type: string
+              expression:
+                type: array
+                items:
+                  type: string
+              severity:
+                type: string
+              code:
+                type: string
+              diagnostics:
+                type: string
+  examples:
+    OperationOutcomeExample:
+      summary: Invalid request payload example
+      value:
+        resourceType: OperationOutcome
+        id: ERP-TPrescription-OperationOutcome-1
+        issue:
+          - details:
+              text: Invalid request payload
+            expression:
+              - parameter[rxPrescription].part[prescriptionId].value
+            severity: error
+            code: invalid
+            diagnostics: This field is required
+          - details:
+              text: Invalid format for field
+            expression:
+              - parameter[rxPrescription].part[medicationRequest].resource.authoredOn
+            severity: error
+            code: value
+            diagnostics: Value must be a date
