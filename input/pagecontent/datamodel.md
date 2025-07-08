@@ -17,7 +17,7 @@ Zur Übertragung der fachlichen Informationseinheiten wurde sich auf konkrete Da
 Folgende Profile und Artefakte sind grundlegend für die Erstellung des digitalen Durchschlags T-Rezept und werden in entsprechende Zielprofile gemappt.
 
 Die Zielartefakte enthalten jeweils Beschreibungen und Definitionen zur Bedeutung der Felder.
-Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) beschrieben.
+Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlags-e-t-rezept) beschrieben.
 
 Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./trezept.html#anwendung-der-structuremap).
 
