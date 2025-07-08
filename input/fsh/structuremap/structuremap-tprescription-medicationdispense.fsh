@@ -2,7 +2,7 @@ Instance: ERPTPrescriptionStructureMapMedicationDispense
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for MedicationDispense"
-Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format"
+Description: "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense"
 * insert Instance(StructureMap, ERPTPrescriptionStructureMapMedicationDispense)
 
 // * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense, source, gematikMedicationDispense)
@@ -12,7 +12,7 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
 * group[+]
   * name = "ERPTPrescriptionStructureMapMedicationDispense"
   * typeMode = #none
-  * documentation = "Mapping group for dispense information transformation"
+  * documentation = "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense"
 
   * insert sd_input(gematikMedicationDispense, source)
   * insert sd_input(bfarmMedicationDispense, target)
@@ -27,15 +27,16 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
       * element = "dosageInstruction"
       * variable = "dosageInstructionVar"
     * insert targetSetIdVariable(bfarmMedicationDispense, dosageInstruction, dosageInstructionVar)
-    * documentation = "TODO"
+    * documentation = "Übernimmt die Dosierungsanweisungen aus der ursprünglichen Abgabe für den digitalen Durchschlag"
+
   * rule[+]
-    * name = "medicationDispenseDosageInstruction"
+    * name = "medicationDispenseWhenHandedOver"
     * source[+]
       * context = "gematikMedicationDispense"
       * element = "whenHandedOver"
       * variable = "whenHandedOverVar"
     * insert targetSetIdVariable(bfarmMedicationDispense, whenHandedOver, whenHandedOverVar)
-    * documentation = "TODO"
+    * documentation = "Kopiert das Abgabedatum zur Dokumentation des Zeitpunkts der Medikamentenausgabe"
   
 // reference to Medication
   * rule[+]
@@ -45,7 +46,7 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
       * element = "medication"
       * variable = "medicationVar"
     * insert targetSetIdVariable(bfarmMedicationDispense, medication, medicationVar)
-    * documentation = "Copy medication; ensure correct mapping from reference is stated"
+    * documentation = "Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt"
 
 // set status to completed
   * rule[+]
@@ -53,18 +54,19 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
     * insert treeSource(gematikMedicationDispense, status, gematikMedicationDispenseStatus)
     // * source[=].logMessage = "$this"
     * insert targetSetStringVariable(bfarmMedicationDispense, status, completed)
-    * documentation = "TODO"
+    * documentation = "Setzt den Status auf 'completed' da die Abgabe bereits erfolgt ist (digitaler Durchschlag)"
   
 // quantity
   * rule[+]
     * name = "medicationDispenseQuantity"
     * insert treeSource(gematikMedicationDispense, quantity, quantityVar)
     * insert targetSetIdVariable(bfarmMedicationDispense, quantity, quantityVar)
-    * documentation = "TODO"
+    * documentation = "Übernimmt die abgegebene Menge zur Dokumentation der tatsächlich ausgehändigten Medikamentenmenge"
   
 // Sets Organization/<telematik-id> as reference
   * rule[+]
     * name = "medicationDispensePerformer"
+    * documentation = "Transformiert Apotheken-Identifier zu Organization-Referenz für eindeutige Zuordnung der abgebenden Apotheke"
     * insert treeSource(gematikMedicationDispense, performer, srcPerformerVar)
     * target[+]      
       * context = "bfarmMedicationDispense"
@@ -73,13 +75,16 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
       * variable = "tgtPerformerVar"
     * rule[+]
       * name = "medicationDispensePerformerActor"
+      * documentation = "Verarbeitet den Actor (abgebende Apotheke) des Performers"
       * insert treeSource(srcPerformerVar, actor, srcPerformerActorVar)
       * insert treeTarget(tgtPerformerVar, actor, tgtPerformerActorVar)
       * rule[+]
         * name = "medicationDispensePerformerActorIdentifier"
+        * documentation = "Extrahiert den Identifier der abgebenden Apotheke"
         * insert treeSource(srcPerformerActorVar, identifier, srcPerformerActorIdentifierVar)
         * rule[+]
           * name = "medicationDispensePerformerActorIdentifierValue"
+          * documentation = "Wandelt Apotheken-Identifier in Organization-Referenz um (Organization/<telematik-id>)"
           * insert treeSource(srcPerformerActorIdentifierVar, value, srcPerformerActorIdentifierValueVar)
           * target[+]
             * context = "tgtPerformerActorVar"
@@ -88,4 +93,3 @@ Description: "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDis
             * transform = #append
             * parameter[+].valueString = "Organization/"
             * parameter[+].valueId = "srcPerformerActorIdentifierValueVar"
-    * documentation = "Map performer.identifier to a reference to Organization with the identifier value"

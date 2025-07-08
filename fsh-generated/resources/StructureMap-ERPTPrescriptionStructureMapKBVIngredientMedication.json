@@ -53,7 +53,7 @@
             }
           ],
           "name": "medicationId",
-          "documentation": "Copies the Medication Id"
+          "documentation": "Übernimmt die eindeutige Medication-ID unverändert"
         },
         {
           "source": [
@@ -77,7 +77,7 @@
             }
           ],
           "name": "medicationForm",
-          "documentation": "Copies the Medication Form"
+          "documentation": "Kopiert die gewünschte Darreichungsform für die Wirkstoff-Verordnung (Kapseln, Salbe, Lösung, etc.)"
         },
         {
           "source": [
@@ -117,7 +117,8 @@
                   "transform": "copy"
                 }
               ],
-              "name": "medicationAmountDenominator"
+              "name": "medicationAmountDenominator",
+              "documentation": "Kopiert den Nenner der Mengenangabe (z.B. '1' für 'pro Herstellung')"
             },
             {
               "source": [
@@ -196,14 +197,15 @@
                             }
                           ],
                           "name": "copyExtensionValue",
-                          "documentation": "Copies the the value for each Extension"
+                          "documentation": "Übernimmt den Packungsgrößenwert"
                         }
                       ],
-                      "name": "copyPackagingSizeExtensionUrl"
+                      "name": "copyPackagingSizeExtensionUrl",
+                      "documentation": "Wandelt KBV-Packungsgrößen-Extension in gematik EPA-Medication Extension um"
                     }
                   ],
                   "name": "medicationAmountExt",
-                  "documentation": "Copies the Medication Extensions"
+                  "documentation": "Transformiert Packungsgrößen-Extensions von KBV- zu gematik-Format für Wirkstoff Verordnung"
                 },
                 {
                   "source": [
@@ -226,7 +228,8 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorValue"
+                  "name": "medicationAmountNumeratorValue",
+                  "documentation": "Kopiert den numerischen Wert der Gesamtmenge (z.B. '100' für 100g Salbe)"
                 },
                 {
                   "source": [
@@ -249,7 +252,8 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorUnit"
+                  "name": "medicationAmountNumeratorUnit",
+                  "documentation": "Übernimmt die Mengeneinheit (g, ml, Stück, etc.)"
                 },
                 {
                   "source": [
@@ -272,7 +276,8 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorSystem"
+                  "name": "medicationAmountNumeratorSystem",
+                  "documentation": "Kopiert das Codesystem für die Mengeneinheit (meist UCUM)"
                 },
                 {
                   "source": [
@@ -295,14 +300,16 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorCode"
+                  "name": "medicationAmountNumeratorCode",
+                  "documentation": "Übernimmt den standardisierten Code für die Mengeneinheit"
                 }
               ],
-              "name": "medicationAmountNumerator"
+              "name": "medicationAmountNumerator",
+              "documentation": "Mappt die detaillierte Mengenangabe"
             }
           ],
           "name": "medicationAmount",
-          "documentation": "Copies the Medication Amount"
+          "documentation": "Mappt die Gesamtmenge der herzustellenden Wirkstoff-Verordnung"
         },
         {
           "source": [
@@ -326,12 +333,12 @@
             }
           ],
           "name": "medicationIngredient",
-          "documentation": "Copies the Medication Ingredient"
+          "documentation": "Kopiert die detaillierten Wirkstoffinformationen mit Konzentrationen und Mengenangaben"
         }
       ],
       "name": "ERPTPrescriptionStructureMapKBVIngredientMedication",
       "typeMode": "none",
-      "documentation": "Mapping group for medication information transformation"
+      "documentation": "Mapping-Anweisungen zur Transformation von KBV Wirkstoff-Medikamenten zu BfArM T-Prescription Format"
     }
   ],
   "status": "draft",

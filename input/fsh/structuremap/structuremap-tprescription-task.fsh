@@ -3,7 +3,7 @@ Instance: ERPTPrescriptionStructureMapTask
 InstanceOf: StructureMap
 Usage: #definition
 Title: "E-T-Rezept Structure Map for Task"
-Description: "Maps resources to BfArM T-Prescription format"
+Description: "Mappt die E-Rezept ID aus dem Task in ein Identifier Objekt"
 * insert Instance(StructureMap, ERPTPrescriptionStructureMapTask)
 
 * insert sd_structure(https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task, source, task)
@@ -12,7 +12,7 @@ Description: "Maps resources to BfArM T-Prescription format"
 * group[+]
   * name = "ERPTPrescriptionStructureMapTask"
   * typeMode = #none
-  * documentation = "Mapping group for Task"
+  * documentation = "Mapping Anweisungen für GEM_Task"
 
   * insert sd_input(task, source)
   * insert sd_input(tgtIdentifier, target)
@@ -28,3 +28,4 @@ Description: "Maps resources to BfArM T-Prescription format"
       * source[=].logMessage = "tgtIdentifier"
       * insert targetSetStringVariable(tgtIdentifier, system, https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId)
       * insert targetSetIdVariable(tgtIdentifier, value, srcTaskIdentifierValue)
+      * documentation = "Mappt die E-Rezept-ID aus dem Task in den Identifier"

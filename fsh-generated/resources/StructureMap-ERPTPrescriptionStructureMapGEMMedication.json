@@ -53,7 +53,7 @@
             }
           ],
           "name": "medicationId",
-          "documentation": "Copies the Medication Id"
+          "documentation": "Übernimmt die eindeutige Medication-ID unverändert"
         },
         {
           "source": [
@@ -76,7 +76,8 @@
               "transform": "copy"
             }
           ],
-          "name": "mapContainedRessources"
+          "name": "mapContainedRessources",
+          "documentation": "Kopiert eingebettete Ressourcen (z.B. referenzierte Medications oder Organizations)"
         },
         {
           "source": [
@@ -138,11 +139,11 @@
                     }
                   ],
                   "name": "copyExtensionValue",
-                  "documentation": "Copies the the value for each Extension"
+                  "documentation": "Kopiert den Wert der Normgröße-Extension"
                 }
               ],
               "name": "copyNormgroesseExtensionUrl",
-              "documentation": "Copies the 'normgroesse' extension"
+              "documentation": "Übernimmt die Normgröße-Extension unverändert (deutsche Packungsgrößenangabe N1, N2, N3)"
             },
             {
               "source": [
@@ -187,15 +188,15 @@
                     }
                   ],
                   "name": "copyExtensionValue",
-                  "documentation": "Copies the the value for each Extension"
+                  "documentation": "Kopiert den Wert der Verpackungs-Extension"
                 }
               ],
               "name": "copyPackagingExtensionUrl",
-              "documentation": "Copies the 'packaging' extension"
+              "documentation": "Übernimmt die gematik-Verpackungs-Extension für Formulierungen"
             }
           ],
           "name": "medicationExtension",
-          "documentation": "Copies the Medication Extensions"
+          "documentation": "Mappt gematik-spezifische Medication-Extensions zu BfArM-Format"
         },
         {
           "source": [
@@ -219,7 +220,7 @@
             }
           ],
           "name": "medicationCode",
-          "documentation": "Copies the Medication Code"
+          "documentation": "Kopiert den Medikamentencode (PZN oder andere Identifikation) des abgegebenen Arzneimittels"
         },
         {
           "source": [
@@ -243,7 +244,7 @@
             }
           ],
           "name": "medicationForm",
-          "documentation": "Copies the Medication Form"
+          "documentation": "Übernimmt die Darreichungsform des tatsächlich abgegebenen Arzneimittels"
         },
         {
           "source": [
@@ -267,7 +268,7 @@
             }
           ],
           "name": "medicationAmount",
-          "documentation": "Copies the Medication Amount"
+          "documentation": "Kopiert die Mengenangaben des abgegebenen Arzneimittels (tatsächlich ausgehändigte Menge)"
         },
         {
           "source": [
@@ -291,12 +292,12 @@
             }
           ],
           "name": "medicationIngredient",
-          "documentation": "Copies the Medication Ingredient"
+          "documentation": "Übernimmt Wirkstoffinformationen des abgegebenen Arzneimittels (falls vorhanden)"
         }
       ],
       "name": "ERPTPrescriptionStructureMapGEMMedication",
       "typeMode": "none",
-      "documentation": "Mapping group for medication information transformation"
+      "documentation": "Mapping-Anweisungen zur Transformation von gematik ERP-Medikamenten zu BfArM T-Prescription Format"
     }
   ],
   "status": "draft",

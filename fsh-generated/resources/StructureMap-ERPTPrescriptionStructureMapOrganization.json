@@ -3,7 +3,7 @@
   "id": "ERPTPrescriptionStructureMapOrganization",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapOrganization",
   "title": "E-T-Rezept Structure Map for Organization",
-  "description": "Maps VZD-Organization-Information to BfArM T-Prescription Organization format",
+  "description": "Mapping-Anweisungen zur Erstellung einer BfArM Organization aus dem VZD SearchSet",
   "structure": [
     {
       "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-vzd-searchset",
@@ -72,7 +72,7 @@
                     }
                   ],
                   "name": "name",
-                  "documentation": "Copy Name to Organization"
+                  "documentation": "Übernimmt den Namen der Organisation aus dem VZD in die BfArM Organization"
                 },
                 {
                   "source": [
@@ -126,16 +126,19 @@
                         }
                       ],
                       "name": "tidValue",
-                      "documentation": "Copy TelematikID to Organization"
+                      "documentation": "Kopiert die Telematik-ID mit korrektem System-Identifier in die Ziel-Organisation"
                     }
                   ],
-                  "name": "tid"
+                  "name": "tid",
+                  "documentation": "Mappt die Telematik-ID der Organisation"
                 }
               ],
-              "name": "entry"
+              "name": "entry",
+              "documentation": "Verarbeitet jeden Eintrag im SearchSet"
             }
           ],
-          "name": "mapOrganization"
+          "name": "mapOrganization",
+          "documentation": "Mappt Organization-Einträge aus dem VZD SearchSet"
         },
         {
           "source": [
@@ -178,13 +181,15 @@
                     }
                   ],
                   "name": "telecom",
-                  "documentation": "Copy telecom to HealthcareService"
+                  "documentation": "Übernimmt Kontaktinformationen (Telefon, E-Mail) aus dem HealthcareService in die Organisation"
                 }
               ],
-              "name": "entry"
+              "name": "entry",
+              "documentation": "Verarbeitet HealthcareService-Einträge aus dem SearchSet"
             }
           ],
-          "name": "mapHealthcareService"
+          "name": "mapHealthcareService",
+          "documentation": "Mappt HealthcareService-Informationen für Kontaktdaten"
         },
         {
           "source": [
@@ -227,18 +232,20 @@
                     }
                   ],
                   "name": "address",
-                  "documentation": "Copy address to Location"
+                  "documentation": "Übernimmt die Adressinformationen aus der Location in die Organisation"
                 }
               ],
-              "name": "entry"
+              "name": "entry",
+              "documentation": "Verarbeitet Location-Einträge aus dem SearchSet"
             }
           ],
-          "name": "mapLocation"
+          "name": "mapLocation",
+          "documentation": "Mappt Location-Informationen für Adressdaten"
         }
       ],
       "name": "ERPTPrescriptionStructureMapOrganization",
       "typeMode": "none",
-      "documentation": "Mapping group for VZD SearchSet"
+      "documentation": "Mapping-Anweisungen zur Erstellung einer BfArM Organization aus dem VZD SearchSet"
     }
   ],
   "status": "draft",

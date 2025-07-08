@@ -1,18 +1,24 @@
 
 **Titel:** E-T-Rezept Structure Map for KBV PZN Medication
 
-**Beschreibung:** Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format
+**Beschreibung:** Mapping-Anweisungen zur Transformation von KBV PZN-Medikamenten zu BfArM T-Prescription Format
 
 | Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
 |------------------------|---------------------|-------------------------------|
-| `kbvMedicationPZN.extension` | `bfarmMedication.extension` | Copies the Medication Extensions |
-| `kbvMedicationPZN.extension [normgroesse]` | `bfarmMedication.extension.url` | Copies the 'normgroesse' extension and sets its URL to 'normgroesseNEW' in the target<br>→ setzt URL 'http://fhir.de/StructureDefinition/normgroesse' |
-| `kbvMedicationPZN.extension [normgroesse].value` | `bfarmMedication.extension.url.value` | Copies the the value for each Extension |
-| `kbvMedicationPZN.id` | `bfarmMedication.id` | Copies the Medication Id |
-| `kbvMedicationPZN.code` | `bfarmMedication.code` | Copies the Medication Code |
-| `kbvMedicationPZN.form` | `bfarmMedication.form` | Copies the Medication Form |
-| `kbvMedicationPZN.amount` | `bfarmMedication.amount` | Copies the Medication Amount |
-| `kbvMedicationPZN.amount.numerator.extension` | `bfarmMedication.amount.numerator.extension` | Copies the Medication Extensions |
-| `kbvMedicationPZN.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize]` | `bfarmMedication.amount.numerator.extension.url` | → setzt URL 'https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension' |
-| `kbvMedicationPZN.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize].value` | `bfarmMedication.amount.numerator.extension.url.value` | Copies the the value for each Extension |
-| `kbvMedicationPZN.ingredient` | `bfarmMedication.ingredient` | Copies the Medication Ingredient |
+| `kbvMedicationPZN.extension` | `bfarmMedication.extension` | Mappt Medication-Extensions von KBV- zu BfArM-Format |
+| `kbvMedicationPZN.extension [normgroesse]` | `bfarmMedication.extension.url` | Übernimmt die Normgröße-Extension unverändert (deutsche Packungsgrößenangabe)<br>→ setzt URL 'http://fhir.de/StructureDefinition/normgroesse' |
+| `kbvMedicationPZN.extension [normgroesse].value` | `bfarmMedication.extension.url.value` | Kopiert den Wert der Normgröße-Extension (N1, N2, N3) |
+| `kbvMedicationPZN.id` | `bfarmMedication.id` | Übernimmt die eindeutige Medication-ID unverändert |
+| `kbvMedicationPZN.code` | `bfarmMedication.code` | Kopiert den Medikamentencode (PZN - Pharmazentralnummer) für die eindeutige Identifikation |
+| `kbvMedicationPZN.form` | `bfarmMedication.form` | Übernimmt die Darreichungsform (Tabletten, Kapseln, Tropfen, etc.) |
+| `kbvMedicationPZN.amount` | `bfarmMedication.amount` | Mappt die Mengenangaben des Fertigarzneimittels (Packungsgröße und Inhalt) |
+| `kbvMedicationPZN.amount.denominator` | `bfarmMedication.amount.denominator` | Kopiert den Nenner der Mengenangabe (z.B. '1' für 'pro Packung') |
+| `kbvMedicationPZN.amount.numerator` | `bfarmMedication.amount.numerator` | Mappt den Zähler der Mengenangabe mit allen Details (Wert, Einheit, Extensions) |
+| `kbvMedicationPZN.amount.numerator.extension` | `bfarmMedication.amount.numerator.extension` | Transformiert Packungsgrößen-Extensions von KBV- zu gematik-Format |
+| `kbvMedicationPZN.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize]` | `bfarmMedication.amount.numerator.extension.url` | Wandelt KBV-Packungsgrößen-Extension in gematik EPA-Medication Extension um<br>→ setzt URL 'https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension' |
+| `kbvMedicationPZN.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize].value` | `bfarmMedication.amount.numerator.extension.url.value` | Übernimmt den Packungsgrößenwert unverändert |
+| `kbvMedicationPZN.amount.numerator.value` | `bfarmMedication.amount.numerator.value` | Kopiert den numerischen Wert der Menge (z.B. '20' für 20 Tabletten) |
+| `kbvMedicationPZN.amount.numerator.unit` | `bfarmMedication.amount.numerator.unit` | Übernimmt die Mengeneinheit (Stück, ml, g, etc.) |
+| `kbvMedicationPZN.amount.numerator.system` | `bfarmMedication.amount.numerator.system` | Kopiert das Codesystem für die Mengeneinheit (meist UCUM) |
+| `kbvMedicationPZN.amount.numerator.code` | `bfarmMedication.amount.numerator.code` | Übernimmt den standardisierten Code für die Mengeneinheit |
+| `kbvMedicationPZN.ingredient` | `bfarmMedication.ingredient` | Kopiert Wirkstoffinformationen (bei PZN-Medikamenten meist nicht detailliert angegeben) |

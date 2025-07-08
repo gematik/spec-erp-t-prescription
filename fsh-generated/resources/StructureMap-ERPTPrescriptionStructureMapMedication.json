@@ -3,7 +3,7 @@
   "id": "ERPTPrescriptionStructureMapMedication",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedication",
   "title": "E-T-Rezept Structure Map for Medication",
-  "description": "Maps a Medication to BfArM T-Prescription Medication format",
+  "description": "Router-Mapping zur Auswahl der korrekten Medication-Transformation basierend auf dem KBV/gematik Profil",
   "import": [
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapGEMMedication",
     "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVCompoundingMedication",
@@ -62,10 +62,12 @@
                   "name": "ERPTPrescriptionStructureMapKBVPZNMedication"
                 }
               ],
-              "name": "mapPZN"
+              "name": "mapPZN",
+              "documentation": "Führt die Transformation für PZN-Medikamente durch (Fertigarzneimittel mit Pharmazentralnummer)"
             }
           ],
-          "name": "decideOnMedication"
+          "name": "decideOnMedicationPZN",
+          "documentation": "Erkennt PZN-basierte Medikamente und leitet an spezialisiertes PZN-Mapping weiter"
         },
         {
           "source": [
@@ -91,10 +93,12 @@
                   "name": "ERPTPrescriptionStructureMapKBVFreeTextMedication"
                 }
               ],
-              "name": "mapFreeText"
+              "name": "mapFreeText",
+              "documentation": "Führt die Transformation für Freitext-Medikamente durch (nicht standardisierte Arzneimittelangaben)"
             }
           ],
-          "name": "decideOnMedication"
+          "name": "decideOnMedicationFreeText",
+          "documentation": "Erkennt Freitext-Medikamente und leitet an spezialisiertes FreeText-Mapping weiter"
         },
         {
           "source": [
@@ -120,10 +124,12 @@
                   "name": "ERPTPrescriptionStructureMapKBVIngredientMedication"
                 }
               ],
-              "name": "mapIngredient"
+              "name": "mapIngredient",
+              "documentation": "Führt die Transformation für wirkstoffbasierte Medikamente durch (Rezeptur nach Wirkstoffen)"
             }
           ],
-          "name": "decideOnMedication"
+          "name": "decideOnMedicationIngredient",
+          "documentation": "Erkennt wirkstoffbasierte Medikamente und leitet an spezialisiertes Ingredient-Mapping weiter"
         },
         {
           "source": [
@@ -149,10 +155,12 @@
                   "name": "ERPTPrescriptionStructureMapKBVCompoundingMedication"
                 }
               ],
-              "name": "mapCompounding"
+              "name": "mapCompounding",
+              "documentation": "Führt die Transformation für Rezeptur-Medikamente durch (individuell hergestellte Arzneimittel)"
             }
           ],
-          "name": "decideOnMedication"
+          "name": "decideOnMedicationCompounding",
+          "documentation": "Erkennt Rezeptur-Medikamente und leitet an spezialisiertes Compounding-Mapping weiter"
         },
         {
           "source": [
@@ -178,15 +186,17 @@
                   "name": "ERPTPrescriptionStructureMapGEMMedication"
                 }
               ],
-              "name": "mapGemMed"
+              "name": "mapGemMed",
+              "documentation": "Führt die Transformation für gematik-Medikamente durch (abgegebene Arzneimittel aus der Apotheke)"
             }
           ],
-          "name": "decideOnMedication"
+          "name": "decideOnMedicationGematik",
+          "documentation": "Erkennt gematik-Medikamente und leitet an spezialisiertes gematik-Mapping weiter"
         }
       ],
       "name": "ERPTPrescriptionStructureMapMedication",
       "typeMode": "none",
-      "documentation": "Mapping group for medication information transformation"
+      "documentation": "Router-Mapping zur Auswahl der korrekten Medication-Transformation basierend auf dem KBV/gematik Profil"
     }
   ],
   "status": "draft",

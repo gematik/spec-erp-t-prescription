@@ -5,10 +5,16 @@
 
 | Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
 |------------------------|---------------------|-------------------------------|
-| `kbvMedicationIngredient.id` | `bfarmMedication.id` | Copies the Medication Id |
-| `kbvMedicationIngredient.form` | `bfarmMedication.form` | Copies the Medication Form |
-| `kbvMedicationIngredient.amount` | `bfarmMedication.amount` | Copies the Medication Amount |
-| `kbvMedicationIngredient.amount.numerator.extension` | `bfarmMedication.amount.numerator.extension` | Copies the Medication Extensions |
-| `kbvMedicationIngredient.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize]` | `bfarmMedication.amount.numerator.extension.url` | → setzt URL 'https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension' |
-| `kbvMedicationIngredient.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize].value` | `bfarmMedication.amount.numerator.extension.url.value` | Copies the the value for each Extension |
-| `kbvMedicationIngredient.ingredient` | `bfarmMedication.ingredient` | Copies the Medication Ingredient |
+| `kbvMedicationIngredient.id` | `bfarmMedication.id` | Übernimmt die eindeutige Medication-ID unverändert |
+| `kbvMedicationIngredient.form` | `bfarmMedication.form` | Kopiert die gewünschte Darreichungsform für die Wirkstoff-Verordnung (Kapseln, Salbe, Lösung, etc.) |
+| `kbvMedicationIngredient.amount` | `bfarmMedication.amount` | Mappt die Gesamtmenge der herzustellenden Wirkstoff-Verordnung |
+| `kbvMedicationIngredient.amount.denominator` | `bfarmMedication.amount.denominator` | Kopiert den Nenner der Mengenangabe (z.B. '1' für 'pro Herstellung') |
+| `kbvMedicationIngredient.amount.numerator` | `bfarmMedication.amount.numerator` | Mappt die detaillierte Mengenangabe |
+| `kbvMedicationIngredient.amount.numerator.extension` | `bfarmMedication.amount.numerator.extension` | Transformiert Packungsgrößen-Extensions von KBV- zu gematik-Format für Wirkstoff Verordnung |
+| `kbvMedicationIngredient.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize]` | `bfarmMedication.amount.numerator.extension.url` | Wandelt KBV-Packungsgrößen-Extension in gematik EPA-Medication Extension um<br>→ setzt URL 'https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension' |
+| `kbvMedicationIngredient.amount.numerator.extension [KBV_EX_ERP_Medication_PackagingSize].value` | `bfarmMedication.amount.numerator.extension.url.value` | Übernimmt den Packungsgrößenwert |
+| `kbvMedicationIngredient.amount.numerator.value` | `bfarmMedication.amount.numerator.value` | Kopiert den numerischen Wert der Gesamtmenge (z.B. '100' für 100g Salbe) |
+| `kbvMedicationIngredient.amount.numerator.unit` | `bfarmMedication.amount.numerator.unit` | Übernimmt die Mengeneinheit (g, ml, Stück, etc.) |
+| `kbvMedicationIngredient.amount.numerator.system` | `bfarmMedication.amount.numerator.system` | Kopiert das Codesystem für die Mengeneinheit (meist UCUM) |
+| `kbvMedicationIngredient.amount.numerator.code` | `bfarmMedication.amount.numerator.code` | Übernimmt den standardisierten Code für die Mengeneinheit |
+| `kbvMedicationIngredient.ingredient` | `bfarmMedication.ingredient` | Kopiert die detaillierten Wirkstoffinformationen mit Konzentrationen und Mengenangaben |

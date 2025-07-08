@@ -76,7 +76,8 @@
               "documentation": "Setzt das meta.profile des digitalen Durchschlags T-Rezept"
             }
           ],
-          "name": "tgtMeta"
+          "name": "tgtMeta",
+          "documentation": "Setzt die Metadaten für den digitalen Durchschlag"
         },
         {
           "source": [
@@ -189,11 +190,12 @@
                               "name": "ERPTPrescriptionStructureMapTask"
                             }
                           ],
-                          "name": "parameterrXPrescriptionPartIdentifier"
+                          "name": "parameterrXPrescriptionPartIdentifier",
+                          "documentation": "Mappt Task-Informationen auf Identifier für die Rezept-ID"
                         }
                       ],
                       "name": "parameterrXPrescriptionPart",
-                      "documentation": "Mappt die E-Rezept-ID des Tasks in den digitalen Durchschlag"
+                      "documentation": "Extrahiert die E-Rezept-ID aus dem Task und erstellt den prescriptionId Parameter"
                     },
                     {
                       "source": [
@@ -253,14 +255,16 @@
                                   "name": "ERPTPrescriptionStructureMapMedicationRequest"
                                 }
                               ],
-                              "name": "entryMedicationRequestPartResourceSet"
+                              "name": "entryMedicationRequestPartResourceSet",
+                              "documentation": "Führt die detaillierte MedicationRequest-Transformation durch"
                             }
                           ],
                           "name": "entryMedicationRequestPart",
-                          "documentation": "Mappt den KBV-MedicationRequest auf das BfArM MedicationRequest Zielprofil"
+                          "documentation": "Transformiert KBV-MedicationRequest in BfArM MedicationRequest Format"
                         }
                       ],
-                      "name": "entryMedicationRequest"
+                      "name": "entryMedicationRequest",
+                      "documentation": "Erstellt den medicationRequest Parameter für Verschreibungsdetails"
                     },
                     {
                       "source": [
@@ -333,27 +337,32 @@
                                       "name": "ERPTPrescriptionStructureMapMedication"
                                     }
                                   ],
-                                  "name": "entryMedicationPrescriptionMedicationPartResourceSet"
+                                  "name": "entryMedicationPrescriptionMedicationPartResourceSet",
+                                  "documentation": "Führt die detaillierte Medication-Transformation für das verschriebene Arzneimittel durch"
                                 }
                               ],
                               "name": "entryMedicationPrescriptionMedicationPart",
-                              "documentation": "Mappt die KBV-Medication auf das BfArM Medication Zielprofil"
+                              "documentation": "Findet die vom MedicationRequest referenzierte Medication und transformiert sie in BfArM Format"
                             }
                           ],
-                          "name": "prepMedication"
+                          "name": "prepMedication",
+                          "documentation": "Bereitet die Suche nach der referenzierten Medication vor"
                         }
                       ],
-                      "name": "entryMedicationRequestMedication"
+                      "name": "entryMedicationRequestMedication",
+                      "documentation": "Erstellt den medication Parameter für das verschriebene Arzneimittel"
                     }
                   ],
-                  "name": "rxPrescriptionParameter"
+                  "name": "rxPrescriptionParameter",
+                  "documentation": "Extrahiert relevante Ressourcen für die Verschreibung"
                 }
               ],
-              "name": "bundleEntries"
+              "name": "bundleEntries",
+              "documentation": "Verarbeitet alle Einträge des Quell-Bundles für Verschreibungsinformationen"
             }
           ],
           "name": "rxPrescriptionRule",
-          "documentation": "Mapping der Rezeptinformationen"
+          "documentation": "Erstellt den rxPrescription Parameter mit allen Verschreibungsinformationen"
         },
         {
           "source": [
@@ -463,14 +472,16 @@
                                   "name": "ERPTPrescriptionStructureMapOrganization"
                                 }
                               ],
-                              "name": "entryOrganizationPartResourceSet"
+                              "name": "entryOrganizationPartResourceSet",
+                              "documentation": "Führt die detaillierte Organization-Transformation durch"
                             }
                           ],
                           "name": "entryOrganizationPart",
-                          "documentation": "Mapping des FHIR-VZD Search Sets in eine BfArM Organization"
+                          "documentation": "Transformiert VZD SearchSet in BfArM Organization Format für die abgebende Apotheke"
                         }
                       ],
-                      "name": "entryVZDSearchSet"
+                      "name": "entryVZDSearchSet",
+                      "documentation": "Identifiziert VZD SearchSet Bundle für Apothekeninformationen"
                     },
                     {
                       "source": [
@@ -536,14 +547,16 @@
                                   "name": "ERPTPrescriptionStructureMapMedicationDispense"
                                 }
                               ],
-                              "name": "entryMedicationDispensePartResourceSet"
+                              "name": "entryMedicationDispensePartResourceSet",
+                              "documentation": "Führt die detaillierte MedicationDispense-Transformation durch"
                             }
                           ],
                           "name": "entryMedicationDispensePart",
-                          "documentation": "Mappt die Abgabeinforamtionen der Apotheke auf das BfArM MedicationDispense Zielprofil"
+                          "documentation": "Transformiert gematik MedicationDispense in BfArM MedicationDispense Format"
                         }
                       ],
-                      "name": "entryMedicationDispense"
+                      "name": "entryMedicationDispense",
+                      "documentation": "Erstellt den medicationDispense Parameter für Abgabedetails"
                     },
                     {
                       "source": [
@@ -622,32 +635,37 @@
                                       "name": "ERPTPrescriptionStructureMapMedication"
                                     }
                                   ],
-                                  "name": "entryMedicationDispensationMedicationPartResourceSet"
+                                  "name": "entryMedicationDispensationMedicationPartResourceSet",
+                                  "documentation": "Führt die detaillierte Medication-Transformation für das abgegebene Arzneimittel durch"
                                 }
                               ],
                               "name": "entryMedicationDispensationMedicationPart",
-                              "documentation": "Mappt die Informationen des abgegebenen Arzneimittels auf das BfArM Medication Zielprofil"
+                              "documentation": "Findet die vom MedicationDispense referenzierte Medication und transformiert sie in BfArM Format"
                             }
                           ],
-                          "name": "prepMedication"
+                          "name": "prepMedication",
+                          "documentation": "Bereitet die Suche nach der vom MedicationDispense referenzierten Medication vor"
                         }
                       ],
-                      "name": "entryMedicationDispenseMedication"
+                      "name": "entryMedicationDispenseMedication",
+                      "documentation": "Erstellt den medication Parameter für das abgegebene Arzneimittel"
                     }
                   ],
-                  "name": "rxDispensationParameter"
+                  "name": "rxDispensationParameter",
+                  "documentation": "Extrahiert relevante Ressourcen für die Abgabe"
                 }
               ],
-              "name": "bundleEntries"
+              "name": "bundleEntries",
+              "documentation": "Verarbeitet alle Einträge des Quell-Bundles für Abgabeinformationen"
             }
           ],
           "name": "MedicationDispenseFromBundle",
-          "documentation": "Mapping der Abgabeinformationen"
+          "documentation": "Erstellt den rxDispensation Parameter mit allen Abgabeinformationen"
         }
       ],
       "name": "erpTPrescriptionCarbonCopy",
       "typeMode": "none",
-      "documentation": "Mapping des digitalen Durchschlags T-Rezept"
+      "documentation": "Mapping des digitalen Durchschlags T-Rezept aus einem E-Rezept Bundle in das BfArM CarbonCopy Format"
     }
   ],
   "status": "draft",

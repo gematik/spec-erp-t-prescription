@@ -3,7 +3,7 @@
   "id": "ERPTPrescriptionStructureMapTask",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapTask",
   "title": "E-T-Rezept Structure Map for Task",
-  "description": "Maps resources to BfArM T-Prescription format",
+  "description": "Mappt die E-Rezept ID aus dem Task in ein Identifier Objekt",
   "structure": [
     {
       "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task",
@@ -74,7 +74,8 @@
                   "transform": "copy"
                 }
               ],
-              "name": "prescriptionIdValue"
+              "name": "prescriptionIdValue",
+              "documentation": "Mappt die E-Rezept-ID aus dem Task in den Identifier"
             }
           ],
           "name": "prescriptionId"
@@ -82,7 +83,7 @@
       ],
       "name": "ERPTPrescriptionStructureMapTask",
       "typeMode": "none",
-      "documentation": "Mapping group for Task"
+      "documentation": "Mapping Anweisungen für GEM_Task"
     }
   ],
   "status": "draft",

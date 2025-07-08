@@ -3,7 +3,7 @@
   "id": "ERPTPrescriptionStructureMapKBVPZNMedication",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapKBVPZNMedication",
   "title": "E-T-Rezept Structure Map for KBV PZN Medication",
-  "description": "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format",
+  "description": "Mapping-Anweisungen zur Transformation von KBV PZN-Medikamenten zu BfArM T-Prescription Format",
   "structure": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/Medication",
@@ -91,15 +91,15 @@
                     }
                   ],
                   "name": "copyExtensionValue",
-                  "documentation": "Copies the the value for each Extension"
+                  "documentation": "Kopiert den Wert der Normgröße-Extension (N1, N2, N3)"
                 }
               ],
               "name": "copyNormgroesseExtensionUrl",
-              "documentation": "Copies the 'normgroesse' extension and sets its URL to 'normgroesseNEW' in the target"
+              "documentation": "Übernimmt die Normgröße-Extension unverändert (deutsche Packungsgrößenangabe)"
             }
           ],
           "name": "medicationExt",
-          "documentation": "Copies the Medication Extensions"
+          "documentation": "Mappt Medication-Extensions von KBV- zu BfArM-Format"
         },
         {
           "source": [
@@ -123,7 +123,7 @@
             }
           ],
           "name": "medicationId",
-          "documentation": "Copies the Medication Id"
+          "documentation": "Übernimmt die eindeutige Medication-ID unverändert"
         },
         {
           "source": [
@@ -147,7 +147,7 @@
             }
           ],
           "name": "medicationCode",
-          "documentation": "Copies the Medication Code"
+          "documentation": "Kopiert den Medikamentencode (PZN - Pharmazentralnummer) für die eindeutige Identifikation"
         },
         {
           "source": [
@@ -171,7 +171,7 @@
             }
           ],
           "name": "medicationForm",
-          "documentation": "Copies the Medication Form"
+          "documentation": "Übernimmt die Darreichungsform (Tabletten, Kapseln, Tropfen, etc.)"
         },
         {
           "source": [
@@ -211,7 +211,8 @@
                   "transform": "copy"
                 }
               ],
-              "name": "medicationAmountDenominator"
+              "name": "medicationAmountDenominator",
+              "documentation": "Kopiert den Nenner der Mengenangabe (z.B. '1' für 'pro Packung')"
             },
             {
               "source": [
@@ -290,14 +291,15 @@
                             }
                           ],
                           "name": "copyExtensionValue",
-                          "documentation": "Copies the the value for each Extension"
+                          "documentation": "Übernimmt den Packungsgrößenwert unverändert"
                         }
                       ],
-                      "name": "copyPackagingSizeExtensionUrl"
+                      "name": "copyPackagingSizeExtensionUrl",
+                      "documentation": "Wandelt KBV-Packungsgrößen-Extension in gematik EPA-Medication Extension um"
                     }
                   ],
                   "name": "medicationAmountExt",
-                  "documentation": "Copies the Medication Extensions"
+                  "documentation": "Transformiert Packungsgrößen-Extensions von KBV- zu gematik-Format"
                 },
                 {
                   "source": [
@@ -320,7 +322,8 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorValue"
+                  "name": "medicationAmountNumeratorValue",
+                  "documentation": "Kopiert den numerischen Wert der Menge (z.B. '20' für 20 Tabletten)"
                 },
                 {
                   "source": [
@@ -343,7 +346,8 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorUnit"
+                  "name": "medicationAmountNumeratorUnit",
+                  "documentation": "Übernimmt die Mengeneinheit (Stück, ml, g, etc.)"
                 },
                 {
                   "source": [
@@ -366,7 +370,8 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorSystem"
+                  "name": "medicationAmountNumeratorSystem",
+                  "documentation": "Kopiert das Codesystem für die Mengeneinheit (meist UCUM)"
                 },
                 {
                   "source": [
@@ -389,14 +394,16 @@
                       "transform": "copy"
                     }
                   ],
-                  "name": "medicationAmountNumeratorCode"
+                  "name": "medicationAmountNumeratorCode",
+                  "documentation": "Übernimmt den standardisierten Code für die Mengeneinheit"
                 }
               ],
-              "name": "medicationAmountNumerator"
+              "name": "medicationAmountNumerator",
+              "documentation": "Mappt den Zähler der Mengenangabe mit allen Details (Wert, Einheit, Extensions)"
             }
           ],
           "name": "medicationAmount",
-          "documentation": "Copies the Medication Amount"
+          "documentation": "Mappt die Mengenangaben des Fertigarzneimittels (Packungsgröße und Inhalt)"
         },
         {
           "source": [
@@ -420,12 +427,12 @@
             }
           ],
           "name": "medicationIngredient",
-          "documentation": "Copies the Medication Ingredient"
+          "documentation": "Kopiert Wirkstoffinformationen (bei PZN-Medikamenten meist nicht detailliert angegeben)"
         }
       ],
       "name": "ERPTPrescriptionStructureMapKBVPZNMedication",
       "typeMode": "none",
-      "documentation": "Mapping group for medication information transformation"
+      "documentation": "Mapping-Anweisungen zur Transformation von KBV PZN-Medikamenten zu BfArM T-Prescription Format"
     }
   ],
   "status": "draft",

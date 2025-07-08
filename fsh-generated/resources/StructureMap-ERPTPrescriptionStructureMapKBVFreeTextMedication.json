@@ -53,7 +53,7 @@
             }
           ],
           "name": "medicationId",
-          "documentation": "Copies the Medication Id"
+          "documentation": "Übernimmt die eindeutige Medication-ID unverändert"
         },
         {
           "source": [
@@ -94,11 +94,11 @@
                 }
               ],
               "name": "medicationCodeText",
-              "documentation": "Copies the Medication Code Text"
+              "documentation": "Kopiert die Freitext-Bezeichnung des Medikaments (z.B. 'Aspirin 500mg Tabletten')"
             }
           ],
           "name": "medicationCode",
-          "documentation": "Copies the Medication Code"
+          "documentation": "Mappt den Medikamentencode mit Freitext-Beschreibung"
         },
         {
           "source": [
@@ -139,16 +139,16 @@
                 }
               ],
               "name": "medicationFormText",
-              "documentation": "Copies the Medication form Text"
+              "documentation": "Übernimmt die Freitext-Darreichungsform (z.B. 'Tabletten', 'Tropfen zum Einnehmen')"
             }
           ],
           "name": "medicationForm",
-          "documentation": "Copies the Medication Form"
+          "documentation": "Mappt die Darreichungsform als Freitext"
         }
       ],
       "name": "ERPTPrescriptionStructureMapKBVFreeTextMedication",
       "typeMode": "none",
-      "documentation": "Mapping group for medication information transformation"
+      "documentation": "Mapping-Anweisungen zur Transformation von KBV Freitext-Medikamenten zu BfArM T-Prescription Format"
     }
   ],
   "status": "draft",

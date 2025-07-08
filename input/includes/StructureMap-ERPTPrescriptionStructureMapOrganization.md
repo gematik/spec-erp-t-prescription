@@ -1,15 +1,18 @@
 
 **Titel:** E-T-Rezept Structure Map for Organization
 
-**Beschreibung:** Maps VZD-Organization-Information to BfArM T-Prescription Organization format
+**Beschreibung:** Mapping-Anweisungen zur Erstellung einer BfArM Organization aus dem VZD SearchSet
 
 | Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
 |------------------------|---------------------|-------------------------------|
-| `vzdSearchSet.entry.resource [Typ: Organization]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
-| `vzdSearchSet.entry.resource [Typ: Organization].name` | `bfarmOrganization.name` | Copy Name to Organization |
-| `vzdSearchSet.entry.resource [Typ: Organization].identifier [Bedingung: $this.system='https://gematik.de/fhir/sid/telematik-id']` | `bfarmOrganization.identifier` | *(direkte Kopie)* |
-| `vzdSearchSet.entry.resource [Typ: Organization].identifier [Bedingung: $this.system='https://gematik.de/fhir/sid/telematik-id'].value` | `bfarmOrganization.identifier.system` | Copy TelematikID to Organization<br>→ setzt URL 'https://gematik.de/fhir/sid/telematik-id' |
-| `vzdSearchSet.entry.resource [Typ: HealthcareService]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
-| `vzdSearchSet.entry.resource [Typ: HealthcareService].telecom` | `bfarmOrganization.telecom` | Copy telecom to HealthcareService |
-| `vzdSearchSet.entry.resource [Typ: Location]` | *(wird bestimmt durch Kontext)* | *(direkte Kopie)* |
-| `vzdSearchSet.entry.resource [Typ: Location].address` | `bfarmOrganization.address` | Copy address to Location |
+| `vzdSearchSet.entry` | *(wird bestimmt durch Kontext)* | Mappt Organization-Einträge aus dem VZD SearchSet |
+| `vzdSearchSet.entry.resource [Typ: Organization]` | *(wird bestimmt durch Kontext)* | Verarbeitet jeden Eintrag im SearchSet |
+| `vzdSearchSet.entry.resource [Typ: Organization].name` | `bfarmOrganization.name` | Übernimmt den Namen der Organisation aus dem VZD in die BfArM Organization |
+| `vzdSearchSet.entry.resource [Typ: Organization].identifier [Bedingung: $this.system='https://gematik.de/fhir/sid/telematik-id']` | `bfarmOrganization.identifier` | Mappt die Telematik-ID der Organisation |
+| `vzdSearchSet.entry.resource [Typ: Organization].identifier [Bedingung: $this.system='https://gematik.de/fhir/sid/telematik-id'].value` | `bfarmOrganization.identifier.system` | Kopiert die Telematik-ID mit korrektem System-Identifier in die Ziel-Organisation<br>→ setzt URL 'https://gematik.de/fhir/sid/telematik-id' |
+| `vzdSearchSet.entry` | *(wird bestimmt durch Kontext)* | Mappt HealthcareService-Informationen für Kontaktdaten |
+| `vzdSearchSet.entry.resource [Typ: HealthcareService]` | *(wird bestimmt durch Kontext)* | Verarbeitet HealthcareService-Einträge aus dem SearchSet |
+| `vzdSearchSet.entry.resource [Typ: HealthcareService].telecom` | `bfarmOrganization.telecom` | Übernimmt Kontaktinformationen (Telefon, E-Mail) aus dem HealthcareService in die Organisation |
+| `vzdSearchSet.entry` | *(wird bestimmt durch Kontext)* | Mappt Location-Informationen für Adressdaten |
+| `vzdSearchSet.entry.resource [Typ: Location]` | *(wird bestimmt durch Kontext)* | Verarbeitet Location-Einträge aus dem SearchSet |
+| `vzdSearchSet.entry.resource [Typ: Location].address` | `bfarmOrganization.address` | Übernimmt die Adressinformationen aus der Location in die Organisation |

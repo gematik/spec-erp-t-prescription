@@ -209,7 +209,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapKBVCompoundingMedication"
         },
         "name": "E-T-Rezept Structure Map for KBV Compounding Medication",
-        "description": "Maps KBV-Compounding ERP Medication to BfArM T-Prescription Medication format",
+        "description": "Mapping-Anweisungen zur Transformation von KBV Rezeptur-Medikamenten zu BfArM T-Prescription Format",
         "exampleBoolean": false
       },
       {
@@ -233,7 +233,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapKBVPZNMedication"
         },
         "name": "E-T-Rezept Structure Map for KBV PZN Medication",
-        "description": "Maps KBV-PZN ERP Medication to BfArM T-Prescription Medication format",
+        "description": "Mapping-Anweisungen zur Transformation von KBV PZN-Medikamenten zu BfArM T-Prescription Format",
         "exampleBoolean": false
       },
       {
@@ -249,7 +249,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapMedication"
         },
         "name": "E-T-Rezept Structure Map for Medication",
-        "description": "Maps a Medication to BfArM T-Prescription Medication format",
+        "description": "Router-Mapping zur Auswahl der korrekten Medication-Transformation basierend auf dem KBV/gematik Profil",
         "exampleBoolean": false
       },
       {
@@ -257,7 +257,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapMedicationDispense"
         },
         "name": "E-T-Rezept Structure Map for MedicationDispense",
-        "description": "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format",
+        "description": "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense",
         "exampleBoolean": false
       },
       {
@@ -265,7 +265,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapMedicationRequest"
         },
         "name": "E-T-Rezept Structure Map for MedicationRequest",
-        "description": "Maps KBV MedicationRequest BfArM T-Prescription MedicationRequest format",
+        "description": "Mapping-Anweisungen zur Transformation von KBV MedicationRequest zu BfArM T-Prescription MedicationRequest",
         "exampleBoolean": false
       },
       {
@@ -273,7 +273,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapOrganization"
         },
         "name": "E-T-Rezept Structure Map for Organization",
-        "description": "Maps VZD-Organization-Information to BfArM T-Prescription Organization format",
+        "description": "Mapping-Anweisungen zur Erstellung einer BfArM Organization aus dem VZD SearchSet",
         "exampleBoolean": false
       },
       {
@@ -281,7 +281,7 @@
           "reference": "StructureMap/ERPTPrescriptionStructureMapTask"
         },
         "name": "E-T-Rezept Structure Map for Task",
-        "description": "Maps resources to BfArM T-Prescription format",
+        "description": "Mappt die E-Rezept ID aus dem Task in ein Identifier Objekt",
         "exampleBoolean": false
       },
       {

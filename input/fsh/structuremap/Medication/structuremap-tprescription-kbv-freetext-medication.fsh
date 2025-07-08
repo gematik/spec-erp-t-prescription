@@ -12,7 +12,7 @@ Description: "Maps KBV FreeText Medication to BfArM T-Prescription Medication fo
 * group[+]
   * name = "ERPTPrescriptionStructureMapKBVFreeTextMedication"
   * typeMode = #none
-  * documentation = "Mapping group for medication information transformation"
+  * documentation = "Mapping-Anweisungen zur Transformation von KBV Freitext-Medikamenten zu BfArM T-Prescription Format"
 
   * insert sd_input(kbvMedicationFreeText, source)
   * insert sd_input(bfarmMedication, target)
@@ -22,28 +22,28 @@ Description: "Maps KBV FreeText Medication to BfArM T-Prescription Medication fo
     * name = "medicationId"
     * insert treeSource(kbvMedicationFreeText, id, IdVar)
     * insert targetSetIdVariable(bfarmMedication, id, IdVar)
-    * documentation = "Copies the Medication Id"
+    * documentation = "Übernimmt die eindeutige Medication-ID unverändert"
 
   // code
   * rule[+]
     * name = "medicationCode"
-    * documentation = "Copies the Medication Code"
+    * documentation = "Mappt den Medikamentencode mit Freitext-Beschreibung"
     * insert treeSource(kbvMedicationFreeText, code, srcCodeVar)
     * insert treeTarget(bfarmMedication, code, tgtCodeVar)
     * rule[+]
       * name = "medicationCodeText"
       * insert treeSource(srcCodeVar, text, srcCodeTextVar)
       * insert targetSetIdVariable(tgtCodeVar, text, srcCodeTextVar)
-      * documentation = "Copies the Medication Code Text"
+      * documentation = "Kopiert die Freitext-Bezeichnung des Medikaments (z.B. 'Aspirin 500mg Tabletten')"
   
   // form
   * rule[+]
     * name = "medicationForm"
-    * documentation = "Copies the Medication Form"
+    * documentation = "Mappt die Darreichungsform als Freitext"
     * insert treeSource(kbvMedicationFreeText, form, srcFormVar)
     * insert treeTarget(bfarmMedication, form, tgtFormVar)
     * rule[+]
       * name = "medicationFormText"
       * insert treeSource(srcFormVar, text, srcformTextVar)
       * insert targetSetIdVariable(tgtFormVar, text, srcformTextVar)
-      * documentation = "Copies the Medication form Text"
+      * documentation = "Übernimmt die Freitext-Darreichungsform (z.B. 'Tabletten', 'Tropfen zum Einnehmen')"

@@ -3,7 +3,7 @@
   "id": "ERPTPrescriptionStructureMapMedicationDispense",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapMedicationDispense",
   "title": "E-T-Rezept Structure Map for MedicationDispense",
-  "description": "Maps GEM ERP MedicationDispense BfArM T-Prescription MedicationDispense format",
+  "description": "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense",
   "structure": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
@@ -53,7 +53,7 @@
             }
           ],
           "name": "medicationDispenseDosageInstruction",
-          "documentation": "TODO"
+          "documentation": "Übernimmt die Dosierungsanweisungen aus der ursprünglichen Abgabe für den digitalen Durchschlag"
         },
         {
           "source": [
@@ -76,8 +76,8 @@
               "transform": "copy"
             }
           ],
-          "name": "medicationDispenseDosageInstruction",
-          "documentation": "TODO"
+          "name": "medicationDispenseWhenHandedOver",
+          "documentation": "Kopiert das Abgabedatum zur Dokumentation des Zeitpunkts der Medikamentenausgabe"
         },
         {
           "source": [
@@ -101,7 +101,7 @@
             }
           ],
           "name": "medicationReference",
-          "documentation": "Copy medication; ensure correct mapping from reference is stated"
+          "documentation": "Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt"
         },
         {
           "source": [
@@ -125,7 +125,7 @@
             }
           ],
           "name": "medicationDispenseStatus",
-          "documentation": "TODO"
+          "documentation": "Setzt den Status auf 'completed' da die Abgabe bereits erfolgt ist (digitaler Durchschlag)"
         },
         {
           "source": [
@@ -149,7 +149,7 @@
             }
           ],
           "name": "medicationDispenseQuantity",
-          "documentation": "TODO"
+          "documentation": "Übernimmt die abgegebene Menge zur Dokumentation der tatsächlich ausgehändigten Medikamentenmenge"
         },
         {
           "source": [
@@ -218,22 +218,25 @@
                           "transform": "append"
                         }
                       ],
-                      "name": "medicationDispensePerformerActorIdentifierValue"
+                      "name": "medicationDispensePerformerActorIdentifierValue",
+                      "documentation": "Wandelt Apotheken-Identifier in Organization-Referenz um (Organization/<telematik-id>)"
                     }
                   ],
-                  "name": "medicationDispensePerformerActorIdentifier"
+                  "name": "medicationDispensePerformerActorIdentifier",
+                  "documentation": "Extrahiert den Identifier der abgebenden Apotheke"
                 }
               ],
-              "name": "medicationDispensePerformerActor"
+              "name": "medicationDispensePerformerActor",
+              "documentation": "Verarbeitet den Actor (abgebende Apotheke) des Performers"
             }
           ],
           "name": "medicationDispensePerformer",
-          "documentation": "Map performer.identifier to a reference to Organization with the identifier value"
+          "documentation": "Transformiert Apotheken-Identifier zu Organization-Referenz für eindeutige Zuordnung der abgebenden Apotheke"
         }
       ],
       "name": "ERPTPrescriptionStructureMapMedicationDispense",
       "typeMode": "none",
-      "documentation": "Mapping group for dispense information transformation"
+      "documentation": "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense"
     }
   ],
   "status": "draft",
