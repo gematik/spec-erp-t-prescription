@@ -245,7 +245,7 @@
       },
       {
         "reference": {
-          "reference": "MedicationDispense/Src-GEM-MedicationDispense"
+          "reference": "MedicationDispense/GEM-MedicationDispense"
         },
         "name": "Example Medication Dispense",
         "description": "Example of a Medication Dispense.",
@@ -284,11 +284,25 @@
       },
       {
         "reference": {
+          "reference": "Bundle/KBV-TRP-Bundle"
+        },
+        "name": "KBV-TRP-Bundle",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
           "reference": "StructureDefinition/erp-tprescription-carbon-copy-logical"
         },
         "name": "Logisches Modell digitaler Durchschlag E-T-Rezept",
         "description": "Logical Model zur Abbildung der im digitalen Durchschlag E-T-Rezept erforderlichen fachlichen Informationen.",
         "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Bundle/Mapping-Bundle"
+        },
+        "name": "Mapping-Bundle",
+        "exampleBoolean": true
       },
       {
         "reference": {
@@ -299,9 +313,16 @@
       },
       {
         "reference": {
-          "reference": "Bundle/SRC-KBV-TRP-Bundle"
+          "reference": "Task/TaskInClosedState"
         },
-        "name": "SRC-KBV-TRP-Bundle",
+        "name": "Task finished by pharmacy via $close operation",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Bundle/VZD-SearchSet-Bundle"
+        },
+        "name": "VZD-SearchSet-Bundle",
         "exampleBoolean": true
       }
     ],

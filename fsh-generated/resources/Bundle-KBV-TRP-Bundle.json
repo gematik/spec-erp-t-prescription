@@ -1,6 +1,6 @@
 {
   "resourceType": "Bundle",
-  "id": "SRC-KBV-TRP-Bundle",
+  "id": "KBV-TRP-Bundle",
   "meta": {
     "profile": [
       "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.4"

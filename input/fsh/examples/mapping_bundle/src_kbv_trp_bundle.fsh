@@ -1,4 +1,4 @@
-Instance: SRC-KBV-TRP-Bundle
+Instance: KBV-TRP-Bundle
 InstanceOf: Bundle
 Usage: #example
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"

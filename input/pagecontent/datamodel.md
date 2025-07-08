@@ -19,7 +19,7 @@ Folgende Profile und Artefakte sind grundlegend für die Erstellung des digitale
 Die Zielartefakte enthalten jeweils Beschreibungen und Definitionen zur Bedeutung der Felder.
 Konkrete Informationen und Vorgaben und Hinweise zum Mapping werden in [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlag-e-t-rezept) beschrieben.
 
-Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./trezept.html#einzelne-mappings).
+Eine Übersicht der Quell- und Zielartefakte inklusive anzuwendender StructureMap finden sich unter [Einzelne Mappings](./trezept.html#anwendung-der-structuremap).
 
 ## Designentscheidung zur restriktiven Datenmodellierung
 

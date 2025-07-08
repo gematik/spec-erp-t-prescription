@@ -1,4 +1,4 @@
-Instance: Src-GEM-MedicationDispense
+Instance: GEM-MedicationDispense
 InstanceOf: GEM_ERP_PR_MedicationDispense
 Usage: #example
 Title: "Example Medication Dispense"
