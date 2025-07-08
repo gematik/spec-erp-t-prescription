@@ -50,8 +50,6 @@ paths:
             description: Die Anfrage-Nachricht war fehlerhaft aufgebaut.
             content:
               application/json:
-                schema:
-                  $ref: '#/components/schemas/OperationOutcome'
                 examples:
                   invalidRequest:
                     $ref: '#/components/examples/OperationOutcomeExample'
@@ -71,7 +69,7 @@ paths:
             description: Der Client hat zu viele Anfragen in einem bestimmten Zeitraum gesendet.
           '500':
             description: Unerwarteter Serverfehler.
-            
+
 components:
   securitySchemes:
     OAuth2ClientCredentials:
@@ -80,34 +78,6 @@ components:
         clientCredentials:
           tokenUrl: https://webapps-public.bfarm.de/ords/rezepte/oauth/token
           scopes: {}
-  schemas:
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-        id:
-          type: string
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              details:
-                type: object
-                properties:
-                  text:
-                    type: string
-              expression:
-                type: array
-                items:
-                  type: string
-              severity:
-                type: string
-              code:
-                type: string
-              diagnostics:
-                type: string
   examples:
     OperationOutcomeExample:
       summary: Invalid request payload example
