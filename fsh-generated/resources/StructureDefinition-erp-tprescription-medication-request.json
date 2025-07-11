@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "erp-tprescription-medication-request",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request",
-  "version": "1.0.0-ballot-1",
+  "version": "1.1.0-ballot-1",
   "name": "ERP_TPrescription_MedicationRequest",
   "title": "E-T-Rezept Medication Request",
   "status": "draft",

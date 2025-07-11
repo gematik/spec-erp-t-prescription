@@ -9,7 +9,7 @@ name: ERP-T-Prescription
 title: "E-T-Rezept Datenaustausch"
 description: Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register
 status: draft # draft | active | retired | unknown
-version: 1.0.0-ballot-1
+version: 1.1.0-ballot-1
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+
 releaseLabel: ballot # ci-build, ballot, release
