@@ -86,6 +86,22 @@
     "resource": [
       {
         "reference": {
+          "reference": "Medication/ExampleMedication2-Pomalidomid-T"
+        },
+        "name": "Beispiel BfArM Medication (Abgabe) - Pomalidomid",
+        "description": "Pomalidomid Accord 1 mg",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
+          "reference": "Medication/ExampleMedication1-Pomalidomid-T"
+        },
+        "name": "Beispiel BfArM Medication (Verordnung) - Pomalidomid",
+        "description": "Pomalidomid Hartkapseln",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
           "reference": "MedicationDispense/ExampleMedicationDispense-T"
         },
         "name": "Beispiel BfArM MedicationDispense",
@@ -114,46 +130,6 @@
         },
         "name": "Beispiel digitaler Durchschlag E-T-Rezept",
         "description": "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digitalen Durchschlags abzubilden",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "MedicationDispense/GEM-MedicationDispense"
-        },
-        "name": "Beispiel Gemetik MedicationDispense",
-        "description": "Diese MedicationDispense wird von der Apotheke eingestellt, um einen Workflow zu einem E-Rezept abzuschließen.",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "Medication/ExampleMedication2-Pomalidomid-T"
-        },
-        "name": "Beispiel Medication - Pomalidomid",
-        "description": "Pomalidomid Accord 1 mg",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-      },
-      {
-        "reference": {
-          "reference": "Medication/ExampleMedication1-Pomalidomid-T"
-        },
-        "name": "Beispiel Medication - Pomalidomid",
-        "description": "Pomalidomid Hartkapseln",
-        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
-      },
-      {
-        "reference": {
-          "reference": "Medication/PomalidomidMedication"
-        },
-        "name": "Beispiel Medication Pomalidomid",
-        "description": "Diese Medication ist im Format einer Gematik Medikation und enthält Informationen zum Arzneimittel",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "Bundle/VZD-SearchSet-Bundle"
-        },
-        "name": "Beispiel VZD SearchSet Bundle",
-        "description": "Beispiel für eine Response des FHIR-VZD nach einer Suchanfrage zu Name, Telefonnummer und Adresse einer Apotheke via Telematik-ID",
         "exampleBoolean": true
       },
       {
@@ -313,14 +289,6 @@
           "reference": "Bundle/Mapping-Bundle"
         },
         "name": "Mapping-Bundle",
-        "exampleBoolean": true
-      },
-      {
-        "reference": {
-          "reference": "Task/TaskInClosedState"
-        },
-        "name": "Task im status 'completed'",
-        "description": "Dieses Beispiel bildet den Status für einen Task ab, an dem eine Apotheke den Workflow via Aufruf der $close-Operation abgeschlossen hat",
         "exampleBoolean": true
       }
     ],

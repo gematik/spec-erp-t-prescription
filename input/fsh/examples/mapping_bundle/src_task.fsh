@@ -2,7 +2,7 @@ Instance: TaskInClosedState
 InstanceOf: GEM_ERP_PR_Task
 Title: "Task im status 'completed'"
 Description: "Dieses Beispiel bildet den Status für einen Task ab, an dem eine Apotheke den Workflow via Aufruf der $close-Operation abgeschlossen hat"
-Usage: #example
+Usage: #inline
 * extension[flowType].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#166 "Flowtype für Arzneimittel nach § 3a AMVV"
 * extension[acceptDate].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AcceptDate"

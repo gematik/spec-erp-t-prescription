@@ -1,7 +1,7 @@
 Instance: GEM-MedicationDispense
 InstanceOf: GEM_ERP_PR_MedicationDispense
-Usage: #example
-Title: "Beispiel Gemetik MedicationDispense"
+Usage: #inline
+Title: "Beispiel Gematik MedicationDispense"
 Description: "Diese MedicationDispense wird von der Apotheke eingestellt, um einen Workflow zu einem E-Rezept abzuschließen."
 * identifier[prescriptionID].value = "160.100.000.000.001.39"
 * subject.identifier.system = $identifier-kvid-10
@@ -16,7 +16,7 @@ Instance: PomalidomidMedication
 InstanceOf: GEM_ERP_PR_Medication
 Title:   "Beispiel Medication Pomalidomid"
 Description: "Diese Medication ist im Format einer Gematik Medikation und enthält Informationen zum Arzneimittel"
-Usage: #example
+Usage: #inline
 // Arzneimittelkategorie
 * extension[drugCategory].valueCoding = https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs#02
 

@@ -1,12 +1,9 @@
+[ExampleMedication2-Pomalidomid-T]: Medication-ExampleMedication2-Pomalidomid-T.html
+[ExampleMedication1-Pomalidomid-T]: Medication-ExampleMedication1-Pomalidomid-T.html
 [ExampleMedicationDispense-T]: MedicationDispense-ExampleMedicationDispense-T.html
 [ExampleMedicationRequest-T]: MedicationRequest-ExampleMedicationRequest-T.html
 [ExampleOrganization-T]: Organization-ExampleOrganization-T.html
 [TRP-Carbon-Copy]: Parameters-TRP-Carbon-Copy.html
-[GEM-MedicationDispense]: MedicationDispense-GEM-MedicationDispense.html
-[ExampleMedication2-Pomalidomid-T]: Medication-ExampleMedication2-Pomalidomid-T.html
-[ExampleMedication1-Pomalidomid-T]: Medication-ExampleMedication1-Pomalidomid-T.html
-[PomalidomidMedication]: Medication-PomalidomidMedication.html
-[VZD-SearchSet-Bundle]: Bundle-VZD-SearchSet-Bundle.html
 [ERP_TPrescription_CarbonCopy]: StructureDefinition-erp-tprescription-carbon-copy.html
 [ERP_TPrescription_Medication]: StructureDefinition-erp-tprescription-medication.html
 [ERP_TPrescription_MedicationDispense]: StructureDefinition-erp-tprescription-medication-dispense.html
@@ -27,4 +24,3 @@
 [ERP-TPrescription-OperationOutcome-1]: OperationOutcome-ERP-TPrescription-OperationOutcome-1.html
 [ERP_TPrescription_CarbonCopy_Logical]: StructureDefinition-erp-tprescription-carbon-copy-logical.html
 [Mapping-Bundle]: Bundle-Mapping-Bundle.html
-[TaskInClosedState]: Task-TaskInClosedState.html

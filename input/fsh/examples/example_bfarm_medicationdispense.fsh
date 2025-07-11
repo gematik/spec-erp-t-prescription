@@ -13,7 +13,7 @@ Description: "Ein MedicationDispense für die Ausgabe von Pomalidomid mit einer 
 
 Instance: ExampleMedication2-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication
-Title: "Beispiel Medication - Pomalidomid"
+Title: "Beispiel BfArM Medication (Abgabe) - Pomalidomid"
 Description: "Pomalidomid Accord 1 mg"
 * code.text = "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
 * code = $pzn#19201712

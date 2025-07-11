@@ -20,7 +20,7 @@ Description: "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer D
 
 Instance: ExampleMedication1-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication
-Title: "Beispiel Medication - Pomalidomid"
+Title: "Beispiel BfArM Medication (Verordnung) - Pomalidomid"
 Description: "Pomalidomid Hartkapseln"
 * code.coding[+]
   * system = "http://www.whocc.no/atc"
