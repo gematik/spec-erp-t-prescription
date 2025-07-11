@@ -335,6 +335,11 @@
           "generation": "markdown"
         },
         {
+          "nameUrl": "artifacts.html",
+          "title": "Artifacts",
+          "generation": "markdown"
+        },
+        {
           "nameUrl": "bfarm-openapi.html",
           "title": "Bfarm Openapi",
           "generation": "markdown"
