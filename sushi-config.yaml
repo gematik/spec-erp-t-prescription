@@ -44,7 +44,6 @@ dependencies:
 # file name extension.  Any subproperties that are valid filenames
 # with supported extensions (e.g., .md/.xml) will be treated as
 # sub-pages.
-# TODO
 # pages:
 #   index.md:
 #     title: Einführung
@@ -79,6 +78,7 @@ dependencies:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Start: index.html
+  Inhaltsverzeichnis: toc.html
   Datenmodell: datamodel.html
   Übertragung für E-T-Rezept: trezept.html
   FHIR-Artefakte: artifacts.html

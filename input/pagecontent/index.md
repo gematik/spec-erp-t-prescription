@@ -1,6 +1,6 @@
 ## Implementation Guide: Übertragung digitaler Durchschlag T-Rezept
 
-Dieser Implementation Guide beschreibt Profile und deren Verwendung in Anwendungsfällen zum Datenaustausch zwischen der gematik und dem Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM) im Kontext E-T-Rezept.
+Dieser Implementation Guide (IG) beschreibt Profile und deren Verwendung in Anwendungsfällen zum Datenaustausch zwischen der gematik und dem Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM) im Kontext E-T-Rezept.
 
 In diesem IG wird der Anwendungsfall "[Übertragung digitaler Durchschlag T-Rezept](./trezept.html)", sowie die dazugehörigen Profile und Mappingdaten beschrieben.
 
@@ -25,7 +25,7 @@ Für Fragen und Feedback wenden Sie sich bitte an [erp-umsetzung@gematik.de](mai
 
 ### Rechtliche Hinweise
 
-Dieser Implementation Guide wird von der [gematik GmbH](https://www.gematik.de/) erstellt und verwaltet.
+Dieser IG wird von der [gematik GmbH](https://www.gematik.de/) erstellt und verwaltet.
 
 Copyright ©2025+ gematik GmbH
 

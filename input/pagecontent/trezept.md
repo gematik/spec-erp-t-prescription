@@ -2,7 +2,10 @@
 
 Nach geltenden gesetzlichen Regelungen ist dem BfArM nach Abgabe einer Verordnung eines Arzneimittels nach §3a Abs. 1 Satz 1 AMVV, also die teratogenen Wirkstoffe Lenalidomid, Pomalidomid oder Thalidomid, ein digitaler Durchschlag des E-T-Rezepts zu übermitteln.
 
-Nach Abschluss eines Workflows von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt dieses an den Webdienst des BfArM. Bei temporärer Nicht-Erreichbarkeit des BfArM wird eine zuverlässige Übertragung durch Backoff-Retry-Mechanismen gewährleistet.
+Nach Abschluss eines Workflows, durch Aufruf der $close-Operation am E-Rezept-Fachdienst seitens der Apotheke, von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt dieses an den Webdienst des BfArM. Bei temporärer Nicht-Erreichbarkeit des BfArM wird eine zuverlässige Übertragung durch Backoff-Retry-Mechanismen gewährleistet.
+
+Nach erfolgreichem Abschluss eines E-T-Rezept-Workflows — konkret durch den Aufruf der FHIR-Operation `$close` am E-Rezept-Fachdienst durch die Apotheke — generiert der E-Rezept-Fachdienst für das betroffene E-T-Rezept eine Instanz entsprechend dem Profil [Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html).
+Diese Instanz enthält alle relevanten Informationen gemäß den Vorgaben des Profils und wird automatisiert vom E-Rezept-Fachdienst an den dafür vorgesehenen Webservice des BfArM asynchron zum Aufruf der $close-Operation übertragen.
 
 Hintergründe zum Datenmodell und zu den Designentscheidungen finden sich unter [Informationen zum Datenmodell](./datamodel.html).
 
@@ -94,7 +97,7 @@ Die folgenden Beispiele können als Referenz herangezogen werden:
 
 ### Übertragen des digitalen Durchschlags
 
-Nachdem der digitale Durchschlag E-T-Rezept erzeugt wurde, wird dieser RESTful über das Internet an den BfArM Webdienst übertragen. Die Übertragung erfolgt asynchron zur Abgabe in der Apotheke gegenüber dem E-Rezept-Fachdienst.
+Nachdem der digitale Durchschlag E-T-Rezept erzeugt wurde, wird dieser RESTful über das Internet an den BfArM Webdienst übertragen. 
 
 Vorgaben zur Authentifizierung des E-Rezept-Fachdienstes gegenüber dem Webdienst sind in der [Spezifikation des E-Rezept-Fachdienst](https://gemspec.gematik.de/docs/gemSpec/gemSpec_FD_eRp/latest/) beschrieben.
 
