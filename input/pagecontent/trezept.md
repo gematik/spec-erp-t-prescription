@@ -18,8 +18,8 @@ Zur Unterstützung der Implementierung stehen in diesem Projekt StructureMaps be
 
 #### Grundlegender Mapping-Ansatz
 
-- Es werden alle vorhandenen Quellinformationen in den digitalen Durchschlag übernommen, sofern sie im Zielprofil erlaubt und nicht wegprofiliert sind.
-- KBV-Extensions werden in EPA-Extensions gemappt.
+- Es werden alle vorhandenen Quellinformationen in den digitalen Durchschlag übernommen, sofern sie im Zielprofil erlaubt und nicht verboten sind.
+- KBV-Extensions werden in Extensions gemappt, die im Packge de.gematik.epa.* definiert wurden.
 - Die jeweiligen Zielprofile enthalten Mapping-Tabellen, die aufzeigen, welche Daten aus der Quelle übernommen und wie sie im Ziel abgebildet werden.
 
 #### Vorgehen zur Nutzung der StructureMaps
