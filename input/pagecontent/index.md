@@ -14,6 +14,10 @@ Bezüglich des Datenmodells ist der [digitiale Durchschlag T-Rezept](./Structure
 
 Auf der Seite [E-T-Rezept OpenAPI](./bfarm-openapi.html) ist die Open API Dokumentation des Endpunktes des BfArM T-Registers zu finden.
 
+### Abhängigkeiten
+
+{% include dependency-table.xhtml %}
+
 ### Weitere Referenzen und Dokumente
 
 - [Feature Dokument zum T-Rezept der gematik](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/)

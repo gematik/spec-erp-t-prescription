@@ -38,20 +38,37 @@ fi
 
 BUCKET_NAME="$PROD_BUCKET"
 
+# Set BUCKET_PATH based on ENVIRONMENT and validate LABEL accordingly
+
 if [ "$ENVIRONMENT" = "DEV" ]; then
   BUCKET_PATH="$DEV_BUCKET_PATH"
+  if [ "$LABEL" != "ci-build" ]; then
+    echo "❌ Error: For ENVIRONMENT 'DEV', LABEL must be 'ci-build'."
+    exit 1
+  fi
 elif [ "$ENVIRONMENT" = "BALLOT" ]; then
   if [[ "$TARGET" != *-ballot-* ]]; then
     echo "❌ Error: For ENVIRONMENT 'BALLOT', the variable TARGET must contain '-ballot-'."
     exit 1
   fi
   BUCKET_PATH="$BALLOT_BUCKET_PATH"
+  if [ "$LABEL" != "ballot" ]; then
+    echo "❌ Error: For ENVIRONMENT 'BALLOT', LABEL must be 'ballot'."
+    exit 1
+  fi
 elif [ "$ENVIRONMENT" = "PROD" ]; then
   BUCKET_PATH="$PROD_BUCKET_PATH"
+  if [ "$LABEL" != "release" ]; then
+    echo "❌ Error: For ENVIRONMENT 'PROD', LABEL must be 'release'."
+    exit 1
+  fi
 else
   echo "❌ Error: ENVIRONMENT must be either 'DEV', 'BALLOT' or 'PROD'."
   exit 1
 fi
+
+# At this point, BUCKET_PATH is set, and LABEL has been validated.
+
 
 echo "✅ ENVIRONMENT: ${ENVIRONMENT}"
 echo "✅ TARGET PATH: ${BUCKET_NAME}${BUCKET_PATH}/${TARGET}"

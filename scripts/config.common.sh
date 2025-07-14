@@ -2,6 +2,8 @@ SCRIPT_DIR_L="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SUSHI_CONFIG_FILE="$SCRIPT_DIR_L/../sushi-config.yaml"
 
 TARGET=$(yq '.version' "$SUSHI_CONFIG_FILE")
+LABEL=$(yq '.releaseLabel' "$SUSHI_CONFIG_FILE")
+
 PUBLISH_URL=https://gematik.de/fhir/erp-t-prescription/$TARGET
 PREV="" # Leave empty to skip moving
 

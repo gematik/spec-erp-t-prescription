@@ -331,7 +331,7 @@
       },
       {
         "code": "releaselabel",
-        "value": "ballot"
+        "value": "ci-build"
       },
       {
         "code": "path-pages",
