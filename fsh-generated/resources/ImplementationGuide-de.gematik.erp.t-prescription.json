@@ -169,7 +169,7 @@
           "reference": "StructureDefinition/erp-tprescription-organization"
         },
         "name": "E-T-Rezept Organization",
-        "description": "Angaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
+        "description": "Angaben zur Apotheke, die das T-Rezept beliefert hat.",
         "exampleBoolean": false
       },
       {

@@ -21,7 +21,7 @@ paths:
     post:
         tags:
           - T-Register
-        summary: Bereitstellung Digitaler Durchschlag E-T-Rezept
+        summary: Bereitstellung digitaler Durchschlag E-T-Rezept
         description: Bereitstellen eines digitalen Durchschlags eines E-T-Rezept für das T-Register des BfArM
         parameters:
         - name: X-Request-ID

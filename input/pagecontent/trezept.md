@@ -2,16 +2,13 @@
 
 Nach geltenden gesetzlichen Regelungen ist dem BfArM nach Abgabe einer Verordnung eines Arzneimittels nach §3a Abs. 1 Satz 1 AMVV, also die teratogenen Wirkstoffe Lenalidomid, Pomalidomid oder Thalidomid, ein digitaler Durchschlag des E-T-Rezepts zu übermitteln.
 
-Nach Abschluss eines Workflows, durch Aufruf der $close-Operation am E-Rezept-Fachdienst seitens der Apotheke, von einem E-T-Rezept erstellt der E-Rezept-Fachdienst ein Dokument nach [Profil Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt dieses an den Webdienst des BfArM. Bei temporärer Nicht-Erreichbarkeit des BfArM wird eine zuverlässige Übertragung durch Backoff-Retry-Mechanismen gewährleistet.
-
-Nach erfolgreichem Abschluss eines E-T-Rezept-Workflows — konkret durch den Aufruf der FHIR-Operation `$close` am E-Rezept-Fachdienst durch die Apotheke — generiert der E-Rezept-Fachdienst für das betroffene E-T-Rezept eine Instanz entsprechend dem Profil [Digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html).
-Diese Instanz enthält alle relevanten Informationen gemäß den Vorgaben des Profils und wird automatisiert vom E-Rezept-Fachdienst an den dafür vorgesehenen Webservice des BfArM asynchron zum Aufruf der $close-Operation übertragen.
+Nach erfolgreichem Abschluss eines E-T-Rezept-Workflows – konkret durch den Aufruf der FHIR-Operation `$close` am E-Rezept-Fachdienst durch die Apotheke – erstellt der E-Rezept-Fachdienst für das betroffene E-T-Rezept ein Dokument gemäß dem Profil [digitaler Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) und überträgt dieses automatisiert und asynchron an den Webdienst des BfArM. Bei einer temporären Nicht-Erreichbarkeit des BfArM wird die zuverlässige Übertragung durch Backoff-Retry-Mechanismen sichergestellt.
 
 Hintergründe zum Datenmodell und zu den Designentscheidungen finden sich unter [Informationen zum Datenmodell](./datamodel.html).
 
-### Erstellen des Digitalen Durchschlags
+### Erstellen des digitalen Durchschlags
 
-Der E-Rezept-Fachdienst erstellt ein Artefakt mit dem Profil „Digitaler Durchschlag T-Rezept“. Dabei werden Informationen aus der Verordnung, der Dispensierung (Abgabe) und dem FHIR-VZD (Verzeichnisdienst) genutzt. Die fachlichen Inhalte, die hierbei übertragen werden, sind im [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet.
+Der E-Rezept-Fachdienst erstellt ein Artefakt mit dem Profil „digitaler Durchschlag T-Rezept“. Dabei werden Informationen aus der Verordnung, der Dispensierung (Abgabe) und dem FHIR-VZD (Verzeichnisdienst) genutzt. Die fachlichen Inhalte, die hierbei übertragen werden, sind im [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet.
 
 Der E-Rezept-Fachdienst erzeugt diesen Datensatz aus den Eingangsdaten, die nach abschliessender Bereitstellung der Dispensierinformation im E-Rezept-Workflows zur Verfügung stehen. Der relevante Workflow-Typ ist der [Flowtype 166](https://simplifier.net/erezept-workflow/gem-erp-cs-flowtype) („Flowtype für Arzneimittel nach § 3a AMVV“), der speziell für diesen Anwendungsfall eingeführt wurde.
 

@@ -7,7 +7,7 @@
   "title": "E-T-Rezept Organization",
   "status": "draft",
   "date": "2025-07-07",
-  "description": "Angaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt.",
+  "description": "Angaben zur Apotheke, die das T-Rezept beliefert hat.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

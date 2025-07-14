@@ -4,7 +4,7 @@ Dieses Projekt listet diverse Artefakte auf, die helfen sollen den Anwendungsfal
 
 ### Fachliches Modell
 
-Das fachliche Modell dafür, welche Informationen übertragen werden, sind in [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet. Diese sind ebenfalls im von der gematik veröffentlichten Feature Dokument [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) angegeben.
+Das fachliche Modell dafür, welche Informationen übertragen werden, sind in [Logisches Modell digitaler Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy-logical.html) abgebildet. Die zu übertragenden Informationen sind ebenfalls im von der gematik veröffentlichten Feature Dokument [gemF_eRp_T-Rezept](https://gemspec.gematik.de/docs/gemF/gemF_eRp_T-Rezept/latest/#5.7.2) angegeben.
 
 Dieses Logical Model soll dafür Verständnis schaffen, welche Informationen vom E-Rezept-Fachdienst an den BfArM Webdienst übertragen werden.
 
@@ -17,9 +17,9 @@ Aus diesen grundlegenden Daten wird dann ein Artefakt, der digitale Durchschlag 
 
 ### Profile
 
-Weiterhin stellt dieses Projekt Profile bereit, welche darüber informieren, wie das zu erwartende Datenmodell an den jeweiligen Schnittstellen aussehen muss.
+Darüber hinaus definiert dieses Projekt FHIR-Profile, die die Datenstrukturen beschreiben, die an den Schnittstellen übertragen werden.
 
-Der [digitale Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) ist die Klammernde Ressourcendefinition, die an das BfArM übertragen wird. Darin enthalten sind die folgenden Strukturen:
+Der [digitale Durchschlag E-T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) ist die klammernde Ressource, die an das BfArM übertragen wird. Darin enthalten sind die folgenden Strukturen:
 
 {% capture profiles %}
 StructureDefinition/erp-tprescription-medication-dispense,

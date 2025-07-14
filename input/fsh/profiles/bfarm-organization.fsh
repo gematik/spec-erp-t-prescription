@@ -2,7 +2,7 @@ Profile: ERP_TPrescription_Organization
 Parent: TIOrganization
 Id: erp-tprescription-organization
 Title: "E-T-Rezept Organization"
-Description: "Angaben zu einer Apotheke, die der E-Rezept Fachdienst für das T-Register bereitstellt."
+Description: "Angaben zur Apotheke, die das T-Rezept beliefert hat."
 * insert Profile(erp-tprescription-organization)
 
 * telecom MS
