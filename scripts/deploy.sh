@@ -36,14 +36,17 @@ else
   gcloud auth login
 fi
 
+BUCKET_NAME="$PROD_BUCKET"
+
 if [ "$ENVIRONMENT" = "DEV" ]; then
-  BUCKET_NAME="$DEV_BUCKET"
   BUCKET_PATH="$DEV_BUCKET_PATH"
 elif [ "$ENVIRONMENT" = "BALLOT" ]; then
-  BUCKET_NAME="$BALLOT_BUCKET"
+  if [[ "$TARGET" != *-ballot-* ]]; then
+    echo "❌ Error: For ENVIRONMENT 'BALLOT', the variable TARGET must contain '-ballot-'."
+    exit 1
+  fi
   BUCKET_PATH="$BALLOT_BUCKET_PATH"
 elif [ "$ENVIRONMENT" = "PROD" ]; then
-  BUCKET_NAME="$PROD_BUCKET"
   BUCKET_PATH="$PROD_BUCKET_PATH"
 else
   echo "❌ Error: ENVIRONMENT must be either 'DEV', 'BALLOT' or 'PROD'."
