@@ -25,7 +25,7 @@ Description: "Pomalidomid Hartkapseln"
 * code.coding[+]
   * system = "http://www.whocc.no/atc"
   * code = #L04AX06
-  * display = "Pomalidomid"
+  * display = "pomalidomide"
 * form.coding[+]
   * system = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM
   * code = #HKP

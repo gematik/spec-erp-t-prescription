@@ -59,7 +59,7 @@
         ],
         "insurance": [
           {
-            "reference": "e51239e1-ba74-48e0-97fb-9754d2b05c60"
+            "reference": "Coverage/e51239e1-ba74-48e0-97fb-9754d2b05c60"
           }
         ],
         "extension": [
@@ -119,11 +119,11 @@
         ],
         "intent": "order",
         "subject": {
-          "reference": "30635f5d-c233-4500-94e8-6414940236aa"
+          "reference": "Patient/30635f5d-c233-4500-94e8-6414940236aa"
         },
         "authoredOn": "2025-05-20",
         "requester": {
-          "reference": "0c4e1a54-8a42-4d3d-a12c-0bbf2db48570"
+          "reference": "Practitioner/0c4e1a54-8a42-4d3d-a12c-0bbf2db48570"
         },
         "medicationReference": {
           "reference": "Medication/KBV-TRP-Medication"
@@ -228,7 +228,7 @@
         "id": "GEM-MedicationDispense",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6"
           ]
         },
         "identifier": [
@@ -267,7 +267,7 @@
         "id": "PomalidomidMedication",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6"
           ]
         },
         "extension": [
@@ -330,7 +330,7 @@
         "id": "TaskInClosedState",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.5"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.6"
           ]
         },
         "extension": [
@@ -390,7 +390,7 @@
               ]
             },
             "valueReference": {
-              "reference": "281a985c-f25b-4aae-91a6-41ad744080b0"
+              "reference": "Binary/281a985c-f25b-4aae-91a6-41ad744080b0"
             }
           },
           {
@@ -404,7 +404,7 @@
               ]
             },
             "valueReference": {
-              "reference": "f8c2298f-7c00-4a68-af29-8a2862d55d43"
+              "reference": "Bundle/f8c2298f-7c00-4a68-af29-8a2862d55d43"
             }
           }
         ],
@@ -420,7 +420,7 @@
               ]
             },
             "valueReference": {
-              "reference": "dffbfd6a-5712-4798-bdc8-07201eb77ab8"
+              "reference": "Bundle/dffbfd6a-5712-4798-bdc8-07201eb77ab8"
             }
           }
         ],

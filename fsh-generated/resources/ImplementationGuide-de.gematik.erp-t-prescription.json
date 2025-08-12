@@ -59,7 +59,7 @@
     },
     {
       "packageId": "de.gematik.erezept-workflow.r4",
-      "version": "1.5.2",
+      "version": "1.6.0-ballot1",
       "uri": "http://fhir.org/packages/de.gematik.erezept-workflow.r4/ImplementationGuide/de.gematik.erezept-workflow.r4",
       "id": "de_gematik_erezept_workflow_r4"
     },
@@ -332,6 +332,22 @@
       {
         "code": "releaselabel",
         "value": "ballot"
+      },
+      {
+        "code": "bundle-references-resolve",
+        "value": "false"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Medication/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "MedicationRequest/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Bundle/*"
       },
       {
         "code": "path-pages",

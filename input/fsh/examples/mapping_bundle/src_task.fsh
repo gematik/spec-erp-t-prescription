@@ -21,8 +21,8 @@ Usage: #inline
 * for.identifier.value = "X123456789"
 * insert DateTimeStampPlus1Hr(lastModified)
 * input[ePrescription].type.coding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType#1 "Health Care Provider Prescription"
-* input[ePrescription].valueReference.reference = "281a985c-f25b-4aae-91a6-41ad744080b0"
+* input[ePrescription].valueReference.reference = "Binary/281a985c-f25b-4aae-91a6-41ad744080b0"
 * input[patientReceipt].type.coding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType#2 "Patient Confirmation"
-* input[patientReceipt].valueReference.reference = "f8c2298f-7c00-4a68-af29-8a2862d55d43"
+* input[patientReceipt].valueReference.reference = "Bundle/f8c2298f-7c00-4a68-af29-8a2862d55d43"
 * output[receipt].type.coding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType#3 "Receipt"
-* output[receipt].valueReference.reference = "dffbfd6a-5712-4798-bdc8-07201eb77ab8"
+* output[receipt].valueReference.reference = "Bundle/dffbfd6a-5712-4798-bdc8-07201eb77ab8"

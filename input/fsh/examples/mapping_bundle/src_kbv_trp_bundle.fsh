@@ -15,8 +15,8 @@ Usage: #inline
 * dosageInstruction.extension.valueCoding = $KBV_CS_ERP_Dosage_Category#DAILY_FOUR_SCHEME
 * dosageInstruction.extension.url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageCategory"
 * intent = #order
-* insurance = Reference(e51239e1-ba74-48e0-97fb-9754d2b05c60)
-* subject = Reference(30635f5d-c233-4500-94e8-6414940236aa)
+* insurance = Reference(Coverage/e51239e1-ba74-48e0-97fb-9754d2b05c60)
+* subject = Reference(Patient/30635f5d-c233-4500-94e8-6414940236aa)
 * authoredOn = "2025-05-20"
 * extension[0].valueCoding = $KBV_CS_FOR_StatusCoPayment#1
 * extension[=].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment"
@@ -40,7 +40,7 @@ Usage: #inline
 * extension[=].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
 * extension[+].valueBoolean = true
 * extension[=].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag"
-* requester = Reference(0c4e1a54-8a42-4d3d-a12c-0bbf2db48570)
+* requester = Reference(Practitioner/0c4e1a54-8a42-4d3d-a12c-0bbf2db48570)
 * medicationReference = Reference(KBV-TRP-Medication)
 * status = #active
 
