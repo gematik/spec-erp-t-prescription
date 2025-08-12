@@ -1,7 +1,7 @@
 {
   "resourceType": "ImplementationGuide",
-  "id": "de.gematik.erp.t-prescription",
-  "url": "https://gematik.de/fhir/erp-t-prescription/ImplementationGuide/de.gematik.erp.t-prescription",
+  "id": "de.gematik.erp-t-prescription",
+  "url": "https://gematik.de/fhir/erp-t-prescription/ImplementationGuide/de.gematik.erp-t-prescription",
   "version": "1.1.0-ballot-1",
   "name": "ERPTPrescription",
   "title": "E-T-Rezept Datenaustausch",
@@ -34,7 +34,7 @@
       ]
     }
   ],
-  "packageId": "de.gematik.erp.t-prescription",
+  "packageId": "de.gematik.erp-t-prescription",
   "fhirVersion": [
     "4.0.1"
   ],
