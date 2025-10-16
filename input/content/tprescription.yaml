@@ -10,6 +10,8 @@ info:
   description: API des BfArM zur elektronsichen Bereitstellung von Daten aus der TI
 
 tags:
+  - name: OAuth
+    description: OAuth2 Authentication Endpoints
   - name: T-Register
     description: Endpunkte zur Bereitstellung von digitalen Durchschlägen zum E-T-Rezept
 
@@ -17,6 +19,78 @@ security:
   - OAuth2ClientCredentials: []
 
 paths:
+  /ords/rezepte/oauth/token:
+    post:
+      tags:
+        - OAuth
+      summary: OAuth2 Token Endpoint
+      description: Endpoint to obtain an access token using OAuth2 client credentials flow
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: Basic authentication header with base64 encoded client_id:client_secret
+          schema:
+            type: string
+            example: "Basic VEVXVFZGa0NEdpBSMGJRdEFScjE1dzBg...="
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - client_credentials
+                  description: The OAuth2 grant type
+      responses:
+        '200':
+          description: Token successfully issued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: The access token
+                  token_type:
+                    type: string
+                    example: Bearer
+                    description: The token type
+                  expires_in:
+                    type: integer
+                    description: Token lifetime in seconds
+        '400':
+          description: Invalid request (e.g., unsupported grant type)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_request
+                  error_description:
+                    type: string
+                    example: Invalid grant type
+        '401':
+          description: Invalid client credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_client
+                  error_description:
+                    type: string
+                    example: Invalid client credentials
   /ords/rezepte/t-rezept/v1:
     post:
         tags:
