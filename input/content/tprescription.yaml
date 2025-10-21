@@ -6,7 +6,7 @@ servers:
     description: Test-Schnittstelle BfArM TI Dienste
 info:
   title: API des BfArM
-  version: 1.1.0-ballot-1
+  version: 1.1.0-ballot-2
   description: API des BfArM zur elektronsichen Bereitstellung von Daten aus der TI
 
 tags:
