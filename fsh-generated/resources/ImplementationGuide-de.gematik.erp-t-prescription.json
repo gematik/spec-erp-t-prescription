@@ -318,6 +318,11 @@
           "generation": "markdown"
         },
         {
+          "nameUrl": "tests.html",
+          "title": "Tests",
+          "generation": "markdown"
+        },
+        {
           "nameUrl": "trezept.html",
           "title": "Trezept",
           "generation": "markdown"

@@ -397,6 +397,7 @@
           {
             "fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/search/HealthcareService/a4f1b52e-c5de-47eb-874c-990c2b39bb77",
             "resource": {
+              "resourceType": "HealthcareService",
               "id": "a4f1b52e-c5de-47eb-874c-990c2b39bb77",
               "meta": {
                 "versionId": "2",
@@ -478,6 +479,7 @@
           {
             "fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/search/Location/9514f96e-897d-492d-950f-aea11d6f2bb4",
             "resource": {
+              "resourceType": "Location",
               "id": "9514f96e-897d-492d-950f-aea11d6f2bb4",
               "meta": {
                 "versionId": "1",

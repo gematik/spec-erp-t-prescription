@@ -26,9 +26,11 @@ NC='\033[0m' # No Color
 
 # Directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 TEST_CASES_DIR="$SCRIPT_DIR/test-cases"
 OUTPUT_DIR="$SCRIPT_DIR/output"
 SCRIPTS_DIR="$SCRIPT_DIR/scripts"
+INCLUDES_DIR="$PROJECT_ROOT/input/includes"
 
 # Scripts
 BUILD_SCRIPT="$SCRIPTS_DIR/build-bundle.py"
@@ -87,7 +89,7 @@ for test_case_path in "${TEST_CASES[@]}"; do
     result_file="$test_output_dir/${test_case_name}-digitaler-durchschlag.json"
     
     # Step 1: Build mapping bundle
-    echo -e "\n${YELLOW}[1/2] Building mapping bundle...${NC}"
+    echo -e "${YELLOW}[1/3] Building mapping bundle...${NC}"
     if python3 "$BUILD_SCRIPT" "$test_case_path" "$test_output_dir"; then
         echo -e "${GREEN}✓ Bundle created: $bundle_file${NC}"
     else
@@ -97,9 +99,24 @@ for test_case_path in "${TEST_CASES[@]}"; do
     fi
     
     # Step 2: Transform with StructureMap
-    echo -e "\n${YELLOW}[2/2] Transforming with StructureMap...${NC}"
+    echo -e "\n${YELLOW}[2/3] Transforming with StructureMap...${NC}"
     if python3 "$TRANSFORM_SCRIPT" "$bundle_file" "$test_output_dir"; then
         echo -e "${GREEN}✓ Transformation successful: $result_file${NC}"
+        
+        # Step 3: Generate comparison report
+        echo -e "\n${YELLOW}[3/3] Generating mapping comparison report...${NC}"
+        
+        # Create includes directory if it doesn't exist
+        mkdir -p "$INCLUDES_DIR"
+        
+        # Generate report in input/includes
+        report_file="$INCLUDES_DIR/${test_case_name}-mapping-report.md"
+        if python3 "$SCRIPTS_DIR/compare-mapping.py" "$test_output_dir" "$report_file"; then
+            echo -e "${GREEN}✓ Report generated: $report_file${NC}"
+        else
+            echo -e "${YELLOW}⚠ Report generation failed (non-critical)${NC}"
+        fi
+        
         PASSED_TESTS=$((PASSED_TESTS + 1))
     else
         echo -e "${RED}✗ Transformation failed${NC}"

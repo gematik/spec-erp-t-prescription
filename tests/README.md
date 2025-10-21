@@ -8,6 +8,7 @@ The pipeline automates the process of:
 1. Creating mapping bundles from individual FHIR resources
 2. Transforming bundles using HAPI FHIR with StructureMaps
 3. Producing carbon copy outputs for validation
+4. Generating comparison reports showing field mappings
 
 ## Directory Structure
 
@@ -18,6 +19,7 @@ tests/structuremap-pipeline/
 ├── scripts/                   # Helper scripts
 │   ├── build-bundle.py        # Creates mapping bundles from resources
 │   ├── transform-bundle.py    # Runs HAPI transformation  
+│   ├── compare-mapping.py     # Generates field mapping comparison reports
 │   ├── extract-test-case.py   # Helper to extract test cases from bundles
 │   └── extract-from-bundle.py # (deprecated) Old extraction helper
 ├── test-cases/                # Test case directories
@@ -30,7 +32,8 @@ tests/structuremap-pipeline/
 └── output/                    # Generated files (per test case)
     └── example-case-01/
         ├── example-case-01-mapping-bundle.json
-        └── example-case-01-digitaler-durchschlag.json
+        ├── example-case-01-digitaler-durchschlag.json
+        └── example-case-01-mapping-report.md
 ```
 
 ## Quick Start
@@ -236,6 +239,67 @@ Add to your GitHub Actions workflow:
 ## Examples
 
 The `test-cases/example-case-01/` directory will be populated with example resources that you can use as a template for creating new test cases.
+
+## Understanding Mapping Reports
+
+After each successful transformation, a mapping comparison report is automatically generated at:
+```
+tests/output/<test-case-name>/<test-case-name>-mapping-report.md
+```
+
+### Report Contents
+
+The report provides:
+
+1. **Overall Statistics**
+   - Total source fields analyzed
+   - Overall mapping coverage percentage
+   - Number of mapped/unmapped fields
+   - New fields created by transformation
+
+2. **Per-Resource Analysis**
+   - Which source fields were successfully mapped
+   - Which source fields were not mapped (lost in transformation)
+   - Which fields were newly created in the target
+
+3. **Field-Level Details**
+   - Expandable sections for mapped, unmapped, and new fields
+   - Dot-notation field paths for easy identification
+   - Status indicators (✅ Mapped, ⚠️ Not mapped, 🆕 Created)
+
+### Example Report Structure
+
+```markdown
+### MedicationRequest
+#### Source: `MedicationRequest/abc-123`
+**Target:** `rxPrescription.medicationRequest:MedicationRequest`
+**Coverage:** 75.0% (30/40 fields mapped)
+
+<details>
+<summary>✅ Mapped Fields (30)</summary>
+| Field Path | Status |
+|------------|--------|
+| `status` | ✅ Mapped |
+| `intent` | ✅ Mapped |
+...
+</details>
+```
+
+### Using Reports for Validation
+
+- **High unmapped percentage?** Review StructureMap logic for missing mappings
+- **Unexpected new fields?** Check transformation rules for unwanted data creation
+- **Missing critical fields?** Verify source data contains expected values
+
+### Manual Report Generation
+
+To generate a report for a specific test case manually:
+
+```bash
+python3 tests/scripts/compare-mapping.py \
+  tests/output/example-case-01 \
+  tests/output/example-case-01/custom-report.md
+```
 
 ## Troubleshooting
 

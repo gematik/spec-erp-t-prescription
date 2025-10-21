@@ -303,15 +303,32 @@ def xml_element_to_dict(element, ns) -> Dict[str, Any]:
         # Return the parsed child resource directly
         return xml_element_to_dict(list(element)[0], ns)
     
-    # Handle root resource type
-    if tag in ['Bundle', 'Parameters', 'Task', 'MedicationRequest', 'Medication', 
-               'MedicationDispense', 'Organization', 'Patient', 'Practitioner', 'Coverage', 'Composition']:
-        result = {'resourceType': tag}
+    # Check if this is a FHIR resource (has xmlns or is capitalized)
+    is_fhir_resource = (
+        element.tag.startswith('{http://hl7.org/fhir}') or 
+        (tag[0].isupper() if tag else False)
+    )
+    
+    # Handle root resource type - add resourceType for all FHIR resources
+    if is_fhir_resource and len(element) > 0:  # Has children, likely a resource
+        # Common FHIR resource types
+        resource_types = [
+            'Bundle', 'Parameters', 'Task', 'MedicationRequest', 'Medication', 
+            'MedicationDispense', 'Organization', 'Patient', 'Practitioner', 
+            'Coverage', 'Composition', 'HealthcareService', 'PractitionerRole',
+            'Location', 'Endpoint', 'Device', 'Observation', 'Condition',
+            'Procedure', 'Immunization', 'AllergyIntolerance', 'CarePlan'
+        ]
         
-        # Get id attribute if present
-        id_attr = element.get('id')
-        if id_attr:
-            result['id'] = id_attr
+        if tag in resource_types or tag[0].isupper():
+            result = {'resourceType': tag}
+            
+            # Get id attribute if present
+            id_attr = element.get('id')
+            if id_attr:
+                result['id'] = id_attr
+        else:
+            result = {}
     else:
         result = {}
     

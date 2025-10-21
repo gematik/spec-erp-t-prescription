@@ -82,6 +82,7 @@ menu:
   Datenmodell: datamodel.html
   Übertragung für E-T-Rezept: trezept.html
   FHIR-Artefakte: artifacts.html
+  Tests: tests.html
   OpenAPI: bfarm-openapi.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
