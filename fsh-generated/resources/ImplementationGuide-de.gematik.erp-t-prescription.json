@@ -318,6 +318,21 @@
           "generation": "markdown"
         },
         {
+          "nameUrl": "test-case-01.html",
+          "title": "Test Case 01",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "test-case-02.html",
+          "title": "Test Case 02",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "test-case-03.html",
+          "title": "Test Case 03",
+          "generation": "markdown"
+        },
+        {
           "nameUrl": "tests.html",
           "title": "Tests",
           "generation": "markdown"
