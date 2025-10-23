@@ -1,7 +1,5 @@
 # StructureMap Transformation Report
 
-**Test Case:** `example-case-01`  
-**Date:** 1761047888.0137649  
 
 ## Summary
 

@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Error handling: The script will terminate on error.
 set -e
 
-. "$(dirname "$0")/config.common.sh"
+. "$(dirname "$0")/config.sh"
 
 # Check MODE
 if [ -z "$ENVIRONMENT" ]; then
@@ -39,16 +39,19 @@ fi
 BUCKET_NAME="$PROD_BUCKET"
 
 # Set BUCKET_PATH based on ENVIRONMENT and validate LABEL accordingly
-
 if [ "$ENVIRONMENT" = "DEV" ]; then
   BUCKET_PATH="$DEV_BUCKET_PATH"
   if [ "$LABEL" != "ci-build" ]; then
     echo "❌ Error: For ENVIRONMENT 'DEV', LABEL must be 'ci-build'."
     exit 1
   fi
+  if [[ ! "$TARGET" =~ -draft$ ]]; then
+    echo "❌ Error: For ENVIRONMENT 'DEV', TARGET must end with '-draft'."
+    exit 1
+  fi
 elif [ "$ENVIRONMENT" = "BALLOT" ]; then
-  if [[ "$TARGET" != *-ballot-* ]]; then
-    echo "❌ Error: For ENVIRONMENT 'BALLOT', the variable TARGET must contain '-ballot-'."
+  if [[ ! "$TARGET" =~ -ballot[0-9]+$ ]]; then
+    echo "❌ Error: TARGET must end with '-ballot' followed by a number (e.g., -ballot1)."
     exit 1
   fi
   BUCKET_PATH="$BALLOT_BUCKET_PATH"
@@ -60,6 +63,10 @@ elif [ "$ENVIRONMENT" = "PROD" ]; then
   BUCKET_PATH="$PROD_BUCKET_PATH"
   if [ "$LABEL" != "release" ]; then
     echo "❌ Error: For ENVIRONMENT 'PROD', LABEL must be 'release'."
+    exit 1
+  fi
+  if [[ ! "$TARGET" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "❌ Error: For ENVIRONMENT 'PROD', TARGET must be a SemVer string like 'x.y.z' with nothing after 'z'."
     exit 1
   fi
 else
@@ -77,6 +84,8 @@ if [ -n "$PREV" ]; then
 fi
 
 echo "✅ PUBLISH_URL: ${PUBLISH_URL}"
+
+# TODO Add Simplifier cli
 
 "$SCRIPT_DIR/build-ig.sh"
  
@@ -96,3 +105,5 @@ fi
 echo "Uploading new version to TARGET: ${TARGET}"
 # gcloud storage cp --recursive --cache-control="no-cache" ./output/ gs://$BUCKET_NAME$BUCKET_PATH/$TARGET
 gsutil -m -h "Cache-Control:no-cache" cp -r ./output/* gs://$BUCKET_NAME$BUCKET_PATH/$TARGET/
+
+echo "Successfully published on https://gemspec.gematik.de${BUCKET_PATH}/${TARGET}"

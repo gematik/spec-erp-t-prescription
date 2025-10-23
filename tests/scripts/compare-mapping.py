@@ -366,8 +366,6 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
     md = []
     md.append(f"# StructureMap Transformation Report")
     md.append(f"")
-    md.append(f"**Test Case:** `{test_case_name}`  ")
-    md.append(f"**Date:** {Path(dd_path).stat().st_mtime}  ")
     md.append(f"")
     md.append(f"## Summary")
     md.append(f"")
