@@ -38,6 +38,39 @@ def create_bundle_entry(resource: Dict[str, Any], full_url: str) -> Dict[str, An
     }
 
 
+def normalize_references(resource: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Normalize all references in a resource to use urn:uuid format.
+    Converts references like "Medication/abc-123" to "urn:uuid:abc-123"
+    """
+    def normalize_value(obj: Any) -> Any:
+        if isinstance(obj, dict):
+            result = {}
+            for key, value in obj.items():
+                if key == "reference" and isinstance(value, str):
+                    # Convert relative references to urn:uuid format
+                    # e.g., "Medication/abc-123" -> "urn:uuid:abc-123"
+                    if not value.startswith(("http://", "https://", "urn:", "#")):
+                        if "/" in value:
+                            # Extract ID from "ResourceType/id" format
+                            resource_id = value.split("/")[-1]
+                            result[key] = f"urn:uuid:{resource_id}"
+                        else:
+                            # Already just an ID
+                            result[key] = f"urn:uuid:{value}"
+                    else:
+                        result[key] = value
+                else:
+                    result[key] = normalize_value(value)
+            return result
+        elif isinstance(obj, list):
+            return [normalize_value(item) for item in obj]
+        else:
+            return obj
+    
+    return normalize_value(resource)
+
+
 def load_xml_file(filepath: Path) -> Dict[str, Any]:
     """Load and parse an XML file, converting to dict representation."""
     import xml.etree.ElementTree as ET
@@ -104,7 +137,8 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         "entry": []
     }
     
-    base_url = "https://erp-t-prescription-test.de"
+    # Use urn:uuid format for all references to maintain consistency
+    # This matches how MedicationDispense references its medication
     
     # Extract from KBV Bundle (try both JSON and XML)
     kbv_bundle_json = test_case_dir / "KBV_Bundle.json"
@@ -116,13 +150,15 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         prescription, medication = extract_from_kbv_bundle(kbv_bundle)
         
         if prescription:
+            prescription = normalize_references(prescription)
             resource_id = prescription.get('id', 'KBV-Prescription')
-            full_url = f"{base_url}/MedicationRequest/{resource_id}"
+            full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(prescription, full_url))
         
         if medication:
+            medication = normalize_references(medication)
             resource_id = medication.get('id', 'KBV-Medication')
-            full_url = f"{base_url}/Medication/{resource_id}"
+            full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(medication, full_url))
     elif kbv_bundle_xml.exists():
         print(f"✓ Processing KBV_Bundle.xml")
@@ -131,13 +167,15 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
             prescription, medication = extract_from_kbv_bundle(kbv_bundle)
             
             if prescription:
+                prescription = normalize_references(prescription)
                 resource_id = prescription.get('id', 'KBV-Prescription')
-                full_url = f"{base_url}/MedicationRequest/{resource_id}"
+                full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(prescription, full_url))
             
             if medication:
+                medication = normalize_references(medication)
                 resource_id = medication.get('id', 'KBV-Medication')
-                full_url = f"{base_url}/Medication/{resource_id}"
+                full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(medication, full_url))
     else:
         print(f"⚠ Warning: KBV_Bundle.json or KBV_Bundle.xml not found")
@@ -152,13 +190,15 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         dispense, gem_medication = extract_from_dispense_parameters(dispense_params)
         
         if dispense:
+            dispense = normalize_references(dispense)
             resource_id = dispense.get('id', 'GEM-MedicationDispense')
-            full_url = f"{base_url}/MedicationDispense/{resource_id}"
+            full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(dispense, full_url))
         
         if gem_medication:
+            gem_medication = normalize_references(gem_medication)
             resource_id = gem_medication.get('id', 'GEM-Medication')
-            full_url = f"{base_url}/Medication/{resource_id}"
+            full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(gem_medication, full_url))
     elif dispense_params_xml.exists():
         print(f"✓ Processing MedicationDispense_Parameters.xml")
@@ -167,13 +207,15 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
             dispense, gem_medication = extract_from_dispense_parameters(dispense_params)
             
             if dispense:
+                dispense = normalize_references(dispense)
                 resource_id = dispense.get('id', 'GEM-MedicationDispense')
-                full_url = f"{base_url}/MedicationDispense/{resource_id}"
+                full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(dispense, full_url))
             
             if gem_medication:
+                gem_medication = normalize_references(gem_medication)
                 resource_id = gem_medication.get('id', 'GEM-Medication')
-                full_url = f"{base_url}/Medication/{resource_id}"
+                full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(gem_medication, full_url))
     else:
         print(f"⚠ Warning: MedicationDispense_Parameters.json or MedicationDispense_Parameters.xml not found")
@@ -186,7 +228,7 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         task_json = convert_xml_to_json(task_xml_path)
         if task_json:
             resource_id = task_json.get('id', 'Task')
-            full_url = f"{base_url}/Task/{resource_id}"
+            full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(task_json, full_url))
     else:
         print(f"⚠ Warning: Task.xml not found")
@@ -198,7 +240,7 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         vzd_json = convert_xml_to_json(vzd_xml_path)
         if vzd_json:
             resource_id = vzd_json.get('id', 'VZD-SearchSet')
-            full_url = f"{base_url}/Bundle/{resource_id}"
+            full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(vzd_json, full_url))
     else:
         print(f"⚠ Warning: VZDSearchSet.xml not found")
@@ -208,57 +250,13 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
 
 
 def convert_xml_to_json(xml_path: Path) -> Dict[str, Any]:
-    """Convert FHIR XML to JSON using HAPI validator."""
-    import subprocess
-    import tempfile
-    import os
+    """Convert FHIR XML to JSON using simple XML parser.
     
-    # Try to use HAPI validator to convert XML to JSON
-    hapi_jar = Path("/Users/gematik/dev/validators/current_hapi_validator.jar")
-    
-    if not hapi_jar.exists():
-        print(f"  ⚠ HAPI validator not found at {hapi_jar}")
-        print(f"  ⚠ Cannot convert XML to JSON, using fallback parser")
-        return parse_fhir_xml_simple(xml_path)
-    
-    # Get absolute path
-    xml_abs_path = xml_path.resolve()
-    
-    # Create temp directory for output
-    with tempfile.TemporaryDirectory() as tmpdir:
-        tmp_dir = Path(tmpdir)
-        
-        # HAPI validator can convert formats
-        result = subprocess.run(
-            ["java", "-jar", str(hapi_jar), str(xml_abs_path), "-version", "4.0.1", 
-             "-ig", "kbv.ita.erp", "-ig", "de.gematik.erezept-workflow.r4"],
-            capture_output=True,
-            text=True,
-            cwd=str(tmp_dir),
-            timeout=60
-        )
-        
-        # Check if a JSON file was created
-        json_files = list(tmp_dir.glob("*.json"))
-        if json_files:
-            with open(json_files[0], 'r', encoding='utf-8') as f:
-                resource = json.load(f)
-                print(f"  → Converted {resource.get('resourceType', 'Unknown')} from XML to JSON via HAPI")
-                return resource
-        
-        # If no JSON file, try parsing stdout
-        if "resourceType" in result.stdout:
-            try:
-                resource = json.loads(result.stdout)
-                print(f"  → Converted {resource.get('resourceType', 'Unknown')} from XML to JSON via HAPI")
-                return resource
-            except:
-                pass
-        
-        print(f"  ⚠ HAPI conversion failed, using fallback XML parser")
-        
-        # Fallback: try using simple parsing
-        return parse_fhir_xml_simple(xml_path)
+    Note: We use a simple parser instead of HAPI validator because HAPI is very slow
+    (loads IGs, validates, etc.) and we just need to extract resources for bundling,
+    not validate them. The actual validation happens during transformation.
+    """
+    return parse_fhir_xml_simple(xml_path)
 
 
 def parse_fhir_xml_simple(xml_path: Path) -> Dict[str, Any]:

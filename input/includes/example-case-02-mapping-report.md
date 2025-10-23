@@ -4,7 +4,7 @@
 ## Summary
 
 - **Source Resources:** 6
-- **Target Parameters:** 3
+- **Target Parameters:** 4
 
 ## Resource Mapping Details
 
@@ -12,7 +12,27 @@
 
 #### Source: `Medication/a3ccc266-b033-47cc-9361-98ec450f7db9`
 
-**Target:** ❌ No matching target resource found
+**Target:** `rxPrescription.medication:Medication` (`Medication`)  
+**Coverage:** 56.2% (9/16 fields mapped)
+
+| Source Field | Source Value | Target Field | Target Value | Status |
+|--------------|--------------|--------------|--------------|--------|
+| `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
+| `amount.numerator.unit` | Stück | `amount.numerator.unit` | Stück | ✅ |
+| `form.text` | Retardtabletten | `form.text` | Retardtabletten | ✅ |
+| `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | ✅ |
+| `ingredient.itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
+| `ingredient.strength.denominator.unit` | Stück | `ingredient[0].strength.denominator.unit` | Stück | ✅ |
+| `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
+| `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
+| `ingredient.strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
+| `amount.numerator.extension.valueString` | 21 | - | - | ⚠️ |
+| `code.coding.code` | wirkstoff | - | - | ⚠️ |
+| `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
+| `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[1].valueBoolean` | false | - | - | ⚠️ |
+| `extension[2].valueCode` | N1 | - | - | ⚠️ |
 
 ---
 

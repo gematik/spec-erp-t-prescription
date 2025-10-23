@@ -110,8 +110,8 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
               * name = "entryMedicationPrescriptionMedicationPart"
               * source[+].context = "srcEntryVar2"
               * source[=].variable = "srcEntryBundleMRMedIdVar"
-              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
-              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
+              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
+              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
               * insert createType(tgtRxPrescriptionPartMed, resource, newMedicationPrescriptionMedication, Medication)
               * documentation = "Findet die vom MedicationRequest referenzierte Medication und transformiert sie in BfArM Format"
               * rule[+]
@@ -201,8 +201,8 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
               * name = "entryMedicationDispensationMedicationPart"
               * source[+].context = "srcEntryVar2"
               * source[=].variable = "srcEntryBundleMDMedIdVar"
-              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
-              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
+              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
+              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
               * documentation = "Findet die vom MedicationDispense referenzierte Medication und transformiert sie in BfArM Format"
               * insert createType(tgtRxDispensationPartDispMed, resource, newMedicationDispensationMedication, Medication)
               * rule[+]

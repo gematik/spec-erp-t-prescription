@@ -128,7 +128,7 @@ def normalize_array_in_path(path: str, obj: Dict[str, Any]) -> str:
     return '.'.join(normalized_parts)
 
 
-def extract_resources_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+def extract_resources_from_bundle(bundle: Dict[str, Any]) -> Tuple[Dict[str, Dict[str, Any]], Dict[str, str]]:
     """
     Extract all resources from a Bundle.
     
@@ -137,9 +137,12 @@ def extract_resources_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Dict[str,
     since they map to a single target Organization.
     
     Returns:
-        Dictionary mapping resource type to list of resources
+        Tuple of:
+        - Dictionary mapping resource type to list of resources
+        - Dictionary mapping medication IDs to their context ('prescription' or 'dispensation')
     """
     resources = {}
+    medication_contexts = {}
     
     if bundle.get('resourceType') == 'Bundle' and 'entry' in bundle:
         for entry in bundle['entry']:
@@ -147,6 +150,28 @@ def extract_resources_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Dict[str,
                 resource = entry['resource']
                 resource_type = resource.get('resourceType', 'Unknown')
                 resource_id = resource.get('id', 'no-id')
+                
+                # Track medication references from MedicationRequest
+                if resource_type == 'MedicationRequest':
+                    med_ref = resource.get('medicationReference', {}).get('reference', '')
+                    if med_ref:
+                        # Extract medication ID from reference (handle urn:uuid: format)
+                        if 'urn:uuid:' in med_ref:
+                            med_id = med_ref.split('urn:uuid:')[-1]
+                        else:
+                            med_id = med_ref.split('/')[-1]
+                        medication_contexts[med_id] = 'prescription'
+                
+                # Track medication references from MedicationDispense
+                elif resource_type == 'MedicationDispense':
+                    med_ref = resource.get('medicationReference', {}).get('reference', '')
+                    if med_ref:
+                        # Extract medication ID from reference (handle urn:uuid: format)
+                        if 'urn:uuid:' in med_ref:
+                            med_id = med_ref.split('urn:uuid:')[-1]
+                        else:
+                            med_id = med_ref.split('/')[-1]
+                        medication_contexts[med_id] = 'dispensation'
                 
                 # Check if this is a VZD SearchSet Bundle (nested bundle)
                 if resource_type == 'Bundle' and resource.get('type') == 'searchset' and 'VZD' in resource_id:
@@ -181,7 +206,7 @@ def extract_resources_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Dict[str,
                     key = f"{resource_type}/{resource_id}"
                     resources[key] = resource
     
-    return resources
+    return resources, medication_contexts
 
 
 def extract_resources_from_parameters(params: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
@@ -358,8 +383,8 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
     with open(dd_path, 'r') as f:
         digitaler_durchschlag = json.load(f)
     
-    # Extract resources
-    source_resources = extract_resources_from_bundle(mapping_bundle)
+    # Extract resources and medication contexts
+    source_resources, medication_contexts = extract_resources_from_bundle(mapping_bundle)
     target_resources = extract_resources_from_parameters(digitaler_durchschlag)
     
     # Generate report
@@ -404,13 +429,8 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
             md.append(f"#### Source: `{source_key}`")
             md.append(f"")
             
-            # Find corresponding target(s)
-            # This is tricky as the mapping may transform resource types
-            # For VZD resources, look for matching Organizations in target
-            # For other resources, look for same ID or content overlap
-            
-            best_match = None
-            best_score = 0
+            # Find all corresponding targets (not just best match)
+            matches = []
             
             for target_key, target_resource in target_resources.items():
                 # Special handling for VZDComposite -> Organization mapping
@@ -419,69 +439,81 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
                     score = mapped_count / total_source if total_source > 0 else 0
+                    if score > 0:
+                        matches.append((target_key, target_resource, comparisons))
+                
+                # Special handling for Medication matching based on context
+                elif resource_type == 'Medication' and 'medication' in target_key.lower():
+                    med_context = medication_contexts.get(source_id, 'unknown')
+                    context_matches = False
+                    if 'rxPrescription.medication' in target_key and med_context == 'prescription':
+                        context_matches = True
+                    elif 'rxDispensation.medication' in target_key and med_context == 'dispensation':
+                        context_matches = True
                     
-                    if score > best_score:
-                        best_score = score
-                        best_match = (target_key, target_resource, comparisons)
+                    if context_matches:
+                        comparisons = compare_resources_with_values(source_resource, target_resource)
+                        mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
+                        total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
+                        score = mapped_count / total_source if total_source > 0 else 0
+                        if score > 0:
+                            matches.append((target_key, target_resource, comparisons))
                 
                 # Normal matching for other resources
-                elif resource_type in target_key or source_id in str(target_resource):
+                elif resource_type != 'Medication' and (resource_type in target_key or source_id in str(target_resource)):
                     comparisons = compare_resources_with_values(source_resource, target_resource)
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
-                    
                     score = mapped_count / total_source if total_source > 0 else 0
-                    
-                    if score > best_score:
-                        best_score = score
-                        best_match = (target_key, target_resource, comparisons)
+                    if score > 0:
+                        matches.append((target_key, target_resource, comparisons))
             
-            if best_match:
-                target_key, target_resource, comparisons = best_match
-                
-                mapped = [c for c in comparisons if c['status'] == 'mapped']
-                unmapped = [c for c in comparisons if c['status'] == 'unmapped']
-                new_fields = [c for c in comparisons if c['status'] == 'new']
-                
-                total_source_fields += len(mapped) + len(unmapped)
-                total_mapped_fields += len(mapped)
-                total_unmapped_fields += len(unmapped)
-                total_new_fields += len(new_fields)
-                
-                target_type = target_resource.get('resourceType', 'Unknown')
-                coverage_pct = (len(mapped) / (len(mapped) + len(unmapped)) * 100) if (len(mapped) + len(unmapped)) > 0 else 0
-                
-                md.append(f"**Target:** `{target_key}` (`{target_type}`)  ")
-                md.append(f"**Coverage:** {coverage_pct:.1f}% ({len(mapped)}/{len(mapped) + len(unmapped)} fields mapped)")
-                md.append(f"")
-                
-                # Create value comparison table
-                md.append(f"| Source Field | Source Value | Target Field | Target Value | Status |")
-                md.append(f"|--------------|--------------|--------------|--------------|--------|")
-                
-                # First show mapped fields
-                for comp in sorted(mapped, key=lambda x: x['source_path']):
-                    src_val = format_value(comp['source_value'])
-                    tgt_val = format_value(comp['target_value'])
-                    md.append(f"| `{comp['source_path']}` | {src_val} | `{comp['target_path']}` | {tgt_val} | ✅ |")
-                
-                # Then unmapped fields
-                for comp in sorted(unmapped, key=lambda x: x['source_path']):
-                    src_val = format_value(comp['source_value'])
-                    md.append(f"| `{comp['source_path']}` | {src_val} | - | - | ⚠️ |")
-                
-                # Finally new fields
-                if new_fields:
+            # Output all matches
+            if matches:
+                for target_key, target_resource, comparisons in matches:
+                    mapped = [c for c in comparisons if c['status'] == 'mapped']
+                    unmapped = [c for c in comparisons if c['status'] == 'unmapped']
+                    new_fields = [c for c in comparisons if c['status'] == 'new']
+                    
+                    total_source_fields += len(mapped) + len(unmapped)
+                    total_mapped_fields += len(mapped)
+                    total_unmapped_fields += len(unmapped)
+                    total_new_fields += len(new_fields)
+                    
+                    target_type = target_resource.get('resourceType', 'Unknown')
+                    coverage_pct = (len(mapped) / (len(mapped) + len(unmapped)) * 100) if (len(mapped) + len(unmapped)) > 0 else 0
+                    
+                    md.append(f"**Target:** `{target_key}` (`{target_type}`)  ")
+                    md.append(f"**Coverage:** {coverage_pct:.1f}% ({len(mapped)}/{len(mapped) + len(unmapped)} fields mapped)")
                     md.append(f"")
-                    md.append(f"**New fields created by transformation:**")
-                    md.append(f"")
-                    md.append(f"| Target Field | Target Value | Status |")
-                    md.append(f"|--------------|--------------|--------|")
-                    for comp in sorted(new_fields, key=lambda x: x['target_path']):
+                    
+                    # Create value comparison table
+                    md.append(f"| Source Field | Source Value | Target Field | Target Value | Status |")
+                    md.append(f"|--------------|--------------|--------------|--------------|--------|")
+                    
+                    # First show mapped fields
+                    for comp in sorted(mapped, key=lambda x: x['source_path']):
+                        src_val = format_value(comp['source_value'])
                         tgt_val = format_value(comp['target_value'])
-                        md.append(f"| `{comp['target_path']}` | {tgt_val} | 🆕 |")
-                
-                md.append(f"")
+                        md.append(f"| `{comp['source_path']}` | {src_val} | `{comp['target_path']}` | {tgt_val} | ✅ |")
+                    
+                    # Then unmapped fields
+                    for comp in sorted(unmapped, key=lambda x: x['source_path']):
+                        src_val = format_value(comp['source_value'])
+                        md.append(f"| `{comp['source_path']}` | {src_val} | - | - | ⚠️ |")
+                    
+                    # Finally new fields
+                    if new_fields:
+                        md.append(f"")
+                        md.append(f"**New fields created by transformation:**")
+                        md.append(f"")
+                        md.append(f"| Target Field | Target Value | Status |")
+                        md.append(f"|--------------|--------------|--------|")
+                        for comp in sorted(new_fields, key=lambda x: x['target_path']):
+                            tgt_val = format_value(comp['target_value'])
+                            md.append(f"| `{comp['target_path']}` | {tgt_val} | 🆕 |")
+                    
+                    md.append(f"")
             else:
                 md.append(f"**Target:** ❌ No matching target resource found")
                 md.append(f"")

@@ -302,7 +302,7 @@
                                 {
                                   "context": "srcEntryVar2",
                                   "variable": "srcEntryBundleMRMedIdVar",
-                                  "condition": "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('Medication/', '').toString())"
+                                  "condition": "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
                                 }
                               ],
                               "target": [
@@ -600,7 +600,7 @@
                                 {
                                   "context": "srcEntryVar2",
                                   "variable": "srcEntryBundleMDMedIdVar",
-                                  "condition": "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medication.reference.replace('Medication/', '').toString())"
+                                  "condition": "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
                                 }
                               ],
                               "target": [

@@ -11,6 +11,7 @@ Die folgenden Beispiele demonstrieren verschiedene Mapping-Szenarien:
 - [Beispiel 1: PZN Verordnung](test-case-01.html)
 - [Beispiel 2: Wirkstoff Verordnung](test-case-02.html)
 - [Beispiel 3: Freitext Verordnung](test-case-03.html)
+- [Beispiel 4: Absolute Referenzierung](test-case-04.html)
 
 #### Aufbau
 

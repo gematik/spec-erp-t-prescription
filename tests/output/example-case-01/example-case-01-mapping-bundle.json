@@ -3,7 +3,7 @@
   "type": "collection",
   "entry": [
     {
-      "fullUrl": "https://erp-t-prescription-test.de/MedicationRequest/7d871b93-e18c-4865-bad0-6b55196be46b",
+      "fullUrl": "urn:uuid:7d871b93-e18c-4865-bad0-6b55196be46b",
       "resource": {
         "resourceType": "MedicationRequest",
         "id": "7d871b93-e18c-4865-bad0-6b55196be46b",
@@ -70,17 +70,17 @@
         "status": "active",
         "intent": "order",
         "medicationReference": {
-          "reference": "Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f"
+          "reference": "urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f"
         },
         "subject": {
-          "reference": "Patient/30635f5d-c233-4500-94e8-6414940236aa"
+          "reference": "urn:uuid:30635f5d-c233-4500-94e8-6414940236aa"
         },
         "authoredOn": "2025-05-20",
         "requester": {
-          "reference": "Practitioner/0c4e1a54-8a42-4d3d-a12c-0bbf2db48570"
+          "reference": "urn:uuid:0c4e1a54-8a42-4d3d-a12c-0bbf2db48570"
         },
         "insurance": {
-          "reference": "Coverage/e51239e1-ba74-48e0-97fb-9754d2b05c60"
+          "reference": "urn:uuid:e51239e1-ba74-48e0-97fb-9754d2b05c60"
         },
         "dosageInstruction": {
           "timing": {
@@ -116,7 +116,7 @@
       }
     },
     {
-      "fullUrl": "https://erp-t-prescription-test.de/Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f",
+      "fullUrl": "urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f",
       "resource": {
         "resourceType": "Medication",
         "id": "a3ca01a4-92c1-422a-87d9-ef046e94527f",
@@ -192,7 +192,7 @@
       }
     },
     {
-      "fullUrl": "https://erp-t-prescription-test.de/MedicationDispense/a7e1d25f-0b0a-40f7-b529-afda48e51b46",
+      "fullUrl": "urn:uuid:a7e1d25f-0b0a-40f7-b529-afda48e51b46",
       "resource": {
         "resourceType": "MedicationDispense",
         "id": "a7e1d25f-0b0a-40f7-b529-afda48e51b46",
@@ -234,7 +234,7 @@
       }
     },
     {
-      "fullUrl": "https://erp-t-prescription-test.de/Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273",
+      "fullUrl": "urn:uuid:8e2e5e65-4c5d-49f2-8efc-c30e40838273",
       "resource": {
         "resourceType": "Medication",
         "id": "8e2e5e65-4c5d-49f2-8efc-c30e40838273",
@@ -289,7 +289,7 @@
       }
     },
     {
-      "fullUrl": "https://erp-t-prescription-test.de/Task/09330307-16ce-4cdc-810a-ca24ef80dde3",
+      "fullUrl": "urn:uuid:09330307-16ce-4cdc-810a-ca24ef80dde3",
       "resource": {
         "resourceType": "Task",
         "id": "09330307-16ce-4cdc-810a-ca24ef80dde3",
@@ -384,7 +384,7 @@
       }
     },
     {
-      "fullUrl": "https://erp-t-prescription-test.de/Bundle/VZD-SearchSet-Bundle",
+      "fullUrl": "urn:uuid:VZD-SearchSet-Bundle",
       "resource": {
         "resourceType": "Bundle",
         "id": "VZD-SearchSet-Bundle",

@@ -327,6 +327,11 @@
           "generation": "markdown"
         },
         {
+          "nameUrl": "test-case-04.html",
+          "title": "Test Case 04",
+          "generation": "markdown"
+        },
+        {
           "nameUrl": "tests.html",
           "title": "Tests",
           "generation": "markdown"
