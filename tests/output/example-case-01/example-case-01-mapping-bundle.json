@@ -502,7 +502,9 @@
                 "use": "work",
                 "type": "postal",
                 "text": "Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Großostheim&#13;&#10;Bayern&#13;&#10;DE",
-                "line": "Schwarzwaldstr. 18",
+                "line": [
+                  "Schwarzwaldstr. 18"
+                ],
                 "city": "Großostheim",
                 "state": "Bayern",
                 "postalCode": "63762",

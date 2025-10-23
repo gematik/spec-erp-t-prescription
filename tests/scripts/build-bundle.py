@@ -341,7 +341,13 @@ def xml_element_to_dict(element, ns) -> Dict[str, Any]:
     
     # Now convert each group
     for child_tag, child_elements in children_by_tag.items():
-        if len(child_elements) == 1:
+        # Special handling for fields that are always arrays in FHIR
+        always_array_fields = ['line', 'given', 'prefix', 'suffix']
+        
+        if child_tag in always_array_fields:
+            # Always create array for these fields, even with single element
+            result[child_tag] = [xml_element_to_dict(child, ns) for child in child_elements]
+        elif len(child_elements) == 1:
             # Single element - not an array
             result[child_tag] = xml_element_to_dict(child_elements[0], ns)
         else:

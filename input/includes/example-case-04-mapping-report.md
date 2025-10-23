@@ -151,12 +151,13 @@
 #### Source: `VZDComposite/VZD-SearchSet-Bundle`
 
 **Target:** `rxDispensation.organization:Organization` (`Organization`)  
-**Coverage:** 72.2% (13/18 fields mapped)
+**Coverage:** 77.8% (14/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `address.city` | Großostheim | `address[0].city` | Großostheim | ✅ |
 | `address.country` | DE | `address[0].country` | DE | ✅ |
+| `address.line[0]` | Schwarzwaldstr. 18 | `address[0].line[0]` | Schwarzwaldstr. 18 | ✅ |
 | `address.postalCode` | 63762 | `address[0].postalCode` | 63762 | ✅ |
 | `address.state` | Bayern | `address[0].state` | Bayern | ✅ |
 | `address.text` | Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Groß... | `address[0].text` | Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Groß... | ✅ |
@@ -168,7 +169,6 @@
 | `telecom.system` | phone | `telecom[0].system` | phone | ✅ |
 | `telecom.use` | work | `telecom[0].use` | work | ✅ |
 | `telecom.value` | 1234 | `telecom[0].value` | 1234 | ✅ |
-| `address.line` | Schwarzwaldstr. 18 | - | - | ⚠️ |
 | `id` | VZD-SearchSet-Bundle | - | - | ⚠️ |
 | `identifier[1].type.coding.code` | PRN | - | - | ⚠️ |
 | `identifier[1].type.coding.system` | http://terminology.hl7.org/CodeSystem/v2-0203 | - | - | ⚠️ |
