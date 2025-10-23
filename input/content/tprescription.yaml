@@ -33,6 +33,14 @@ paths:
           schema:
             type: string
             example: "Basic VEVXVFZGa0NEdpBSMGJRdEFScjE1dzBg...="
+        - name: X-Request-ID
+          in: header
+          description: A unique identifier for tracking the request.
+          required: false
+          schema:
+            type: string
+            format: uuid
+            example: "123e4567-e89b-12d3-a456-426614174000"
       requestBody:
         required: true
         content:
