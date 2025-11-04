@@ -330,6 +330,12 @@ def xml_element_to_dict(element, ns) -> Dict[str, Any]:
     else:
         result = {}
     
+    # Special handling for extension elements - preserve the url attribute
+    if tag == 'extension':
+        url_attr = element.get('url')
+        if url_attr:
+            result['url'] = url_attr
+    
     # Process child elements - GROUP BY TAG FIRST to handle arrays properly
     children_by_tag = {}
     for child in element:

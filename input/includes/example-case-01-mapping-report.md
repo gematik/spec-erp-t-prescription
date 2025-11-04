@@ -12,25 +12,19 @@
 
 #### Source: `Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f`
 
-**Target:** `rxPrescription.medication:Medication` (`Medication`)  
-**Coverage:** 59.1% (13/22 fields mapped)
+**Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
+**Coverage:** 4.2% (1/24 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
-| `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
-| `amount.numerator.unit` | Stück | `amount.numerator.unit` | Stück | ✅ |
-| `code.coding.code` | 19201712 | `code.coding[0].code` | 19201712 | ✅ |
-| `code.coding.system` | http://fhir.de/CodeSystem/ifa/pzn | `code.coding[0].system` | http://fhir.de/CodeSystem/ifa/pzn | ✅ |
-| `code.text` | Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | `code.text` | Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | ✅ |
-| `form.coding.code` | HKP | `form.coding[0].code` | HKP | ✅ |
-| `form.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | `form.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | ✅ |
-| `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
-| `ingredient.itemCodeableConcept.text` | Pomalidomid | `ingredient[0].itemCodeableConcept.text` | Pomalidomid | ✅ |
-| `ingredient.strength.denominator.unit` | Stück | `ingredient[0].strength.denominator.unit` | Stück | ✅ |
-| `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
-| `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
-| `ingredient.strength.numerator.value` | 1 | `ingredient[0].strength.numerator.value` | 1 | ✅ |
+| `extension[3].url` | http://fhir.de/StructureDefinition/normgroesse | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
+| `amount.denominator.value` | 1 | - | - | ⚠️ |
+| `amount.numerator.extension.url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `amount.numerator.extension.valueString` | 21 | - | - | ⚠️ |
+| `amount.numerator.unit` | Stück | - | - | ⚠️ |
+| `code.coding.code` | 19201712 | - | - | ⚠️ |
+| `code.coding.system` | http://fhir.de/CodeSystem/ifa/pzn | - | - | ⚠️ |
+| `code.text` | Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | - | - | ⚠️ |
 | `extension[0].valueCodeableConcept.coding.code` | 763158003 | - | - | ⚠️ |
 | `extension[0].valueCodeableConcept.coding.display` | Medicinal product (product) | - | - | ⚠️ |
 | `extension[0].valueCodeableConcept.coding.system` | http://snomed.info/sct | - | - | ⚠️ |
@@ -39,17 +33,80 @@
 | `extension[1].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[2].valueBoolean` | false | - | - | ⚠️ |
 | `extension[3].valueCode` | N1 | - | - | ⚠️ |
+| `form.coding.code` | HKP | - | - | ⚠️ |
+| `form.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | - | - | ⚠️ |
+| `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | - | - | ⚠️ |
+| `ingredient.itemCodeableConcept.text` | Pomalidomid | - | - | ⚠️ |
+| `ingredient.strength.denominator.unit` | Stück | - | - | ⚠️ |
+| `ingredient.strength.denominator.value` | 1 | - | - | ⚠️ |
+| `ingredient.strength.numerator.unit` | mg | - | - | ⚠️ |
+| `ingredient.strength.numerator.value` | 1 | - | - | ⚠️ |
+
+**New fields created by transformation:**
+
+| Target Field | Target Value | Status |
+|--------------|--------------|--------|
+| `authoredOn` | 2025-05-20 | 🆕 |
+| `dispenseRequest.expectedSupplyDuration.unit` | Woche(n) | 🆕 |
+| `dispenseRequest.expectedSupplyDuration.value` | 3 | 🆕 |
+| `dispenseRequest.quantity.unit` | Packung | 🆕 |
+| `dispenseRequest.quantity.value` | 1 | 🆕 |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.code` | 1 | 🆕 |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | 🆕 |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.unit` | Stück | 🆕 |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.value` | 1 | 🆕 |
+| `dosageInstruction[0].timing.repeat.frequency` | 1 | 🆕 |
+| `dosageInstruction[0].timing.repeat.period` | 1 | 🆕 |
+| `dosageInstruction[0].timing.repeat.periodUnit` | d | 🆕 |
+| `extension[0].extension[4].url` | ErklaerungSachkenntnis | 🆕 |
+| `extension[0].extension[4].valueBoolean` | True | 🆕 |
+| `intent` | order | 🆕 |
+| `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | 🆕 |
+| `status` | completed | 🆕 |
+| `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
+| `subject.extension[0].valueCode` | not-permitted | 🆕 |
+
+**Target:** `rxPrescription.medication:Medication` (`Medication`)  
+**Coverage:** 70.8% (17/24 fields mapped)
+
+| Source Field | Source Value | Target Field | Target Value | Status |
+|--------------|--------------|--------------|--------------|--------|
+| `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
+| `amount.numerator.extension.url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
+| `amount.numerator.extension.valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
+| `amount.numerator.unit` | Stück | `amount.numerator.unit` | Stück | ✅ |
+| `code.coding.code` | 19201712 | `code.coding[0].code` | 19201712 | ✅ |
+| `code.coding.system` | http://fhir.de/CodeSystem/ifa/pzn | `code.coding[0].system` | http://fhir.de/CodeSystem/ifa/pzn | ✅ |
+| `code.text` | Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | `code.text` | Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | ✅ |
+| `extension[3].url` | http://fhir.de/StructureDefinition/normgroesse | `extension[0].url` | http://fhir.de/StructureDefinition/normgroesse | ✅ |
+| `extension[3].valueCode` | N1 | `extension[0].valueCode` | N1 | ✅ |
+| `form.coding.code` | HKP | `form.coding[0].code` | HKP | ✅ |
+| `form.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | `form.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | ✅ |
+| `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
+| `ingredient.itemCodeableConcept.text` | Pomalidomid | `ingredient[0].itemCodeableConcept.text` | Pomalidomid | ✅ |
+| `ingredient.strength.denominator.unit` | Stück | `ingredient[0].strength.denominator.unit` | Stück | ✅ |
+| `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
+| `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
+| `ingredient.strength.numerator.value` | 1 | `ingredient[0].strength.numerator.value` | 1 | ✅ |
+| `extension[0].valueCodeableConcept.coding.code` | 763158003 | - | - | ⚠️ |
+| `extension[0].valueCodeableConcept.coding.display` | Medicinal product (product) | - | - | ⚠️ |
+| `extension[0].valueCodeableConcept.coding.system` | http://snomed.info/sct | - | - | ⚠️ |
+| `extension[0].valueCodeableConcept.coding.version` | http://snomed.info/sct/11000274103/version/2024... | - | - | ⚠️ |
+| `extension[1].valueCoding.code` | 02 | - | - | ⚠️ |
+| `extension[1].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[2].valueBoolean` | false | - | - | ⚠️ |
 
 ---
 
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
 **Target:** `rxDispensation.medication:Medication` (`Medication`)  
-**Coverage:** 93.8% (15/16 fields mapped)
+**Coverage:** 94.1% (16/17 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
+| `amount.numerator.extension.url` | https://gematik.de/fhir/epa-medication/Structur... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
 | `amount.numerator.extension.valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
 | `amount.numerator.unit` | St | `amount.numerator.unit` | St | ✅ |
 | `code.coding.code` | 19201712 | `code.coding[0].code` | 19201712 | ✅ |
@@ -104,7 +161,7 @@
 #### Source: `MedicationRequest/7d871b93-e18c-4865-bad0-6b55196be46b`
 
 **Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 53.6% (15/28 fields mapped)
+**Coverage:** 60.0% (18/30 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -120,13 +177,15 @@
 | `dosageInstruction.timing.repeat.frequency` | 1 | `dosageInstruction[0].timing.repeat.frequency` | 1 | ✅ |
 | `dosageInstruction.timing.repeat.period` | 1 | `dosageInstruction[0].timing.repeat.period` | 1 | ✅ |
 | `dosageInstruction.timing.repeat.periodUnit` | d | `dosageInstruction[0].timing.repeat.periodUnit` | d | ✅ |
+| `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | True | ✅ |
+| `extension[7].extension[1].url` | language | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
+| `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
 | `status` | active | `status` | completed | ✅ |
 | `dosageInstruction.timing.repeat.when` | EVE | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 1 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Statu... | - | - | ⚠️ |
-| `extension[4].extension[4].valueBoolean` | true | - | - | ⚠️ |
 | `extension[5].valueBoolean` | true | - | - | ⚠️ |
 | `extension[6].valueMarkdown` | 0-0-1-0 Stück | - | - | ⚠️ |
 | `extension[7].extension[0].valueString` | 1.0.0 | - | - | ⚠️ |

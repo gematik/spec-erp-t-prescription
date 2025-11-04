@@ -12,8 +12,39 @@
 
 #### Source: `Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f`
 
+**Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
+**Coverage:** 12.5% (1/8 fields mapped)
+
+| Source Field | Source Value | Target Field | Target Value | Status |
+|--------------|--------------|--------------|--------------|--------|
+| `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
+| `code.coding.code` | freitext | - | - | ⚠️ |
+| `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `code.text` | Thalidomid 50 mg Hartkapseln 28 Stück | - | - | ⚠️ |
+| `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
+| `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[1].valueBoolean` | false | - | - | ⚠️ |
+| `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | - | - | ⚠️ |
+
+**New fields created by transformation:**
+
+| Target Field | Target Value | Status |
+|--------------|--------------|--------|
+| `authoredOn` | 2025-05-20 | 🆕 |
+| `dispenseRequest.expectedSupplyDuration.unit` | Woche(n) | 🆕 |
+| `dispenseRequest.expectedSupplyDuration.value` | 9 | 🆕 |
+| `dispenseRequest.quantity.unit` | Packung | 🆕 |
+| `dispenseRequest.quantity.value` | 1 | 🆕 |
+| `extension[0].extension[4].url` | ErklaerungSachkenntnis | 🆕 |
+| `extension[0].extension[4].valueBoolean` | True | 🆕 |
+| `intent` | order | 🆕 |
+| `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | 🆕 |
+| `status` | completed | 🆕 |
+| `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
+| `subject.extension[0].valueCode` | not-permitted | 🆕 |
+
 **Target:** `rxPrescription.medication:Medication` (`Medication`)  
-**Coverage:** 28.6% (2/7 fields mapped)
+**Coverage:** 25.0% (2/8 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -23,6 +54,7 @@
 | `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[1].valueBoolean` | false | - | - | ⚠️ |
 
 ---
@@ -30,11 +62,12 @@
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
 **Target:** `rxDispensation.medication:Medication` (`Medication`)  
-**Coverage:** 93.8% (15/16 fields mapped)
+**Coverage:** 94.1% (16/17 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
+| `amount.numerator.extension.url` | https://gematik.de/fhir/epa-medication/Structur... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
 | `amount.numerator.extension.valueString` | 28 | `amount.numerator.extension[0].valueString` | 28 | ✅ |
 | `amount.numerator.unit` | St | `amount.numerator.unit` | St | ✅ |
 | `code.coding.code` | 16880629 | `code.coding[0].code` | 16880629 | ✅ |
@@ -89,7 +122,7 @@
 #### Source: `MedicationRequest/7d871b93-e18c-4865-bad0-6b55196be46b`
 
 **Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 47.1% (8/17 fields mapped)
+**Coverage:** 57.9% (11/19 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -98,12 +131,14 @@
 | `dispenseRequest.expectedSupplyDuration.value` | 9 | `dispenseRequest.expectedSupplyDuration.value` | 9 | ✅ |
 | `dispenseRequest.quantity.unit` | Packung | `dispenseRequest.quantity.unit` | Packung | ✅ |
 | `dispenseRequest.quantity.value` | 1 | `dispenseRequest.quantity.value` | 1 | ✅ |
+| `extension[4].extension[4].url` | ErklaerungSachkenntnis | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
+| `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | True | ✅ |
+| `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
 | `status` | active | `status` | completed | ✅ |
 | `extension[0].valueCoding.code` | 0 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Statu... | - | - | ⚠️ |
-| `extension[4].extension[4].valueBoolean` | true | - | - | ⚠️ |
 | `extension[5].valueBoolean` | false | - | - | ⚠️ |
 | `id` | 7d871b93-e18c-4865-bad0-6b55196be46b | - | - | ⚠️ |
 | `insurance.reference` | urn:uuid:e51239e1-ba74-48e0-97fb-9754d2b05c60 | - | - | ⚠️ |

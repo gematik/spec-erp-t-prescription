@@ -15,53 +15,69 @@
         },
         "extension": [
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment",
               "code": "1"
             }
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee",
             "valueBoolean": "false"
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
             "valueBoolean": "true"
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription",
             "extension": {
+              "url": "Kennzeichen",
               "valueBoolean": "false"
             }
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic",
             "extension": [
               {
+                "url": "Off-Label",
                 "valueBoolean": "true"
               },
               {
+                "url": "GebaerfaehigeFrau",
                 "valueBoolean": "false"
               },
               {
+                "url": "EinhaltungSicherheitsmassnahmen",
                 "valueBoolean": "true"
               },
               {
+                "url": "AushaendigungInformationsmaterialien",
                 "valueBoolean": "true"
               },
               {
+                "url": "ErklaerungSachkenntnis",
                 "valueBoolean": "true"
               }
             ]
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
             "valueBoolean": "true"
           },
           {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
             "valueMarkdown": "0-0-1-0 Stück"
           },
           {
+            "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta",
             "extension": [
               {
+                "url": "algorithmVersion",
                 "valueString": "1.0.0"
               },
               {
+                "url": "language",
                 "valueCode": "de-DE"
               }
             ]
@@ -128,6 +144,7 @@
         },
         "extension": [
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
             "valueCodeableConcept": {
               "coding": {
                 "system": "http://snomed.info/sct",
@@ -138,15 +155,18 @@
             }
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
               "code": "02"
             }
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
             "valueBoolean": "false"
           },
           {
+            "url": "http://fhir.de/StructureDefinition/normgroesse",
             "valueCode": "N1"
           }
         ],
@@ -166,6 +186,7 @@
         "amount": {
           "numerator": {
             "extension": {
+              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
               "valueString": "21"
             },
             "unit": "Stück"
@@ -260,6 +281,7 @@
         "amount": {
           "numerator": {
             "extension": {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
               "valueString": "21"
             },
             "unit": "St"
@@ -303,6 +325,7 @@
         },
         "extension": [
           {
+            "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
             "valueCoding": {
               "system": "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
               "code": "166",
@@ -310,9 +333,11 @@
             }
           },
           {
+            "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AcceptDate",
             "valueDate": "2025-10-01"
           },
           {
+            "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate",
             "valueDate": "2025-10-01"
           }
         ],
