@@ -110,8 +110,8 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
               * name = "entryMedicationPrescriptionMedicationPart"
               * source[+].context = "srcEntryVar2"
               * source[=].variable = "srcEntryBundleMRMedIdVar"
-              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
-              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
+              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').split('/').last())"
+              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').split('/').last())"
               * insert createType(tgtRxPrescriptionPartMed, resource, newMedicationPrescriptionMedication, Medication)
               * documentation = "Findet die vom MedicationRequest referenzierte Medication und transformiert sie in BfArM Format"
               * rule[+]
@@ -149,7 +149,7 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
           * source[=].variable = "srcEntryBundleOrgVar"
           * source[=].condition = "ofType(Bundle).where(entry.first().fullUrl.contains('fhir-directory'))"
           // * source[=].logMessage = "ofType(Bundle).where(entry.first().fullUrl.contains('fhir-directory'))"
-          * insert targetSetStringVariable(tgtRxDispensationPartOrg, name, organization)
+          * insert targetSetStringVariable(tgtRxDispensationPartOrg, name, dispenseOrganization)
           * documentation = "Identifiziert VZD SearchSet Bundle für Apothekeninformationen"
           * rule[+]
             * name = "entryOrganizationPart"
@@ -162,54 +162,56 @@ Description: "Diese Ressource beschreibt das Mapping und führt die Mappings all
               * source.context = "srcEntryBundleOrgVar"
               * insert dependent(ERPTPrescriptionStructureMapOrganization, srcEntryBundleOrgVar, newOrganization)
 
-        // part MedicationDispense
+        // part MedicationDispense inkl. Medication
         * rule[+]
           * name = "entryMedicationDispense"
           * source[+].context = "srcEntryResourceVar"
           * source[=].variable = "srcEntryBundleMDVar"
           * source[=].condition = "ofType(MedicationDispense)"
           //* source[=].logMessage = "ofType(MedicationDispense)"
-          * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartMD)
-          * documentation = "Erstellt den medicationDispense Parameter für Abgabedetails"
+          * insert treeTarget(tgtRxDispensation, part, tgtDispenseInformationPart)
+          * documentation = "Erstellt eine dispenseInformation Part pro abgegebener MedicationDispense"
           * rule[+]
-            * name = "entryMedicationDispensePart"
+            * name = "entryDispenseInformation"
             * source.context = "srcEntryBundleMDVar"
-            * insert targetSetStringVariable(tgtRxDispensationPartMD, name, medicationDispense)
-            * insert createType(tgtRxDispensationPartMD, resource, newMedicationDispense, MedicationDispense)
-            * documentation = "Transformiert gematik MedicationDispense in BfArM MedicationDispense Format"
+            * documentation = "Bündelt MedicationDispense und zugehörige Medication unter dispenseInformation"
+            * insert targetSetStringVariable(tgtDispenseInformationPart, name, dispenseInformation)
+            * insert treeTarget(tgtDispenseInformationPart, part, tgtDispenseInformationMedDispPart)
+            * insert treeTarget(tgtDispenseInformationPart, part, tgtDispenseInformationMedicationPart)
+
             * rule[+]
-              * name = "entryMedicationDispensePartResourceSet"
-              * documentation = "Führt die detaillierte MedicationDispense-Transformation durch"
+              * name = "entryDispenseInformationMedicationDispense"
               * source.context = "srcEntryBundleMDVar"
-              * insert dependent(ERPTPrescriptionStructureMapMedicationDispense, srcEntryBundleMDVar, newMedicationDispense)
-        
-        // part Medication
-        * rule[+]
-          * name = "entryMedicationDispenseMedication"
-          * source[+].context = "srcEntryVar"
-          * source[=].variable = "srcMedicationDispenseId"
-          * source[=].condition = "resource.ofType(MedicationDispense)"
-          //* source[=].logMessage = "resource.ofType(MedicationDispense)"
-          * insert treeTarget(tgtRxDispensation, part, tgtRxDispensationPartDispMed)
-          * insert targetSetStringVariable(tgtRxDispensationPartDispMed, name, medication)
-          * documentation = "Erstellt den medication Parameter für das abgegebene Arzneimittel"
-          * rule[+]
-            * name = "prepMedication"
-            * documentation = "Bereitet die Suche nach der vom MedicationDispense referenzierten Medication vor"
-            * insert treeSource(bundle, entry, srcEntryVar2)
-            * rule[+]
-              * name = "entryMedicationDispensationMedicationPart"
-              * source[+].context = "srcEntryVar2"
-              * source[=].variable = "srcEntryBundleMDMedIdVar"
-              * source[=].condition = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
-              // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcMedicationDispenseId.resource.medicationReference.reference.replace('urn:uuid:', '').replace('Medication/', ''))"
-              * documentation = "Findet die vom MedicationDispense referenzierte Medication und transformiert sie in BfArM Format"
-              * insert createType(tgtRxDispensationPartDispMed, resource, newMedicationDispensationMedication, Medication)
+              * documentation = "Transformiert gematik MedicationDispense in BfArM MedicationDispense Format"
+              * insert targetSetStringVariable(tgtDispenseInformationMedDispPart, name, medicationDispense)
+              * insert createType(tgtDispenseInformationMedDispPart, resource, newMedicationDispense, MedicationDispense)
               * rule[+]
-                * name = "entryMedicationDispensationMedicationPartResourceSet"
-                * documentation = "Führt die detaillierte Medication-Transformation für das abgegebene Arzneimittel durch"
-                * source[+].context = "srcEntryBundleMDMedIdVar"
-                * source[=].variable = "srcEntryBundleMDMedIdVarRes"
-                * source[=].element = "resource"
-                // * source[=].logMessage = "%srcEntryBundleMDMedIdVar"
-                * insert dependent(ERPTPrescriptionStructureMapMedication, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)
+                * name = "entryMedicationDispensePartResourceSet"
+                * documentation = "Führt die detaillierte MedicationDispense-Transformation durch"
+                * source.context = "srcEntryBundleMDVar"
+                * insert dependent(ERPTPrescriptionStructureMapMedicationDispense, srcEntryBundleMDVar, newMedicationDispense)
+
+            * rule[+]
+              * name = "entryDispenseInformationMedication"
+              * source.context = "srcEntryBundleMDVar"
+              * documentation = "Findet die vom MedicationDispense referenzierte Medication und transformiert sie in BfArM Format"
+              * insert targetSetStringVariable(tgtDispenseInformationMedicationPart, name, medication)
+              * rule[+]
+                * name = "prepDispenseMedication"
+                * documentation = "Bereitet die Suche nach der referenzierten Medication im Bundle vor"
+                * insert treeSource(bundle, entry, srcEntryVarDisp)
+                * rule[+]
+                  * name = "entryDispenseMedicationPart"
+                  * source[+].context = "srcEntryVarDisp"
+                  * source[=].variable = "srcEntryBundleMDMedIdVar"
+                  * source[=].condition = "resource.ofType(Medication).where(id=%srcEntryBundleMDVar.medicationReference.reference.replace('urn:uuid:', '').split('/').last())"
+                  // * source[=].logMessage = "resource.ofType(Medication).where(id=%srcEntryBundleMDVar.medicationReference.reference.replace('urn:uuid:', '').split('/').last())"
+                  * insert createType(tgtDispenseInformationMedicationPart, resource, newMedicationDispensationMedication, Medication)
+                  * rule[+]
+                    * name = "entryMedicationDispensationMedicationPartResourceSet"
+                    * documentation = "Führt die detaillierte Medication-Transformation für das abgegebene Arzneimittel durch"
+                    * source[+].context = "srcEntryBundleMDMedIdVar"
+                    * source[=].variable = "srcEntryBundleMDMedIdVarRes"
+                    * source[=].element = "resource"
+                    // * source[=].logMessage = "%srcEntryBundleMDMedIdVar"
+                    * insert dependent(ERPTPrescriptionStructureMapMedication, srcEntryBundleMDMedIdVarRes, newMedicationDispensationMedication)

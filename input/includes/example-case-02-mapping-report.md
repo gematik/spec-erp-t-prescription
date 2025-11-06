@@ -4,7 +4,7 @@
 ## Summary
 
 - **Source Resources:** 6
-- **Target Parameters:** 4
+- **Target Parameters:** 5
 
 ## Resource Mapping Details
 
@@ -13,11 +13,13 @@
 #### Source: `Medication/a3ccc266-b033-47cc-9361-98ec450f7db9`
 
 **Target:** `rxPrescription.medication:Medication` (`Medication`)  
-**Coverage:** 56.2% (9/16 fields mapped)
+**Coverage:** 61.1% (11/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
+| `amount.numerator.extension.url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
+| `amount.numerator.extension.valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
 | `amount.numerator.unit` | Stück | `amount.numerator.unit` | Stück | ✅ |
 | `form.text` | Retardtabletten | `form.text` | Retardtabletten | ✅ |
 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | ✅ |
@@ -26,19 +28,40 @@
 | `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
 | `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
 | `ingredient.strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
-| `amount.numerator.extension.valueString` | 21 | - | - | ⚠️ |
 | `code.coding.code` | wirkstoff | - | - | ⚠️ |
 | `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[1].valueBoolean` | false | - | - | ⚠️ |
+| `extension[2].url` | http://fhir.de/StructureDefinition/normgroesse | - | - | ⚠️ |
 | `extension[2].valueCode` | N1 | - | - | ⚠️ |
 
 ---
 
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
-**Target:** ❌ No matching target resource found
+**Target:** `rxDispensation.dispenseInformation.medication:Medication` (`Medication`)  
+**Coverage:** 94.1% (16/17 fields mapped)
+
+| Source Field | Source Value | Target Field | Target Value | Status |
+|--------------|--------------|--------------|--------------|--------|
+| `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
+| `amount.numerator.extension.url` | https://gematik.de/fhir/epa-medication/Structur... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
+| `amount.numerator.extension.valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
+| `amount.numerator.unit` | St | `amount.numerator.unit` | St | ✅ |
+| `code.coding.code` | 17629624 | `code.coding[0].code` | 17629624 | ✅ |
+| `code.coding.system` | http://fhir.de/CodeSystem/ifa/pzn | `code.coding[0].system` | http://fhir.de/CodeSystem/ifa/pzn | ✅ |
+| `code.text` | Lenalidomid Ethypharm 2,5 mg Hartkapseln | `code.text` | Lenalidomid Ethypharm 2,5 mg Hartkapseln | ✅ |
+| `form.coding.code` | TAB | `form.coding[0].code` | TAB | ✅ |
+| `form.coding.display` | Tabletten | `form.coding[0].display` | Tabletten | ✅ |
+| `form.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | `form.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | ✅ |
+| `id` | 8e2e5e65-4c5d-49f2-8efc-c30e40838273 | `id` | 8e2e5e65-4c5d-49f2-8efc-c30e40838273 | ✅ |
+| `ingredient.itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
+| `ingredient.strength.denominator.unit` | Tbl. | `ingredient[0].strength.denominator.unit` | Tbl. | ✅ |
+| `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
+| `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
+| `ingredient.strength.numerator.value` | 2,5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
+| `batch.lotNumber` | A123456789-1 | - | - | ⚠️ |
 
 ---
 
@@ -46,7 +69,7 @@
 
 #### Source: `MedicationDispense/a7e1d25f-0b0a-40f7-b529-afda48e51b46`
 
-**Target:** `rxDispensation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
+**Target:** `rxDispensation.dispenseInformation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
 **Coverage:** 38.5% (5/13 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
@@ -78,7 +101,7 @@
 #### Source: `MedicationRequest/0886a530-68ef-4517-9999-b24f79b08da1`
 
 **Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 55.6% (15/27 fields mapped)
+**Coverage:** 62.1% (18/29 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -94,13 +117,15 @@
 | `dosageInstruction.timing.repeat.frequency` | 1 | `dosageInstruction[0].timing.repeat.frequency` | 1 | ✅ |
 | `dosageInstruction.timing.repeat.period` | 1 | `dosageInstruction[0].timing.repeat.period` | 1 | ✅ |
 | `dosageInstruction.timing.repeat.periodUnit` | d | `dosageInstruction[0].timing.repeat.periodUnit` | d | ✅ |
+| `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | True | ✅ |
+| `extension[7].extension[1].url` | language | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
+| `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | ✅ |
 | `status` | active | `status` | completed | ✅ |
 | `dosageInstruction.timing.repeat.when` | MORN | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 0 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Statu... | - | - | ⚠️ |
-| `extension[4].extension[4].valueBoolean` | true | - | - | ⚠️ |
 | `extension[5].valueBoolean` | true | - | - | ⚠️ |
 | `extension[6].valueMarkdown` | 0-0-1-0 Stück | - | - | ⚠️ |
 | `extension[7].extension[0].valueString` | 1.0.0 | - | - | ⚠️ |
@@ -123,13 +148,14 @@
 
 #### Source: `VZDComposite/VZD-SearchSet-Bundle`
 
-**Target:** `rxDispensation.organization:Organization` (`Organization`)  
-**Coverage:** 72.2% (13/18 fields mapped)
+**Target:** `rxDispensation.dispenseOrganization:Organization` (`Organization`)  
+**Coverage:** 77.8% (14/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `address.city` | Großostheim | `address[0].city` | Großostheim | ✅ |
 | `address.country` | DE | `address[0].country` | DE | ✅ |
+| `address.line[0]` | Schwarzwaldstr. 18 | `address[0].line[0]` | Schwarzwaldstr. 18 | ✅ |
 | `address.postalCode` | 63762 | `address[0].postalCode` | 63762 | ✅ |
 | `address.state` | Bayern | `address[0].state` | Bayern | ✅ |
 | `address.text` | Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Groß... | `address[0].text` | Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Groß... | ✅ |
@@ -141,7 +167,6 @@
 | `telecom.system` | phone | `telecom[0].system` | phone | ✅ |
 | `telecom.use` | work | `telecom[0].use` | work | ✅ |
 | `telecom.value` | 1234 | `telecom[0].value` | 1234 | ✅ |
-| `address.line` | Schwarzwaldstr. 18 | - | - | ⚠️ |
 | `id` | VZD-SearchSet-Bundle | - | - | ⚠️ |
 | `identifier[1].type.coding.code` | PRN | - | - | ⚠️ |
 | `identifier[1].type.coding.system` | http://terminology.hl7.org/CodeSystem/v2-0203 | - | - | ⚠️ |

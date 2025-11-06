@@ -12,60 +12,6 @@
 
 #### Source: `Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f`
 
-**Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 4.2% (1/24 fields mapped)
-
-| Source Field | Source Value | Target Field | Target Value | Status |
-|--------------|--------------|--------------|--------------|--------|
-| `extension[3].url` | http://fhir.de/StructureDefinition/normgroesse | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
-| `amount.denominator.value` | 1 | - | - | ⚠️ |
-| `amount.numerator.extension.url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
-| `amount.numerator.extension.valueString` | 21 | - | - | ⚠️ |
-| `amount.numerator.unit` | Stück | - | - | ⚠️ |
-| `code.coding.code` | 19201712 | - | - | ⚠️ |
-| `code.coding.system` | http://fhir.de/CodeSystem/ifa/pzn | - | - | ⚠️ |
-| `code.text` | Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | - | - | ⚠️ |
-| `extension[0].valueCodeableConcept.coding.code` | 763158003 | - | - | ⚠️ |
-| `extension[0].valueCodeableConcept.coding.display` | Medicinal product (product) | - | - | ⚠️ |
-| `extension[0].valueCodeableConcept.coding.system` | http://snomed.info/sct | - | - | ⚠️ |
-| `extension[0].valueCodeableConcept.coding.version` | http://snomed.info/sct/11000274103/version/2024... | - | - | ⚠️ |
-| `extension[1].valueCoding.code` | 02 | - | - | ⚠️ |
-| `extension[1].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
-| `extension[2].valueBoolean` | false | - | - | ⚠️ |
-| `extension[3].valueCode` | N1 | - | - | ⚠️ |
-| `form.coding.code` | HKP | - | - | ⚠️ |
-| `form.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | - | - | ⚠️ |
-| `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | - | - | ⚠️ |
-| `ingredient.itemCodeableConcept.text` | Pomalidomid | - | - | ⚠️ |
-| `ingredient.strength.denominator.unit` | Stück | - | - | ⚠️ |
-| `ingredient.strength.denominator.value` | 1 | - | - | ⚠️ |
-| `ingredient.strength.numerator.unit` | mg | - | - | ⚠️ |
-| `ingredient.strength.numerator.value` | 1 | - | - | ⚠️ |
-
-**New fields created by transformation:**
-
-| Target Field | Target Value | Status |
-|--------------|--------------|--------|
-| `authoredOn` | 2025-05-20 | 🆕 |
-| `dispenseRequest.expectedSupplyDuration.unit` | Woche(n) | 🆕 |
-| `dispenseRequest.expectedSupplyDuration.value` | 3 | 🆕 |
-| `dispenseRequest.quantity.unit` | Packung | 🆕 |
-| `dispenseRequest.quantity.value` | 1 | 🆕 |
-| `dosageInstruction[0].doseAndRate[0].doseQuantity.code` | 1 | 🆕 |
-| `dosageInstruction[0].doseAndRate[0].doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | 🆕 |
-| `dosageInstruction[0].doseAndRate[0].doseQuantity.unit` | Stück | 🆕 |
-| `dosageInstruction[0].doseAndRate[0].doseQuantity.value` | 1 | 🆕 |
-| `dosageInstruction[0].timing.repeat.frequency` | 1 | 🆕 |
-| `dosageInstruction[0].timing.repeat.period` | 1 | 🆕 |
-| `dosageInstruction[0].timing.repeat.periodUnit` | d | 🆕 |
-| `extension[0].extension[4].url` | ErklaerungSachkenntnis | 🆕 |
-| `extension[0].extension[4].valueBoolean` | True | 🆕 |
-| `intent` | order | 🆕 |
-| `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | 🆕 |
-| `status` | completed | 🆕 |
-| `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
-| `subject.extension[0].valueCode` | not-permitted | 🆕 |
-
 **Target:** `rxPrescription.medication:Medication` (`Medication`)  
 **Coverage:** 70.8% (17/24 fields mapped)
 
@@ -100,7 +46,7 @@
 
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
-**Target:** `rxDispensation.medication:Medication` (`Medication`)  
+**Target:** `rxDispensation.dispenseInformation.medication:Medication` (`Medication`)  
 **Coverage:** 94.1% (16/17 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
@@ -129,7 +75,7 @@
 
 #### Source: `MedicationDispense/a7e1d25f-0b0a-40f7-b529-afda48e51b46`
 
-**Target:** `rxDispensation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
+**Target:** `rxDispensation.dispenseInformation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
 **Coverage:** 38.5% (5/13 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
@@ -209,7 +155,7 @@
 
 #### Source: `VZDComposite/VZD-SearchSet-Bundle`
 
-**Target:** `rxDispensation.organization:Organization` (`Organization`)  
+**Target:** `rxDispensation.dispenseOrganization:Organization` (`Organization`)  
 **Coverage:** 77.8% (14/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |

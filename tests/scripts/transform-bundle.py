@@ -9,10 +9,100 @@ Usage:
     python transform-bundle.py <mapping-bundle.json> <output-carboncopy.json>
 """
 
+import json
 import sys
 import subprocess
-import os
+import tempfile
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
+
+
+def sanitize_decimal_value(value):
+    """Convert decimal-like strings to JSON compatible numbers."""
+    if not isinstance(value, str):
+        return value
+
+    if ',' not in value:
+        return value
+
+    normalized = value.replace(',', '.').strip()
+
+    try:
+        decimal_value = Decimal(normalized)
+    except InvalidOperation:
+        return value
+
+    return float(decimal_value)
+
+
+def sanitize_quantity(quantity: dict) -> bool:
+    """Normalize the value field of a Quantity-like dictionary."""
+    if not isinstance(quantity, dict) or 'value' not in quantity:
+        return False
+
+    sanitized = sanitize_decimal_value(quantity['value'])
+    if sanitized != quantity['value']:
+        quantity['value'] = sanitized
+        return True
+
+    return False
+
+
+def sanitize_medication(resource: dict) -> bool:
+    """Ensure Medication quantity fields use dot decimal separators."""
+    if not isinstance(resource, dict):
+        return False
+
+    changed = False
+
+    amount = resource.get('amount')
+    if isinstance(amount, dict):
+        changed |= sanitize_quantity(amount.get('numerator'))
+        changed |= sanitize_quantity(amount.get('denominator'))
+
+    ingredients = resource.get('ingredient')
+    if isinstance(ingredients, dict):
+        ingredients_iter = [ingredients]
+    elif isinstance(ingredients, list):
+        ingredients_iter = ingredients
+    else:
+        ingredients_iter = []
+
+    for ingredient in ingredients_iter:
+        if not isinstance(ingredient, dict):
+            continue
+
+        strength = ingredient.get('strength')
+        if isinstance(strength, dict):
+            changed |= sanitize_quantity(strength.get('numerator'))
+            changed |= sanitize_quantity(strength.get('denominator'))
+
+    return changed
+
+
+def sanitize_mapping_bundle(bundle_path: Path) -> Path:
+    """Create a temporary bundle copy with normalized decimal values if needed."""
+    with bundle_path.open('r', encoding='utf-8') as bundle_file:
+        bundle = json.load(bundle_file)
+
+    if not isinstance(bundle, dict) or bundle.get('resourceType') != 'Bundle':
+        return bundle_path
+
+    changed = False
+
+    for entry in bundle.get('entry', []) or []:
+        resource = entry.get('resource')
+        if isinstance(resource, dict) and resource.get('resourceType') == 'Medication':
+            changed |= sanitize_medication(resource)
+
+    if not changed:
+        return bundle_path
+
+    temp_file = tempfile.NamedTemporaryFile('w', delete=False, suffix='.json', encoding='utf-8')
+    with temp_file:
+        json.dump(bundle, temp_file, ensure_ascii=False, indent=2)
+
+    return Path(temp_file.name)
 
 
 def run_hapi_transform(
@@ -116,12 +206,19 @@ def main():
     # Create output directory
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Run transformation
-    return_code, stdout, stderr = run_hapi_transform(
-        hapi_jar_path,
-        input_bundle,
-        output_file
-    )
+    # Sanitize mapping bundle decimals before running the transformation
+    sanitized_bundle = sanitize_mapping_bundle(input_bundle)
+
+    try:
+        # Run transformation
+        return_code, stdout, stderr = run_hapi_transform(
+            hapi_jar_path,
+            sanitized_bundle,
+            output_file
+        )
+    finally:
+        if sanitized_bundle != input_bundle and sanitized_bundle.exists():
+            sanitized_bundle.unlink()
     
     # Print output
     if stdout:

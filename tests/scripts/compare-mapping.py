@@ -216,24 +216,81 @@ def extract_resources_from_parameters(params: Dict[str, Any]) -> Dict[str, Dict[
     Returns:
         Dictionary mapping resource type/context to resources
     """
-    resources = {}
+    resources: Dict[str, Dict[str, Any]] = {}
+    references_to_resolve: List[Tuple[str, str, str]] = []
+    resources_by_type_id: Dict[Tuple[str, str], Dict[str, Any]] = {}
+    resources_by_id: Dict[str, Dict[str, Any]] = {}
     
     if params.get('resourceType') != 'Parameters':
         return resources
     
+    def process_parts(parts: List[Dict[str, Any]], param_name: str, parent_path: str = "") -> None:
+        for index, part in enumerate(parts):
+            part_name = part.get('name', f'unnamed[{index}]')
+            current_path = f"{parent_path}.{part_name}" if parent_path else part_name
+
+            if 'resource' in part:
+                resource = part['resource']
+                resource_type = resource.get('resourceType', 'Unknown')
+                key = f"{param_name}.{current_path}:{resource_type}"
+                resources[key] = resource
+
+                resource_id = resource.get('id')
+                if resource_id:
+                    resources_by_type_id[(resource_type, resource_id)] = resource
+                    resources_by_id.setdefault(resource_id, resource)
+
+            if 'valueReference' in part:
+                ref = part['valueReference'].get('reference')
+                if ref:
+                    references_to_resolve.append((param_name, current_path, ref))
+
+            if 'part' in part:
+                process_parts(part['part'], param_name, current_path)
+
     for param in params.get('parameter', []):
         param_name = param.get('name', '')
-        
-        # Extract nested resources from parts
+
+        if 'resource' in param:
+            resource = param['resource']
+            resource_type = resource.get('resourceType', 'Unknown')
+            key = f"{param_name}:{resource_type}"
+            resources[key] = resource
+            resource_id = resource.get('id')
+            if resource_id:
+                resources_by_type_id[(resource_type, resource_id)] = resource
+                resources_by_id.setdefault(resource_id, resource)
+
         if 'part' in param:
-            for part in param['part']:
-                if 'resource' in part:
-                    resource = part['resource']
-                    resource_type = resource.get('resourceType', 'Unknown')
-                    part_name = part.get('name', 'unnamed')
-                    
-                    key = f"{param_name}.{part_name}:{resource_type}"
-                    resources[key] = resource
+            process_parts(param['part'], param_name)
+
+    # Resolve valueReference parts to existing resources when possible
+    for param_name, part_name, reference in references_to_resolve:
+        ref_type = None
+        ref_id = reference
+        if reference.startswith('urn:uuid:'):
+            ref_id = reference.split('urn:uuid:')[-1]
+        elif '/' in reference:
+            parts = reference.split('/')
+            if len(parts) >= 2:
+                ref_type = parts[-2]
+                ref_id = parts[-1]
+            else:
+                ref_id = parts[-1]
+
+        resolved_resource = None
+        resolved_type = ref_type
+
+        if ref_type and (ref_type, ref_id) in resources_by_type_id:
+            resolved_resource = resources_by_type_id[(ref_type, ref_id)]
+        elif ref_id in resources_by_id:
+            resolved_resource = resources_by_id[ref_id]
+            resolved_type = resolved_resource.get('resourceType', ref_type or 'Unknown')
+
+        if resolved_resource and resolved_type:
+            key = f"{param_name}.{part_name}:{resolved_type}"
+            # Only add if this specific part hasn't already been captured as a resource
+            resources.setdefault(key, resolved_resource)
     
     return resources
 
@@ -433,34 +490,58 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
             matches = []
             
             for target_key, target_resource in target_resources.items():
+                # Derive parameter and part names from the composite key (e.g. rxPrescription.medication:Medication)
+                target_param = ''
+                target_part = ''
+                target_declared_type = ''
+
+                if ':' in target_key:
+                    prefix, target_declared_type = target_key.split(':', 1)
+                else:
+                    prefix = target_key
+                if '.' in prefix:
+                    target_param, target_part = prefix.split('.', 1)
+                else:
+                    target_param = prefix
+
+                target_type = target_resource.get('resourceType', target_declared_type or 'Unknown')
+
                 # Special handling for VZDComposite -> Organization mapping
-                if resource_type == 'VZDComposite' and target_resource.get('resourceType') == 'Organization':
+                if resource_type == 'VZDComposite' and target_type == 'Organization':
                     comparisons = compare_resources_with_values(source_resource, target_resource)
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
                     score = mapped_count / total_source if total_source > 0 else 0
                     if score > 0:
                         matches.append((target_key, target_resource, comparisons))
-                
+                    continue
+
                 # Special handling for Medication matching based on context
-                elif resource_type == 'Medication' and 'medication' in target_key.lower():
+                if resource_type == 'Medication':
+                    target_part_tail = target_part.split('.')[-1] if target_part else ''
+                    if target_type != 'Medication' or target_part_tail != 'medication':
+                        continue
+
                     med_context = medication_contexts.get(source_id, 'unknown')
                     context_matches = False
-                    if 'rxPrescription.medication' in target_key and med_context == 'prescription':
+                    if target_param == 'rxPrescription' and med_context == 'prescription':
                         context_matches = True
-                    elif 'rxDispensation.medication' in target_key and med_context == 'dispensation':
+                    elif target_param == 'rxDispensation' and med_context == 'dispensation':
                         context_matches = True
-                    
-                    if context_matches:
-                        comparisons = compare_resources_with_values(source_resource, target_resource)
-                        mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
-                        total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
-                        score = mapped_count / total_source if total_source > 0 else 0
-                        if score > 0:
-                            matches.append((target_key, target_resource, comparisons))
-                
-                # Normal matching for other resources
-                elif resource_type != 'Medication' and (resource_type in target_key or source_id in str(target_resource)):
+
+                    if not context_matches:
+                        continue
+
+                    comparisons = compare_resources_with_values(source_resource, target_resource)
+                    mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
+                    total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
+                    score = mapped_count / total_source if total_source > 0 else 0
+                    if score > 0:
+                        matches.append((target_key, target_resource, comparisons))
+                    continue
+
+                # Normal matching for other resources (matching on resource type)
+                if resource_type != 'Medication' and target_type == resource_type:
                     comparisons = compare_resources_with_values(source_resource, target_resource)
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])

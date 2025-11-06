@@ -25,10 +25,11 @@
 | `entry.resource [Typ: Bundle]` | `parameter.name` | Identifiziert VZD SearchSet Bundle für Apothekeninformationen |
 | `entry.resource [Typ: Bundle]` | `parameter.resource` | Transformiert VZD SearchSet in BfArM Organization Format für die abgebende Apotheke<br>→ erstellt neues Organization |
 | `entry.resource [Typ: Bundle]` | *(wird bestimmt durch Kontext)* | Führt die detaillierte Organization-Transformation durch<br>Verwendet Mapping: [Organization](./StructureMap-ERPTPrescriptionStructureMapOrganization.html) |
-| `entry.resource [Typ: MedicationDispense]` | `part` | Erstellt den medicationDispense Parameter für Abgabedetails |
-| `entry.resource [Typ: MedicationDispense]` | `parameter.part.name` | Transformiert gematik MedicationDispense in BfArM MedicationDispense Format<br>→ erstellt neues MedicationDispense |
+| `entry.resource [Typ: MedicationDispense]` | `part` | Erstellt eine dispenseInformation Part pro abgegebener MedicationDispense |
+| `entry.resource [Typ: MedicationDispense]` | `parameter.part.name` | Bündelt MedicationDispense und zugehörige Medication unter dispenseInformation |
+| `entry.resource [Typ: MedicationDispense]` | `part.name.name` | Transformiert gematik MedicationDispense in BfArM MedicationDispense Format<br>→ erstellt neues MedicationDispense |
 | `entry.resource [Typ: MedicationDispense]` | *(wird bestimmt durch Kontext)* | Führt die detaillierte MedicationDispense-Transformation durch<br>Verwendet Mapping: [MedicationDispense](./StructureMap-ERPTPrescriptionStructureMapMedicationDispense.html) |
-| `entry.resource [Typ: MedicationDispense]` | `part` | Erstellt den medication Parameter für das abgegebene Arzneimittel |
-| `entry.resource [Typ: MedicationDispense].entry` | *(wird bestimmt durch Kontext)* | Bereitet die Suche nach der vom MedicationDispense referenzierten Medication vor |
-| `entry.resource [Typ: MedicationDispense].entry [Typ: Medication]` | `parameter.resource` | Findet die vom MedicationDispense referenzierte Medication und transformiert sie in BfArM Format<br>→ erstellt neues Medication |
+| `entry.resource [Typ: MedicationDispense]` | `part.name.name` | Findet die vom MedicationDispense referenzierte Medication und transformiert sie in BfArM Format |
+| `entry.resource [Typ: MedicationDispense].entry` | *(wird bestimmt durch Kontext)* | Bereitet die Suche nach der referenzierten Medication im Bundle vor |
+| `entry.resource [Typ: MedicationDispense].entry [Typ: Medication]` | `parameter.resource` | → erstellt neues Medication |
 | `entry.resource [Typ: MedicationDispense].entry [Typ: Medication].resource` | *(wird bestimmt durch Kontext)* | Führt die detaillierte Medication-Transformation für das abgegebene Arzneimittel durch<br>Verwendet Mapping: [Medication](./StructureMap-ERPTPrescriptionStructureMapMedication.html) |

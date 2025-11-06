@@ -12,37 +12,6 @@
 
 #### Source: `Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f`
 
-**Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 12.5% (1/8 fields mapped)
-
-| Source Field | Source Value | Target Field | Target Value | Status |
-|--------------|--------------|--------------|--------------|--------|
-| `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
-| `code.coding.code` | freitext | - | - | ⚠️ |
-| `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
-| `code.text` | Thalidomid 50 mg Hartkapseln 28 Stück | - | - | ⚠️ |
-| `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
-| `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
-| `extension[1].valueBoolean` | false | - | - | ⚠️ |
-| `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | - | - | ⚠️ |
-
-**New fields created by transformation:**
-
-| Target Field | Target Value | Status |
-|--------------|--------------|--------|
-| `authoredOn` | 2025-05-20 | 🆕 |
-| `dispenseRequest.expectedSupplyDuration.unit` | Woche(n) | 🆕 |
-| `dispenseRequest.expectedSupplyDuration.value` | 9 | 🆕 |
-| `dispenseRequest.quantity.unit` | Packung | 🆕 |
-| `dispenseRequest.quantity.value` | 1 | 🆕 |
-| `extension[0].extension[4].url` | ErklaerungSachkenntnis | 🆕 |
-| `extension[0].extension[4].valueBoolean` | True | 🆕 |
-| `intent` | order | 🆕 |
-| `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | 🆕 |
-| `status` | completed | 🆕 |
-| `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
-| `subject.extension[0].valueCode` | not-permitted | 🆕 |
-
 **Target:** `rxPrescription.medication:Medication` (`Medication`)  
 **Coverage:** 25.0% (2/8 fields mapped)
 
@@ -61,7 +30,7 @@
 
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
-**Target:** `rxDispensation.medication:Medication` (`Medication`)  
+**Target:** `rxDispensation.dispenseInformation.medication:Medication` (`Medication`)  
 **Coverage:** 94.1% (16/17 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
@@ -90,7 +59,7 @@
 
 #### Source: `MedicationDispense/a7e1d25f-0b0a-40f7-b529-afda48e51b46`
 
-**Target:** `rxDispensation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
+**Target:** `rxDispensation.dispenseInformation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
 **Coverage:** 38.5% (5/13 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
@@ -159,7 +128,7 @@
 
 #### Source: `VZDComposite/VZD-SearchSet-Bundle`
 
-**Target:** `rxDispensation.organization:Organization` (`Organization`)  
+**Target:** `rxDispensation.dispenseOrganization:Organization` (`Organization`)  
 **Coverage:** 77.8% (14/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
