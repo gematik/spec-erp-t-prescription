@@ -121,6 +121,41 @@ def extract_from_dispense_parameters(params: Dict[str, Any]) -> tuple[Dict[str, 
     return dispense, medication
 
 
+def normalize_medication_request_structure(resource: Dict[str, Any]) -> None:
+    """Ensure list-valued MedicationRequest fields stay arrays in JSON."""
+    if resource.get("resourceType") != "MedicationRequest":
+        return
+
+    dosage_instructions = resource.get("dosageInstruction")
+    if isinstance(dosage_instructions, dict):
+        resource["dosageInstruction"] = [dosage_instructions]
+        dosage_instructions = resource["dosageInstruction"]
+
+    if isinstance(dosage_instructions, list):
+        for dosage in dosage_instructions:
+            if not isinstance(dosage, dict):
+                continue
+
+            dose_and_rate = dosage.get("doseAndRate")
+            if isinstance(dose_and_rate, dict):
+                dosage["doseAndRate"] = [dose_and_rate]
+
+            timing = dosage.get("timing")
+            if not isinstance(timing, dict):
+                continue
+
+            repeat = timing.get("repeat")
+            if not isinstance(repeat, dict):
+                continue
+
+            when_value = repeat.get("when")
+            # FHIR requires repeat.when to be an array even if a single code is present.
+            if isinstance(when_value, str):
+                repeat["when"] = [when_value]
+            elif when_value is not None and not isinstance(when_value, list):
+                repeat["when"] = [when_value]
+
+
 def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
     """
     Build a mapping bundle from resources in the test case directory.
@@ -151,6 +186,7 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         
         if prescription:
             prescription = normalize_references(prescription)
+            normalize_medication_request_structure(prescription)
             resource_id = prescription.get('id', 'KBV-Prescription')
             full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(prescription, full_url))
@@ -168,6 +204,7 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
             
             if prescription:
                 prescription = normalize_references(prescription)
+                normalize_medication_request_structure(prescription)
                 resource_id = prescription.get('id', 'KBV-Prescription')
                 full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(prescription, full_url))

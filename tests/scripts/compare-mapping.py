@@ -8,8 +8,10 @@ to show which fields were mapped and which were not.
 
 import json
 import sys
+import shutil
+import re
 from pathlib import Path
-from typing import Dict, Any, List, Set, Tuple
+from typing import Dict, Any, List, Set, Tuple, Optional
 
 
 def flatten_json(obj: Any, parent_key: str = '', sep: str = '.') -> Dict[str, Any]:
@@ -49,31 +51,151 @@ def flatten_json(obj: Any, parent_key: str = '', sep: str = '.') -> Dict[str, An
 
 def get_resource_paths(resource: Dict[str, Any], prefix: str = '') -> Set[str]:
     """
-    Get all field paths in a resource (excluding values, just paths).
+    Get all field paths in a resource for coverage calculation.
     
     Args:
         resource: FHIR resource
-        prefix: Path prefix for recursion
+        prefix: Prefix for nested paths
     
     Returns:
-        Set of all field paths
+        Set of field paths
     """
     paths = set()
+    flattened = flatten_json(resource, prefix)
     
-    if isinstance(resource, dict):
-        for key, value in resource.items():
-            current_path = f"{prefix}.{key}" if prefix else key
-            paths.add(current_path)
-            
-            if isinstance(value, (dict, list)):
-                paths.update(get_resource_paths(value, current_path))
-    elif isinstance(resource, list):
-        for i, item in enumerate(resource):
-            current_path = f"{prefix}[{i}]"
-            if isinstance(item, (dict, list)):
-                paths.update(get_resource_paths(item, current_path))
+    for path in flattened.keys():
+        # Remove array indices for path comparison
+        clean_path = path
+        while '[' in clean_path and ']' in clean_path:
+            start = clean_path.find('[')
+            end = clean_path.find(']', start)
+            if start != -1 and end != -1:
+                clean_path = clean_path[:start] + clean_path[end+1:]
+            else:
+                break
+        paths.add(clean_path)
     
     return paths
+
+
+def copy_artifacts_to_includes(test_output_dir: Path, test_case_name: str, includes_dir: Path) -> Dict[str, Any]:
+    """
+    Copy test artifacts to the includes directory with proper naming.
+    
+    Args:
+        test_output_dir: Test output directory containing the artifacts
+        test_case_name: Name of the test case (e.g., 'example-case-01')
+        includes_dir: Target includes directory
+    
+    Returns:
+        Dictionary mapping artifact type to copied filename
+    """
+    artifacts = {}
+    
+    # Define source files
+    mapping_bundle_src = test_output_dir / f"{test_case_name}-mapping-bundle.json"
+    digitaler_durchschlag_src = test_output_dir / f"{test_case_name}-digitaler-durchschlag.json"
+
+    # Determine content directory for downloadable artifacts
+    content_dir = includes_dir.parent / "content" / "test-examples"
+    content_dir.mkdir(parents=True, exist_ok=True)
+
+    # Helper to copy file and return display/link info
+    def copy_to_content(src: Path, target_name: str) -> Optional[Dict[str, str]]:
+        if not src.exists():
+            return None
+        target_path = content_dir / target_name
+        shutil.copy2(src, target_path)
+        rel_path = f"test-examples/{target_name}"
+        return {"display": target_name, "link": rel_path}
+
+    # Copy generated files if they exist
+    if mapping_bundle_src.exists():
+        entry = copy_to_content(mapping_bundle_src, f"{test_case_name}-mapping-bundle.json")
+        if entry:
+            artifacts['mapping_bundle'] = entry
+            print(f"📄 Copied mapping bundle: {entry['display']}")
+    
+    if digitaler_durchschlag_src.exists():
+        entry = copy_to_content(digitaler_durchschlag_src, f"{test_case_name}-digitaler-durchschlag.json")
+        if entry:
+            artifacts['digitaler_durchschlag'] = entry
+            print(f"📄 Copied digitaler durchschlag: {entry['display']}")
+    
+    # Copy source XML files from test case directory
+    test_case_dir = Path(str(test_output_dir).replace('/output/', '/test-cases/'))
+    if test_case_dir.exists():
+        xml_files = list(test_case_dir.glob('*.xml'))
+        artifacts['source_files'] = []
+        
+        for xml_file in xml_files:
+            target_name = f"{test_case_name}-{xml_file.name}"
+            entry = copy_to_content(xml_file, target_name)
+            if entry:
+                artifacts['source_files'].append(entry)
+                print(f"📄 Copied source XML: {entry['display']}")
+    
+    return artifacts
+
+
+def get_german_use_case_description(test_case_name: str) -> str:
+    """
+    Get German description for the test case.
+    
+    Args:
+        test_case_name: Name of the test case
+    
+    Returns:
+        German description of the use case
+    """
+    descriptions = {
+        'example-case-01': 'Verschreibung und Abgabe eines Wirkstoff-Medikaments (Lenalidomid) mit Rezeptur-Information und nachfolgender Transformation in einen digitalen Durchschlag.',
+        'example-case-02': 'Verschreibung und Abgabe eines PZN-Medikaments (Pomalidomid) mit spezifischer Dosierung und Transformation in einen digitalen Durchschlag.',
+        'example-case-03': 'Verschreibung und Abgabe eines Freitext-Medikaments mit individueller Rezeptur und Transformation in einen digitalen Durchschlag.',
+        'example-case-04': 'Verschreibung und Abgabe eines Compound-Medikaments mit mehreren Wirkstoffen und Transformation in einen digitalen Durchschlag.'
+    }
+    
+    return descriptions.get(test_case_name, f'Testfall für die Transformation von E-Rezept-Daten in einen digitalen Durchschlag ({test_case_name}).')
+
+
+def create_enhanced_summary_section(test_case_name: str, artifacts: Dict[str, str]) -> List[str]:
+    """
+    Create enhanced summary section with German description and artifact references.
+    
+    Args:
+        test_case_name: Name of the test case
+        artifacts: Dictionary of copied artifacts
+    
+    Returns:
+        List of markdown lines for the summary section
+    """
+    lines = []
+    
+    # Use case description in German
+    use_case_desc = get_german_use_case_description(test_case_name)
+    lines.append(f"**Anwendungsfall:** {use_case_desc}")
+    lines.append("")
+    
+    # Artifact references
+    if artifacts:
+        lines.append("**Beispiel-Artefakte:**")
+        
+        # Source XML files
+        if 'source_files' in artifacts and artifacts['source_files']:
+            lines.append("- **Quell-Dateien:**")
+            for source_file in artifacts['source_files']:
+                lines.append(f"  - [`{source_file['display']}`]({source_file['link']})")
+        
+        # Generated artifacts
+        if 'mapping_bundle' in artifacts:
+            mapping_artifact = artifacts['mapping_bundle']
+            lines.append(f"- **Mapping Bundle (generiert):** [`{mapping_artifact['display']}`]({mapping_artifact['link']})")
+        if 'digitaler_durchschlag' in artifacts:
+            dd_artifact = artifacts['digitaler_durchschlag']
+            lines.append(f"- **Digitaler Durchschlag (Ergebnis):** [`{dd_artifact['display']}`]({dd_artifact['link']})")
+        lines.append("")
+    
+    return lines
 
 
 def normalize_path(path: str) -> str:
@@ -85,6 +207,29 @@ def normalize_path(path: str) -> str:
     # Remove [0], [1], etc. and also []
     normalized = re.sub(r'\[\d*\]', '', path)
     return normalized
+
+
+def extract_extension_url(path: str, flat_data: Dict[str, Any]) -> Optional[str]:
+    """
+    Extract the URL from an extension field for semantic matching.
+    Returns the extension URL if this is an extension field, None otherwise.
+    """
+    import re
+    
+    # Check if this is an extension field
+    if not re.match(r'^extension\[', path):
+        return None
+    
+    # Extract the base extension path (e.g., "extension[0]" from "extension[0].url")
+    base_match = re.match(r'^(extension\[\d+\])', path)
+    if not base_match:
+        return None
+    
+    base_path = base_match.group(1)
+    url_path = f"{base_path}.url"
+    
+    # Return the URL if it exists in the flattened data
+    return flat_data.get(url_path)
 
 
 def normalize_array_in_path(path: str, obj: Dict[str, Any]) -> str:
@@ -358,6 +503,7 @@ def format_value(value: Any, max_length: int = 50) -> str:
 def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Compare two resources and return field mapping with values.
+    Enhanced to handle extensions semantically by matching them by URL.
     
     Returns:
         List of dictionaries with field mappings and values
@@ -370,15 +516,20 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
     source_flat = {k: v for k, v in source_flat.items() if not any(k.startswith(e) for e in exclude_patterns)}
     target_flat = {k: v for k, v in target_flat.items() if not any(k.startswith(e) for e in exclude_patterns)}
     
-    # Normalize paths for comparison - remove all array indices
-    # This allows matching fields whether they're arrays or single values
-    source_normalized = {normalize_path(k): (k, v) for k, v in source_flat.items()}
-    target_normalized = {normalize_path(k): (k, v) for k, v in target_flat.items()}
+    # Separate extension fields from other fields
+    source_ext = {k: v for k, v in source_flat.items() if k.startswith('extension[')}
+    source_non_ext = {k: v for k, v in source_flat.items() if not k.startswith('extension[')}
+    target_ext = {k: v for k, v in target_flat.items() if k.startswith('extension[')}
+    target_non_ext = {k: v for k, v in target_flat.items() if not k.startswith('extension[')}
+    
+    # Handle non-extension fields with the original normalization logic
+    source_normalized = {normalize_path(k): (k, v) for k, v in source_non_ext.items()}
+    target_normalized = {normalize_path(k): (k, v) for k, v in target_non_ext.items()}
     
     # Build comparison table
     comparisons = []
     
-    # Process all source fields
+    # Process non-extension fields
     for norm_path, (src_path, src_value) in sorted(source_normalized.items()):
         if norm_path in target_normalized:
             tgt_path, tgt_value = target_normalized[norm_path]
@@ -398,7 +549,7 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
                 'status': 'unmapped'
             })
     
-    # Add target-only fields (newly created)
+    # Add target-only non-extension fields (newly created)
     for norm_path, (tgt_path, tgt_value) in sorted(target_normalized.items()):
         if norm_path not in source_normalized:
             comparisons.append({
@@ -408,6 +559,233 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
                 'target_value': tgt_value,
                 'status': 'new'
             })
+    
+    # Handle extension fields semantically
+    # Group extensions by their base path (extension[0], extension[1], etc.)
+    import re
+    
+    source_extensions = {}
+    target_extensions = {}
+    
+    # Group source extensions by their index
+    for path, value in source_ext.items():
+        match = re.match(r'^extension\[(\d+)\](.*)$', path)
+        if match:
+            ext_idx = int(match.group(1))
+            sub_path = match.group(2)
+            if ext_idx not in source_extensions:
+                source_extensions[ext_idx] = {}
+            source_extensions[ext_idx][sub_path] = value
+    
+    # Group target extensions by their index
+    for path, value in target_ext.items():
+        match = re.match(r'^extension\[(\d+)\](.*)$', path)
+        if match:
+            ext_idx = int(match.group(1))
+            sub_path = match.group(2)
+            if ext_idx not in target_extensions:
+                target_extensions[ext_idx] = {}
+            target_extensions[ext_idx][sub_path] = value
+    
+    # Build URL to extension mapping for semantic matching
+    source_url_to_ext = {}
+    target_url_to_ext = {}
+    
+    for ext_idx, ext_data in source_extensions.items():
+        if '.url' in ext_data:
+            url = ext_data['.url']
+            source_url_to_ext[url] = (ext_idx, ext_data)
+    
+    for ext_idx, ext_data in target_extensions.items():
+        if '.url' in ext_data:
+            url = ext_data['.url']
+            target_url_to_ext[url] = (ext_idx, ext_data)
+    
+    # Match extensions by URL and add their individual fields
+    matched_source_urls = set()
+    matched_target_urls = set()
+    
+    for src_url, (src_idx, src_ext_data) in source_url_to_ext.items():
+        if src_url in target_url_to_ext:
+            tgt_idx, tgt_ext_data = target_url_to_ext[src_url]
+            matched_source_urls.add(src_url)
+            matched_target_urls.add(src_url)
+            
+            # Compare individual fields within this extension
+            # For extension fields, we need to match them by their exact structure
+            # not by normalized paths, since we want to preserve nested extension matching
+            src_paths = {subpath: (f"extension[{src_idx}]{subpath}", value) 
+                        for subpath, value in src_ext_data.items()}
+            tgt_paths = {subpath: (f"extension[{tgt_idx}]{subpath}", value) 
+                        for subpath, value in tgt_ext_data.items()}
+            
+            # For nested extensions, we need special handling
+            # Group by normalized path but preserve exact matching within the same semantic extension
+            
+            # Create mapping for nested extensions within this extension by their URL
+            src_nested_by_url = {}
+            tgt_nested_by_url = {}
+            
+            # Extract nested extension URLs
+            src_nested_exts = {}
+            tgt_nested_exts = {}
+            
+            for subpath, value in src_ext_data.items():
+                if subpath.startswith('.extension[') and subpath.endswith('.url'):
+                    # This is a nested extension URL, e.g., .extension[0].url
+                    nested_match = re.match(r'\.extension\[(\d+)\]\.url', subpath)
+                    if nested_match:
+                        nested_idx = int(nested_match.group(1))
+                        src_nested_by_url[value] = nested_idx
+                        src_nested_exts[nested_idx] = value
+            
+            for subpath, value in tgt_ext_data.items():
+                if subpath.startswith('.extension[') and subpath.endswith('.url'):
+                    nested_match = re.match(r'\.extension\[(\d+)\]\.url', subpath)
+                    if nested_match:
+                        nested_idx = int(nested_match.group(1))
+                        tgt_nested_by_url[value] = nested_idx
+                        tgt_nested_exts[nested_idx] = value
+            
+            # Match nested extensions by URL and then compare their fields
+            matched_nested_urls = set()
+            
+            for nested_url, src_nested_idx in src_nested_by_url.items():
+                if nested_url in tgt_nested_by_url:
+                    tgt_nested_idx = tgt_nested_by_url[nested_url]
+                    matched_nested_urls.add(nested_url)
+                    
+                    # Compare all fields of this nested extension
+                    src_nested_prefix = f'.extension[{src_nested_idx}]'
+                    tgt_nested_prefix = f'.extension[{tgt_nested_idx}]'
+                    
+                    # Find all fields belonging to this nested extension
+                    src_nested_fields = {k: v for k, v in src_ext_data.items() 
+                                        if k.startswith(src_nested_prefix)}
+                    tgt_nested_fields = {k: v for k, v in tgt_ext_data.items() 
+                                        if k.startswith(tgt_nested_prefix)}
+                    
+                    # Map source nested fields to target nested fields
+                    for src_field_path, src_field_value in src_nested_fields.items():
+                        # Convert source path to target path by replacing indices
+                        corresponding_tgt_path = src_field_path.replace(
+                            src_nested_prefix, tgt_nested_prefix)
+                        
+                        if corresponding_tgt_path in tgt_nested_fields:
+                            tgt_field_value = tgt_nested_fields[corresponding_tgt_path]
+                            comparisons.append({
+                                'source_path': f"extension[{src_idx}]{src_field_path}",
+                                'source_value': src_field_value,
+                                'target_path': f"extension[{tgt_idx}]{corresponding_tgt_path}",
+                                'target_value': tgt_field_value,
+                                'status': 'mapped'
+                            })
+                        else:
+                            comparisons.append({
+                                'source_path': f"extension[{src_idx}]{src_field_path}",
+                                'source_value': src_field_value,
+                                'target_path': '-',
+                                'target_value': None,
+                                'status': 'unmapped'
+                            })
+                    
+                    # Add any target-only fields for this nested extension
+                    for tgt_field_path, tgt_field_value in tgt_nested_fields.items():
+                        corresponding_src_path = tgt_field_path.replace(
+                            tgt_nested_prefix, src_nested_prefix)
+                        if corresponding_src_path not in src_nested_fields:
+                            comparisons.append({
+                                'source_path': '-',
+                                'source_value': None,
+                                'target_path': f"extension[{tgt_idx}]{tgt_field_path}",
+                                'target_value': tgt_field_value,
+                                'status': 'new'
+                            })
+            
+            # Handle unmatched nested extensions from source
+            for nested_url, src_nested_idx in src_nested_by_url.items():
+                if nested_url not in matched_nested_urls:
+                    src_nested_prefix = f'.extension[{src_nested_idx}]'
+                    src_nested_fields = {k: v for k, v in src_ext_data.items() 
+                                        if k.startswith(src_nested_prefix)}
+                    for src_field_path, src_field_value in src_nested_fields.items():
+                        comparisons.append({
+                            'source_path': f"extension[{src_idx}]{src_field_path}",
+                            'source_value': src_field_value,
+                            'target_path': '-',
+                            'target_value': None,
+                            'status': 'unmapped'
+                        })
+            
+            # Handle unmatched nested extensions from target
+            for nested_url, tgt_nested_idx in tgt_nested_by_url.items():
+                if nested_url not in matched_nested_urls:
+                    tgt_nested_prefix = f'.extension[{tgt_nested_idx}]'
+                    tgt_nested_fields = {k: v for k, v in tgt_ext_data.items() 
+                                        if k.startswith(tgt_nested_prefix)}
+                    for tgt_field_path, tgt_field_value in tgt_nested_fields.items():
+                        comparisons.append({
+                            'source_path': '-',
+                            'source_value': None,
+                            'target_path': f"extension[{tgt_idx}]{tgt_field_path}",
+                            'target_value': tgt_field_value,
+                            'status': 'new'
+                        })
+            
+            # Handle non-nested fields within this extension (direct properties)
+            for subpath, (src_full_path, src_value) in sorted(src_paths.items()):
+                # Skip nested extension fields (already handled above)
+                if not subpath.startswith('.extension['):
+                    if subpath in tgt_paths:
+                        tgt_full_path, tgt_value = tgt_paths[subpath]
+                        comparisons.append({
+                            'source_path': src_full_path,
+                            'source_value': src_value,
+                            'target_path': tgt_full_path,
+                            'target_value': tgt_value,
+                            'status': 'mapped'
+                        })
+                    else:
+                        comparisons.append({
+                            'source_path': src_full_path,
+                            'source_value': src_value,
+                            'target_path': '-',
+                            'target_value': None,
+                            'status': 'unmapped'
+                        })
+            
+            # Add target-only non-nested fields
+            for subpath, (tgt_full_path, tgt_value) in sorted(tgt_paths.items()):
+                if not subpath.startswith('.extension[') and subpath not in src_paths:
+                    comparisons.append({
+                        'source_path': '-',
+                        'source_value': None,
+                        'target_path': tgt_full_path,
+                        'target_value': tgt_value,
+                        'status': 'new'
+                    })
+        else:
+            # Unmatched source extension - all its fields are unmapped
+            for subpath, value in src_ext_data.items():
+                comparisons.append({
+                    'source_path': f"extension[{src_idx}]{subpath}",
+                    'source_value': value,
+                    'target_path': '-',
+                    'target_value': None,
+                    'status': 'unmapped'
+                })
+    
+    # Add completely unmatched target extensions (new)
+    for tgt_url, (tgt_idx, tgt_ext_data) in target_url_to_ext.items():
+        if tgt_url not in matched_target_urls:
+            for subpath, value in tgt_ext_data.items():
+                comparisons.append({
+                    'source_path': '-',
+                    'source_value': None,
+                    'target_path': f"extension[{tgt_idx}]{subpath}",
+                    'target_value': value,
+                    'status': 'new'
+                })
     
     return comparisons
 
@@ -444,6 +822,12 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
     source_resources, medication_contexts = extract_resources_from_bundle(mapping_bundle)
     target_resources = extract_resources_from_parameters(digitaler_durchschlag)
     
+    # Copy artifacts to includes directory (if output file is in includes)
+    artifacts = {}
+    if 'input/includes' in str(output_file):
+        includes_dir = output_file.parent
+        artifacts = copy_artifacts_to_includes(test_case_dir, test_case_name, includes_dir)
+    
     # Generate report
     md = []
     md.append(f"# StructureMap Transformation Report")
@@ -451,8 +835,10 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
     md.append(f"")
     md.append(f"## Summary")
     md.append(f"")
-    md.append(f"- **Source Resources:** {len(source_resources)}")
-    md.append(f"- **Target Parameters:** {len(target_resources)}")
+    
+    # Add enhanced summary with German description and artifact links
+    summary_lines = create_enhanced_summary_section(test_case_name, artifacts)
+    md.extend(summary_lines)
     md.append(f"")
     
     # Overall statistics
@@ -562,10 +948,8 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
                     total_new_fields += len(new_fields)
                     
                     target_type = target_resource.get('resourceType', 'Unknown')
-                    coverage_pct = (len(mapped) / (len(mapped) + len(unmapped)) * 100) if (len(mapped) + len(unmapped)) > 0 else 0
                     
                     md.append(f"**Target:** `{target_key}` (`{target_type}`)  ")
-                    md.append(f"**Coverage:** {coverage_pct:.1f}% ({len(mapped)}/{len(mapped) + len(unmapped)} fields mapped)")
                     md.append(f"")
                     
                     # Create value comparison table

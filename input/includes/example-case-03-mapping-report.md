@@ -3,8 +3,17 @@
 
 ## Summary
 
-- **Source Resources:** 6
-- **Target Parameters:** 5
+**Anwendungsfall:** Verschreibung und Abgabe eines Freitext-Medikaments mit individueller Rezeptur und Transformation in einen digitalen Durchschlag.
+
+**Beispiel-Artefakte:**
+- **Quell-Dateien:**
+  - [`example-case-03-KBV_Bundle.xml`](test-examples/example-case-03-KBV_Bundle.xml)
+  - [`example-case-03-MedicationDispense_Parameters.xml`](test-examples/example-case-03-MedicationDispense_Parameters.xml)
+  - [`example-case-03-Task.xml`](test-examples/example-case-03-Task.xml)
+  - [`example-case-03-VZDSearchSet.xml`](test-examples/example-case-03-VZDSearchSet.xml)
+- **Mapping Bundle (generiert):** [`example-case-03-mapping-bundle.json`](test-examples/example-case-03-mapping-bundle.json)
+- **Digitaler Durchschlag (Ergebnis):** [`example-case-03-digitaler-durchschlag.json`](test-examples/example-case-03-digitaler-durchschlag.json)
+
 
 ## Resource Mapping Details
 
@@ -13,7 +22,6 @@
 #### Source: `Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f`
 
 **Target:** `rxPrescription.medication:Medication` (`Medication`)  
-**Coverage:** 25.0% (2/8 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -21,6 +29,7 @@
 | `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | `id` | a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
 | `code.coding.code` | freitext | - | - | ⚠️ |
 | `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
@@ -31,7 +40,6 @@
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
 **Target:** `rxDispensation.dispenseInformation.medication:Medication` (`Medication`)  
-**Coverage:** 94.1% (16/17 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -60,7 +68,6 @@
 #### Source: `MedicationDispense/a7e1d25f-0b0a-40f7-b529-afda48e51b46`
 
 **Target:** `rxDispensation.dispenseInformation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
-**Coverage:** 38.5% (5/13 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -91,7 +98,6 @@
 #### Source: `MedicationRequest/7d871b93-e18c-4865-bad0-6b55196be46b`
 
 **Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 57.9% (11/19 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -100,14 +106,31 @@
 | `dispenseRequest.expectedSupplyDuration.value` | 9 | `dispenseRequest.expectedSupplyDuration.value` | 9 | ✅ |
 | `dispenseRequest.quantity.unit` | Packung | `dispenseRequest.quantity.unit` | Packung | ✅ |
 | `dispenseRequest.quantity.value` | 1 | `dispenseRequest.quantity.value` | 1 | ✅ |
+| `extension[4].extension[0].url` | Off-Label | `extension[0].extension[0].url` | Off-Label | ✅ |
+| `extension[4].extension[0].valueBoolean` | false | `extension[0].extension[0].valueBoolean` | False | ✅ |
+| `extension[4].extension[1].url` | GebaerfaehigeFrau | `extension[0].extension[1].url` | GebaerfaehigeFrau | ✅ |
+| `extension[4].extension[1].valueBoolean` | false | `extension[0].extension[1].valueBoolean` | False | ✅ |
+| `extension[4].extension[2].url` | EinhaltungSicherheitsmassnahmen | `extension[0].extension[2].url` | EinhaltungSicherheitsmassnahmen | ✅ |
+| `extension[4].extension[2].valueBoolean` | true | `extension[0].extension[2].valueBoolean` | True | ✅ |
+| `extension[4].extension[3].url` | AushaendigungInformationsmaterialien | `extension[0].extension[3].url` | AushaendigungInformationsmaterialien | ✅ |
+| `extension[4].extension[3].valueBoolean` | true | `extension[0].extension[3].valueBoolean` | True | ✅ |
 | `extension[4].extension[4].url` | ErklaerungSachkenntnis | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
 | `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | True | ✅ |
-| `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
+| `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
 | `status` | active | `status` | completed | ✅ |
+| `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 0 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Statu... | - | - | ⚠️ |
+| `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[1].valueBoolean` | false | - | - | ⚠️ |
+| `extension[2].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[2].valueBoolean` | false | - | - | ⚠️ |
+| `extension[3].extension.url` | Kennzeichen | - | - | ⚠️ |
+| `extension[3].extension.valueBoolean` | false | - | - | ⚠️ |
+| `extension[3].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].valueBoolean` | false | - | - | ⚠️ |
 | `id` | 7d871b93-e18c-4865-bad0-6b55196be46b | - | - | ⚠️ |
 | `insurance.reference` | urn:uuid:e51239e1-ba74-48e0-97fb-9754d2b05c60 | - | - | ⚠️ |
@@ -129,7 +152,6 @@
 #### Source: `VZDComposite/VZD-SearchSet-Bundle`
 
 **Target:** `rxDispensation.dispenseOrganization:Organization` (`Organization`)  
-**Coverage:** 77.8% (14/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|

@@ -18,7 +18,7 @@
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
             "valueCoding": {
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment",
-              "code": "1"
+              "code": "0"
             }
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
-            "valueBoolean": "true"
+            "valueBoolean": "false"
           },
           {
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription",
@@ -41,7 +41,7 @@
             "extension": [
               {
                 "url": "Off-Label",
-                "valueBoolean": "true"
+                "valueBoolean": "false"
               },
               {
                 "url": "GebaerfaehigeFrau",
@@ -63,24 +63,7 @@
           },
           {
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
-            "valueBoolean": "true"
-          },
-          {
-            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
-            "valueMarkdown": "0-0-1-0 Stück"
-          },
-          {
-            "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta",
-            "extension": [
-              {
-                "url": "algorithmVersion",
-                "valueString": "1.0.0"
-              },
-              {
-                "url": "language",
-                "valueCode": "de-DE"
-              }
-            ]
+            "valueBoolean": "false"
           }
         ],
         "status": "active",
@@ -98,37 +81,13 @@
         "insurance": {
           "reference": "urn:uuid:e51239e1-ba74-48e0-97fb-9754d2b05c60"
         },
-        "dosageInstruction": [
-          {
-            "timing": {
-              "repeat": {
-                "frequency": "1",
-                "period": "1",
-                "periodUnit": "d",
-                "when": [
-                  "EVE"
-                ]
-              }
-            },
-            "doseAndRate": [
-              {
-                "doseQuantity": {
-                  "value": "1",
-                  "unit": "Stück",
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
-                  "code": "1"
-                }
-              }
-            ]
-          }
-        ],
         "dispenseRequest": {
           "quantity": {
             "value": "1",
             "unit": "Packung"
           },
           "expectedSupplyDuration": {
-            "value": "3",
+            "value": "9",
             "unit": "Woche(n)"
           }
         },
@@ -145,21 +104,10 @@
         "meta": {
           "versionId": "1",
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.4"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.4"
           ]
         },
         "extension": [
-          {
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-            "valueCodeableConcept": {
-              "coding": {
-                "system": "http://snomed.info/sct",
-                "version": "http://snomed.info/sct/11000274103/version/20240515",
-                "code": "763158003",
-                "display": "Medicinal product (product)"
-              }
-            }
-          },
           {
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
             "valueCoding": {
@@ -170,51 +118,14 @@
           {
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
             "valueBoolean": "false"
-          },
-          {
-            "url": "http://fhir.de/StructureDefinition/normgroesse",
-            "valueCode": "N1"
           }
         ],
         "code": {
           "coding": {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "19201712"
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+            "code": "freitext"
           },
-          "text": "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
-        },
-        "form": {
-          "coding": {
-            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code": "HKP"
-          }
-        },
-        "amount": {
-          "numerator": {
-            "extension": {
-              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString": "21"
-            },
-            "unit": "Stück"
-          },
-          "denominator": {
-            "value": "1"
-          }
-        },
-        "ingredient": {
-          "itemCodeableConcept": {
-            "text": "Pomalidomid"
-          },
-          "strength": {
-            "numerator": {
-              "value": "1",
-              "unit": "mg"
-            },
-            "denominator": {
-              "value": "1",
-              "unit": "Stück"
-            }
-          }
+          "text": "Thalidomid 50 mg Hartkapseln 28 Stück"
         }
       }
     },
@@ -230,7 +141,7 @@
         },
         "identifier": {
           "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-          "value": "166.100.000.000.001.39"
+          "value": "160.100.000.000.021.76"
         },
         "status": "completed",
         "medicationReference": {
@@ -273,9 +184,9 @@
         "code": {
           "coding": {
             "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "19201712"
+            "code": "16880629"
           },
-          "text": "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
+          "text": "THALIDOMID BMS 50 mg Hartkapseln"
         },
         "form": {
           "coding": {
@@ -288,7 +199,7 @@
           "numerator": {
             "extension": {
               "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
-              "valueString": "21"
+              "valueString": "28"
             },
             "unit": "St"
           },
@@ -298,11 +209,11 @@
         },
         "ingredient": {
           "itemCodeableConcept": {
-            "text": "Pomalidomid"
+            "text": "Thalidomid"
           },
           "strength": {
             "numerator": {
-              "value": "1",
+              "value": "50",
               "unit": "mg"
             },
             "denominator": {

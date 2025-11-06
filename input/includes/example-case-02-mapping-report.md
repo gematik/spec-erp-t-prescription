@@ -3,8 +3,17 @@
 
 ## Summary
 
-- **Source Resources:** 6
-- **Target Parameters:** 5
+**Anwendungsfall:** Verschreibung und Abgabe eines PZN-Medikaments (Pomalidomid) mit spezifischer Dosierung und Transformation in einen digitalen Durchschlag.
+
+**Beispiel-Artefakte:**
+- **Quell-Dateien:**
+  - [`example-case-02-KBV_Bundle.xml`](test-examples/example-case-02-KBV_Bundle.xml)
+  - [`example-case-02-MedicationDispense_Parameters.xml`](test-examples/example-case-02-MedicationDispense_Parameters.xml)
+  - [`example-case-02-Task.xml`](test-examples/example-case-02-Task.xml)
+  - [`example-case-02-VZDSearchSet.xml`](test-examples/example-case-02-VZDSearchSet.xml)
+- **Mapping Bundle (generiert):** [`example-case-02-mapping-bundle.json`](test-examples/example-case-02-mapping-bundle.json)
+- **Digitaler Durchschlag (Ergebnis):** [`example-case-02-digitaler-durchschlag.json`](test-examples/example-case-02-digitaler-durchschlag.json)
+
 
 ## Resource Mapping Details
 
@@ -13,7 +22,6 @@
 #### Source: `Medication/a3ccc266-b033-47cc-9361-98ec450f7db9`
 
 **Target:** `rxPrescription.medication:Medication` (`Medication`)  
-**Coverage:** 61.1% (11/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -30,8 +38,10 @@
 | `ingredient.strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
 | `code.coding.code` | wirkstoff | - | - | ⚠️ |
 | `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[1].valueBoolean` | false | - | - | ⚠️ |
 | `extension[2].url` | http://fhir.de/StructureDefinition/normgroesse | - | - | ⚠️ |
 | `extension[2].valueCode` | N1 | - | - | ⚠️ |
@@ -41,7 +51,6 @@
 #### Source: `Medication/8e2e5e65-4c5d-49f2-8efc-c30e40838273`
 
 **Target:** `rxDispensation.dispenseInformation.medication:Medication` (`Medication`)  
-**Coverage:** 94.1% (16/17 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -70,7 +79,6 @@
 #### Source: `MedicationDispense/a7e1d25f-0b0a-40f7-b529-afda48e51b46`
 
 **Target:** `rxDispensation.dispenseInformation.medicationDispense:MedicationDispense` (`MedicationDispense`)  
-**Coverage:** 38.5% (5/13 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -101,7 +109,6 @@
 #### Source: `MedicationRequest/0886a530-68ef-4517-9999-b24f79b08da1`
 
 **Target:** `rxPrescription.medicationRequest:MedicationRequest` (`MedicationRequest`)  
-**Coverage:** 62.1% (18/29 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
@@ -110,26 +117,47 @@
 | `dispenseRequest.expectedSupplyDuration.value` | 3 | `dispenseRequest.expectedSupplyDuration.value` | 3 | ✅ |
 | `dispenseRequest.quantity.unit` | Packung | `dispenseRequest.quantity.unit` | Packung | ✅ |
 | `dispenseRequest.quantity.value` | 1 | `dispenseRequest.quantity.value` | 1 | ✅ |
-| `dosageInstruction.doseAndRate.doseQuantity.code` | 1 | `dosageInstruction[0].doseAndRate[0].doseQuantity.code` | 1 | ✅ |
-| `dosageInstruction.doseAndRate.doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | `dosageInstruction[0].doseAndRate[0].doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | ✅ |
-| `dosageInstruction.doseAndRate.doseQuantity.unit` | Stück | `dosageInstruction[0].doseAndRate[0].doseQuantity.unit` | Stück | ✅ |
-| `dosageInstruction.doseAndRate.doseQuantity.value` | 1 | `dosageInstruction[0].doseAndRate[0].doseQuantity.value` | 1 | ✅ |
-| `dosageInstruction.timing.repeat.frequency` | 1 | `dosageInstruction[0].timing.repeat.frequency` | 1 | ✅ |
-| `dosageInstruction.timing.repeat.period` | 1 | `dosageInstruction[0].timing.repeat.period` | 1 | ✅ |
-| `dosageInstruction.timing.repeat.periodUnit` | d | `dosageInstruction[0].timing.repeat.periodUnit` | d | ✅ |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.code` | 1 | `dosageInstruction[0].doseAndRate[0].doseQuantity.code` | 1 | ✅ |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | `dosageInstruction[0].doseAndRate[0].doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | ✅ |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.unit` | Stück | `dosageInstruction[0].doseAndRate[0].doseQuantity.unit` | Stück | ✅ |
+| `dosageInstruction[0].doseAndRate[0].doseQuantity.value` | 1 | `dosageInstruction[0].doseAndRate[0].doseQuantity.value` | 1 | ✅ |
+| `dosageInstruction[0].timing.repeat.frequency` | 1 | `dosageInstruction[0].timing.repeat.frequency` | 1 | ✅ |
+| `dosageInstruction[0].timing.repeat.period` | 1 | `dosageInstruction[0].timing.repeat.period` | 1 | ✅ |
+| `dosageInstruction[0].timing.repeat.periodUnit` | d | `dosageInstruction[0].timing.repeat.periodUnit` | d | ✅ |
+| `dosageInstruction[0].timing.repeat.when[0]` | MORN | `dosageInstruction[0].timing.repeat.when[0]` | MORN | ✅ |
+| `extension[4].extension[0].url` | Off-Label | `extension[0].extension[0].url` | Off-Label | ✅ |
+| `extension[4].extension[0].valueBoolean` | false | `extension[0].extension[0].valueBoolean` | False | ✅ |
+| `extension[4].extension[1].url` | GebaerfaehigeFrau | `extension[0].extension[1].url` | GebaerfaehigeFrau | ✅ |
+| `extension[4].extension[1].valueBoolean` | true | `extension[0].extension[1].valueBoolean` | True | ✅ |
+| `extension[4].extension[2].url` | EinhaltungSicherheitsmassnahmen | `extension[0].extension[2].url` | EinhaltungSicherheitsmassnahmen | ✅ |
+| `extension[4].extension[2].valueBoolean` | true | `extension[0].extension[2].valueBoolean` | True | ✅ |
+| `extension[4].extension[3].url` | AushaendigungInformationsmaterialien | `extension[0].extension[3].url` | AushaendigungInformationsmaterialien | ✅ |
+| `extension[4].extension[3].valueBoolean` | true | `extension[0].extension[3].valueBoolean` | True | ✅ |
+| `extension[4].extension[4].url` | ErklaerungSachkenntnis | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
 | `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | True | ✅ |
-| `extension[7].extension[1].url` | language | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
-| `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
+| `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | ✅ |
 | `status` | active | `status` | completed | ✅ |
-| `dosageInstruction.timing.repeat.when` | MORN | - | - | ⚠️ |
+| `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 0 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Statu... | - | - | ⚠️ |
+| `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[1].valueBoolean` | false | - | - | ⚠️ |
+| `extension[2].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[2].valueBoolean` | false | - | - | ⚠️ |
+| `extension[3].extension.url` | Kennzeichen | - | - | ⚠️ |
+| `extension[3].extension.valueBoolean` | false | - | - | ⚠️ |
+| `extension[3].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].valueBoolean` | true | - | - | ⚠️ |
+| `extension[6].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | - | - | ⚠️ |
 | `extension[6].valueMarkdown` | 0-0-1-0 Stück | - | - | ⚠️ |
+| `extension[7].extension[0].url` | algorithmVersion | - | - | ⚠️ |
 | `extension[7].extension[0].valueString` | 1.0.0 | - | - | ⚠️ |
+| `extension[7].extension[1].url` | language | - | - | ⚠️ |
 | `extension[7].extension[1].valueCode` | de-DE | - | - | ⚠️ |
+| `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | - | - | ⚠️ |
 | `id` | 0886a530-68ef-4517-9999-b24f79b08da1 | - | - | ⚠️ |
 | `insurance.reference` | http://pvs.praxis.local/fhir/Coverage/da80211e-... | - | - | ⚠️ |
 | `requester.reference` | http://pvs.praxis.local/fhir/Practitioner/d6f3b... | - | - | ⚠️ |
@@ -149,7 +177,6 @@
 #### Source: `VZDComposite/VZD-SearchSet-Bundle`
 
 **Target:** `rxDispensation.dispenseOrganization:Organization` (`Organization`)  
-**Coverage:** 77.8% (14/18 fields mapped)
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
