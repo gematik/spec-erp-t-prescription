@@ -149,10 +149,10 @@ def get_german_use_case_description(test_case_name: str) -> str:
         German description of the use case
     """
     descriptions = {
-        'example-case-01': 'Verschreibung und Abgabe eines Wirkstoff-Medikaments (Lenalidomid) mit Rezeptur-Information und nachfolgender Transformation in einen digitalen Durchschlag.',
-        'example-case-02': 'Verschreibung und Abgabe eines PZN-Medikaments (Pomalidomid) mit spezifischer Dosierung und Transformation in einen digitalen Durchschlag.',
-        'example-case-03': 'Verschreibung und Abgabe eines Freitext-Medikaments mit individueller Rezeptur und Transformation in einen digitalen Durchschlag.',
-        'example-case-04': 'Verschreibung und Abgabe eines Compound-Medikaments mit mehreren Wirkstoffen und Transformation in einen digitalen Durchschlag.'
+        'example-case-01': 'Verschreibung und Abgabe eines PZN-Medikaments (Pomalidomid) mit spezifischer Dosierung und Transformation in einen digitalen Durchschlag.',
+        'example-case-02': 'Verschreibung und Abgabe eines Wirkstoff-Medikaments (Lenalidomid) und nachfolgender Transformation in einen digitalen Durchschlag.',
+        'example-case-03': 'Verschreibung und Abgabe eines Freitext-Medikaments und Transformation in einen digitalen Durchschlag.',
+        'example-case-04': 'Verschreibung, Abgabe und Transformation einer Verordnung mit absoluten Referenzen in einen digitalen Durchschlag.'
     }
     
     return descriptions.get(test_case_name, f'Testfall für die Transformation von E-Rezept-Daten in einen digitalen Durchschlag ({test_case_name}).')
@@ -481,7 +481,7 @@ def format_value(value: Any, max_length: int = 50) -> str:
         return "-"
     
     if isinstance(value, bool):
-        return str(value)
+        return "true" if value else "false"
     
     if isinstance(value, (int, float)):
         return str(value)

@@ -3,7 +3,7 @@
 
 ## Summary
 
-**Anwendungsfall:** Verschreibung und Abgabe eines Compound-Medikaments mit mehreren Wirkstoffen und Transformation in einen digitalen Durchschlag.
+**Anwendungsfall:** Verschreibung, Abgabe und Transformation einer Verordnung mit absoluten Referenzen in einen digitalen Durchschlag.
 
 **Beispiel-Artefakte:**
 - **Quell-Dateien:**
@@ -133,15 +133,15 @@
 | `dosageInstruction[0].timing.repeat.periodUnit` | d | `dosageInstruction[0].timing.repeat.periodUnit` | d | ✅ |
 | `dosageInstruction[0].timing.repeat.when[0]` | EVE | `dosageInstruction[0].timing.repeat.when[0]` | EVE | ✅ |
 | `extension[4].extension[0].url` | Off-Label | `extension[0].extension[0].url` | Off-Label | ✅ |
-| `extension[4].extension[0].valueBoolean` | true | `extension[0].extension[0].valueBoolean` | True | ✅ |
+| `extension[4].extension[0].valueBoolean` | true | `extension[0].extension[0].valueBoolean` | true | ✅ |
 | `extension[4].extension[1].url` | GebaerfaehigeFrau | `extension[0].extension[1].url` | GebaerfaehigeFrau | ✅ |
-| `extension[4].extension[1].valueBoolean` | false | `extension[0].extension[1].valueBoolean` | False | ✅ |
+| `extension[4].extension[1].valueBoolean` | false | `extension[0].extension[1].valueBoolean` | false | ✅ |
 | `extension[4].extension[2].url` | EinhaltungSicherheitsmassnahmen | `extension[0].extension[2].url` | EinhaltungSicherheitsmassnahmen | ✅ |
-| `extension[4].extension[2].valueBoolean` | true | `extension[0].extension[2].valueBoolean` | True | ✅ |
+| `extension[4].extension[2].valueBoolean` | true | `extension[0].extension[2].valueBoolean` | true | ✅ |
 | `extension[4].extension[3].url` | AushaendigungInformationsmaterialien | `extension[0].extension[3].url` | AushaendigungInformationsmaterialien | ✅ |
-| `extension[4].extension[3].valueBoolean` | true | `extension[0].extension[3].valueBoolean` | True | ✅ |
+| `extension[4].extension[3].valueBoolean` | true | `extension[0].extension[3].valueBoolean` | true | ✅ |
 | `extension[4].extension[4].url` | ErklaerungSachkenntnis | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
-| `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | True | ✅ |
+| `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | true | ✅ |
 | `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
