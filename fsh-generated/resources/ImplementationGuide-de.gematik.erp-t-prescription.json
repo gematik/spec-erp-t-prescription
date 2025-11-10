@@ -47,7 +47,7 @@
     },
     {
       "packageId": "kbv.ita.erp",
-      "version": "1.4.0-beta3",
+      "version": "1.4.0",
       "uri": "http://fhir.org/packages/kbv.ita.erp/ImplementationGuide/kbv.ita.erp",
       "id": "kbv_ita_erp"
     },
