@@ -86,7 +86,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "prescriptionSignatureDate",
+        "fixedString": "prescriptionSignatureDate",
         "mustSupport": true
       },
       {
@@ -127,7 +127,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:prescriptionId.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "prescriptionId",
+        "fixedString": "prescriptionId",
         "mustSupport": true
       },
       {
@@ -170,7 +170,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:medicationRequest.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "medicationRequest",
+        "fixedString": "medicationRequest",
         "mustSupport": true
       },
       {
@@ -212,7 +212,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:medication.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "medication",
+        "fixedString": "medication",
         "mustSupport": true
       },
       {
@@ -337,7 +337,7 @@
       {
         "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.name",
         "path": "Parameters.parameter.part.part.name",
-        "patternString": "medicationDispense",
+        "fixedString": "medicationDispense",
         "mustSupport": true
       },
       {
@@ -379,7 +379,7 @@
       {
         "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.name",
         "path": "Parameters.parameter.part.part.name",
-        "patternString": "medication",
+        "fixedString": "medication",
         "mustSupport": true
       },
       {
@@ -422,7 +422,7 @@
       {
         "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "dispenseOrganization",
+        "fixedString": "dispenseOrganization",
         "mustSupport": true
       },
       {

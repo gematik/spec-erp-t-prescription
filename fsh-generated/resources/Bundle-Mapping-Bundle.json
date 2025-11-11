@@ -9,21 +9,89 @@
         "meta": {
           "profile": [
             "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.4"
-          ]
+          ],
+          "versionId": "1"
         },
-        "dispenseRequest": {
-          "expectedSupplyDuration": {
-            "value": 3,
-            "unit": "Woche(n)"
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee",
+            "valueBoolean": false
           },
-          "quantity": {
-            "value": 1,
-            "unit": "Packung"
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
+            "valueCoding": {
+              "code": "1",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
+            "valueBoolean": true
+          },
+          {
+            "extension": [
+              {
+                "url": "Kennzeichen",
+                "valueBoolean": false
+              }
+            ],
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription"
+          },
+          {
+            "extension": [
+              {
+                "url": "Off-Label",
+                "valueBoolean": true
+              },
+              {
+                "url": "GebaerfaehigeFrau",
+                "valueBoolean": false
+              },
+              {
+                "url": "EinhaltungSicherheitsmassnahmen",
+                "valueBoolean": true
+              },
+              {
+                "url": "AushaendigungInformationsmaterialien",
+                "valueBoolean": true
+              },
+              {
+                "url": "ErklaerungSachkenntnis",
+                "valueBoolean": true
+              }
+            ],
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+            "valueMarkdown": "0-0-1-0 Stück"
+          },
+          {
+            "extension": [
+              {
+                "url": "algorithmVersion",
+                "valueString": "1.0.0"
+              },
+              {
+                "url": "language",
+                "valueCode": "de-DE"
+              }
+            ],
+            "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER"
           }
-        },
-        "substitution": {
-          "allowedBoolean": true
-        },
+        ],
+        "insurance": [
+          {
+            "reference": "Coverage/e51239e1-ba74-48e0-97fb-9754d2b05c60"
+          }
+        ],
         "dosageInstruction": [
           {
             "timing": {
@@ -31,9 +99,9 @@
                 "when": [
                   "EVE"
                 ],
+                "frequency": 1,
                 "period": 1,
-                "periodUnit": "d",
-                "frequency": 1
+                "periodUnit": "d"
               }
             },
             "doseAndRate": [
@@ -45,90 +113,34 @@
                   "unit": "Stück"
                 }
               }
-            ],
-            "extension": [
-              {
-                "valueCoding": {
-                  "code": "DAILY_FOUR_SCHEME",
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Dosage_Category"
-                },
-                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageCategory"
-              }
             ]
           }
         ],
-        "insurance": [
-          {
-            "reference": "Coverage/e51239e1-ba74-48e0-97fb-9754d2b05c60"
+        "dispenseRequest": {
+          "quantity": {
+            "unit": "Packung",
+            "value": 1
+          },
+          "expectedSupplyDuration": {
+            "value": 3,
+            "unit": "Woche(n)"
           }
-        ],
-        "extension": [
-          {
-            "valueCoding": {
-              "code": "1",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"
-            },
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment"
-          },
-          {
-            "valueBoolean": false,
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee"
-          },
-          {
-            "valueBoolean": true,
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER"
-          },
-          {
-            "extension": [
-              {
-                "valueBoolean": false,
-                "url": "Kennzeichen"
-              }
-            ],
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription"
-          },
-          {
-            "extension": [
-              {
-                "valueBoolean": true,
-                "url": "Off-Label"
-              },
-              {
-                "valueBoolean": false,
-                "url": "GebaerfaehigeFrau"
-              },
-              {
-                "valueBoolean": true,
-                "url": "EinhaltungSicherheitsmassnahmen"
-              },
-              {
-                "valueBoolean": true,
-                "url": "AushaendigungInformationsmaterialien"
-              },
-              {
-                "valueBoolean": true,
-                "url": "ErklaerungSachkenntnis"
-              }
-            ],
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
-          },
-          {
-            "valueBoolean": true,
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag"
-          }
-        ],
+        },
+        "substitution": {
+          "allowedBoolean": true
+        },
+        "status": "active",
         "intent": "order",
+        "medicationReference": {
+          "reference": "Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f"
+        },
         "subject": {
           "reference": "Patient/30635f5d-c233-4500-94e8-6414940236aa"
         },
         "authoredOn": "2025-05-20",
         "requester": {
           "reference": "Practitioner/0c4e1a54-8a42-4d3d-a12c-0bbf2db48570"
-        },
-        "medicationReference": {
-          "reference": "Medication/KBV-TRP-Medication"
-        },
-        "status": "active"
+        }
       },
       "fullUrl": "https://erp-t-prescription-test.de/MedicationRequest/KBV-TRP-MedicationRequest"
     },
@@ -139,47 +151,17 @@
         "meta": {
           "profile": [
             "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.4"
-          ]
-        },
-        "ingredient": [
-          {
-            "itemCodeableConcept": {
-              "text": "Pomalidomid"
-            },
-            "strength": {
-              "denominator": {
-                "value": 1,
-                "unit": "Stück"
-              },
-              "numerator": {
-                "value": 1,
-                "unit": "mg"
-              }
-            }
-          }
-        ],
-        "amount": {
-          "denominator": {
-            "value": 1
-          },
-          "numerator": {
-            "extension": [
-              {
-                "valueString": "21",
-                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize"
-              }
-            ],
-            "unit": "Stück"
-          }
+          ],
+          "versionId": "1"
         },
         "extension": [
           {
             "valueCodeableConcept": {
               "coding": [
                 {
+                  "system": "http://snomed.info/sct",
                   "version": "http://snomed.info/sct/11000274103/version/20240515",
                   "code": "763158003",
-                  "system": "http://snomed.info/sct",
                   "display": "Medicinal product (product)"
                 }
               ]
@@ -187,35 +169,66 @@
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type"
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
             "valueCoding": {
               "code": "02",
               "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
-            },
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
+            }
           },
           {
-            "valueBoolean": false,
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine"
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+            "valueBoolean": false
           },
           {
-            "valueCode": "N1",
-            "url": "http://fhir.de/StructureDefinition/normgroesse"
+            "url": "http://fhir.de/StructureDefinition/normgroesse",
+            "valueCode": "N1"
           }
         ],
         "code": {
-          "text": "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln",
           "coding": [
             {
-              "code": "19201712",
-              "system": "http://fhir.de/CodeSystem/ifa/pzn"
+              "system": "http://fhir.de/CodeSystem/ifa/pzn",
+              "code": "19201712"
             }
-          ]
+          ],
+          "text": "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
         },
+        "amount": {
+          "numerator": {
+            "extension": [
+              {
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+                "valueString": "21"
+              }
+            ],
+            "unit": "Stück"
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "ingredient": [
+          {
+            "itemCodeableConcept": {
+              "text": "Pomalidomid"
+            },
+            "strength": {
+              "numerator": {
+                "value": 1,
+                "unit": "mg"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "Stück"
+              }
+            }
+          }
+        ],
         "form": {
           "coding": [
             {
-              "code": "HKP",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+              "code": "HKP"
             }
           ]
         }
