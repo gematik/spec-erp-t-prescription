@@ -152,7 +152,7 @@
 | `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].valueBoolean` | true | - | - | ⚠️ |
 | `extension[6].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | - | - | ⚠️ |
-| `extension[6].valueMarkdown` | 0-0-1-0 Stück | - | - | ⚠️ |
+| `extension[6].valueMarkdown` | 1-0-0-0 Stück | - | - | ⚠️ |
 | `extension[7].extension[0].url` | algorithmVersion | - | - | ⚠️ |
 | `extension[7].extension[0].valueString` | 1.0.0 | - | - | ⚠️ |
 | `extension[7].extension[1].url` | language | - | - | ⚠️ |

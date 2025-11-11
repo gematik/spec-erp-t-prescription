@@ -120,10 +120,6 @@
             }
           },
           {
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
-            "valueBoolean": true
-          },
-          {
             "extension": [
               {
                 "url": "Kennzeichen",

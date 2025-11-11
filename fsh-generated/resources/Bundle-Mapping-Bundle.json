@@ -18,17 +18,6 @@
             "valueBoolean": false
           },
           {
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
-            "valueCoding": {
-              "code": "1",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"
-            }
-          },
-          {
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
-            "valueBoolean": true
-          },
-          {
             "extension": [
               {
                 "url": "Kennzeichen",

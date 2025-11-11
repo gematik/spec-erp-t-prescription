@@ -42,7 +42,7 @@
         "status" : "completed",
         "intent" : "order",
         "medicationReference" : {
-          "reference" : "Medication/KBV-TRP-Medication"
+          "reference" : "Medication/a3ca01a4-92c1-422a-87d9-ef046e94527f"
         },
         "subject" : {
           "extension" : [{
@@ -52,13 +52,6 @@
         },
         "authoredOn" : "2025-05-20",
         "dosageInstruction" : [{
-          "extension" : [{
-            "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageCategory",
-            "valueCoding" : {
-              "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Dosage_Category",
-              "code" : "DAILY_FOUR_SCHEME"
-            }
-          }],
           "timing" : {
             "repeat" : {
               "frequency" : 1,
@@ -89,55 +82,7 @@
       }
     },
     {
-      "name" : "medication",
-      "resource" : {
-        "resourceType" : "Medication",
-        "id" : "KBV-TRP-Medication",
-        "extension" : [{
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "N1"
-        }],
-        "code" : {
-          "coding" : [{
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "19201712"
-          }],
-          "text" : "Pomalidomid Accord 1 mg 21 x 1 Hartkapseln"
-        },
-        "form" : {
-          "coding" : [{
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "HKP"
-          }]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [{
-              "url" : "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
-              "valueString" : "21"
-            }],
-            "unit" : "Stück"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        },
-        "ingredient" : [{
-          "itemCodeableConcept" : {
-            "text" : "Pomalidomid"
-          },
-          "strength" : {
-            "numerator" : {
-              "value" : 1,
-              "unit" : "mg"
-            },
-            "denominator" : {
-              "value" : 1,
-              "unit" : "Stück"
-            }
-          }
-        }]
-      }
+      "name" : "medication"
     }]
   },
   {
