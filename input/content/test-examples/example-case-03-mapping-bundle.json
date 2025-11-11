@@ -141,7 +141,7 @@
         },
         "identifier": {
           "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-          "value": "160.100.000.000.021.76"
+          "value": "166.100.000.000.001.39"
         },
         "status": "completed",
         "medicationReference": {

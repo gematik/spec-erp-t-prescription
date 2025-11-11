@@ -82,12 +82,6 @@
       "id": "de_gematik_epa_medication"
     },
     {
-      "packageId": "kbv.all.st",
-      "version": "1.28.0",
-      "uri": "http://fhir.org/packages/kbv.all.st/ImplementationGuide/kbv.all.st",
-      "id": "kbv_all_st"
-    },
-    {
       "packageId": "de.fhir.medication",
       "version": "1.0.2",
       "uri": "http://ig.fhir.de/igs/medication/ImplementationGuide/de.fhir.medication",
@@ -149,7 +143,7 @@
         },
         "name": "Beispiel digitaler Durchschlag E-T-Rezept",
         "description": "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digitalen Durchschlags abzubilden",
-        "exampleBoolean": true
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
       },
       {
         "reference": {

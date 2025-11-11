@@ -120,6 +120,10 @@
             }
           },
           {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
+            "valueBoolean": true
+          },
+          {
             "extension": [
               {
                 "url": "Kennzeichen",
@@ -173,9 +177,6 @@
               }
             ],
             "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta"
-          },
-          {
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER"
           }
         ],
         "insurance": [

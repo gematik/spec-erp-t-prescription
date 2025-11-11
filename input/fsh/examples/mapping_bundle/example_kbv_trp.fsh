@@ -44,8 +44,7 @@ InstanceOf: KBV_PR_ERP_Prescription
 Usage: #inline
 * meta.versionId = "1"
 * extension[Notdienstgebuehr].valueBoolean = false
-* extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment"
-* extension[=].valueCoding = $KBV_CS_FOR_StatusCoPayment#1
+* extension[Zuzahlungsstatus].valueCoding = $KBV_CS_FOR_StatusCoPayment#1
 * extension[SER].valueBoolean = true
 * extension[Mehrfachverordnung].extension[Kennzeichen].valueBoolean = false
 * extension[T-Rezept].extension[Off-Label].valueBoolean = true

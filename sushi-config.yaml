@@ -34,7 +34,6 @@ dependencies:
   de.gematik.erezept-workflow.r4: 1.6.0
   de.basisprofil.r4: 1.5.4
   de.gematik.epa.medication: 1.2.0
-  kbv.all.st: 1.28.0
   de.fhir.medication: 1.0.2
 # The pages property corresponds to IG.definition.page. SUSHI can
 # auto-generate the page list, but if the author includes pages in
