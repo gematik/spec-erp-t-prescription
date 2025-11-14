@@ -94,36 +94,53 @@ def has_meaningful_transformation(rule):
     
     return False
 
-def extract_transformation_info(rule):
-    """Extract information about how data is transformed"""
+def extract_target_transformation_info(target):
+    """Extract transformation hints for a specific target mapping."""
+    if not target:
+        return []
+
     transformations = []
-    
-    # Check for copy operations
-    if 'target' in rule and rule['target']:
-        for target in rule['target']:
-            if target.get('transform') == 'copy':
-                if 'parameter' in target and target['parameter']:
-                    value = target['parameter'][0].get('valueString', '')
-                    if value:
-                        # Only show URL transformations
-                        if 'http' in value or 'StructureDefinition' in value:
-                            transformations.append(f"→ setzt URL '{value}'")
-            elif target.get('transform') == 'create':
-                if 'parameter' in target and target['parameter']:
-                    value = target['parameter'][0].get('valueString', '')
-                    if value:
-                        transformations.append(f"→ erstellt neues {value}")
-    
+    transform_type = target.get('transform')
+    parameters = target.get('parameter', [])
+
+    if transform_type == 'copy':
+        for param in parameters:
+            value = param.get('valueString')
+            if value:
+                if 'http' in value or 'StructureDefinition' in value:
+                    transformations.append(f"→ setzt URL '{value}'")
+                else:
+                    transformations.append(f"→ setzt Wert '{value}'")
+            elif 'valueId' in param:
+                transformations.append("→ übernimmt Wert aus Quellvariable")
+            elif 'valueBoolean' in param:
+                transformations.append(f"→ setzt Wert '{param['valueBoolean']}'")
+    elif transform_type == 'create':
+        for param in parameters:
+            value = param.get('valueString')
+            if value:
+                transformations.append(f"→ erstellt neues {value}")
+                break
+
     return transformations
 
 def build_fhir_path(parents, context, element):
     """Build FHIR path with improved readability"""
     def is_real(part):
-        return part and not part.startswith('src') and not part.startswith('tgt')
+        return (
+            part
+            and not part.startswith('src')
+            and not part.startswith('tgt')
+            and not part.endswith('Var')
+        )
     
     parts = [p for p in parents if is_real(p)]
     if is_real(context):
-        parts.append(context)
+        if context in parts:
+            context_index = len(parts) - 1 - parts[::-1].index(context)
+            parts = parts[: context_index + 1]
+        elif not parts or parts[-1] != context:
+            parts.append(context)
     if element:
         parts.append(element)
     
@@ -172,50 +189,45 @@ def extract_relevant_rules(rules, src_parents=None, tgt_parents=None, mappings=N
         else:
             src_path = ""
         
-        # Build target path
-        if has_target:
-            tgt = rule['target'][0]
-            tgt_path = build_fhir_path(tgt_parents, tgt.get('context', ''), tgt.get('element', ''))
-        else:
-            tgt_path = ""
-        
-        # Clean paths for better readability
-        src_path_clean = clean_path(src_path)
-        tgt_path_clean = format_target_path(tgt_path)
-        
-        # Hide generic source paths
-        if is_generic_source(src_path_clean):
-            src_path_clean = ""
-        
-        # Build description
-        desc_parts = []
-        
-        # Add rule documentation
+        # Prepare description shared across targets
+        base_desc_parts = []
         if rule.get('documentation'):
-            desc_parts.append(rule['documentation'])
-        
-        # Add transformation information
-        transformations = extract_transformation_info(rule)
-        desc_parts.extend(transformations)
-        
-        # Add dependent mapping references
+            base_desc_parts.append(rule['documentation'])
         if 'dependent' in rule:
             dependent_links = []
             for dep in rule['dependent']:
                 dep_name = dep.get('name')
                 if dep_name:
-                    # Make mapping names more readable
                     readable_name = dep_name.replace('ERPTPrescriptionStructureMap', '')
                     link = f"[{readable_name}](./StructureMap-{dep_name}.html)"
                     dependent_links.append(link)
             if dependent_links:
-                desc_parts.append("Verwendet Mapping: " + ", ".join(dependent_links))
-        
-        desc = "<br>".join(desc_parts)
-        
-        # Include rule if it has meaningful content
-        if should_include(rule) and (src_path_clean or tgt_path_clean or desc):
-            mappings.append((src_path_clean, tgt_path_clean, desc))
+                base_desc_parts.append("Verwendet Mapping: " + ", ".join(dependent_links))
+
+        # Build target paths (possibly multiple)
+        tgt_path = ""
+        target_entries = []
+        if has_target:
+            for target in rule['target']:
+                tgt_candidate = build_fhir_path(tgt_parents, target.get('context', ''), target.get('element', ''))
+                tgt_candidate_clean = format_target_path(tgt_candidate)
+                target_entries.append((tgt_candidate_clean, target))
+            tgt_path = build_fhir_path(tgt_parents, rule['target'][0].get('context', ''), rule['target'][0].get('element', ''))
+        else:
+            target_entries.append(("", None))
+
+        # Clean paths for better readability
+        src_path_clean = clean_path(src_path)
+        if is_generic_source(src_path_clean):
+            src_path_clean = ""
+
+        if should_include(rule):
+            for tgt_path_clean, tgt in target_entries:
+                target_desc_parts = list(base_desc_parts)
+                target_desc_parts.extend(extract_target_transformation_info(tgt))
+                desc = "<br>".join(target_desc_parts)
+                if src_path_clean or tgt_path_clean or desc:
+                    mappings.append((src_path_clean, tgt_path_clean, desc))
         
         # Recurse into nested rules
         if 'rule' in rule:
