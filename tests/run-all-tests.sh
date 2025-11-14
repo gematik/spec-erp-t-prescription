@@ -35,6 +35,7 @@ INCLUDES_DIR="$PROJECT_ROOT/input/includes"
 # Scripts
 BUILD_SCRIPT="$SCRIPTS_DIR/build-bundle.py"
 TRANSFORM_SCRIPT="$SCRIPTS_DIR/transform-bundle.py"
+ADD_SIGNATURE_SCRIPT="$SCRIPTS_DIR/add-prescription-signature-date.py"
 
 # Counters
 TOTAL_TESTS=0
@@ -102,6 +103,13 @@ for test_case_path in "${TEST_CASES[@]}"; do
     echo -e "\n${YELLOW}[2/3] Transforming with StructureMap...${NC}"
     if python3 "$TRANSFORM_SCRIPT" "$bundle_file" "$test_output_dir"; then
         echo -e "${GREEN}✓ Transformation successful: $result_file${NC}"
+
+        if python3 "$ADD_SIGNATURE_SCRIPT" "$result_file"; then
+            echo -e "${GREEN}✓ Injected prescription signature date${NC}"
+        else
+            echo -e "${RED}✗ Failed to inject prescription signature date${NC}"
+            exit 1
+        fi
         
         # Step 3: Generate comparison report
         echo -e "\n${YELLOW}[3/3] Generating mapping comparison report...${NC}"

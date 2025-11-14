@@ -55,21 +55,21 @@
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
-| `amount.numerator.extension.url` | https://gematik.de/fhir/epa-medication/Structur... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
-| `amount.numerator.extension.valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
+| `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
+| `amount.numerator.extension[0].valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
 | `amount.numerator.unit` | St | `amount.numerator.unit` | St | ✅ |
-| `code.coding.code` | 17629624 | `code.coding[0].code` | 17629624 | ✅ |
-| `code.coding.system` | http://fhir.de/CodeSystem/ifa/pzn | `code.coding[0].system` | http://fhir.de/CodeSystem/ifa/pzn | ✅ |
+| `code.coding[0].code` | 17629624 | `code.coding[0].code` | 17629624 | ✅ |
+| `code.coding[0].system` | http://fhir.de/CodeSystem/ifa/pzn | `code.coding[0].system` | http://fhir.de/CodeSystem/ifa/pzn | ✅ |
 | `code.text` | Lenalidomid Ethypharm 2,5 mg Hartkapseln | `code.text` | Lenalidomid Ethypharm 2,5 mg Hartkapseln | ✅ |
-| `form.coding.code` | TAB | `form.coding[0].code` | TAB | ✅ |
-| `form.coding.display` | Tabletten | `form.coding[0].display` | Tabletten | ✅ |
-| `form.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | `form.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | ✅ |
+| `form.coding[0].code` | TAB | `form.coding[0].code` | TAB | ✅ |
+| `form.coding[0].display` | Tabletten | `form.coding[0].display` | Tabletten | ✅ |
+| `form.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | `form.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV... | ✅ |
 | `id` | 8e2e5e65-4c5d-49f2-8efc-c30e40838273 | `id` | 8e2e5e65-4c5d-49f2-8efc-c30e40838273 | ✅ |
-| `ingredient.itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
-| `ingredient.strength.denominator.unit` | Tbl. | `ingredient[0].strength.denominator.unit` | Tbl. | ✅ |
-| `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
-| `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
-| `ingredient.strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
+| `ingredient[0].itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
+| `ingredient[0].strength.denominator.unit` | Tbl. | `ingredient[0].strength.denominator.unit` | Tbl. | ✅ |
+| `ingredient[0].strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
+| `ingredient[0].strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
+| `ingredient[0].strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
 | `batch.lotNumber` | A123456789-1 | - | - | ⚠️ |
 
 ---
@@ -88,10 +88,10 @@
 | `status` | completed | `status` | completed | ✅ |
 | `whenHandedOver` | 2025-10-30 | `whenHandedOver` | 2025-10-30 | ✅ |
 | `id` | a7e1d25f-0b0a-40f7-b529-afda48e51b46 | - | - | ⚠️ |
-| `identifier.system` | https://gematik.de/fhir/erp/NamingSystem/GEM_ER... | - | - | ⚠️ |
-| `identifier.value` | 166.100.000.000.021.76 | - | - | ⚠️ |
-| `performer.actor.identifier.system` | https://gematik.de/fhir/sid/telematik-id | - | - | ⚠️ |
-| `performer.actor.identifier.value` | 3-07.2.1234560000.10.789 | - | - | ⚠️ |
+| `identifier[0].system` | https://gematik.de/fhir/erp/NamingSystem/GEM_ER... | - | - | ⚠️ |
+| `identifier[0].value` | 166.100.000.000.021.76 | - | - | ⚠️ |
+| `performer[0].actor.identifier.system` | https://gematik.de/fhir/sid/telematik-id | - | - | ⚠️ |
+| `performer[0].actor.identifier.value` | 3-07.2.1234560000.10.789 | - | - | ⚠️ |
 | `subject.identifier.system` | http://fhir.de/sid/gkv/kvid-10 | - | - | ⚠️ |
 | `subject.identifier.value` | X234567890 | - | - | ⚠️ |
 | `substitution.wasSubstituted` | true | - | - | ⚠️ |
@@ -189,8 +189,8 @@
 | `address.type` | postal | `address[0].type` | postal | ✅ |
 | `address.use` | work | `address[0].use` | work | ✅ |
 | `identifier[1].system` | https://gematik.de/fhir/sid/telematik-id | `identifier[0].system` | https://gematik.de/fhir/sid/telematik-id | ✅ |
-| `identifier[1].value` | 3-Test-APO000053 | `identifier[0].value` | 3-Test-APO000053 | ✅ |
-| `name` | Organisation 3-Test-APO000053 | `name` | Organisation 3-Test-APO000053 | ✅ |
+| `identifier[1].value` | 3-07.2.1234560000.10.789 | `identifier[0].value` | 3-07.2.1234560000.10.789 | ✅ |
+| `name` | Schwarzwald Apotheke | `name` | Schwarzwald Apotheke | ✅ |
 | `telecom[0].system` | phone | `telecom[0].system` | phone | ✅ |
 | `telecom[0].use` | work | `telecom[0].use` | work | ✅ |
 | `telecom[0].value` | 1234 | `telecom[0].value` | 1234 | ✅ |

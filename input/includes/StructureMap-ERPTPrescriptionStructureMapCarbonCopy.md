@@ -6,7 +6,7 @@
 | Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
 |------------------------|---------------------|-------------------------------|
 |  | `erpTCarbonCopy.meta` | Setzt die Metadaten für den digitalen Durchschlag |
-|  | `CarbonCopy.meta.profile` | Setzt das meta.profile des digitalen Durchschlags T-Rezept<br>→ setzt URL 'https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0' |
+|  | `CarbonCopy.meta.profile` | Setzt das meta.profile des digitalen Durchschlags T-Rezept<br>→ setzt URL 'https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1' |
 |  | `CarbonCopy.parameter` | Erstellt den rxPrescription Parameter mit allen Verschreibungsinformationen |
 | `entry` | *(wird bestimmt durch Kontext)* | Verarbeitet alle Einträge des Quell-Bundles für Verschreibungsinformationen |
 | `entry.resource` | *(wird bestimmt durch Kontext)* | Extrahiert relevante Ressourcen für die Verschreibung |

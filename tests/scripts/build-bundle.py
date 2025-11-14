@@ -159,6 +159,73 @@ def normalize_medication_request_structure(resource: Dict[str, Any]) -> None:
                 repeat["when"] = [when_value]
 
 
+def normalize_medication_dispense_structure(resource: Dict[str, Any]) -> None:
+    """Ensure MedicationDispense repeating elements remain arrays."""
+    if resource.get("resourceType") != "MedicationDispense":
+        return
+
+    identifier = resource.get("identifier")
+    if identifier is not None and not isinstance(identifier, list):
+        resource["identifier"] = [identifier]
+
+    performer = resource.get("performer")
+    if performer is not None and not isinstance(performer, list):
+        resource["performer"] = [performer]
+
+
+def normalize_medication_structure(resource: Dict[str, Any]) -> None:
+    """Ensure Medication resource uses arrays for repeating elements."""
+    if resource.get("resourceType") != "Medication":
+        return
+
+    identifier = resource.get("identifier")
+    if identifier is not None and not isinstance(identifier, list):
+        resource["identifier"] = [identifier]
+
+    code = resource.get("code")
+    if isinstance(code, dict):
+        coding = code.get("coding")
+        if coding is not None and not isinstance(coding, list):
+            code["coding"] = [coding]
+
+    form = resource.get("form")
+    if isinstance(form, dict):
+        coding = form.get("coding")
+        if coding is not None and not isinstance(coding, list):
+            form["coding"] = [coding]
+
+    ingredient = resource.get("ingredient")
+    if ingredient is not None and not isinstance(ingredient, list):
+        resource["ingredient"] = [ingredient]
+
+    for ingredient_item in resource.get("ingredient", []):
+        strength = ingredient_item.get("strength")
+        if isinstance(strength, dict):
+            numerator = strength.get("numerator")
+            if isinstance(numerator, dict):
+                extension = numerator.get("extension")
+                if extension is not None and not isinstance(extension, list):
+                    numerator["extension"] = [extension]
+            denominator = strength.get("denominator")
+            if isinstance(denominator, dict):
+                extension = denominator.get("extension")
+                if extension is not None and not isinstance(extension, list):
+                    denominator["extension"] = [extension]
+
+    amount = resource.get("amount")
+    if isinstance(amount, dict):
+        numerator = amount.get("numerator")
+        if isinstance(numerator, dict):
+            extension = numerator.get("extension")
+            if extension is not None and not isinstance(extension, list):
+                numerator["extension"] = [extension]
+        denominator = amount.get("denominator")
+        if isinstance(denominator, dict):
+            extension = denominator.get("extension")
+            if extension is not None and not isinstance(extension, list):
+                denominator["extension"] = [extension]
+
+
 def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
     """
     Build a mapping bundle from resources in the test case directory.
@@ -196,6 +263,7 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         
         if medication:
             medication = normalize_references(medication)
+            normalize_medication_structure(medication)
             resource_id = medication.get('id', 'KBV-Medication')
             full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(medication, full_url))
@@ -214,6 +282,7 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
             
             if medication:
                 medication = normalize_references(medication)
+                normalize_medication_structure(medication)
                 resource_id = medication.get('id', 'KBV-Medication')
                 full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(medication, full_url))
@@ -231,12 +300,14 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
         
         if dispense:
             dispense = normalize_references(dispense)
+            normalize_medication_dispense_structure(dispense)
             resource_id = dispense.get('id', 'GEM-MedicationDispense')
             full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(dispense, full_url))
         
         if gem_medication:
             gem_medication = normalize_references(gem_medication)
+            normalize_medication_structure(gem_medication)
             resource_id = gem_medication.get('id', 'GEM-Medication')
             full_url = f"urn:uuid:{resource_id}"
             bundle["entry"].append(create_bundle_entry(gem_medication, full_url))
@@ -248,12 +319,14 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
             
             if dispense:
                 dispense = normalize_references(dispense)
+                normalize_medication_dispense_structure(dispense)
                 resource_id = dispense.get('id', 'GEM-MedicationDispense')
                 full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(dispense, full_url))
             
             if gem_medication:
                 gem_medication = normalize_references(gem_medication)
+                normalize_medication_structure(gem_medication)
                 resource_id = gem_medication.get('id', 'GEM-Medication')
                 full_url = f"urn:uuid:{resource_id}"
                 bundle["entry"].append(create_bundle_entry(gem_medication, full_url))

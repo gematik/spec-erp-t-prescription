@@ -63,7 +63,7 @@
                 {
                   "parameter": [
                     {
-                      "valueString": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"
+                      "valueString": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"
                     }
                   ],
                   "context": "erpTCarbonCopyMeta",

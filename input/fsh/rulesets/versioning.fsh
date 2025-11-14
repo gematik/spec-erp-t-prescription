@@ -27,4 +27,4 @@ RuleSet: DateTimeStampPlus1Hr(field)
 
 RuleSet: setMetaProfileCC(context, to)
 * insert targetBase({context}, {to})
-* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"
+* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"

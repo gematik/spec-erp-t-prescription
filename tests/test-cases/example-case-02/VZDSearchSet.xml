@@ -71,7 +71,7 @@
             </coding>
           </type>
           <system value='https://gematik.de/fhir/sid/telematik-id'/>
-          <value value='3-Test-APO000053'/>
+          <value value='3-07.2.1234560000.10.789'/>
         </identifier>
         <active value='true'/>
         <type>
@@ -81,8 +81,8 @@
             <display value='Öffentliche Apotheke'/>
           </coding>
         </type>
-        <name value='Organisation 3-Test-APO000053'/>
-        <alias value='Organisation 3-Test-APO000053'/>
+        <name value='Schwarzwald Apotheke'/>
+        <alias value='Schwarzwald Apotheke'/>
       </Organization>
     </resource>
     <search>
@@ -108,7 +108,7 @@
           <system value='http://hl7.org/fhir/sid/us-npi'/>
           <value value='995d8a48-f7fc-4ffb-a676-feb18c7c052c'/>
         </identifier>
-        <name value='Location of Organisation 1-2arvtst-ap000053'/>
+        <name value='Location of Organisation 3-07.2.1234560000.10.789'/>
         <address>
           <use value='work'/>
           <type value='postal'/>

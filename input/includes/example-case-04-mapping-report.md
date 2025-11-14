@@ -197,8 +197,8 @@
 | `address.type` | postal | `address[0].type` | postal | ✅ |
 | `address.use` | work | `address[0].use` | work | ✅ |
 | `identifier[1].system` | https://gematik.de/fhir/sid/telematik-id | `identifier[0].system` | https://gematik.de/fhir/sid/telematik-id | ✅ |
-| `identifier[1].value` | 3-Test-APO000053 | `identifier[0].value` | 3-Test-APO000053 | ✅ |
-| `name` | Organisation 3-Test-APO000053 | `name` | Organisation 3-Test-APO000053 | ✅ |
+| `identifier[1].value` | 3-07.2.1234560000.10.789 | `identifier[0].value` | 3-07.2.1234560000.10.789 | ✅ |
+| `name` | Schwarzwald Apotheke | `name` | Schwarzwald Apotheke | ✅ |
 | `telecom[0].system` | phone | `telecom[0].system` | phone | ✅ |
 | `telecom[0].use` | work | `telecom[0].use` | work | ✅ |
 | `telecom[0].value` | 1234 | `telecom[0].value` | 1234 | ✅ |

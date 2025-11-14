@@ -549,7 +549,7 @@
                     ]
                   },
                   "system": "https://gematik.de/fhir/sid/telematik-id",
-                  "value": "3-Test-APO000053"
+                  "value": "3-07.2.1234560000.10.789"
                 }
               ],
               "active": true,
@@ -564,9 +564,9 @@
                   ]
                 }
               ],
-              "name": "Organisation 3-Test-APO000053",
+              "name": "Schwarzwald Apotheke",
               "alias": [
-                "Organisation 3-Test-APO000053"
+                "Schwarzwald Apotheke"
               ]
             },
             "search": {
@@ -598,7 +598,7 @@
                   "value": "995d8a48-f7fc-4ffb-a676-feb18c7c052c"
                 }
               ],
-              "name": "Location of Organisation 1-2arvtst-ap000053",
+              "name": "Location of Organisation 3-07.2.1234560000.10.789",
               "address": {
                 "use": "work",
                 "type": "postal",

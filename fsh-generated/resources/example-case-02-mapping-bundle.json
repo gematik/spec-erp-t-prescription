@@ -220,10 +220,12 @@
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
           ]
         },
-        "identifier": {
-          "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-          "value": "166.100.000.000.021.76"
-        },
+        "identifier": [
+          {
+            "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+            "value": "166.100.000.000.021.76"
+          }
+        ],
         "status": "completed",
         "medicationReference": {
           "reference": "urn:uuid:8e2e5e65-4c5d-49f2-8efc-c30e40838273"
@@ -234,14 +236,16 @@
             "value": "X234567890"
           }
         },
-        "performer": {
-          "actor": {
-            "identifier": {
-              "system": "https://gematik.de/fhir/sid/telematik-id",
-              "value": "3-07.2.1234560000.10.789"
+        "performer": [
+          {
+            "actor": {
+              "identifier": {
+                "system": "https://gematik.de/fhir/sid/telematik-id",
+                "value": "3-07.2.1234560000.10.789"
+              }
             }
           }
-        },
+        ],
         "quantity": {
           "value": 1,
           "unit": "Packung"
@@ -263,46 +267,54 @@
           ]
         },
         "code": {
-          "coding": {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "17629624"
-          },
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/ifa/pzn",
+              "code": "17629624"
+            }
+          ],
           "text": "Lenalidomid Ethypharm 2,5 mg Hartkapseln"
         },
         "form": {
-          "coding": {
-            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code": "TAB",
-            "display": "Tabletten"
-          }
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+              "code": "TAB",
+              "display": "Tabletten"
+            }
+          ]
         },
         "amount": {
           "numerator": {
-            "extension": {
-              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
-              "valueString": "21"
-            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+                "valueString": "21"
+              }
+            ],
             "unit": "St"
           },
           "denominator": {
             "value": 1
           }
         },
-        "ingredient": {
-          "itemCodeableConcept": {
-            "text": "Lenalidomid"
-          },
-          "strength": {
-            "numerator": {
-              "value": 2.5,
-              "unit": "mg"
+        "ingredient": [
+          {
+            "itemCodeableConcept": {
+              "text": "Lenalidomid"
             },
-            "denominator": {
-              "value": 1,
-              "unit": "Tbl."
+            "strength": {
+              "numerator": {
+                "value": 2.5,
+                "unit": "mg"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "Tbl."
+              }
             }
           }
-        },
+        ],
         "batch": {
           "lotNumber": "A123456789-1"
         }
@@ -515,7 +527,7 @@
                     ]
                   },
                   "system": "https://gematik.de/fhir/sid/telematik-id",
-                  "value": "3-Test-APO000053"
+                  "value": "3-07.2.1234560000.10.789"
                 }
               ],
               "active": true,
@@ -530,9 +542,9 @@
                   ]
                 }
               ],
-              "name": "Organisation 3-Test-APO000053",
+              "name": "Schwarzwald Apotheke",
               "alias": [
-                "Organisation 3-Test-APO000053"
+                "Schwarzwald Apotheke"
               ]
             },
             "search": {
@@ -564,7 +576,7 @@
                   "value": "995d8a48-f7fc-4ffb-a676-feb18c7c052c"
                 }
               ],
-              "name": "Location of Organisation 1-2arvtst-ap000053",
+              "name": "Location of Organisation 3-07.2.1234560000.10.789",
               "address": {
                 "use": "work",
                 "type": "postal",

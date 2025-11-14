@@ -1,7 +1,7 @@
 {
   "resourceType" : "Parameters",
   "meta" : {
-    "profile" : ["https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"]
+    "profile" : ["https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"]
   },
   "parameter" : [{
     "name" : "rxPrescription",
