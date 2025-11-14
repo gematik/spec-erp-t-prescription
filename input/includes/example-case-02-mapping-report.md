@@ -188,13 +188,13 @@
 | `address.text` | Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Groß... | `address[0].text` | Schwarzwaldstr. 18&#13;&#10;63762&#13;&#10;Groß... | ✅ |
 | `address.type` | postal | `address[0].type` | postal | ✅ |
 | `address.use` | work | `address[0].use` | work | ✅ |
+| `id` | VZD-SearchSet-Bundle | `id` | 3-07.2.1234560000.10.789 | ✅ |
 | `identifier[1].system` | https://gematik.de/fhir/sid/telematik-id | `identifier[0].system` | https://gematik.de/fhir/sid/telematik-id | ✅ |
 | `identifier[1].value` | 3-07.2.1234560000.10.789 | `identifier[0].value` | 3-07.2.1234560000.10.789 | ✅ |
 | `name` | Schwarzwald Apotheke | `name` | Schwarzwald Apotheke | ✅ |
 | `telecom[0].system` | phone | `telecom[0].system` | phone | ✅ |
 | `telecom[0].use` | work | `telecom[0].use` | work | ✅ |
 | `telecom[0].value` | 1234 | `telecom[0].value` | 1234 | ✅ |
-| `id` | VZD-SearchSet-Bundle | - | - | ⚠️ |
 | `identifier[1].type.coding[0].code` | PRN | - | - | ⚠️ |
 | `identifier[1].type.coding[0].system` | http://terminology.hl7.org/CodeSystem/v2-0203 | - | - | ⚠️ |
 | `sourceResources[2]` | Location | - | - | ⚠️ |

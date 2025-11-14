@@ -171,6 +171,7 @@
           "name": "dispenseOrganization",
           "resource": {
             "resourceType": "Organization",
+            "id": "3-07.2.1234560000.10.789",
             "identifier": [
               {
                 "system": "https://gematik.de/fhir/sid/telematik-id",

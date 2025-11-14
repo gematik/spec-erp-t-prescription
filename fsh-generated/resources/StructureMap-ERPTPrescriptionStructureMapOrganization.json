@@ -123,6 +123,17 @@
                           "contextType": "variable",
                           "element": "value",
                           "transform": "copy"
+                        },
+                        {
+                          "parameter": [
+                            {
+                              "valueId": "srcOrgIdentifierValueVar"
+                            }
+                          ],
+                          "context": "bfarmOrganization",
+                          "contextType": "variable",
+                          "element": "id",
+                          "transform": "copy"
                         }
                       ],
                       "name": "tidValue",

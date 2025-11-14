@@ -48,6 +48,7 @@ Description: "Mapping-Anweisungen zur Erstellung einer BfArM Organization aus de
           * source[=].logMessage = "tgtTidIdentifier"
           * insert targetSetStringVariable(bfarmOrganizationIdentifierVar, system, https://gematik.de/fhir/sid/telematik-id)
           * insert targetSetIdVariable(bfarmOrganizationIdentifierVar, value, srcOrgIdentifierValueVar)
+          * insert targetSetIdVariable(bfarmOrganization, id, srcOrgIdentifierValueVar)
           * documentation = "Kopiert die Telematik-ID mit korrektem System-Identifier in die Ziel-Organisation"
 
   * rule[+]
