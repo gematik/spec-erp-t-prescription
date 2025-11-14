@@ -126,6 +126,23 @@ for test_case_path in "${TEST_CASES[@]}"; do
     echo ""
 done
 
+# Copy all JSON files to fsh-generated/resources (flat structure)
+echo -e "${BLUE}╔════════════════════════════════════════════════╗${NC}"
+echo -e "${BLUE}║   Copying JSON files to fsh-generated         ║${NC}"
+echo -e "${BLUE}╚════════════════════════════════════════════════╝${NC}\n"
+
+FSH_RESOURCES_DIR="$PROJECT_ROOT/fsh-generated/resources"
+mkdir -p "$FSH_RESOURCES_DIR"
+
+# Find all JSON files in output directory and copy them flat
+find "$OUTPUT_DIR" -name "*.json" -type f | while read -r json_file; do
+    filename=$(basename "$json_file")
+    cp "$json_file" "$FSH_RESOURCES_DIR/$filename"
+    echo -e "${GREEN}✓ Copied: $filename${NC}"
+done
+
+echo -e "\n${GREEN}✓ All JSON files copied to fsh-generated/resources${NC}\n"
+
 # Print summary
 echo -e "${BLUE}╔════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║   Test Results Summary                         ║${NC}"

@@ -19,9 +19,12 @@ Usage:
 
 import json
 import sys
-import os
+import re
+import shutil
+import subprocess
+import tempfile
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict, List, Optional
 
 
 def load_json_file(filepath: Path) -> Dict[str, Any]:
@@ -287,13 +290,75 @@ def build_mapping_bundle(test_case_dir: Path) -> Dict[str, Any]:
 
 
 def convert_xml_to_json(xml_path: Path) -> Dict[str, Any]:
-    """Convert FHIR XML to JSON using simple XML parser.
-    
-    Note: We use a simple parser instead of HAPI validator because HAPI is very slow
-    (loads IGs, validates, etc.) and we just need to extract resources for bundling,
-    not validate them. The actual validation happens during transformation.
+    """Convert FHIR XML to JSON.
+
+    Prefer Firely Terminal when the CLI is available for spec-compliant conversion
+    and fall back to the lightweight XML walker otherwise (or when Firely declines
+    to parse a specific file).
     """
+    if FIRELY_CLI:
+        converted = convert_xml_to_json_firely(xml_path)
+        if converted:
+            return converted
     return parse_fhir_xml_simple(xml_path)
+
+
+def convert_xml_to_json_firely(xml_path: Path) -> Optional[Dict[str, Any]]:
+    """Convert XML to JSON using Firely Terminal CLI if available."""
+    try:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            subprocess.run(
+                [FIRELY_CLI, "clear"],
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+            push_result = subprocess.run(
+                [FIRELY_CLI, "push", xml_path.name],
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                cwd=xml_path.parent,
+            )
+            if "Pushed 0" in (push_result.stdout or ""):
+                print(f"  ✗ Firely CLI did not load resources from {xml_path.name}; falling back to internal parser")
+                return None
+            subprocess.run(
+                [FIRELY_CLI, "save", "--all", "--json"],
+                check=True,
+                cwd=tmp_dir,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+
+            json_files = sorted(Path(tmp_dir).glob("*.json"))
+            if not json_files:
+                print(f"  ✗ Firely CLI produced no output for {xml_path.name}")
+                return None
+
+            with open(json_files[0], "r", encoding="utf-8") as handle:
+                data = json.load(handle)
+
+            resource_type = data.get("resourceType", "Unknown")
+            resource_id = data.get("id", "unknown")
+            print(f"  → Parsed {resource_type} (id: {resource_id}) using Firely CLI")
+
+            return data
+    except subprocess.CalledProcessError as err:
+        stderr = (err.stderr or "").strip()
+        cmd = err.cmd
+        if isinstance(cmd, (list, tuple)):
+            cmd_repr = " ".join(str(part) for part in cmd)
+        else:
+            cmd_repr = str(cmd)
+        print(f"  ✗ Firely CLI command failed ({cmd_repr}): {stderr}")
+    except Exception as exc:
+        print(f"  ✗ Firely CLI conversion error for {xml_path.name}: {exc}")
+
+    return None
 
 
 def parse_fhir_xml_simple(xml_path: Path) -> Dict[str, Any]:
@@ -322,21 +387,77 @@ def parse_fhir_xml_simple(xml_path: Path) -> Dict[str, Any]:
         return {}
 
 
-def xml_element_to_dict(element, ns) -> Dict[str, Any]:
+BOOLEAN_TAGS = {"active", "wasSubstituted", "valueBoolean"}
+
+NUMERIC_VALUE_PARENTS = {
+    "numerator",
+    "denominator",
+    "quantity",
+    "doseQuantity",
+    "rateQuantity",
+    "expectedSupplyDuration",
+    "valueQuantity",
+    "low",
+    "high",
+}
+
+DECIMAL_PATTERN = re.compile(r"^-?\d+(?:[\.,]\d+)?$")
+INTEGER_PATTERN = re.compile(r"^-?\d+$")
+
+FIRELY_CLI = shutil.which("fhir")
+
+
+def convert_primitive_value(tag: str, value_attr: str, path: List[str]) -> Any:
+    """Convert primitive FHIR XML values into JSON-native types."""
+    value_lower = value_attr.lower()
+
+    if tag in BOOLEAN_TAGS:
+        return value_lower == "true"
+
+    if tag in {"valueInteger", "valuePositiveInt", "valueUnsignedInt"}:
+        return int(value_attr)
+
+    if tag == "valueDecimal":
+        normalized = value_attr.replace(",", ".")
+        return float(normalized)
+
+    if tag == "value":
+        parent = path[-2] if len(path) >= 2 else ""
+        if parent in NUMERIC_VALUE_PARENTS and DECIMAL_PATTERN.match(value_attr):
+            normalized = value_attr.replace(",", ".")
+            if "." in normalized:
+                return float(normalized)
+            if INTEGER_PATTERN.match(normalized):
+                return int(normalized)
+    
+    if tag in {"count", "countMax", "frequency", "frequencyMax", "period", "periodMax", "duration", "durationMax", "offset", "total"}:
+        if DECIMAL_PATTERN.match(value_attr):
+            normalized = value_attr.replace(",", ".")
+            if "." in normalized:
+                return float(normalized)
+            return int(normalized)
+
+    return value_attr
+
+
+def xml_element_to_dict(element, ns, path: Optional[List[str]] = None) -> Dict[str, Any]:
     """Recursively convert XML element to dictionary."""
+    if path is None:
+        path = []
     # Get tag name without namespace
     tag = element.tag.split('}')[-1] if '}' in element.tag else element.tag
+    current_path = [*path, tag]
     
     # Base case: element with value attribute (FHIR pattern)
     value_attr = element.get('value')
     if value_attr is not None and len(element) == 0:
-        return value_attr
+        return convert_primitive_value(tag, value_attr, current_path)
     
     # Special handling for 'resource' wrapper elements in Bundle entries
     # The actual resource is the first (and only) child
     if tag == 'resource' and len(element) == 1:
         # Return the parsed child resource directly
-        return xml_element_to_dict(list(element)[0], ns)
+        return xml_element_to_dict(list(element)[0], ns, current_path)
     
     # Check if this is a FHIR resource (has xmlns or is capitalized)
     is_fhir_resource = (
@@ -389,13 +510,13 @@ def xml_element_to_dict(element, ns) -> Dict[str, Any]:
         
         if child_tag in always_array_fields:
             # Always create array for these fields, even with single element
-            result[child_tag] = [xml_element_to_dict(child, ns) for child in child_elements]
+            result[child_tag] = [xml_element_to_dict(child, ns, current_path) for child in child_elements]
         elif len(child_elements) == 1:
             # Single element - not an array
-            result[child_tag] = xml_element_to_dict(child_elements[0], ns)
+            result[child_tag] = xml_element_to_dict(child_elements[0], ns, current_path)
         else:
             # Multiple elements - create array
-            result[child_tag] = [xml_element_to_dict(child, ns) for child in child_elements]
+            result[child_tag] = [xml_element_to_dict(child, ns, current_path) for child in child_elements]
     
     # Special handling for common FHIR elements
     if 'id' in result and isinstance(result['id'], dict) and 'value' in result['id']:

@@ -26,18 +26,18 @@
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
 | `amount.denominator.value` | 1 | `amount.denominator.value` | 1 | ✅ |
-| `amount.numerator.extension.url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
-| `amount.numerator.extension.valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
+| `amount.numerator.extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
+| `amount.numerator.extension[0].valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
 | `amount.numerator.unit` | Stück | `amount.numerator.unit` | Stück | ✅ |
 | `form.text` | Retardtabletten | `form.text` | Retardtabletten | ✅ |
 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | ✅ |
-| `ingredient.itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
-| `ingredient.strength.denominator.unit` | Stück | `ingredient[0].strength.denominator.unit` | Stück | ✅ |
-| `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
-| `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
-| `ingredient.strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
-| `code.coding.code` | wirkstoff | - | - | ⚠️ |
-| `code.coding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
+| `ingredient[0].itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
+| `ingredient[0].strength.denominator.unit` | Stück | `ingredient[0].strength.denominator.unit` | Stück | ✅ |
+| `ingredient[0].strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
+| `ingredient[0].strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
+| `ingredient[0].strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
+| `code.coding[0].code` | wirkstoff | - | - | ⚠️ |
+| `code.coding[0].system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 02 | - | - | ⚠️ |
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
@@ -69,7 +69,7 @@
 | `ingredient.strength.denominator.unit` | Tbl. | `ingredient[0].strength.denominator.unit` | Tbl. | ✅ |
 | `ingredient.strength.denominator.value` | 1 | `ingredient[0].strength.denominator.value` | 1 | ✅ |
 | `ingredient.strength.numerator.unit` | mg | `ingredient[0].strength.numerator.unit` | mg | ✅ |
-| `ingredient.strength.numerator.value` | 2,5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
+| `ingredient.strength.numerator.value` | 2.5 | `ingredient[0].strength.numerator.value` | 2.5 | ✅ |
 | `batch.lotNumber` | A123456789-1 | - | - | ⚠️ |
 
 ---
@@ -146,8 +146,8 @@
 | `extension[1].valueBoolean` | false | - | - | ⚠️ |
 | `extension[2].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[2].valueBoolean` | false | - | - | ⚠️ |
-| `extension[3].extension.url` | Kennzeichen | - | - | ⚠️ |
-| `extension[3].extension.valueBoolean` | false | - | - | ⚠️ |
+| `extension[3].extension[0].url` | Kennzeichen | - | - | ⚠️ |
+| `extension[3].extension[0].valueBoolean` | false | - | - | ⚠️ |
 | `extension[3].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].valueBoolean` | true | - | - | ⚠️ |
@@ -159,7 +159,7 @@
 | `extension[7].extension[1].valueCode` | de-DE | - | - | ⚠️ |
 | `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | - | - | ⚠️ |
 | `id` | 0886a530-68ef-4517-9999-b24f79b08da1 | - | - | ⚠️ |
-| `insurance.reference` | http://pvs.praxis.local/fhir/Coverage/da80211e-... | - | - | ⚠️ |
+| `insurance[0].reference` | http://pvs.praxis.local/fhir/Coverage/da80211e-... | - | - | ⚠️ |
 | `requester.reference` | http://pvs.praxis.local/fhir/Practitioner/d6f3b... | - | - | ⚠️ |
 | `subject.reference` | http://pvs.praxis.local/fhir/Patient/ce4104af-b... | - | - | ⚠️ |
 
@@ -191,12 +191,12 @@
 | `identifier[1].system` | https://gematik.de/fhir/sid/telematik-id | `identifier[0].system` | https://gematik.de/fhir/sid/telematik-id | ✅ |
 | `identifier[1].value` | 3-Test-APO000053 | `identifier[0].value` | 3-Test-APO000053 | ✅ |
 | `name` | Organisation 3-Test-APO000053 | `name` | Organisation 3-Test-APO000053 | ✅ |
-| `telecom.system` | phone | `telecom[0].system` | phone | ✅ |
-| `telecom.use` | work | `telecom[0].use` | work | ✅ |
-| `telecom.value` | 1234 | `telecom[0].value` | 1234 | ✅ |
+| `telecom[0].system` | phone | `telecom[0].system` | phone | ✅ |
+| `telecom[0].use` | work | `telecom[0].use` | work | ✅ |
+| `telecom[0].value` | 1234 | `telecom[0].value` | 1234 | ✅ |
 | `id` | VZD-SearchSet-Bundle | - | - | ⚠️ |
-| `identifier[1].type.coding.code` | PRN | - | - | ⚠️ |
-| `identifier[1].type.coding.system` | http://terminology.hl7.org/CodeSystem/v2-0203 | - | - | ⚠️ |
+| `identifier[1].type.coding[0].code` | PRN | - | - | ⚠️ |
+| `identifier[1].type.coding[0].system` | http://terminology.hl7.org/CodeSystem/v2-0203 | - | - | ⚠️ |
 | `sourceResources[2]` | Location | - | - | ⚠️ |
 
 ---
