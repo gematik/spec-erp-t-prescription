@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "erp-tprescription-carbon-copy",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy",
-  "version": "1.1.0-ballot-1",
+  "version": "1.1.0-ballot2",
   "name": "ERP_TPrescription_CarbonCopy",
   "title": "Digitaler Durchschlag T-Rezept",
   "status": "draft",
@@ -86,7 +86,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "prescriptionSignatureDate",
+        "fixedString": "prescriptionSignatureDate",
         "mustSupport": true
       },
       {
@@ -127,7 +127,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:prescriptionId.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "prescriptionId",
+        "fixedString": "prescriptionId",
         "mustSupport": true
       },
       {
@@ -170,7 +170,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:medicationRequest.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "medicationRequest",
+        "fixedString": "medicationRequest",
         "mustSupport": true
       },
       {
@@ -212,7 +212,7 @@
       {
         "id": "Parameters.parameter:rxPrescription.part:medication.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "medication",
+        "fixedString": "medication",
         "mustSupport": true
       },
       {
@@ -244,7 +244,7 @@
         "sliceName": "rxDispensation",
         "short": "Angaben zur Dispensierung",
         "min": 1,
-        "max": "1"
+        "max": "*"
       },
       {
         "id": "Parameters.parameter:rxDispensation.name",
@@ -274,14 +274,14 @@
           ],
           "rules": "open"
         },
-        "min": 3,
+        "min": 2,
         "mustSupport": true
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medicationDispense",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation",
         "path": "Parameters.parameter.part",
-        "sliceName": "medicationDispense",
-        "short": "Dispensierinformationen",
+        "sliceName": "dispenseInformation",
+        "short": "Angaben zu medizinischen Daten der Dispensierung",
         "min": 1,
         "max": "*",
         "type": [
@@ -291,19 +291,63 @@
         ]
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medicationDispense.name",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "medicationDispense",
+        "fixedString": "dispenseInformation",
         "mustSupport": true
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medicationDispense.value[x]",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.value[x]",
         "path": "Parameters.parameter.part.value[x]",
         "max": "0"
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medicationDispense.resource",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.resource",
         "path": "Parameters.parameter.part.resource",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part",
+        "path": "Parameters.parameter.part.part",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "name"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 2,
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense",
+        "path": "Parameters.parameter.part.part",
+        "sliceName": "medicationDispense",
+        "short": "Dispensierinformationen",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.name",
+        "path": "Parameters.parameter.part.part.name",
+        "fixedString": "medicationDispense",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.value[x]",
+        "path": "Parameters.parameter.part.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.resource",
+        "path": "Parameters.parameter.part.part.resource",
         "min": 1,
         "type": [
           {
@@ -315,17 +359,17 @@
         ]
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medicationDispense.part",
-        "path": "Parameters.parameter.part.part",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.part",
+        "path": "Parameters.parameter.part.part.part",
         "max": "0"
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medication",
-        "path": "Parameters.parameter.part",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication",
+        "path": "Parameters.parameter.part.part",
         "sliceName": "medication",
         "short": "Abgegebenes Medikament",
         "min": 1,
-        "max": "*",
+        "max": "1",
         "type": [
           {
             "code": "BackboneElement"
@@ -333,19 +377,19 @@
         ]
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medication.name",
-        "path": "Parameters.parameter.part.name",
-        "patternString": "medication",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.name",
+        "path": "Parameters.parameter.part.part.name",
+        "fixedString": "medication",
         "mustSupport": true
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medication.value[x]",
-        "path": "Parameters.parameter.part.value[x]",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.value[x]",
+        "path": "Parameters.parameter.part.part.value[x]",
         "max": "0"
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medication.resource",
-        "path": "Parameters.parameter.part.resource",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.resource",
+        "path": "Parameters.parameter.part.part.resource",
         "min": 1,
         "type": [
           {
@@ -357,14 +401,14 @@
         ]
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:medication.part",
-        "path": "Parameters.parameter.part.part",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.part",
+        "path": "Parameters.parameter.part.part.part",
         "max": "0"
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:organization",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization",
         "path": "Parameters.parameter.part",
-        "sliceName": "organization",
+        "sliceName": "dispenseOrganization",
         "short": "Abgebende Apotheke",
         "comment": "Bei der Dispensierung überträgt die Apotheke an den E-Rezept-Fachdienst nur die Telematik-ID. Angaben zu Name, Adresse und Telefonnummer bezieht der E-Rezept-Fachdienst aus dem FHIR-VZD der TI. Falls aktuelle Daten benötigt werden, können diese am FHIR-VZD unter bezugnahme der Telematik-ID bezogen werden. A_27825 beschreibt textuell den Abruf.",
         "min": 1,
@@ -376,18 +420,18 @@
         ]
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:organization.name",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.name",
         "path": "Parameters.parameter.part.name",
-        "patternString": "organization",
+        "fixedString": "dispenseOrganization",
         "mustSupport": true
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:organization.value[x]",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.value[x]",
         "path": "Parameters.parameter.part.value[x]",
         "max": "0"
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:organization.resource",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.resource",
         "path": "Parameters.parameter.part.resource",
         "min": 1,
         "type": [
@@ -400,7 +444,7 @@
         ]
       },
       {
-        "id": "Parameters.parameter:rxDispensation.part:organization.part",
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.part",
         "path": "Parameters.parameter.part.part",
         "max": "0"
       }

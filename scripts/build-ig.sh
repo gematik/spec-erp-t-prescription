@@ -8,6 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 sushi .
 
 # Run scripts that need artifacts from IG Publisher
+./tests/run-all-tests.sh
 ./scripts/fml_table.sh
 
 # Run Transformation of Mapping Bundle

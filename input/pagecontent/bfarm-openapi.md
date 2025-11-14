@@ -5,3 +5,4 @@ Mit diesem Anwendungsfall stellt der E-Rezept-Fachdienst nach Abgabe eines Arzne
 Die folgende OpenAPI-Definition dient als Hilfestellung bei der Implementierung des Aufrufs am BfArM Webdienst:
 
 {% include openapi.html openapiurl="tprescription.yaml" %}
+¥

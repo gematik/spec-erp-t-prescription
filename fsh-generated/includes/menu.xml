@@ -26,6 +26,9 @@
     <a href="artifacts.html">FHIR-Artefakte</a>
   </li>
   <li>
+    <a href="tests.html">Beispiele</a>
+  </li>
+  <li>
     <a href="bfarm-openapi.html">OpenAPI</a>
   </li>
 </ul>

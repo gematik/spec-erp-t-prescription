@@ -1,28 +1,26 @@
 {
   "title": "E-T-Rezept Datenaustausch",
-  "name" : "de.gematik.erp.t-prescription",
-  "jurisdiction" : "urn:iso:std:iso:3166#DE",
-  "version": "1.1.0-ballot-1",
+  "name": "de.gematik.erp.t-prescription",
+  "jurisdiction": "urn:iso:std:iso:3166#DE",
+  "version": "1.1.0-ballot2",
   "description": "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register (built Mon, Jul 7, 2025 10:52+0200+02:00)",
-  "author" : "gematik GmbH",
-  "maintainers" : [
+  "author": "gematik GmbH",
+  "maintainers": [
     {
-      "name" : "gematik GmbH",
-      "email" : "erp-umsetzung@gematik.de",
-      "url" : "https://gematik.de"
+      "name": "gematik GmbH",
+      "email": "erp-umsetzung@gematik.de"
     }
   ],
   "fhirVersions": [
     "4.0.1"
   ],
   "dependencies": {
-    "hl7.fhir.r4.core" : "4.0.1",
-    "de.gematik.ti": "1.1.0",
-    "kbv.ita.erp": "1.4.0-alpha",
-    "de.gematik.fhir.directory": "0.11.25",
-    "de.gematik.erezept-workflow.r4": "1.6.0-ballot1",
-    "kbv.all.st": "1.22.0",
-    "de.basisprofil.r4": "1.5.2",
-    "de.gematik.epa.medication": "1.0.6-2"
+    "hl7.fhir.r4.core": "4.0.1",
+    "de.gematik.ti": "1.1.1",
+    "kbv.ita.erp": "1.4.0",
+    "de.gematik.fhir.directory": "1.0.0",
+    "de.gematik.erezept-workflow.r4": "1.6.0",
+    "de.basisprofil.r4": "1.5.4",
+    "de.gematik.epa.medication": "1.2.0"
   }
 }

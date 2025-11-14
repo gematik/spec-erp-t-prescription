@@ -4,12 +4,12 @@
 
 RuleSet: Versioning
 * ^status = #draft
-* ^version = "1.1.0-ballot-1"
+* ^version = "1.1.0-ballot2"
 * ^date = "2025-07-07"
 
 RuleSet: InstanceVersioning
 * status = #draft
-* version = "1.1.0-ballot-1"
+* version = "1.1.0-ballot2"
 * date = "2025-07-07"
 
 // Dates for Examples (Date of actual release)
@@ -27,4 +27,4 @@ RuleSet: DateTimeStampPlus1Hr(field)
 
 RuleSet: setMetaProfileCC(context, to)
 * insert targetBase({context}, {to})
-* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"
+* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"
