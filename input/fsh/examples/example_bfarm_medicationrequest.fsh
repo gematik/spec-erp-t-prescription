@@ -11,12 +11,12 @@ Description: "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer D
 * dispenseRequest
   * quantity.value = 10
   * quantity.unit = "Tablette"
-* extension[T-Rezept]
-  * extension[EinhaltungSicherheitsmassnahmen].valueBoolean = true
-  * extension[AushaendigungInformationsmaterialien].valueBoolean = true
-  * extension[Off-Label].valueBoolean = false
-  * extension[GebaerfaehigeFrau].valueBoolean = false
-  * extension[ErklaerungSachkenntnis].valueBoolean = true
+* extension[teratogenic]
+  * extension[off-label].valueBoolean = true
+  * extension[childbearing-potential].valueBoolean = true
+  * extension[security-compliance].valueBoolean = false
+  * extension[hand-out-information-material].valueBoolean = false
+  * extension[declaration-of-expertise].valueBoolean = true
 
 Instance: ExampleMedication1-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication

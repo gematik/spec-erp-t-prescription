@@ -10,9 +10,10 @@ Description: "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept ange
 * intent = #order (exactly)
 
 // KBV T-Rezept Extensions
+// TODO: take from new ePA Medication
 * extension MS
-* extension contains KBV_EX_ERP_Teratogenic named T-Rezept 1..1 MS
-* extension[T-Rezept].url
+* extension contains EPATeratogenicExtension named teratogenic 1..1 MS
+* extension[teratogenic].url
   * ^short = "identifies the meaning of the extension via identifying url"
 
 // Allow only the data-absent-reason extension on subject

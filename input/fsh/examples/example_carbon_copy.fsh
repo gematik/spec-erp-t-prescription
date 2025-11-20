@@ -88,12 +88,12 @@ Usage: #inline
 Instance: TRP-Carbon-Copy-MedicationRequest
 InstanceOf: ERP_TPrescription_MedicationRequest
 Usage: #inline
-* extension[T-Rezept]
-  * extension[Off-Label].valueBoolean = true
-  * extension[GebaerfaehigeFrau].valueBoolean = false
-  * extension[EinhaltungSicherheitsmassnahmen].valueBoolean = true
-  * extension[AushaendigungInformationsmaterialien].valueBoolean = true
-  * extension[ErklaerungSachkenntnis].valueBoolean = true
+* extension[teratogenic]
+  * extension[off-label].valueBoolean = true
+  * extension[childbearing-potential].valueBoolean = true
+  * extension[security-compliance].valueBoolean = false
+  * extension[hand-out-information-material].valueBoolean = false
+  * extension[declaration-of-expertise].valueBoolean = true
 * status = #completed
 * intent = #order
 * medicationReference.reference = "Medication/TRP-Carbon-Copy-Medication"

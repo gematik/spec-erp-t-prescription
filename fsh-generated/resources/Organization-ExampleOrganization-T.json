@@ -8,7 +8,6 @@
   },
   "identifier": [
     {
-      "system": "https://gematik.de/fhir/sid/telematik-id",
       "value": "3-Test-APO000053"
     }
   ],

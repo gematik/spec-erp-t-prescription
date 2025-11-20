@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "erp-tprescription-medication-request",
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request",
-  "version": "1.1.0-ballot2",
+  "version": "1.1.0-ballot3",
   "name": "ERP_TPrescription_MedicationRequest",
   "title": "E-T-Rezept Medication Request",
   "status": "draft",
@@ -33,23 +33,23 @@
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:T-Rezept",
+        "id": "MedicationRequest.extension:teratogenic",
         "path": "MedicationRequest.extension",
-        "sliceName": "T-Rezept",
+        "sliceName": "teratogenic",
         "min": 1,
         "max": "1",
         "type": [
           {
             "code": "Extension",
             "profile": [
-              "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
+              "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-teratogenic-extension"
             ]
           }
         ],
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:T-Rezept.url",
+        "id": "MedicationRequest.extension:teratogenic.url",
         "path": "MedicationRequest.extension.url",
         "short": "identifies the meaning of the extension via identifying url"
       },
