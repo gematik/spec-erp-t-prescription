@@ -106,17 +106,6 @@
 | `dispenseRequest.expectedSupplyDuration.value` | 9 | `dispenseRequest.expectedSupplyDuration.value` | 9 | ✅ |
 | `dispenseRequest.quantity.unit` | Packung | `dispenseRequest.quantity.unit` | Packung | ✅ |
 | `dispenseRequest.quantity.value` | 1 | `dispenseRequest.quantity.value` | 1 | ✅ |
-| `extension[4].extension[0].url` | Off-Label | `extension[0].extension[0].url` | Off-Label | ✅ |
-| `extension[4].extension[0].valueBoolean` | false | `extension[0].extension[0].valueBoolean` | false | ✅ |
-| `extension[4].extension[1].url` | GebaerfaehigeFrau | `extension[0].extension[1].url` | GebaerfaehigeFrau | ✅ |
-| `extension[4].extension[1].valueBoolean` | false | `extension[0].extension[1].valueBoolean` | false | ✅ |
-| `extension[4].extension[2].url` | EinhaltungSicherheitsmassnahmen | `extension[0].extension[2].url` | EinhaltungSicherheitsmassnahmen | ✅ |
-| `extension[4].extension[2].valueBoolean` | true | `extension[0].extension[2].valueBoolean` | true | ✅ |
-| `extension[4].extension[3].url` | AushaendigungInformationsmaterialien | `extension[0].extension[3].url` | AushaendigungInformationsmaterialien | ✅ |
-| `extension[4].extension[3].valueBoolean` | true | `extension[0].extension[3].valueBoolean` | true | ✅ |
-| `extension[4].extension[4].url` | ErklaerungSachkenntnis | `extension[0].extension[4].url` | ErklaerungSachkenntnis | ✅ |
-| `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | true | ✅ |
-| `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
 | `status` | active | `status` | completed | ✅ |
@@ -130,6 +119,17 @@
 | `extension[3].extension[0].url` | Kennzeichen | - | - | ⚠️ |
 | `extension[3].extension[0].valueBoolean` | false | - | - | ⚠️ |
 | `extension[3].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
+| `extension[4].extension[0].url` | Off-Label | - | - | ⚠️ |
+| `extension[4].extension[0].valueBoolean` | false | - | - | ⚠️ |
+| `extension[4].extension[1].url` | GebaerfaehigeFrau | - | - | ⚠️ |
+| `extension[4].extension[1].valueBoolean` | false | - | - | ⚠️ |
+| `extension[4].extension[2].url` | EinhaltungSicherheitsmassnahmen | - | - | ⚠️ |
+| `extension[4].extension[2].valueBoolean` | true | - | - | ⚠️ |
+| `extension[4].extension[3].url` | AushaendigungInformationsmaterialien | - | - | ⚠️ |
+| `extension[4].extension[3].valueBoolean` | true | - | - | ⚠️ |
+| `extension[4].extension[4].url` | ErklaerungSachkenntnis | - | - | ⚠️ |
+| `extension[4].extension[4].valueBoolean` | true | - | - | ⚠️ |
+| `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].valueBoolean` | false | - | - | ⚠️ |
 | `id` | 7d871b93-e18c-4865-bad0-6b55196be46b | - | - | ⚠️ |
@@ -142,6 +142,17 @@
 
 | Target Field | Target Value | Status |
 |--------------|--------------|--------|
+| `extension[0].extension[0].url` | off-label | 🆕 |
+| `extension[0].extension[0].valueBoolean` | false | 🆕 |
+| `extension[0].extension[1].url` | childbearing-potential | 🆕 |
+| `extension[0].extension[1].valueBoolean` | false | 🆕 |
+| `extension[0].extension[2].url` | security-compliance | 🆕 |
+| `extension[0].extension[2].valueBoolean` | true | 🆕 |
+| `extension[0].extension[3].url` | hand-out-information-material | 🆕 |
+| `extension[0].extension[3].valueBoolean` | true | 🆕 |
+| `extension[0].extension[4].url` | declaration-of-expertise | 🆕 |
+| `extension[0].extension[4].valueBoolean` | true | 🆕 |
+| `extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | 🆕 |
 | `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
 | `subject.extension[0].valueCode` | not-permitted | 🆕 |
 

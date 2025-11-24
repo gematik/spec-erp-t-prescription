@@ -28,27 +28,27 @@
               {
                 "extension": [
                   {
-                    "url": "Off-Label",
+                    "url": "off-label",
                     "valueBoolean": true
                   },
                   {
-                    "url": "GebaerfaehigeFrau",
+                    "url": "childbearing-potential",
                     "valueBoolean": false
                   },
                   {
-                    "url": "EinhaltungSicherheitsmassnahmen",
+                    "url": "security-compliance",
                     "valueBoolean": true
                   },
                   {
-                    "url": "AushaendigungInformationsmaterialien",
+                    "url": "hand-out-information-material",
                     "valueBoolean": true
                   },
                   {
-                    "url": "ErklaerungSachkenntnis",
+                    "url": "declaration-of-expertise",
                     "valueBoolean": true
                   }
                 ],
-                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic"
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-teratogenic-extension"
               }
             ],
             "status": "completed",
