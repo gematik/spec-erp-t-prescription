@@ -71,7 +71,7 @@ Die StructureMap überführt das Mapping-Bundle in den digitalen Durchschlag und
 Um HAPI FHIR zur Transformation zu nutzen, müssen FHIR-Version, die verwendeten FHIR-Packages für das Mapping sowie der Output-Pfad angegeben werden. Zum Test kann der folgende Befehl auf der Root Ebene des [GitHub Repositories](https://github.com/gematik/spec-erp-t-prescription) ausgeführt werden (Lokaler Pfad zum [HAPI FHIR](https://github.com/hapifhir/org.hl7.fhir.core/releases) muss angegeben werden):
 ```
 sushi && \
-java -jar <path-to>/fhir_hapi.jar fsh-generated/resources/Bundle-Mapping-Bundle.json \
+java -jar <path-to>/fhir_hapi.jar fsh-generated/resources/example-case-01-mapping-bundle.json \
 -transform https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapCarbonCopy \
 -version 4.0.1 \
 -ig ./fsh-generated/resources \
@@ -88,7 +88,7 @@ Die folgenden Beispiele können als Referenz herangezogen werden:
 
 | Beispiel  | Beschreibung |
 | ------------- |:-------------:|
-|[Bundle-Mapping-Bundle](./Bundle-Mapping-Bundle.html)|Beispiel eines Mapping-Bundles zur Erzeugung eines digitalen Durchschlags E-T-Rezept|
+|[Bundle-Mapping-Bundle](./example-case-01-mapping-bundle.json)|Beispiel eines Mapping-Bundles zur Erzeugung eines digitalen Durchschlags E-T-Rezept|
 |[TRP-Carbon-Copy](./Parameters-TRP-Carbon-Copy.html)|Manuell erzeugter digitaler Durchschlag E-T-Rezept|
 |[Mapped CarbonCopy](./Bundle-erp-t-prescription-carbon-copy-actual.json)|Von der HAPI Transformation Engine erzeugtes JSON|
 
