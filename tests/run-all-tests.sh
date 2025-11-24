@@ -41,6 +41,7 @@ ADD_SIGNATURE_SCRIPT="$SCRIPTS_DIR/add-prescription-signature-date.py"
 TOTAL_TESTS=0
 PASSED_TESTS=0
 FAILED_TESTS=0
+VALIDATION_FAILURES=()
 
 # Clean output if requested
 if [[ "$1" == "--clean" ]]; then
@@ -118,6 +119,7 @@ for test_case_path in "${TEST_CASES[@]}"; do
         else
             echo -e "${RED}✗ Carbon copy validation failed${NC}"
             FAILED_TESTS=$((FAILED_TESTS + 1))
+            VALIDATION_FAILURES+=("$test_case_name")
             continue
         fi
 
@@ -143,6 +145,17 @@ for test_case_path in "${TEST_CASES[@]}"; do
     
     echo ""
 done
+
+if [[ ${#VALIDATION_FAILURES[@]} -gt 0 ]]; then
+    echo -e "${RED}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║   Validation Failures Detected                 ║${NC}"
+    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
+    for case_name in "${VALIDATION_FAILURES[@]}"; do
+        echo -e "${RED}  • ${case_name}${NC}"
+    done
+    echo -e "${RED}\nAborting pipeline due to validation errors.${NC}"
+    exit 1
+fi
 
 # Copy all JSON files to fsh-generated/resources (flat structure)
 echo -e "${BLUE}╔════════════════════════════════════════════════╗${NC}"
