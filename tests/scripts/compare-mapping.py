@@ -10,6 +10,7 @@ import json
 import sys
 import shutil
 import re
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, Any, List, Set, Tuple, Optional
 
@@ -273,6 +274,81 @@ def normalize_array_in_path(path: str, obj: Dict[str, Any]) -> str:
     return '.'.join(normalized_parts)
 
 
+def canonicalize_extension_url(value: Any, alias_map: Optional[Dict[str, str]]) -> Optional[str]:
+    """Return a canonical extension identifier using the alias map."""
+    if not isinstance(value, str):
+        return None
+    value = value.strip()
+    if alias_map:
+        return alias_map.get(value, value)
+    return value
+
+def extract_url_from_condition(condition: Optional[str]) -> Optional[str]:
+    """Extract url='...' fragments from StructureMap conditions."""
+    if not condition:
+        return None
+    match = re.search(r"url\s*=\s*['\"]([^'\"]+)['\"]", condition)
+    if match:
+        return match.group(1)
+    return None
+
+def _target_url_values(target: Dict[str, Any]) -> List[str]:
+    """Collect constant URL assignments from a StructureMap target entry."""
+    if target.get('element') != 'url':
+        return []
+    values: List[str] = []
+    for param in target.get('parameter', []):
+        for key in ('valueString', 'valueUri', 'valueCanonical'):
+            if key in param and isinstance(param[key], str):
+                values.append(param[key])
+    return values
+
+def collect_aliases_from_rule(rule: Dict[str, Any], alias_map: Dict[str, str]) -> None:
+    """Recursively record source->target extension URL mappings."""
+    source_urls: List[str] = []
+    for source in rule.get('source', []):
+        url_value = extract_url_from_condition(source.get('condition'))
+        if url_value:
+            source_urls.append(url_value)
+
+    target_urls: List[str] = []
+    for target in rule.get('target', []):
+        target_urls.extend(_target_url_values(target))
+
+    for src_url in source_urls:
+        for tgt_url in target_urls:
+            alias_map.setdefault(src_url, tgt_url)
+
+    for child_rule in rule.get('rule', []):
+        collect_aliases_from_rule(child_rule, alias_map)
+
+def collect_aliases_from_structuremap(structuremap: Dict[str, Any], alias_map: Dict[str, str]) -> None:
+    for group in structuremap.get('group', []):
+        for rule in group.get('rule', []):
+            collect_aliases_from_rule(rule, alias_map)
+
+@lru_cache(maxsize=1)
+def load_extension_alias_map() -> Dict[str, str]:
+    """Load alias mappings from all generated StructureMap resources."""
+    alias_map: Dict[str, str] = {}
+    script_dir = Path(__file__).parent
+    project_root = script_dir.parent.parent
+    structuremap_dir = project_root / "fsh-generated" / "resources"
+
+    if not structuremap_dir.exists():
+        return alias_map
+
+    for sm_path in structuremap_dir.glob("StructureMap-*.json"):
+        try:
+            with sm_path.open('r', encoding='utf-8') as handle:
+                sm = json.load(handle)
+        except (OSError, json.JSONDecodeError):
+            continue
+        collect_aliases_from_structuremap(sm, alias_map)
+
+    return alias_map
+
+
 def extract_resources_from_bundle(bundle: Dict[str, Any]) -> Tuple[Dict[str, Dict[str, Any]], Dict[str, str]]:
     """
     Extract all resources from a Bundle.
@@ -500,7 +576,11 @@ def format_value(value: Any, max_length: int = 50) -> str:
     return str(value)
 
 
-def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]) -> List[Dict[str, Any]]:
+def compare_resources_with_values(
+    source: Dict[str, Any],
+    target: Dict[str, Any],
+    alias_map: Optional[Dict[str, str]] = None,
+) -> List[Dict[str, Any]]:
     """
     Compare two resources and return field mapping with values.
     Enhanced to handle extensions semantically by matching them by URL.
@@ -508,6 +588,8 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
     Returns:
         List of dictionaries with field mappings and values
     """
+    alias_map = alias_map or {}
+
     source_flat = flatten_json(source)
     target_flat = flatten_json(target)
     
@@ -593,13 +675,15 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
     
     for ext_idx, ext_data in source_extensions.items():
         if '.url' in ext_data:
-            url = ext_data['.url']
-            source_url_to_ext[url] = (ext_idx, ext_data)
+            url = canonicalize_extension_url(ext_data['.url'], alias_map)
+            if url:
+                source_url_to_ext[url] = (ext_idx, ext_data)
     
     for ext_idx, ext_data in target_extensions.items():
         if '.url' in ext_data:
-            url = ext_data['.url']
-            target_url_to_ext[url] = (ext_idx, ext_data)
+            url = canonicalize_extension_url(ext_data['.url'], alias_map)
+            if url:
+                target_url_to_ext[url] = (ext_idx, ext_data)
     
     # Match extensions by URL and add their individual fields
     matched_source_urls = set()
@@ -627,8 +711,6 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
             tgt_nested_by_url = {}
             
             # Extract nested extension URLs
-            src_nested_exts = {}
-            tgt_nested_exts = {}
             
             for subpath, value in src_ext_data.items():
                 if subpath.startswith('.extension[') and subpath.endswith('.url'):
@@ -636,16 +718,18 @@ def compare_resources_with_values(source: Dict[str, Any], target: Dict[str, Any]
                     nested_match = re.match(r'\.extension\[(\d+)\]\.url', subpath)
                     if nested_match:
                         nested_idx = int(nested_match.group(1))
-                        src_nested_by_url[value] = nested_idx
-                        src_nested_exts[nested_idx] = value
+                        canonical_url = canonicalize_extension_url(value, alias_map)
+                        if canonical_url:
+                            src_nested_by_url[canonical_url] = nested_idx
             
             for subpath, value in tgt_ext_data.items():
                 if subpath.startswith('.extension[') and subpath.endswith('.url'):
                     nested_match = re.match(r'\.extension\[(\d+)\]\.url', subpath)
                     if nested_match:
                         nested_idx = int(nested_match.group(1))
-                        tgt_nested_by_url[value] = nested_idx
-                        tgt_nested_exts[nested_idx] = value
+                        canonical_url = canonicalize_extension_url(value, alias_map)
+                        if canonical_url:
+                            tgt_nested_by_url[canonical_url] = nested_idx
             
             # Match nested extensions by URL and then compare their fields
             matched_nested_urls = set()
@@ -821,6 +905,7 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
     # Extract resources and medication contexts
     source_resources, medication_contexts = extract_resources_from_bundle(mapping_bundle)
     target_resources = extract_resources_from_parameters(digitaler_durchschlag)
+    alias_map = load_extension_alias_map()
     
     # Copy artifacts to includes directory (if output file is in includes)
     artifacts = {}
@@ -894,7 +979,9 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
 
                 # Special handling for VZDComposite -> Organization mapping
                 if resource_type == 'VZDComposite' and target_type == 'Organization':
-                    comparisons = compare_resources_with_values(source_resource, target_resource)
+                    comparisons = compare_resources_with_values(
+                        source_resource, target_resource, alias_map
+                    )
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
                     score = mapped_count / total_source if total_source > 0 else 0
@@ -918,7 +1005,9 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
                     if not context_matches:
                         continue
 
-                    comparisons = compare_resources_with_values(source_resource, target_resource)
+                    comparisons = compare_resources_with_values(
+                        source_resource, target_resource, alias_map
+                    )
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
                     score = mapped_count / total_source if total_source > 0 else 0
@@ -928,7 +1017,9 @@ def generate_markdown_report(test_case_dir: Path, output_file: Path) -> None:
 
                 # Normal matching for other resources (matching on resource type)
                 if resource_type != 'Medication' and target_type == resource_type:
-                    comparisons = compare_resources_with_values(source_resource, target_resource)
+                    comparisons = compare_resources_with_values(
+                        source_resource, target_resource, alias_map
+                    )
                     mapped_count = sum(1 for c in comparisons if c['status'] == 'mapped')
                     total_source = sum(1 for c in comparisons if c['status'] in ['mapped', 'unmapped'])
                     score = mapped_count / total_source if total_source > 0 else 0

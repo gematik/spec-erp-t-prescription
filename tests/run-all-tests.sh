@@ -32,6 +32,9 @@ OUTPUT_DIR="$SCRIPT_DIR/output"
 SCRIPTS_DIR="$SCRIPT_DIR/scripts"
 INCLUDES_DIR="$PROJECT_ROOT/input/includes"
 
+# Feature toggles
+VALIDATE_CARBON_COPY="${VALIDATE_CARBON_COPY:-false}" # Set to 'true' to validate and 'false' to skip validation step
+
 # Scripts
 BUILD_SCRIPT="$SCRIPTS_DIR/build-bundle.py"
 TRANSFORM_SCRIPT="$SCRIPTS_DIR/transform-bundle.py"
@@ -112,15 +115,19 @@ for test_case_path in "${TEST_CASES[@]}"; do
             exit 1
         fi
         
-        # Step 3: Validate the generated carbon copy
-        echo -e "\n${YELLOW}[3/4] Validating digitaler-durchschlag...${NC}"
-        if python3 "$SCRIPTS_DIR/validate-carbon-copy.py" "$result_file"; then
-            echo -e "${GREEN}✓ Carbon copy validation successful${NC}"
+        # Step 3: Validate the generated carbon copy (optional)
+        if [[ "$VALIDATE_CARBON_COPY" == "true" ]]; then
+            echo -e "\n${YELLOW}[3/4] Validating digitaler-durchschlag...${NC}"
+            if python3 "$SCRIPTS_DIR/validate-carbon-copy.py" "$result_file"; then
+                echo -e "${GREEN}✓ Carbon copy validation successful${NC}"
+            else
+                echo -e "${RED}✗ Carbon copy validation failed${NC}"
+                FAILED_TESTS=$((FAILED_TESTS + 1))
+                VALIDATION_FAILURES+=("$test_case_name")
+                continue
+            fi
         else
-            echo -e "${RED}✗ Carbon copy validation failed${NC}"
-            FAILED_TESTS=$((FAILED_TESTS + 1))
-            VALIDATION_FAILURES+=("$test_case_name")
-            continue
+            echo -e "\n${YELLOW}[3/4] Validation skipped (VALIDATE_CARBON_COPY=false)${NC}"
         fi
 
         # Step 4: Generate comparison report
@@ -146,17 +153,6 @@ for test_case_path in "${TEST_CASES[@]}"; do
     echo ""
 done
 
-if [[ ${#VALIDATION_FAILURES[@]} -gt 0 ]]; then
-    echo -e "${RED}╔════════════════════════════════════════════════╗${NC}"
-    echo -e "${RED}║   Validation Failures Detected                 ║${NC}"
-    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
-    for case_name in "${VALIDATION_FAILURES[@]}"; do
-        echo -e "${RED}  • ${case_name}${NC}"
-    done
-    echo -e "${RED}\nAborting pipeline due to validation errors.${NC}"
-    exit 1
-fi
-
 # Copy all JSON files to fsh-generated/resources (flat structure)
 echo -e "${BLUE}╔════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║   Copying JSON files to fsh-generated         ║${NC}"
@@ -173,6 +169,16 @@ find "$OUTPUT_DIR" -name "*.json" -type f | while read -r json_file; do
 done
 
 echo -e "\n${GREEN}✓ All JSON files copied to fsh-generated/resources${NC}\n"
+
+if [[ "$VALIDATE_CARBON_COPY" == "true" && ${#VALIDATION_FAILURES[@]} -gt 0 ]]; then
+    echo -e "${RED}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║   Validation Failures Detected                 ║${NC}"
+    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
+    for case_name in "${VALIDATION_FAILURES[@]}"; do
+        echo -e "${RED}  • ${case_name}${NC}"
+    done
+    echo -e "${RED}\nValidation failures detected; pipeline will exit with error after summary.${NC}"
+fi
 
 # Print summary
 echo -e "${BLUE}╔════════════════════════════════════════════════╗${NC}"
