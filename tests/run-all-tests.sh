@@ -90,7 +90,7 @@ for test_case_path in "${TEST_CASES[@]}"; do
     result_file="$test_output_dir/${test_case_name}-digitaler-durchschlag.json"
     
     # Step 1: Build mapping bundle
-    echo -e "${YELLOW}[1/3] Building mapping bundle...${NC}"
+    echo -e "${YELLOW}[1/4] Building mapping bundle...${NC}"
     if python3 "$BUILD_SCRIPT" "$test_case_path" "$test_output_dir"; then
         echo -e "${GREEN}✓ Bundle created: $bundle_file${NC}"
     else
@@ -100,7 +100,7 @@ for test_case_path in "${TEST_CASES[@]}"; do
     fi
     
     # Step 2: Transform with StructureMap
-    echo -e "\n${YELLOW}[2/3] Transforming with StructureMap...${NC}"
+    echo -e "\n${YELLOW}[2/4] Transforming with StructureMap...${NC}"
     if python3 "$TRANSFORM_SCRIPT" "$bundle_file" "$test_output_dir"; then
         echo -e "${GREEN}✓ Transformation successful: $result_file${NC}"
 
@@ -111,8 +111,18 @@ for test_case_path in "${TEST_CASES[@]}"; do
             exit 1
         fi
         
-        # Step 3: Generate comparison report
-        echo -e "\n${YELLOW}[3/3] Generating mapping comparison report...${NC}"
+        # Step 3: Validate the generated carbon copy
+        echo -e "\n${YELLOW}[3/4] Validating digitaler-durchschlag...${NC}"
+        if python3 "$SCRIPTS_DIR/validate-carbon-copy.py" "$result_file"; then
+            echo -e "${GREEN}✓ Carbon copy validation successful${NC}"
+        else
+            echo -e "${RED}✗ Carbon copy validation failed${NC}"
+            FAILED_TESTS=$((FAILED_TESTS + 1))
+            continue
+        fi
+
+        # Step 4: Generate comparison report
+        echo -e "\n${YELLOW}[4/4] Generating mapping comparison report...${NC}"
         
         # Create includes directory if it doesn't exist
         mkdir -p "$INCLUDES_DIR"
