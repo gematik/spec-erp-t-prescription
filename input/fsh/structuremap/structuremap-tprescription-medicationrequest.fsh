@@ -35,7 +35,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
     * name = "medicationRequestExt"
     * documentation = "Mappt T-Rezept spezifische Extensions vom KBV- zum BfArM-Format"
     * insert treeSource(kbvMedicationRequest, extension, extVar)
-    * insert treeTarget(bfarmMedicationRequest, extension, tgtExtVar)
+    * insert createType(bfarmMedicationRequest, extension, tgtExtVar, Extension)
     * rule[+]
       * name = "copyTPrescriptionExtensionUrl"
       * documentation = "Kopiert teratogene Extensions für T-Rezept Kennzeichnung"
@@ -53,7 +53,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
           * source[+].context = "extValVar"
           * source[=].variable = "offLabelVar"
           * source[=].condition = "url='Off-Label'"
-          * insert treeTarget(tgtExtVar, extension, tgtOffLabelExtVar)
+          * insert createType(tgtExtVar, extension, tgtOffLabelExtVar, Extension)
           * insert targetSetStringVariable(tgtOffLabelExtVar, url, off-label)
           * rule[+]
             * name = "mapOffLabelValue"
@@ -66,7 +66,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
           * source[+].context = "extValVar"
           * source[=].variable = "gebaerfaehigeFrauVar"
           * source[=].condition = "url='GebaerfaehigeFrau'"
-          * insert treeTarget(tgtExtVar, extension, tgtGebaerfaehigeFrauExtVar)
+          * insert createType(tgtExtVar, extension, tgtGebaerfaehigeFrauExtVar, Extension)
           * insert targetSetStringVariable(tgtGebaerfaehigeFrauExtVar, url, childbearing-potential)
           * rule[+]
             * name = "mapGebaerfaehigeFrauValue"
@@ -79,7 +79,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
           * source[+].context = "extValVar"
           * source[=].variable = "sicherheitsVar"
           * source[=].condition = "url='EinhaltungSicherheitsmassnahmen'"
-          * insert treeTarget(tgtExtVar, extension, tgtSicherheitsExtVar)
+          * insert createType(tgtExtVar, extension, tgtSicherheitsExtVar, Extension)
           * insert targetSetStringVariable(tgtSicherheitsExtVar, url, security-compliance)
           * rule[+]
             * name = "mapEinhaltungSicherheitsmassnahmenValue"
@@ -92,7 +92,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
           * source[+].context = "extValVar"
           * source[=].variable = "infoMatVar"
           * source[=].condition = "url='AushaendigungInformationsmaterialien'"
-          * insert treeTarget(tgtExtVar, extension, tgtInfoMatExtVar)
+          * insert createType(tgtExtVar, extension, tgtInfoMatExtVar, Extension)
           * insert targetSetStringVariable(tgtInfoMatExtVar, url, hand-out-information-material)
           * rule[+]
             * name = "mapAushaendigungInformationsmaterialienValue"
@@ -105,7 +105,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
           * source[+].context = "extValVar"
           * source[=].variable = "sachkenntnisVar"
           * source[=].condition = "url='ErklaerungSachkenntnis'"
-          * insert treeTarget(tgtExtVar, extension, tgtSachkenntnisExtVar)
+          * insert createType(tgtExtVar, extension, tgtSachkenntnisExtVar, Extension)
           * insert targetSetStringVariable(tgtSachkenntnisExtVar, url, declaration-of-expertise)
           * rule[+]
             * name = "mapErklaerungSachkenntnisValue"

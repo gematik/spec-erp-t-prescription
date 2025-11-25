@@ -104,6 +104,14 @@
       },
       {
         "reference": {
+          "reference": "Bundle/VZD-SearchSet-Bundle"
+        },
+        "name": "Beispiel VZD SearchSet Bundle",
+        "description": "Beispiel für eine Response des FHIR-VZD nach einer Suchanfrage zu Name, Telefonnummer und Adresse einer Apotheke via Telematik-ID",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
           "reference": "StructureDefinition/erp-tprescription-carbon-copy"
         },
         "name": "Digitaler Durchschlag T-Rezept",

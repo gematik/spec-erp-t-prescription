@@ -4,6 +4,7 @@
 [ExampleMedicationRequest-T]: MedicationRequest-ExampleMedicationRequest-T.html
 [ExampleOrganization-T]: Organization-ExampleOrganization-T.html
 [TRP-Carbon-Copy]: Parameters-TRP-Carbon-Copy.html
+[VZD-SearchSet-Bundle]: Bundle-VZD-SearchSet-Bundle.html
 [ERP_TPrescription_CarbonCopy]: StructureDefinition-erp-tprescription-carbon-copy.html
 [ERP_TPrescription_Medication]: StructureDefinition-erp-tprescription-medication.html
 [ERP_TPrescription_MedicationDispense]: StructureDefinition-erp-tprescription-medication-dispense.html

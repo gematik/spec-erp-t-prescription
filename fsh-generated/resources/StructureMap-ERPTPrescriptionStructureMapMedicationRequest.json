@@ -88,9 +88,15 @@
           ],
           "target": [
             {
-              "contextType": "variable",
+              "parameter": [
+                {
+                  "valueString": "Extension"
+                }
+              ],
               "context": "bfarmMedicationRequest",
+              "contextType": "variable",
               "element": "extension",
+              "transform": "create",
               "variable": "tgtExtVar"
             }
           ],
@@ -136,9 +142,15 @@
                       ],
                       "target": [
                         {
-                          "contextType": "variable",
+                          "parameter": [
+                            {
+                              "valueString": "Extension"
+                            }
+                          ],
                           "context": "tgtExtVar",
+                          "contextType": "variable",
                           "element": "extension",
+                          "transform": "create",
                           "variable": "tgtOffLabelExtVar"
                         },
                         {
@@ -192,9 +204,15 @@
                       ],
                       "target": [
                         {
-                          "contextType": "variable",
+                          "parameter": [
+                            {
+                              "valueString": "Extension"
+                            }
+                          ],
                           "context": "tgtExtVar",
+                          "contextType": "variable",
                           "element": "extension",
+                          "transform": "create",
                           "variable": "tgtGebaerfaehigeFrauExtVar"
                         },
                         {
@@ -248,9 +266,15 @@
                       ],
                       "target": [
                         {
-                          "contextType": "variable",
+                          "parameter": [
+                            {
+                              "valueString": "Extension"
+                            }
+                          ],
                           "context": "tgtExtVar",
+                          "contextType": "variable",
                           "element": "extension",
+                          "transform": "create",
                           "variable": "tgtSicherheitsExtVar"
                         },
                         {
@@ -304,9 +328,15 @@
                       ],
                       "target": [
                         {
-                          "contextType": "variable",
+                          "parameter": [
+                            {
+                              "valueString": "Extension"
+                            }
+                          ],
                           "context": "tgtExtVar",
+                          "contextType": "variable",
                           "element": "extension",
+                          "transform": "create",
                           "variable": "tgtInfoMatExtVar"
                         },
                         {
@@ -360,9 +390,15 @@
                       ],
                       "target": [
                         {
-                          "contextType": "variable",
+                          "parameter": [
+                            {
+                              "valueString": "Extension"
+                            }
+                          ],
                           "context": "tgtExtVar",
+                          "contextType": "variable",
                           "element": "extension",
+                          "transform": "create",
                           "variable": "tgtSachkenntnisExtVar"
                         },
                         {
