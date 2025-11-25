@@ -35,79 +35,74 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
     * name = "medicationRequestExt"
     * documentation = "Mappt T-Rezept spezifische Extensions vom KBV- zum BfArM-Format"
     * insert treeSource(kbvMedicationRequest, extension, extVar)
+    * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic'"
     * insert treeTarget(bfarmMedicationRequest, extension, tgtExtVar)
     * rule[+]
       * name = "copyTPrescriptionExtensionUrl"
       * documentation = "Kopiert teratogene Extensions für T-Rezept Kennzeichnung"
       * source[+].context = "extVar"
       * source[=].variable = "extMatchVar"
-      * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic'"
       * insert targetSetStringVariable(tgtExtVar, url,  https://gematik.de/fhir/epa-medication/StructureDefinition/epa-teratogenic-extension)
+    * rule[+]
+      * name = "mapOffLabelExtension"
+      * documentation = "Mappt Off-Label Extension"
+      * insert treeSource(extVar, extension, offLabelVar)
+      * source[=].condition = "url='Off-Label'"
+      * insert createType(tgtExtVar, extension, tgtOffLabelExt, Extension)
+      * insert targetSetStringVariable(tgtOffLabelExt, url, off-label)
       * rule[+]
-        * name = "copyExtensionValue"
-        * documentation = "Mappt die Unter-Extensions der teratogenen Extension mit angepassten URLs"
-        * insert treeSource(extMatchVar, extension, extMatchVarExt)
-        * insert treeTarget(tgtExtVar, extension, tgtExtVarExt)
-        * rule[+]
-          * name = "mapOffLabel"
-          * documentation = "Mappt Off-Label Extension"
-          * source[+].context = "extMatchVarExt"
-          * source[=].variable = "offLabelVar"
-          * source[=].condition = "url='Off-Label'"
-          * rule[+]
-            * name = "mapOffLabelValue"
-            * documentation = "Übernimmt den Off-Label Booleschen Wert"
-            * insert treeSource(offLabelVar, valueBoolean, offLabelValue)
-            * insert targetSetStringVariable(tgtExtVarExt, url, off-label)
-            * insert targetSetIdVariable(tgtExtVarExt, valueBoolean, offLabelValue)
-        * rule[+]
-          * name = "mapGebaerfaehigeFrau"
-          * documentation = "Mappt GebaerfaehigeFrau Extension zu childbearing-potential"
-          * source[+].context = "extMatchVarExt"
-          * source[=].variable = "gebaerfaehigeFrauVar"
-          * source[=].condition = "url='GebaerfaehigeFrau'"
-          * rule[+]
-            * name = "mapGebaerfaehigeFrauValue"
-            * documentation = "Übernimmt den Booleschen Wert für childbearing-potential"
-            * insert treeSource(gebaerfaehigeFrauVar, valueBoolean, gebaerfaehigeFrauValue)
-            * insert targetSetIdVariable(tgtExtVarExt, valueBoolean, gebaerfaehigeFrauValue)
-            * insert targetSetStringVariable(tgtExtVarExt, url, childbearing-potential)
-        * rule[+]
-          * name = "mapEinhaltungSicherheitsmassnahmen"
-          * documentation = "Mappt EinhaltungSicherheitsmassnahmen Extension zu security-compliance"
-          * source[+].context = "extMatchVarExt"
-          * source[=].variable = "sicherheitsVar"
-          * source[=].condition = "url='EinhaltungSicherheitsmassnahmen'"
-          * rule[+]
-            * name = "mapEinhaltungSicherheitsmassnahmenValue"
-            * documentation = "Übernimmt den Booleschen Wert für security-compliance"
-            * insert treeSource(sicherheitsVar, valueBoolean, sicherheitsValue)
-            * insert targetSetIdVariable(tgtExtVarExt, valueBoolean, sicherheitsValue)
-            * insert targetSetStringVariable(tgtExtVarExt, url, security-compliance)
-        * rule[+]
-          * name = "mapAushaendigungInformationsmaterialien"
-          * documentation = "Mappt AushaendigungInformationsmaterialien Extension zu hand-out-information-material"
-          * source[+].context = "extMatchVarExt"
-          * source[=].variable = "infoMatVar"
-          * source[=].condition = "url='AushaendigungInformationsmaterialien'"
-          * rule[+]
-            * name = "mapAushaendigungInformationsmaterialienValue"
-            * documentation = "Übernimmt den Booleschen Wert für hand-out-information-material"
-            * insert treeSource(infoMatVar, valueBoolean, infoMatValue)
-            * insert targetSetIdVariable(tgtExtVarExt, valueBoolean, infoMatValue)
-            * insert targetSetStringVariable(tgtExtVarExt, url, hand-out-information-material)
-        * rule[+]
-          * name = "mapErklaerungSachkenntnis"
-          * documentation = "Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise"
-          * source[+].context = "extMatchVarExt"
-          * source[=].variable = "sachkenntnisVar"
-          * source[=].condition = "url='ErklaerungSachkenntnis'"
-          * rule[+]
-            * name = "mapErklaerungSachkenntnisValue"
-            * documentation = "Übernimmt den Booleschen Wert für declaration-of-expertise"
-            * insert treeSource(sachkenntnisVar, valueBoolean, sachkenntnisValue)
-            * insert targetSetIdVariable(tgtExtVarExt, valueBoolean, sachkenntnisValue)
-            * insert targetSetStringVariable(tgtExtVarExt, url, declaration-of-expertise)
+        * name = "mapOffLabelValue"
+        * documentation = "Übernimmt den Off-Label Booleschen Wert"
+        * insert treeSource(offLabelVar, valueBoolean, offLabelValue)
+        * insert targetSetIdVariable(tgtOffLabelExt, valueBoolean, offLabelValue)
+    * rule[+]
+      * name = "mapGebaerfaehigeFrauExtension"
+      * documentation = "Mappt GebaerfaehigeFrau Extension zu childbearing-potential"
+      * insert treeSource(extVar, extension, gebaerfaehigeFrauVar)
+      * source[=].condition = "url='GebaerfaehigeFrau'"
+      * insert createType(tgtExtVar, extension, tgtGebaerfaehigeFrauExt, Extension)
+      * insert targetSetStringVariable(tgtGebaerfaehigeFrauExt, url, childbearing-potential)
+      * rule[+]
+        * name = "mapGebaerfaehigeFrauValue"
+        * documentation = "Übernimmt den Booleschen Wert für childbearing-potential"
+        * insert treeSource(gebaerfaehigeFrauVar, valueBoolean, gebaerfaehigeFrauValue)
+        * insert targetSetIdVariable(tgtGebaerfaehigeFrauExt, valueBoolean, gebaerfaehigeFrauValue)
+    * rule[+]
+      * name = "mapEinhaltungSicherheitsmassnahmenExtension"
+      * documentation = "Mappt EinhaltungSicherheitsmassnahmen Extension zu security-compliance"
+      * insert treeSource(extVar, extension, sicherheitsVar)
+      * source[=].condition = "url='EinhaltungSicherheitsmassnahmen'"
+      * insert createType(tgtExtVar, extension, tgtSicherheitsExt, Extension)
+      * insert targetSetStringVariable(tgtSicherheitsExt, url, security-compliance)
+      * rule[+]
+        * name = "mapEinhaltungSicherheitsmassnahmenValue"
+        * documentation = "Übernimmt den Booleschen Wert für security-compliance"
+        * insert treeSource(sicherheitsVar, valueBoolean, sicherheitsValue)
+        * insert targetSetIdVariable(tgtSicherheitsExt, valueBoolean, sicherheitsValue)
+    * rule[+]
+      * name = "mapAushaendigungInformationsmaterialienExtension"
+      * documentation = "Mappt AushaendigungInformationsmaterialien Extension zu hand-out-information-material"
+      * insert treeSource(extVar, extension, infoMatVar)
+      * source[=].condition = "url='AushaendigungInformationsmaterialien'"
+      * insert createType(tgtExtVar, extension, tgtInfoMatExt, Extension)
+      * insert targetSetStringVariable(tgtInfoMatExt, url, hand-out-information-material)
+      * rule[+]
+        * name = "mapAushaendigungInformationsmaterialienValue"
+        * documentation = "Übernimmt den Booleschen Wert für hand-out-information-material"
+        * insert treeSource(infoMatVar, valueBoolean, infoMatValue)
+        * insert targetSetIdVariable(tgtInfoMatExt, valueBoolean, infoMatValue)
+    * rule[+]
+      * name = "mapErklaerungSachkenntnisExtension"
+      * documentation = "Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise"
+      * insert treeSource(extVar, extension, sachkenntnisVar)
+      * source[=].condition = "url='ErklaerungSachkenntnis'"
+      * insert createType(tgtExtVar, extension, tgtSachkenntnisExt, Extension)
+      * insert targetSetStringVariable(tgtSachkenntnisExt, url, declaration-of-expertise)
+      * rule[+]
+        * name = "mapErklaerungSachkenntnisValue"
+        * documentation = "Übernimmt den Booleschen Wert für declaration-of-expertise"
+        * insert treeSource(sachkenntnisVar, valueBoolean, sachkenntnisValue)
+        * insert targetSetIdVariable(tgtSachkenntnisExt, valueBoolean, sachkenntnisValue)
 
   // set subject to not-permitted
   * rule[+]
@@ -153,17 +148,10 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
     * name = "medicationReference"
     * insert treeSource(kbvMedicationRequest, medicationReference, medicationVar)
     * insert treeTarget(bfarmMedicationRequest, medicationReference, tgtMedicationVar)
-    * rule[+]
-      * documentation = "Normalisiert Medikamentenreferenzen auf urn:uuid:<id>, das referenzierte Medication wird separat gemappt"
-      * name = "medicationReferenceTransform"
-      * source[+]
-        * context = "medicationVar"
-        * element = "reference"
-        * variable = "medicationReferenceVar"
-      * target[+]
-        * context = "tgtMedicationVar"
-        * contextType = #variable
-        * element = "reference"
-        * transform = #evaluate
-        * parameter[+].valueString = "iif(%medicationReferenceVar.startsWith('urn:uuid:'), %medicationReferenceVar, 'urn:uuid:' & %medicationReferenceVar.replaceMatches('.*[:/]', '')).toString()"
-      
+    * target[+]
+      * context = "tgtMedicationVar"
+      * contextType = #variable
+      * element = "reference"
+      * transform = #evaluate
+      * parameter[+].valueString = "iif(%medicationVar.reference.startsWith('urn:uuid:'), %medicationVar.reference, 'urn:uuid:' & %medicationVar.reference.replaceMatches('.*[:/]', '')).toString()"
+     

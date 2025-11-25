@@ -41,10 +41,7 @@ Description: "Mapping-Anweisungen zur Transformation von gematik ERP MedicationD
 // reference to Medication
   * rule[+]
     * name = "medicationReference"
-    * source[+]
-      * context = "gematikMedicationDispense"
-      * element = "medication"
-      * variable = "medicationVar"
+    * insert treeSource(gematikMedicationDispense, medication, medicationVar)
     * insert targetSetIdVariable(bfarmMedicationDispense, medication, medicationVar)
     * documentation = "Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt"
 
@@ -68,11 +65,7 @@ Description: "Mapping-Anweisungen zur Transformation von gematik ERP MedicationD
     * name = "medicationDispensePerformer"
     * documentation = "Transformiert Apotheken-Identifier zu Organization-Referenz für eindeutige Zuordnung der abgebenden Apotheke"
     * insert treeSource(gematikMedicationDispense, performer, srcPerformerVar)
-    * target[+]      
-      * context = "bfarmMedicationDispense"
-      * contextType = #variable
-      * element = "performer"
-      * variable = "tgtPerformerVar"
+    * insert treeTarget(bfarmMedicationDispense, performer, tgtPerformerVar)
     * rule[+]
       * name = "medicationDispensePerformerActor"
       * documentation = "Verarbeitet den Actor (abgebende Apotheke) des Performers"

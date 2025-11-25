@@ -161,8 +161,8 @@
           ],
           "target": [
             {
-              "context": "bfarmMedicationDispense",
               "contextType": "variable",
+              "context": "bfarmMedicationDispense",
               "element": "performer",
               "variable": "tgtPerformerVar"
             }

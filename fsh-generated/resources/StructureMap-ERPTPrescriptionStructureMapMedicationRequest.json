@@ -83,7 +83,8 @@
             {
               "context": "kbvMedicationRequest",
               "element": "extension",
-              "variable": "extVar"
+              "variable": "extVar",
+              "condition": "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic'"
             }
           ],
           "target": [
@@ -99,8 +100,7 @@
               "source": [
                 {
                   "context": "extVar",
-                  "variable": "extMatchVar",
-                  "condition": "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Teratogenic'"
+                  "variable": "extMatchVar"
                 }
               ],
               "target": [
@@ -116,271 +116,323 @@
                   "transform": "copy"
                 }
               ],
+              "name": "copyTPrescriptionExtensionUrl",
+              "documentation": "Kopiert teratogene Extensions für T-Rezept Kennzeichnung"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "element": "extension",
+                  "variable": "offLabelVar",
+                  "condition": "url='Off-Label'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "Extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "extension",
+                  "transform": "create",
+                  "variable": "tgtOffLabelExt"
+                },
+                {
+                  "parameter": [
+                    {
+                      "valueString": "off-label"
+                    }
+                  ],
+                  "context": "tgtOffLabelExt",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
               "rule": [
                 {
                   "source": [
                     {
-                      "context": "extMatchVar",
-                      "element": "extension",
-                      "variable": "extMatchVarExt"
+                      "context": "offLabelVar",
+                      "element": "valueBoolean",
+                      "variable": "offLabelValue"
                     }
                   ],
                   "target": [
                     {
+                      "parameter": [
+                        {
+                          "valueId": "offLabelValue"
+                        }
+                      ],
+                      "context": "tgtOffLabelExt",
                       "contextType": "variable",
-                      "context": "tgtExtVar",
-                      "element": "extension",
-                      "variable": "tgtExtVarExt"
+                      "element": "valueBoolean",
+                      "transform": "copy"
                     }
                   ],
-                  "rule": [
-                    {
-                      "source": [
-                        {
-                          "context": "extMatchVarExt",
-                          "variable": "offLabelVar",
-                          "condition": "url='Off-Label'"
-                        }
-                      ],
-                      "rule": [
-                        {
-                          "source": [
-                            {
-                              "context": "offLabelVar",
-                              "element": "valueBoolean",
-                              "variable": "offLabelValue"
-                            }
-                          ],
-                          "target": [
-                            {
-                              "parameter": [
-                                {
-                                  "valueString": "off-label"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "url",
-                              "transform": "copy"
-                            },
-                            {
-                              "parameter": [
-                                {
-                                  "valueId": "offLabelValue"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "valueBoolean",
-                              "transform": "copy"
-                            }
-                          ],
-                          "name": "mapOffLabelValue",
-                          "documentation": "Übernimmt den Off-Label Booleschen Wert"
-                        }
-                      ],
-                      "name": "mapOffLabel",
-                      "documentation": "Mappt Off-Label Extension"
-                    },
-                    {
-                      "source": [
-                        {
-                          "context": "extMatchVarExt",
-                          "variable": "gebaerfaehigeFrauVar",
-                          "condition": "url='GebaerfaehigeFrau'"
-                        }
-                      ],
-                      "rule": [
-                        {
-                          "source": [
-                            {
-                              "context": "gebaerfaehigeFrauVar",
-                              "element": "valueBoolean",
-                              "variable": "gebaerfaehigeFrauValue"
-                            }
-                          ],
-                          "target": [
-                            {
-                              "parameter": [
-                                {
-                                  "valueId": "gebaerfaehigeFrauValue"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "valueBoolean",
-                              "transform": "copy"
-                            },
-                            {
-                              "parameter": [
-                                {
-                                  "valueString": "childbearing-potential"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "url",
-                              "transform": "copy"
-                            }
-                          ],
-                          "name": "mapGebaerfaehigeFrauValue",
-                          "documentation": "Übernimmt den Booleschen Wert für childbearing-potential"
-                        }
-                      ],
-                      "name": "mapGebaerfaehigeFrau",
-                      "documentation": "Mappt GebaerfaehigeFrau Extension zu childbearing-potential"
-                    },
-                    {
-                      "source": [
-                        {
-                          "context": "extMatchVarExt",
-                          "variable": "sicherheitsVar",
-                          "condition": "url='EinhaltungSicherheitsmassnahmen'"
-                        }
-                      ],
-                      "rule": [
-                        {
-                          "source": [
-                            {
-                              "context": "sicherheitsVar",
-                              "element": "valueBoolean",
-                              "variable": "sicherheitsValue"
-                            }
-                          ],
-                          "target": [
-                            {
-                              "parameter": [
-                                {
-                                  "valueId": "sicherheitsValue"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "valueBoolean",
-                              "transform": "copy"
-                            },
-                            {
-                              "parameter": [
-                                {
-                                  "valueString": "security-compliance"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "url",
-                              "transform": "copy"
-                            }
-                          ],
-                          "name": "mapEinhaltungSicherheitsmassnahmenValue",
-                          "documentation": "Übernimmt den Booleschen Wert für security-compliance"
-                        }
-                      ],
-                      "name": "mapEinhaltungSicherheitsmassnahmen",
-                      "documentation": "Mappt EinhaltungSicherheitsmassnahmen Extension zu security-compliance"
-                    },
-                    {
-                      "source": [
-                        {
-                          "context": "extMatchVarExt",
-                          "variable": "infoMatVar",
-                          "condition": "url='AushaendigungInformationsmaterialien'"
-                        }
-                      ],
-                      "rule": [
-                        {
-                          "source": [
-                            {
-                              "context": "infoMatVar",
-                              "element": "valueBoolean",
-                              "variable": "infoMatValue"
-                            }
-                          ],
-                          "target": [
-                            {
-                              "parameter": [
-                                {
-                                  "valueId": "infoMatValue"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "valueBoolean",
-                              "transform": "copy"
-                            },
-                            {
-                              "parameter": [
-                                {
-                                  "valueString": "hand-out-information-material"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "url",
-                              "transform": "copy"
-                            }
-                          ],
-                          "name": "mapAushaendigungInformationsmaterialienValue",
-                          "documentation": "Übernimmt den Booleschen Wert für hand-out-information-material"
-                        }
-                      ],
-                      "name": "mapAushaendigungInformationsmaterialien",
-                      "documentation": "Mappt AushaendigungInformationsmaterialien Extension zu hand-out-information-material"
-                    },
-                    {
-                      "source": [
-                        {
-                          "context": "extMatchVarExt",
-                          "variable": "sachkenntnisVar",
-                          "condition": "url='ErklaerungSachkenntnis'"
-                        }
-                      ],
-                      "rule": [
-                        {
-                          "source": [
-                            {
-                              "context": "sachkenntnisVar",
-                              "element": "valueBoolean",
-                              "variable": "sachkenntnisValue"
-                            }
-                          ],
-                          "target": [
-                            {
-                              "parameter": [
-                                {
-                                  "valueId": "sachkenntnisValue"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "valueBoolean",
-                              "transform": "copy"
-                            },
-                            {
-                              "parameter": [
-                                {
-                                  "valueString": "declaration-of-expertise"
-                                }
-                              ],
-                              "context": "tgtExtVarExt",
-                              "contextType": "variable",
-                              "element": "url",
-                              "transform": "copy"
-                            }
-                          ],
-                          "name": "mapErklaerungSachkenntnisValue",
-                          "documentation": "Übernimmt den Booleschen Wert für declaration-of-expertise"
-                        }
-                      ],
-                      "name": "mapErklaerungSachkenntnis",
-                      "documentation": "Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise"
-                    }
-                  ],
-                  "name": "copyExtensionValue",
-                  "documentation": "Mappt die Unter-Extensions der teratogenen Extension mit angepassten URLs"
+                  "name": "mapOffLabelValue",
+                  "documentation": "Übernimmt den Off-Label Booleschen Wert"
                 }
               ],
-              "name": "copyTPrescriptionExtensionUrl",
-              "documentation": "Kopiert teratogene Extensions für T-Rezept Kennzeichnung"
+              "name": "mapOffLabelExtension",
+              "documentation": "Mappt Off-Label Extension"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "element": "extension",
+                  "variable": "gebaerfaehigeFrauVar",
+                  "condition": "url='GebaerfaehigeFrau'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "Extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "extension",
+                  "transform": "create",
+                  "variable": "tgtGebaerfaehigeFrauExt"
+                },
+                {
+                  "parameter": [
+                    {
+                      "valueString": "childbearing-potential"
+                    }
+                  ],
+                  "context": "tgtGebaerfaehigeFrauExt",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "gebaerfaehigeFrauVar",
+                      "element": "valueBoolean",
+                      "variable": "gebaerfaehigeFrauValue"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "gebaerfaehigeFrauValue"
+                        }
+                      ],
+                      "context": "tgtGebaerfaehigeFrauExt",
+                      "contextType": "variable",
+                      "element": "valueBoolean",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "mapGebaerfaehigeFrauValue",
+                  "documentation": "Übernimmt den Booleschen Wert für childbearing-potential"
+                }
+              ],
+              "name": "mapGebaerfaehigeFrauExtension",
+              "documentation": "Mappt GebaerfaehigeFrau Extension zu childbearing-potential"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "element": "extension",
+                  "variable": "sicherheitsVar",
+                  "condition": "url='EinhaltungSicherheitsmassnahmen'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "Extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "extension",
+                  "transform": "create",
+                  "variable": "tgtSicherheitsExt"
+                },
+                {
+                  "parameter": [
+                    {
+                      "valueString": "security-compliance"
+                    }
+                  ],
+                  "context": "tgtSicherheitsExt",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "sicherheitsVar",
+                      "element": "valueBoolean",
+                      "variable": "sicherheitsValue"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "sicherheitsValue"
+                        }
+                      ],
+                      "context": "tgtSicherheitsExt",
+                      "contextType": "variable",
+                      "element": "valueBoolean",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "mapEinhaltungSicherheitsmassnahmenValue",
+                  "documentation": "Übernimmt den Booleschen Wert für security-compliance"
+                }
+              ],
+              "name": "mapEinhaltungSicherheitsmassnahmenExtension",
+              "documentation": "Mappt EinhaltungSicherheitsmassnahmen Extension zu security-compliance"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "element": "extension",
+                  "variable": "infoMatVar",
+                  "condition": "url='AushaendigungInformationsmaterialien'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "Extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "extension",
+                  "transform": "create",
+                  "variable": "tgtInfoMatExt"
+                },
+                {
+                  "parameter": [
+                    {
+                      "valueString": "hand-out-information-material"
+                    }
+                  ],
+                  "context": "tgtInfoMatExt",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "infoMatVar",
+                      "element": "valueBoolean",
+                      "variable": "infoMatValue"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "infoMatValue"
+                        }
+                      ],
+                      "context": "tgtInfoMatExt",
+                      "contextType": "variable",
+                      "element": "valueBoolean",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "mapAushaendigungInformationsmaterialienValue",
+                  "documentation": "Übernimmt den Booleschen Wert für hand-out-information-material"
+                }
+              ],
+              "name": "mapAushaendigungInformationsmaterialienExtension",
+              "documentation": "Mappt AushaendigungInformationsmaterialien Extension zu hand-out-information-material"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "element": "extension",
+                  "variable": "sachkenntnisVar",
+                  "condition": "url='ErklaerungSachkenntnis'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "Extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "extension",
+                  "transform": "create",
+                  "variable": "tgtSachkenntnisExt"
+                },
+                {
+                  "parameter": [
+                    {
+                      "valueString": "declaration-of-expertise"
+                    }
+                  ],
+                  "context": "tgtSachkenntnisExt",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "sachkenntnisVar",
+                      "element": "valueBoolean",
+                      "variable": "sachkenntnisValue"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "sachkenntnisValue"
+                        }
+                      ],
+                      "context": "tgtSachkenntnisExt",
+                      "contextType": "variable",
+                      "element": "valueBoolean",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "mapErklaerungSachkenntnisValue",
+                  "documentation": "Übernimmt den Booleschen Wert für declaration-of-expertise"
+                }
+              ],
+              "name": "mapErklaerungSachkenntnisExtension",
+              "documentation": "Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise"
             }
           ],
           "name": "medicationRequestExt",
@@ -552,32 +604,17 @@
               "context": "bfarmMedicationRequest",
               "element": "medicationReference",
               "variable": "tgtMedicationVar"
-            }
-          ],
-          "rule": [
+            },
             {
-              "source": [
+              "parameter": [
                 {
-                  "context": "medicationVar",
-                  "element": "reference",
-                  "variable": "medicationReferenceVar"
+                  "valueString": "iif(%medicationVar.reference.startsWith('urn:uuid:'), %medicationVar.reference, 'urn:uuid:' & %medicationVar.reference.replaceMatches('.*[:/]', '')).toString()"
                 }
               ],
-              "target": [
-                {
-                  "parameter": [
-                    {
-                      "valueString": "iif(%medicationReferenceVar.startsWith('urn:uuid:'), %medicationReferenceVar, 'urn:uuid:' & %medicationReferenceVar.replaceMatches('.*[:/]', '')).toString()"
-                    }
-                  ],
-                  "context": "tgtMedicationVar",
-                  "contextType": "variable",
-                  "element": "reference",
-                  "transform": "evaluate"
-                }
-              ],
-              "documentation": "Normalisiert Medikamentenreferenzen auf urn:uuid:<id>, das referenzierte Medication wird separat gemappt",
-              "name": "medicationReferenceTransform"
+              "context": "tgtMedicationVar",
+              "contextType": "variable",
+              "element": "reference",
+              "transform": "evaluate"
             }
           ],
           "name": "medicationReference"
