@@ -32,4 +32,4 @@
 | `kbvMedicationRequest.authoredOn` | `bfarmMedicationRequest.authoredOn` | Übernimmt das Verschreibungsdatum unverändert vom KBV MedicationRequest<br>→ übernimmt Wert aus Quellvariable |
 | `kbvMedicationRequest.dosageInstruction` | `bfarmMedicationRequest.dosageInstruction` | Kopiert die Dosierungsanweisungen vollständig für den digitalen Durchschlag<br>→ übernimmt Wert aus Quellvariable |
 | `kbvMedicationRequest.dispenseRequest` | `bfarmMedicationRequest.dispenseRequest` | Übernimmt Abgabeanweisungen (Menge, Wiederholungen) aus der ursprünglichen Verschreibung<br>→ übernimmt Wert aus Quellvariable |
-| `kbvMedicationRequest.medication` | `bfarmMedicationRequest.medication` | Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt<br>→ übernimmt Wert aus Quellvariable |
+| `kbvMedicationRequest.medicationReference.reference` | `bfarmMedicationRequest.medicationReference.reference` | Normalisiert Medikamentenreferenzen auf urn:uuid:<id>, das referenzierte Medication wird separat gemappt |

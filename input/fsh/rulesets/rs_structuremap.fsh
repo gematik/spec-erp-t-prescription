@@ -53,6 +53,14 @@ RuleSet: createType(context, to, variable, type)
   * variable = "{variable}"
   * parameter[+].valueString = "{type}"
 
+RuleSet: targetSetEvaluatedString(context, to, expression)
+* target[+]
+  * context = "{context}"
+  * contextType = #variable
+  * element = "{to}"
+  * transform = #evaluate
+  * parameter[+].valueString = "{expression}"
+
 RuleSet: treeSource(context, element, variable)
 * source[+]
   * context = "{context}"

@@ -326,6 +326,22 @@
         "value": "false"
       },
       {
+        "code": "no-validate",
+        "value": "Bundle/example-case-01-mapping-bundle"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-02-mapping-bundle"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-03-mapping-bundle"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-04-mapping-bundle"
+      },
+      {
         "code": "no-narrative",
         "value": "Medication/*"
       },

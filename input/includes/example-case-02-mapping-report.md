@@ -137,7 +137,7 @@
 | `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | true | ✅ |
 | `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
-| `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | ✅ |
+| `medicationReference.reference` | http://pvs.praxis.local/fhir/Medication/a3ccc26... | `medicationReference.reference` | urn:uuid:a3ccc266-b033-47cc-9361-98ec450f7db9 | ✅ |
 | `status` | active | `status` | completed | ✅ |
 | `extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[0].valueCoding.code` | 0 | - | - | ⚠️ |

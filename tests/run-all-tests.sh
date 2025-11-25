@@ -9,10 +9,12 @@
 # 4. Reports results
 #
 # Usage:
-#   ./run-all-tests.sh [--clean]
+#   ./run-all-tests.sh [--clean] [--sushi] [--single]
 #
 # Options:
-#   --clean    Remove all output files before running tests
+#   --clean    Remove all output files before running tests (default behavior)
+#   --sushi    Run `sushi .` at the workspace root before executing the pipeline
+#   --single   Only execute the first detected test case (useful for quick iterations)
 #
 
 set -e  # Exit on error
@@ -34,6 +36,30 @@ INCLUDES_DIR="$PROJECT_ROOT/input/includes"
 
 # Feature toggles
 VALIDATE_CARBON_COPY="${VALIDATE_CARBON_COPY:-true}" # Set to 'true' to validate and 'false' to skip validation step
+RUN_SUSHI=false
+RUN_SINGLE=false
+PERFORM_CLEAN=true
+
+# Parse CLI arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --clean)
+            PERFORM_CLEAN=true
+            ;;
+        --sushi)
+            RUN_SUSHI=true
+            ;;
+        --single)
+            RUN_SINGLE=true
+            ;;
+        *)
+            echo -e "${RED}Unknown option: $1${NC}"
+            echo "Usage: ./run-all-tests.sh [--clean] [--sushi] [--single]"
+            exit 1
+            ;;
+    esac
+    shift
+done
 
 # Scripts
 BUILD_SCRIPT="$SCRIPTS_DIR/build-bundle.py"
@@ -46,12 +72,24 @@ PASSED_TESTS=0
 FAILED_TESTS=0
 VALIDATION_FAILURES=()
 
-echo -e "${YELLOW}🧹 Cleaning output directory...${NC}"
-rm -rf "$OUTPUT_DIR"
-echo -e "${GREEN}✓ Output directory cleaned${NC}\n"
+if [[ "$PERFORM_CLEAN" == "true" ]]; then
+    echo -e "${YELLOW}🧹 Cleaning output directory...${NC}"
+    rm -rf "$OUTPUT_DIR"
+    echo -e "${GREEN}✓ Output directory cleaned${NC}\n"
+fi
 
 # Create output directories
 mkdir -p "$OUTPUT_DIR"
+
+if [[ "$RUN_SUSHI" == "true" ]]; then
+    echo -e "${YELLOW}🔄 Running SUSHI before executing tests...${NC}"
+    if (cd "$PROJECT_ROOT" && sushi .); then
+        echo -e "${GREEN}✓ SUSHI completed successfully${NC}\n"
+    else
+        echo -e "${RED}✗ SUSHI execution failed${NC}"
+        exit 1
+    fi
+fi
 
 echo -e "${BLUE}╔════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║   StructureMap Test Pipeline                  ║${NC}"
@@ -65,6 +103,10 @@ fi
 
 # Find all test case directories
 TEST_CASES=($(find "$TEST_CASES_DIR" -mindepth 1 -maxdepth 1 -type d | sort))
+
+if [[ "$RUN_SINGLE" == "true" && ${#TEST_CASES[@]} -gt 1 ]]; then
+    TEST_CASES=("${TEST_CASES[0]}")
+fi
 
 if [[ ${#TEST_CASES[@]} -eq 0 ]]; then
     echo -e "${YELLOW}⚠ No test cases found in: $TEST_CASES_DIR${NC}"

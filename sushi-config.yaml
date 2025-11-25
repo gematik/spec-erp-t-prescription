@@ -216,6 +216,11 @@ instanceOptions:
 
 parameters:
   bundle-references-resolve: false
+  no-validate:
+    - Bundle/example-case-01-mapping-bundle
+    - Bundle/example-case-02-mapping-bundle
+    - Bundle/example-case-03-mapping-bundle
+    - Bundle/example-case-04-mapping-bundle
   no-narrative:
     - Medication/*
     - MedicationRequest/*

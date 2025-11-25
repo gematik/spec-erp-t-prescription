@@ -542,25 +542,45 @@
           "source": [
             {
               "context": "kbvMedicationRequest",
-              "element": "medication",
+              "element": "medicationReference",
               "variable": "medicationVar"
             }
           ],
           "target": [
             {
-              "parameter": [
-                {
-                  "valueId": "medicationVar"
-                }
-              ],
-              "context": "bfarmMedicationRequest",
               "contextType": "variable",
-              "element": "medication",
-              "transform": "copy"
+              "context": "bfarmMedicationRequest",
+              "element": "medicationReference",
+              "variable": "tgtMedicationVar"
             }
           ],
-          "name": "medicationReference",
-          "documentation": "Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt"
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "medicationVar",
+                  "element": "reference",
+                  "variable": "medicationReferenceVar"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "iif(%medicationReferenceVar.startsWith('urn:uuid:'), %medicationReferenceVar, 'urn:uuid:' & %medicationReferenceVar.replaceMatches('.*[:/]', '')).toString()"
+                    }
+                  ],
+                  "context": "tgtMedicationVar",
+                  "contextType": "variable",
+                  "element": "reference",
+                  "transform": "evaluate"
+                }
+              ],
+              "documentation": "Normalisiert Medikamentenreferenzen auf urn:uuid:<id>, das referenzierte Medication wird separat gemappt",
+              "name": "medicationReferenceTransform"
+            }
+          ],
+          "name": "medicationReference"
         }
       ],
       "name": "ERPTPrescriptionStructureMapMedicationRequest",

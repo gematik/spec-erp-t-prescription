@@ -151,6 +151,19 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
   // reference to Medication
   * rule[+]
     * name = "medicationReference"
-    * insert treeSource(kbvMedicationRequest, medication, medicationVar)
-    * insert targetSetIdVariable(bfarmMedicationRequest, medication, medicationVar)
-    * documentation = "Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt"
+    * insert treeSource(kbvMedicationRequest, medicationReference, medicationVar)
+    * insert treeTarget(bfarmMedicationRequest, medicationReference, tgtMedicationVar)
+    * rule[+]
+      * documentation = "Normalisiert Medikamentenreferenzen auf urn:uuid:<id>, das referenzierte Medication wird separat gemappt"
+      * name = "medicationReferenceTransform"
+      * source[+]
+        * context = "medicationVar"
+        * element = "reference"
+        * variable = "medicationReferenceVar"
+      * target[+]
+        * context = "tgtMedicationVar"
+        * contextType = #variable
+        * element = "reference"
+        * transform = #evaluate
+        * parameter[+].valueString = "iif(%medicationReferenceVar.startsWith('urn:uuid:'), %medicationReferenceVar, 'urn:uuid:' & %medicationReferenceVar.replaceMatches('.*[:/]', '')).toString()"
+      
