@@ -64,7 +64,8 @@ Die StructureMap überführt das Mapping-Bundle in den digitalen Durchschlag und
 | [KBV_Medication_FreeText](https://simplifier.net/erezept/kbv_pr_erp_medication_freetext) | [E-T-Rezept Medication](./StructureDefinition-erp-tprescription-medication.html) | [StructureMap-StructureMap-KBV-FreeText-Medication](./StructureMap-ERPTPrescriptionStructureMapKBVFreeTextMedication.html) |
 | [GEM_ERP_PR_Medication](https://simplifier.net/erezept-workflow/gem_erp_pr_medication) | [E-T-Rezept Medication](./StructureDefinition-erp-tprescription-medication.html) | [StructureMap-StructureMap-GEM-Medication](./StructureMap-ERPTPrescriptionStructureMapGEMMedication.html) |
 | [GEM_MedicationDispense](https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense) | [E-T-Rezept Medication Dispense](./StructureDefinition-erp-tprescription-medication-dispense.html) | [StructureMap-StructureMap-MedicationDispense](./StructureMap-ERPTPrescriptionStructureMapMedicationDispense.html) |
-| [VZD Searchset](./StructureDefinition-erp-tprescription-vzd-searchset-bundle.html) | [E-T-Rezept Organization](./StructureDefinition-erp-tprescription-organization.html) | [StructureMap-StructureMap-Organization](./StructureMap-ERPTPrescriptionStructureMapOrganization.html) |
+
+Für das Mapping werden die Artefakte aus dem FHIR-VZD benötigt. Diese bestehen aus einem Bundle mit den FHIR-Ressourcen Organization, HealthcareService und Location. Hierzu gibt es das Beispiel [Bundle-VZD-SearchSet-Bundle](./Bundle-VZD-SearchSet-Bundle.html). Die [StructureMap-StructureMap-Organization](./StructureMap-ERPTPrescriptionStructureMapOrganization.html) überführt eine solche Organization in ein Artefakt für den digitalen Durchschlag.
 
 #### HAPI FHIR Transformation
 

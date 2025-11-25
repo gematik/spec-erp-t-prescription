@@ -88,15 +88,9 @@
           ],
           "target": [
             {
-              "parameter": [
-                {
-                  "valueString": "Extension"
-                }
-              ],
-              "context": "bfarmMedicationRequest",
               "contextType": "variable",
+              "context": "bfarmMedicationRequest",
               "element": "extension",
-              "transform": "create",
               "variable": "tgtExtVar"
             }
           ],
@@ -128,41 +122,24 @@
                     {
                       "context": "extMatchVar",
                       "element": "extension",
-                      "variable": "extValVar"
+                      "variable": "extMatchVarExt"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "contextType": "variable",
+                      "context": "tgtExtVar",
+                      "element": "extension",
+                      "variable": "tgtExtVarExt"
                     }
                   ],
                   "rule": [
                     {
                       "source": [
                         {
-                          "context": "extValVar",
+                          "context": "extMatchVarExt",
                           "variable": "offLabelVar",
                           "condition": "url='Off-Label'"
-                        }
-                      ],
-                      "target": [
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "Extension"
-                            }
-                          ],
-                          "context": "tgtExtVar",
-                          "contextType": "variable",
-                          "element": "extension",
-                          "transform": "create",
-                          "variable": "tgtOffLabelExtVar"
-                        },
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "off-label"
-                            }
-                          ],
-                          "context": "tgtOffLabelExtVar",
-                          "contextType": "variable",
-                          "element": "url",
-                          "transform": "copy"
                         }
                       ],
                       "rule": [
@@ -178,10 +155,21 @@
                             {
                               "parameter": [
                                 {
+                                  "valueString": "off-label"
+                                }
+                              ],
+                              "context": "tgtExtVarExt",
+                              "contextType": "variable",
+                              "element": "url",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
                                   "valueId": "offLabelValue"
                                 }
                               ],
-                              "context": "tgtOffLabelExtVar",
+                              "context": "tgtExtVarExt",
                               "contextType": "variable",
                               "element": "valueBoolean",
                               "transform": "copy"
@@ -197,34 +185,9 @@
                     {
                       "source": [
                         {
-                          "context": "extValVar",
+                          "context": "extMatchVarExt",
                           "variable": "gebaerfaehigeFrauVar",
                           "condition": "url='GebaerfaehigeFrau'"
-                        }
-                      ],
-                      "target": [
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "Extension"
-                            }
-                          ],
-                          "context": "tgtExtVar",
-                          "contextType": "variable",
-                          "element": "extension",
-                          "transform": "create",
-                          "variable": "tgtGebaerfaehigeFrauExtVar"
-                        },
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "childbearing-potential"
-                            }
-                          ],
-                          "context": "tgtGebaerfaehigeFrauExtVar",
-                          "contextType": "variable",
-                          "element": "url",
-                          "transform": "copy"
                         }
                       ],
                       "rule": [
@@ -243,9 +206,20 @@
                                   "valueId": "gebaerfaehigeFrauValue"
                                 }
                               ],
-                              "context": "tgtGebaerfaehigeFrauExtVar",
+                              "context": "tgtExtVarExt",
                               "contextType": "variable",
                               "element": "valueBoolean",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "childbearing-potential"
+                                }
+                              ],
+                              "context": "tgtExtVarExt",
+                              "contextType": "variable",
+                              "element": "url",
                               "transform": "copy"
                             }
                           ],
@@ -259,34 +233,9 @@
                     {
                       "source": [
                         {
-                          "context": "extValVar",
+                          "context": "extMatchVarExt",
                           "variable": "sicherheitsVar",
                           "condition": "url='EinhaltungSicherheitsmassnahmen'"
-                        }
-                      ],
-                      "target": [
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "Extension"
-                            }
-                          ],
-                          "context": "tgtExtVar",
-                          "contextType": "variable",
-                          "element": "extension",
-                          "transform": "create",
-                          "variable": "tgtSicherheitsExtVar"
-                        },
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "security-compliance"
-                            }
-                          ],
-                          "context": "tgtSicherheitsExtVar",
-                          "contextType": "variable",
-                          "element": "url",
-                          "transform": "copy"
                         }
                       ],
                       "rule": [
@@ -305,9 +254,20 @@
                                   "valueId": "sicherheitsValue"
                                 }
                               ],
-                              "context": "tgtSicherheitsExtVar",
+                              "context": "tgtExtVarExt",
                               "contextType": "variable",
                               "element": "valueBoolean",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "security-compliance"
+                                }
+                              ],
+                              "context": "tgtExtVarExt",
+                              "contextType": "variable",
+                              "element": "url",
                               "transform": "copy"
                             }
                           ],
@@ -321,34 +281,9 @@
                     {
                       "source": [
                         {
-                          "context": "extValVar",
+                          "context": "extMatchVarExt",
                           "variable": "infoMatVar",
                           "condition": "url='AushaendigungInformationsmaterialien'"
-                        }
-                      ],
-                      "target": [
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "Extension"
-                            }
-                          ],
-                          "context": "tgtExtVar",
-                          "contextType": "variable",
-                          "element": "extension",
-                          "transform": "create",
-                          "variable": "tgtInfoMatExtVar"
-                        },
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "hand-out-information-material"
-                            }
-                          ],
-                          "context": "tgtInfoMatExtVar",
-                          "contextType": "variable",
-                          "element": "url",
-                          "transform": "copy"
                         }
                       ],
                       "rule": [
@@ -367,9 +302,20 @@
                                   "valueId": "infoMatValue"
                                 }
                               ],
-                              "context": "tgtInfoMatExtVar",
+                              "context": "tgtExtVarExt",
                               "contextType": "variable",
                               "element": "valueBoolean",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "hand-out-information-material"
+                                }
+                              ],
+                              "context": "tgtExtVarExt",
+                              "contextType": "variable",
+                              "element": "url",
                               "transform": "copy"
                             }
                           ],
@@ -383,34 +329,9 @@
                     {
                       "source": [
                         {
-                          "context": "extValVar",
+                          "context": "extMatchVarExt",
                           "variable": "sachkenntnisVar",
                           "condition": "url='ErklaerungSachkenntnis'"
-                        }
-                      ],
-                      "target": [
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "Extension"
-                            }
-                          ],
-                          "context": "tgtExtVar",
-                          "contextType": "variable",
-                          "element": "extension",
-                          "transform": "create",
-                          "variable": "tgtSachkenntnisExtVar"
-                        },
-                        {
-                          "parameter": [
-                            {
-                              "valueString": "declaration-of-expertise"
-                            }
-                          ],
-                          "context": "tgtSachkenntnisExtVar",
-                          "contextType": "variable",
-                          "element": "url",
-                          "transform": "copy"
                         }
                       ],
                       "rule": [
@@ -429,9 +350,20 @@
                                   "valueId": "sachkenntnisValue"
                                 }
                               ],
-                              "context": "tgtSachkenntnisExtVar",
+                              "context": "tgtExtVarExt",
                               "contextType": "variable",
                               "element": "valueBoolean",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "declaration-of-expertise"
+                                }
+                              ],
+                              "context": "tgtExtVarExt",
+                              "contextType": "variable",
+                              "element": "url",
                               "transform": "copy"
                             }
                           ],

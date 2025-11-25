@@ -33,7 +33,7 @@ SCRIPTS_DIR="$SCRIPT_DIR/scripts"
 INCLUDES_DIR="$PROJECT_ROOT/input/includes"
 
 # Feature toggles
-VALIDATE_CARBON_COPY="${VALIDATE_CARBON_COPY:-false}" # Set to 'true' to validate and 'false' to skip validation step
+VALIDATE_CARBON_COPY="${VALIDATE_CARBON_COPY:-true}" # Set to 'true' to validate and 'false' to skip validation step
 
 # Scripts
 BUILD_SCRIPT="$SCRIPTS_DIR/build-bundle.py"
@@ -46,12 +46,9 @@ PASSED_TESTS=0
 FAILED_TESTS=0
 VALIDATION_FAILURES=()
 
-# Clean output if requested
-if [[ "$1" == "--clean" ]]; then
-    echo -e "${YELLOW}🧹 Cleaning output directory...${NC}"
-    rm -rf "$OUTPUT_DIR"
-    echo -e "${GREEN}✓ Output directory cleaned${NC}\n"
-fi
+echo -e "${YELLOW}🧹 Cleaning output directory...${NC}"
+rm -rf "$OUTPUT_DIR"
+echo -e "${GREEN}✓ Output directory cleaned${NC}\n"
 
 # Create output directories
 mkdir -p "$OUTPUT_DIR"

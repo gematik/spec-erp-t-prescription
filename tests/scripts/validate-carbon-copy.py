@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -11,6 +12,24 @@ from pathlib import Path
 DEFAULT_HAPI_JAR = Path("/Users/gematik/dev/validators/current_hapi_validator.jar")
 DEFAULT_PROFILE = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
 DEFAULT_FHIR_VERSION = "4.0.1"
+
+
+def load_ig_dependencies(project_root: Path) -> list[str]:
+    """Load IG dependencies from package.json, returning `package#version` entries."""
+    package_json = project_root / "package.json"
+    try:
+        data = json.loads(package_json.read_text())
+    except (OSError, json.JSONDecodeError):
+        return []
+
+    deps = data.get("dependencies", {})
+    igs: list[str] = []
+    for name, version in deps.items():
+        if version:
+            igs.append(f"{name}#{version}")
+        else:
+            igs.append(name)
+    return igs
 
 
 def build_command(
@@ -25,12 +44,7 @@ def build_command(
 
     ig_dependencies = [
         str(project_root / "fsh-generated" / "resources"),
-        "de.gematik.erezept-workflow.r4",
-        "kbv.ita.erp",
-        "de.gematik.fhir.directory",
-        "de.gematik.ti",
-        "de.basisprofil.r4",
-        "de.gematik.epa.medication",
+        *load_ig_dependencies(project_root),
     ]
 
     cmd: list[str] = [
@@ -40,8 +54,6 @@ def build_command(
         str(resource_path),
         "-profile",
         profile_url,
-        "-version",
-        fhir_version,
     ]
 
     for ig in ig_dependencies:

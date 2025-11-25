@@ -303,24 +303,32 @@ def _target_url_values(target: Dict[str, Any]) -> List[str]:
                 values.append(param[key])
     return values
 
-def collect_aliases_from_rule(rule: Dict[str, Any], alias_map: Dict[str, str]) -> None:
+def collect_aliases_from_rule(
+    rule: Dict[str, Any],
+    alias_map: Dict[str, str],
+    inherited_sources: Optional[List[str]] = None,
+) -> None:
     """Recursively record source->target extension URL mappings."""
-    source_urls: List[str] = []
+    explicit_sources: List[str] = []
     for source in rule.get('source', []):
         url_value = extract_url_from_condition(source.get('condition'))
         if url_value:
-            source_urls.append(url_value)
+            explicit_sources.append(url_value)
+
+    active_sources = explicit_sources if explicit_sources else (inherited_sources or [])
 
     target_urls: List[str] = []
     for target in rule.get('target', []):
         target_urls.extend(_target_url_values(target))
 
-    for src_url in source_urls:
+    for src_url in active_sources:
         for tgt_url in target_urls:
             alias_map.setdefault(src_url, tgt_url)
 
+    next_inherited = active_sources if active_sources else inherited_sources
+
     for child_rule in rule.get('rule', []):
-        collect_aliases_from_rule(child_rule, alias_map)
+        collect_aliases_from_rule(child_rule, alias_map, next_inherited)
 
 def collect_aliases_from_structuremap(structuremap: Dict[str, Any], alias_map: Dict[str, str]) -> None:
     for group in structuremap.get('group', []):
