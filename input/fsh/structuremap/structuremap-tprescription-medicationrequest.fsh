@@ -53,8 +53,8 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
       * rule[+]
         * name = "mapOffLabelValue"
         * documentation = "Übernimmt den Off-Label Booleschen Wert"
-        * insert treeSource(offLabelVar, valueBoolean, offLabelValue)
-        * insert targetSetIdVariable(tgtOffLabelExt, valueBoolean, offLabelValue)
+        * insert treeSource(offLabelVar, value, offLabelValue)
+        * insert targetSetIdVariable(tgtOffLabelExt, value, offLabelValue)
     * rule[+]
       * name = "mapGebaerfaehigeFrauExtension"
       * documentation = "Mappt GebaerfaehigeFrau Extension zu childbearing-potential"
@@ -65,8 +65,8 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
       * rule[+]
         * name = "mapGebaerfaehigeFrauValue"
         * documentation = "Übernimmt den Booleschen Wert für childbearing-potential"
-        * insert treeSource(gebaerfaehigeFrauVar, valueBoolean, gebaerfaehigeFrauValue)
-        * insert targetSetIdVariable(tgtGebaerfaehigeFrauExt, valueBoolean, gebaerfaehigeFrauValue)
+        * insert treeSource(gebaerfaehigeFrauVar, value, gebaerfaehigeFrauValue)
+        * insert targetSetIdVariable(tgtGebaerfaehigeFrauExt, value, gebaerfaehigeFrauValue)
     * rule[+]
       * name = "mapEinhaltungSicherheitsmassnahmenExtension"
       * documentation = "Mappt EinhaltungSicherheitsmassnahmen Extension zu security-compliance"
@@ -77,8 +77,8 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
       * rule[+]
         * name = "mapEinhaltungSicherheitsmassnahmenValue"
         * documentation = "Übernimmt den Booleschen Wert für security-compliance"
-        * insert treeSource(sicherheitsVar, valueBoolean, sicherheitsValue)
-        * insert targetSetIdVariable(tgtSicherheitsExt, valueBoolean, sicherheitsValue)
+        * insert treeSource(sicherheitsVar, value, sicherheitsValue)
+        * insert targetSetIdVariable(tgtSicherheitsExt, value, sicherheitsValue)
     * rule[+]
       * name = "mapAushaendigungInformationsmaterialienExtension"
       * documentation = "Mappt AushaendigungInformationsmaterialien Extension zu hand-out-information-material"
@@ -89,8 +89,8 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
       * rule[+]
         * name = "mapAushaendigungInformationsmaterialienValue"
         * documentation = "Übernimmt den Booleschen Wert für hand-out-information-material"
-        * insert treeSource(infoMatVar, valueBoolean, infoMatValue)
-        * insert targetSetIdVariable(tgtInfoMatExt, valueBoolean, infoMatValue)
+        * insert treeSource(infoMatVar, value, infoMatValue)
+        * insert targetSetIdVariable(tgtInfoMatExt, value, infoMatValue)
     * rule[+]
       * name = "mapErklaerungSachkenntnisExtension"
       * documentation = "Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise"
@@ -101,8 +101,8 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
       * rule[+]
         * name = "mapErklaerungSachkenntnisValue"
         * documentation = "Übernimmt den Booleschen Wert für declaration-of-expertise"
-        * insert treeSource(sachkenntnisVar, valueBoolean, sachkenntnisValue)
-        * insert targetSetIdVariable(tgtSachkenntnisExt, valueBoolean, sachkenntnisValue)
+        * insert treeSource(sachkenntnisVar, value, sachkenntnisValue)
+        * insert targetSetIdVariable(tgtSachkenntnisExt, value, sachkenntnisValue)
 
   // set subject to not-permitted
   * rule[+]
@@ -147,11 +147,17 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
   * rule[+]
     * name = "medicationReference"
     * insert treeSource(kbvMedicationRequest, medicationReference, medicationVar)
-    * insert treeTarget(bfarmMedicationRequest, medicationReference, tgtMedicationVar)
-    * target[+]
-      * context = "tgtMedicationVar"
-      * contextType = #variable
-      * element = "reference"
-      * transform = #evaluate
-      * parameter[+].valueString = "iif(%medicationVar.reference.startsWith('urn:uuid:'), %medicationVar.reference, 'urn:uuid:' & %medicationVar.reference.replaceMatches('.*[:/]', '')).toString()"
+    * insert createType(bfarmMedicationRequest, medication, tgtMedicationReference, Reference)
+    * rule[+]
+      * name = "normalizeMedicationReference"
+      * source[+]
+        * context = "medicationVar"
+        * element = "reference"
+        * variable = "medicationReferenceValue"
+      * target[+]
+        * context = "tgtMedicationReference"
+        * contextType = #variable
+        * element = "reference"
+        * transform = #evaluate
+        * parameter[+].valueString = "iif(%medicationVar.reference.startsWith('urn:uuid:'), %medicationVar.reference, 'urn:uuid:' & %medicationVar.reference.replaceMatches('.*[:/]', ''))"
      
