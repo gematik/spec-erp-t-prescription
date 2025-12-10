@@ -10,15 +10,7 @@
        <ul>
         <li><a href="#release-notes">Release Notes</a></li>
       </ul>
-	</li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
+	</li>    
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -26,27 +18,10 @@
 </details>
 
 ## About The Project
-<!-- add your own text here -->
+The details are found [here](./input/pagecontent/index.md).
 
 ### Release Notes
 See [ReleaseNotes.md](./ReleaseNotes.md) for all information regarding the (newest) releases.
-
-## Getting Started
-<!-- add your own text here -->
-
-### Prerequisites
-<!-- add your own text here -->
-
-### Installation
-<!-- add your own text here -->
-
-## Usage
-<!-- add your own text here -->
-
-For more examples or in-depth documentation, please refer to ... <add gitHub-Pages-links here or link your documentation folder>
-
-## Contributing
-If you want to contribute, please check our [CONTRIBUTING.md](./CONTRIBUTING.md). 
 
 ## License
 Copyright 2025 gematik GmbH
