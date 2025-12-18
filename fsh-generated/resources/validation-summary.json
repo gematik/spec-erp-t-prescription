@@ -1,0 +1,22 @@
+{
+  "/Users/gematik/dev/FHIR/erp-t-prescription/tests/output/example-case-01/example-case-01-digitaler-durchschlag.json": {
+    "ok": true,
+    "errors": 0,
+    "warnings": 15
+  },
+  "/Users/gematik/dev/FHIR/erp-t-prescription/tests/output/example-case-02/example-case-02-digitaler-durchschlag.json": {
+    "ok": true,
+    "errors": 0,
+    "warnings": 11
+  },
+  "/Users/gematik/dev/FHIR/erp-t-prescription/tests/output/example-case-03/example-case-03-digitaler-durchschlag.json": {
+    "ok": true,
+    "errors": 0,
+    "warnings": 10
+  },
+  "/Users/gematik/dev/FHIR/erp-t-prescription/tests/output/example-case-04/example-case-04-digitaler-durchschlag.json": {
+    "ok": true,
+    "errors": 0,
+    "warnings": 15
+  }
+}

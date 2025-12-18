@@ -161,8 +161,8 @@
           ],
           "target": [
             {
-              "context": "bfarmMedicationDispense",
               "contextType": "variable",
+              "context": "bfarmMedicationDispense",
               "element": "performer",
               "variable": "tgtPerformerVar"
             }
@@ -240,7 +240,7 @@
     }
   ],
   "status": "draft",
-  "version": "1.1.0-ballot2",
+  "version": "1.1.0-ballot3",
   "date": "2025-07-07",
   "name": "ERPTPrescriptionStructureMapMedicationDispense",
   "experimental": false

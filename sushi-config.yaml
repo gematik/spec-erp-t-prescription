@@ -11,10 +11,10 @@ description: Dieser IG Beschreibt Schnittstellen und Profile für den
   Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen
   E-Rezept-Fachdienst und BfArM T-Register
 status: draft # draft | active | retired | unknown
-version: 1.1.0-ballot2
+version: 1.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+
-releaseLabel: ballot # ci-build, ballot, release
+releaseLabel: ci-build # ci-build, ballot, release
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#DE "Germany" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 publisher:
@@ -27,14 +27,10 @@ publisher:
 # use cases, the value can be an object with keys for id, uri, and version.
 #
 dependencies:
-  de.gematik.ti: 1.1.1
-  kbv.ita.erp: 1.4.0
-  kbv.ita.for: 1.3.0
-  de.gematik.fhir.directory: 1.0.0
-  de.gematik.erezept-workflow.r4: 1.6.0
-  de.basisprofil.r4: 1.5.4
-  de.gematik.epa.medication: 1.2.0
-  de.fhir.medication: 1.0.2
+  de.gematik.ti: 1.2.0
+  de.gematik.epa.medication: 1.3.0
+  hl7.fhir.extensions.r5: 4.0.1
+  de.fhir.medication: 1.0.3
 # The pages property corresponds to IG.definition.page. SUSHI can
 # auto-generate the page list, but if the author includes pages in
 # this file, it is assumed that the author will fully manage the
@@ -52,8 +48,6 @@ dependencies:
 #     title: Datenmodell
 #   trezept.md:
 #     title: Digitaler Durchschlag T-Rezept
-#   bfarm-openapi.md:
-#     title: Open API BfArM
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
@@ -84,7 +78,6 @@ menu:
   Übertragung für E-T-Rezept: trezept.html
   FHIR-Artefakte: artifacts.html
   Beispiele: tests.html
-  OpenAPI: bfarm-openapi.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
@@ -222,6 +215,11 @@ instanceOptions:
 
 parameters:
   bundle-references-resolve: false
+  no-validate:
+    - Bundle/example-case-01-mapping-bundle
+    - Bundle/example-case-02-mapping-bundle
+    - Bundle/example-case-03-mapping-bundle
+    - Bundle/example-case-04-mapping-bundle
   no-narrative:
     - Medication/*
     - MedicationRequest/*

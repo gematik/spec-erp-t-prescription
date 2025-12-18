@@ -64,14 +64,15 @@ Die StructureMap überführt das Mapping-Bundle in den digitalen Durchschlag und
 | [KBV_Medication_FreeText](https://simplifier.net/erezept/kbv_pr_erp_medication_freetext) | [E-T-Rezept Medication](./StructureDefinition-erp-tprescription-medication.html) | [StructureMap-StructureMap-KBV-FreeText-Medication](./StructureMap-ERPTPrescriptionStructureMapKBVFreeTextMedication.html) |
 | [GEM_ERP_PR_Medication](https://simplifier.net/erezept-workflow/gem_erp_pr_medication) | [E-T-Rezept Medication](./StructureDefinition-erp-tprescription-medication.html) | [StructureMap-StructureMap-GEM-Medication](./StructureMap-ERPTPrescriptionStructureMapGEMMedication.html) |
 | [GEM_MedicationDispense](https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense) | [E-T-Rezept Medication Dispense](./StructureDefinition-erp-tprescription-medication-dispense.html) | [StructureMap-StructureMap-MedicationDispense](./StructureMap-ERPTPrescriptionStructureMapMedicationDispense.html) |
-| [VZD Searchset](./StructureDefinition-erp-tprescription-vzd-searchset.html) | [E-T-Rezept Organization](./StructureDefinition-erp-tprescription-organization.html) | [StructureMap-StructureMap-Organization](./StructureMap-ERPTPrescriptionStructureMapOrganization.html) |
+
+Für das Mapping werden die Artefakte aus dem FHIR-VZD benötigt. Diese bestehen aus einem Bundle mit den FHIR-Ressourcen Organization, HealthcareService und Location. Hierzu gibt es das Beispiel [Bundle-VZD-SearchSet-Bundle](./Bundle-VZD-SearchSet-Bundle.html). Die [StructureMap-StructureMap-Organization](./StructureMap-ERPTPrescriptionStructureMapOrganization.html) überführt eine solche Organization in ein Artefakt für den digitalen Durchschlag.
 
 #### HAPI FHIR Transformation
 
 Um HAPI FHIR zur Transformation zu nutzen, müssen FHIR-Version, die verwendeten FHIR-Packages für das Mapping sowie der Output-Pfad angegeben werden. Zum Test kann der folgende Befehl auf der Root Ebene des [GitHub Repositories](https://github.com/gematik/spec-erp-t-prescription) ausgeführt werden (Lokaler Pfad zum [HAPI FHIR](https://github.com/hapifhir/org.hl7.fhir.core/releases) muss angegeben werden):
 ```
 sushi && \
-java -jar <path-to>/fhir_hapi.jar fsh-generated/resources/Bundle-Mapping-Bundle.json \
+java -jar <path-to>/fhir_hapi.jar fsh-generated/resources/example-case-01-mapping-bundle.json \
 -transform https://gematik.de/fhir/erp-t-prescription/StructureMap/ERPTPrescriptionStructureMapCarbonCopy \
 -version 4.0.1 \
 -ig ./fsh-generated/resources \
@@ -88,7 +89,7 @@ Die folgenden Beispiele können als Referenz herangezogen werden:
 
 | Beispiel  | Beschreibung |
 | ------------- |:-------------:|
-|[Bundle-Mapping-Bundle](./Bundle-Mapping-Bundle.html)|Beispiel eines Mapping-Bundles zur Erzeugung eines digitalen Durchschlags E-T-Rezept|
+|[Bundle-Mapping-Bundle](./example-case-01-mapping-bundle.json)|Beispiel eines Mapping-Bundles zur Erzeugung eines digitalen Durchschlags E-T-Rezept|
 |[TRP-Carbon-Copy](./Parameters-TRP-Carbon-Copy.html)|Manuell erzeugter digitaler Durchschlag E-T-Rezept|
 |[Mapped CarbonCopy](./Bundle-erp-t-prescription-carbon-copy-actual.json)|Von der HAPI Transformation Engine erzeugtes JSON|
 
@@ -98,9 +99,7 @@ Nachdem der digitale Durchschlag E-T-Rezept erzeugt wurde, wird dieser RESTful �
 
 Vorgaben zur Authentifizierung des E-Rezept-Fachdienstes gegenüber dem Webdienst sind in der [Spezifikation des E-Rezept-Fachdienst](https://gemspec.gematik.de/docs/gemSpec/gemSpec_FD_eRp/latest/) beschrieben.
 
-Die folgende OpenAPI-Definition dient als Hilfestellung bei der Implementierung des Aufrufs am BfArM Webdienst:
-
-{% include openapi.html openapiurl="tprescription.yaml" %}
+Die API für den Endpunkt am BfArM Webdienst ist in [E-Rezept API Dokumentation zum Datenaustausch mit dem BfArM](https://github.com/gematik/api-erp/blob/master/docs/erp_bfarm.adoc) dokumentiert.
 
 ### Fehlerbehandlung der Übertragung
 

@@ -5,18 +5,21 @@ Description: "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer D
 * status = #completed
 * intent = #order
 * authoredOn = "2026-04-01"
-* subject.extension[dataAbsentReason].valueCode = #not-permitted
+* subject.identifier.system.extension[+].url = $data-absent-reason
+* subject.identifier.system.extension[=].valueCode = #not-permitted
+* subject.identifier.value.extension[+].url = $data-absent-reason
+* subject.identifier.value.extension[=].valueCode = #not-permitted
 * medicationReference = Reference(ExampleMedication1-Pomalidomid-T)
 * dosageInstruction[+].text = "1-1-1-1"
 * dispenseRequest
   * quantity.value = 10
   * quantity.unit = "Tablette"
-* extension[T-Rezept]
-  * extension[EinhaltungSicherheitsmassnahmen].valueBoolean = true
-  * extension[AushaendigungInformationsmaterialien].valueBoolean = true
-  * extension[Off-Label].valueBoolean = false
-  * extension[GebaerfaehigeFrau].valueBoolean = false
-  * extension[ErklaerungSachkenntnis].valueBoolean = true
+* extension[teratogenic]
+  * extension[off-label].valueBoolean = true
+  * extension[childbearing-potential].valueBoolean = true
+  * extension[security-compliance].valueBoolean = false
+  * extension[hand-out-information-material].valueBoolean = false
+  * extension[declaration-of-expertise].valueBoolean = true
 
 Instance: ExampleMedication1-Pomalidomid-T
 InstanceOf: ERP_TPrescription_Medication

@@ -8,8 +8,8 @@ Description: "Angaben zur Apotheke, die das T-Rezept beliefert hat."
 * telecom MS
 * name MS
 * address MS
-* identifier 1..1 MS
-* identifier[TelematikID] MS
+* identifier 1..1
+* identifier[TelematikID]
 
 // Forbidden Elements
 * active 0..0

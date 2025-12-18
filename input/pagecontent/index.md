@@ -12,7 +12,7 @@ Dieser IG stellt ebenfalls Mappingdaten zur Verfügung, die entwicklungsunterst�
 
 Bezüglich des Datenmodells ist der [digitiale Durchschlag T-Rezept](./StructureDefinition-erp-tprescription-carbon-copy.html) die übergreifende Ressource, die alle relevanten Profile referenziert. Dieses Artefakt wird vom E-Rezept-Fachdienst an das BfArM T-Register übertragen. Weitere Informationen hierzu sind unter [Datenmodell digitaler Durchschlag E-T-Rezept](./datamodel.html) zu finden.
 
-Auf der Seite [E-T-Rezept OpenAPI](./bfarm-openapi.html) ist die Open API Dokumentation des Endpunktes des BfArM T-Registers zu finden.
+Auf [E-Rezept API Dokumentation zum Datenaustausch mit dem BfArM](https://github.com/gematik/api-erp/blob/master/docs/erp_bfarm.adoc) ist die API Dokumentation des Endpunktes des BfArM T-Registers und eine dazugehörige OpenAPI zu finden.
 
 ### Paketdatei
 

@@ -127,10 +127,11 @@ def run_hapi_transform(
     ig_paths = [
         str(project_root / "fsh-generated" / "resources"),
         "de.gematik.erezept-workflow.r4",
-        "kbv.ita.erp",
+        #"kbv.ita.erp",
         "de.gematik.fhir.directory",
         "de.gematik.ti",
-        "de.basisprofil.r4",
+        "hl7.fhir.uv.xver-r5.r4",
+        #"de.basisprofil.r4",
         "de.gematik.epa.medication",
     ]
     
