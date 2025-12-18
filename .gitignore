@@ -7,5 +7,5 @@ Thumbs.db
 fsh-index.*
 .simplifier/
 digitaler_durchschlag_e_t_rezept.json
-tests/output
+/tests/output
 __pycache__
