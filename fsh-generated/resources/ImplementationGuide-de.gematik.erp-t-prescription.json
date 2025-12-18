@@ -2,10 +2,10 @@
   "resourceType": "ImplementationGuide",
   "id": "de.gematik.erp-t-prescription",
   "url": "https://gematik.de/fhir/erp-t-prescription/ImplementationGuide/de.gematik.erp-t-prescription",
-  "version": "1.1.0-ballot4",
+  "version": "1.1.0",
   "name": "ERPTPrescription",
   "title": "E-T-Rezept Datenaustausch",
-  "status": "draft",
+  "status": "active",
   "publisher": "gematik GmbH",
   "contact": [
     {
@@ -277,11 +277,6 @@
           "generation": "markdown"
         },
         {
-          "nameUrl": "bfarm-openapi.html",
-          "title": "Bfarm Openapi",
-          "generation": "markdown"
-        },
-        {
           "nameUrl": "datamodel.html",
           "title": "Datamodel",
           "generation": "markdown"
@@ -325,7 +320,7 @@
       },
       {
         "code": "releaselabel",
-        "value": "ballot"
+        "value": "release"
       },
       {
         "code": "bundle-references-resolve",
