@@ -42,7 +42,7 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
       * documentation = "Kopiert teratogene Extensions für T-Rezept Kennzeichnung"
       * source[+].context = "extVar"
       * source[=].variable = "extMatchVar"
-      * insert targetSetStringVariable(tgtExtVar, url,  https://gematik.de/fhir/epa-medication/StructureDefinition/epa-teratogenic-extension)
+      * insert targetSetStringVariable(tgtExtVar, url,  https://gematik.de/fhir/epa-medication/StructureDefinition/teratogenic-extension)
     * rule[+]
       * name = "mapOffLabelExtension"
       * documentation = "Mappt Off-Label Extension"
@@ -104,6 +104,20 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
         * insert treeSource(sachkenntnisVar, value, sachkenntnisValue)
         * insert targetSetIdVariable(tgtSachkenntnisExt, value, sachkenntnisValue)
 
+  // Copy Dosage Extensions
+  * rule[+]
+    * name = "medicationRequestExt"
+    * documentation = "Kopiert Dosage Metadata Extension"
+    * insert treeSource(kbvMedicationRequest, extension, extDosageMetaVar)
+    * source[=].condition = "url='http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta'"
+    * insert targetSetIdVariable(bfarmMedicationRequest, extension, extDosageMetaVar)
+  * rule[+]
+    * name = "medicationRequestExt"
+    * documentation = "Kopiert RenderedDosageText"
+    * insert treeSource(kbvMedicationRequest, extension, extDosageRenderedVar)
+    * source[=].condition = "url='http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction'"
+    * insert targetSetIdVariable(bfarmMedicationRequest, extension, extDosageRenderedVar)
+  
   // set subject to not-permitted
   * rule[+]
     * name = "medicationRequestsubject"
@@ -111,16 +125,35 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
     * insert treeSource(kbvMedicationRequest, subject, srcSubject)
     * insert treeTarget(bfarmMedicationRequest, subject, tgtSubject)
     * rule[+]
-      * name = "medicationRequestsubjectExtension"
-      * documentation = "Erstellt data-absent-reason Extension für Subject"
+      * name = "medicationRequestsubjectIdentifier"
       * insert treeSource(kbvMedicationRequest, subject, srcSubject)
-      * insert treeTarget(tgtSubject, extension, tgtSubjectExtension)
+      * insert treeTarget(tgtSubject, identifier, tgtSubjectIdentifier)
       * rule[+]
-        * name = "medicationRequestsubjectExtensionContent"
-        * documentation = "Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren"
+        * name = "medicationRequestsubjectIdentifierExtension"
+        * documentation = "Erstellt data-absent-reason Extension für Subject Identifier"
         * insert treeSource(kbvMedicationRequest, subject, srcSubject)
-        * insert targetSetStringVariable(tgtSubjectExtension, url, http://hl7.org/fhir/StructureDefinition/data-absent-reason)
-        * insert targetSetCodeVariable(tgtSubjectExtension, value, not-permitted)
+        * insert treeTarget(tgtSubjectIdentifier, system, tgtSubjectIdentifierSystem)
+        * insert treeTarget(tgtSubjectIdentifier, value, tgtSubjectIdentifierValue)
+
+        * rule[+]
+          * name = "medicationRequestsubjectIdentifierSystem"
+          * documentation = "Erstellt data-absent-reason Extension für Subject Identifier"
+          * insert treeSource(kbvMedicationRequest, subject, srcSubject)
+          * insert treeTarget(tgtSubjectIdentifierSystem, extension, tgtSubjectIdentifierSystemEx)
+          * insert treeTarget(tgtSubjectIdentifierValue, extension, tgtSubjectIdentifierValueEx)
+          * rule[+]
+            * name = "medicationRequestsubjectIdentifierSystemExtension"
+            * documentation = "Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren"
+            * insert treeSource(kbvMedicationRequest, subject, srcSubject)
+            * insert targetSetStringVariable(tgtSubjectIdentifierSystemEx, url, http://hl7.org/fhir/StructureDefinition/data-absent-reason)
+            * insert targetSetCodeVariable(tgtSubjectIdentifierSystemEx, value, not-permitted)
+          * rule[+]
+            * name = "medicationRequestsubjectIdentifierValueExtension"
+            * documentation = "Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren"
+            * insert treeSource(kbvMedicationRequest, subject, srcSubject)
+            * insert targetSetStringVariable(tgtSubjectIdentifierValueEx, url, http://hl7.org/fhir/StructureDefinition/data-absent-reason)
+            * insert targetSetCodeVariable(tgtSubjectIdentifierValueEx, value, not-permitted)
+        
 
   // authoredOn
   * rule[+]
@@ -154,10 +187,14 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
         * context = "medicationVar"
         * element = "reference"
         * variable = "medicationReferenceValue"
-      * target[+]
-        * context = "tgtMedicationReference"
-        * contextType = #variable
-        * element = "reference"
-        * transform = #evaluate
-        * parameter[+].valueString = "iif(%medicationVar.reference.startsWith('urn:uuid:'), %medicationVar.reference, 'urn:uuid:' & %medicationVar.reference.replaceMatches('.*[:/]', ''))"
+      * rule[+]
+        * name = "normalizeMedicationReferenceTransform"
+        * source[+]
+          * context = "medicationReferenceValue"
+        * target[+]
+          * context = "tgtMedicationReference"
+          * contextType = #variable
+          * element = "reference"
+          * transform = #evaluate
+          * parameter[+].valueString = "iif(medicationReferenceValue.startsWith('urn:uuid:'), medicationReferenceValue, 'urn:uuid:' & medicationReferenceValue.replaceMatches('.*[:/]', ''))"
      

@@ -143,6 +143,13 @@
 | `extension[4].extension[4].url` | ErklaerungSachkenntnis | `extension[0].extension[4].url` | declaration-of-expertise | ✅ |
 | `extension[4].extension[4].valueBoolean` | true | `extension[0].extension[4].valueBoolean` | true | ✅ |
 | `extension[4].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
+| `extension[6].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | `extension[2].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | ✅ |
+| `extension[6].valueMarkdown` | 0-0-1-0 Stück | `extension[2].valueMarkdown` | 0-0-1-0 Stück | ✅ |
+| `extension[7].extension[0].url` | algorithmVersion | `extension[1].extension[0].url` | algorithmVersion | ✅ |
+| `extension[7].extension[0].valueString` | 1.0.0 | `extension[1].extension[0].valueString` | 1.0.0 | ✅ |
+| `extension[7].extension[1].url` | language | `extension[1].extension[1].url` | language | ✅ |
+| `extension[7].extension[1].valueCode` | de-DE | `extension[1].extension[1].valueCode` | de-DE | ✅ |
+| `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | `extension[1].url` | http://ig.fhir.de/igs/medication/StructureDefin... | ✅ |
 | `intent` | order | `intent` | order | ✅ |
 | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | `medicationReference.reference` | urn:uuid:a3ca01a4-92c1-422a-87d9-ef046e94527f | ✅ |
 | `status` | active | `status` | completed | ✅ |
@@ -158,13 +165,6 @@
 | `extension[3].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[5].valueBoolean` | true | - | - | ⚠️ |
-| `extension[6].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | - | - | ⚠️ |
-| `extension[6].valueMarkdown` | 0-0-1-0 Stück | - | - | ⚠️ |
-| `extension[7].extension[0].url` | algorithmVersion | - | - | ⚠️ |
-| `extension[7].extension[0].valueString` | 1.0.0 | - | - | ⚠️ |
-| `extension[7].extension[1].url` | language | - | - | ⚠️ |
-| `extension[7].extension[1].valueCode` | de-DE | - | - | ⚠️ |
-| `extension[7].url` | http://ig.fhir.de/igs/medication/StructureDefin... | - | - | ⚠️ |
 | `id` | 7d871b93-e18c-4865-bad0-6b55196be46b | - | - | ⚠️ |
 | `insurance[0].reference` | urn:uuid:e51239e1-ba74-48e0-97fb-9754d2b05c60 | - | - | ⚠️ |
 | `requester.reference` | urn:uuid:0c4e1a54-8a42-4d3d-a12c-0bbf2db48570 | - | - | ⚠️ |
@@ -175,8 +175,10 @@
 
 | Target Field | Target Value | Status |
 |--------------|--------------|--------|
-| `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
-| `subject.extension[0].valueCode` | not-permitted | 🆕 |
+| `subject.identifier._system.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
+| `subject.identifier._system.extension[0].valueCode` | not-permitted | 🆕 |
+| `subject.identifier._value.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
+| `subject.identifier._value.extension[0].valueCode` | not-permitted | 🆕 |
 
 ---
 

@@ -59,7 +59,7 @@ RuleSet: targetSetEvaluatedString(context, to, expression)
   * contextType = #variable
   * element = "{to}"
   * transform = #evaluate
-  * parameter[+].valueString = "{expression}"
+  * parameter[+].valueString = {expression}
 
 RuleSet: treeSource(context, element, variable)
 * source[+]

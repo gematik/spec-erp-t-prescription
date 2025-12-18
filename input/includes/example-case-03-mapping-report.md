@@ -142,8 +142,10 @@
 
 | Target Field | Target Value | Status |
 |--------------|--------------|--------|
-| `subject.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
-| `subject.extension[0].valueCode` | not-permitted | 🆕 |
+| `subject.identifier._system.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
+| `subject.identifier._system.extension[0].valueCode` | not-permitted | 🆕 |
+| `subject.identifier._value.extension[0].url` | http://hl7.org/fhir/StructureDefinition/data-ab... | 🆕 |
+| `subject.identifier._value.extension[0].valueCode` | not-permitted | 🆕 |
 
 ---
 

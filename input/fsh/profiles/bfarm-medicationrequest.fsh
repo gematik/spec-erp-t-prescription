@@ -1,5 +1,5 @@
 Profile: ERP_TPrescription_MedicationRequest
-Parent: MedicationRequest
+Parent: EPAMedicationRequest
 Id: erp-tprescription-medication-request
 Title: "E-T-Rezept Medication Request"
 Description: "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept angegeben hat."
@@ -9,23 +9,14 @@ Description: "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept ange
 * status = #completed (exactly)
 * intent = #order (exactly)
 
-// KBV T-Rezept Extensions
-// TODO: take from new ePA Medication
 * extension MS
-* extension contains EPATeratogenicExtension named teratogenic 1..1 MS
-* extension[teratogenic].url
-  * ^short = "identifies the meaning of the extension via identifying url"
 
 // Allow only the data-absent-reason extension on subject
-* subject
+* subject 
   * reference 0..0
-  * identifier 0..0
   * display 0..0
   * type 0..0
-  * extension contains data-absent-reason named dataAbsentReason 1..1
-  * extension[dataAbsentReason].valueCode 1..1
-  * extension[dataAbsentReason].valueCode = #not-permitted
-
+  
 // Fields that are to be supported by systems
 * authoredOn MS
 * dosageInstruction MS

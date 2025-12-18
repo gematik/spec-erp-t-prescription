@@ -96,6 +96,10 @@ Usage: #inline
   * extension[declaration-of-expertise].valueBoolean = true
 * status = #completed
 * intent = #order
+* subject.identifier.system.extension[+].url = $data-absent-reason
+* subject.identifier.system.extension[=].valueCode = #not-permitted
+* subject.identifier.value.extension[+].url = $data-absent-reason
+* subject.identifier.value.extension[=].valueCode = #not-permitted
 * medicationReference.reference = "Medication/TRP-Carbon-Copy-Medication"
 * authoredOn = "2025-05-20"
 * dosageInstruction.

@@ -107,7 +107,7 @@
                 {
                   "parameter": [
                     {
-                      "valueString": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-teratogenic-extension"
+                      "valueString": "https://gematik.de/fhir/epa-medication/StructureDefinition/teratogenic-extension"
                     }
                   ],
                   "context": "tgtExtVar",
@@ -442,6 +442,56 @@
           "source": [
             {
               "context": "kbvMedicationRequest",
+              "element": "extension",
+              "variable": "extDosageMetaVar",
+              "condition": "url='http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta'"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "extDosageMetaVar"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "extension",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestExt",
+          "documentation": "Kopiert Dosage Metadata Extension"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
+              "element": "extension",
+              "variable": "extDosageRenderedVar",
+              "condition": "url='http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction'"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "extDosageRenderedVar"
+                }
+              ],
+              "context": "bfarmMedicationRequest",
+              "contextType": "variable",
+              "element": "extension",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationRequestExt",
+          "documentation": "Kopiert RenderedDosageText"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationRequest",
               "element": "subject",
               "variable": "srcSubject"
             }
@@ -467,8 +517,8 @@
                 {
                   "contextType": "variable",
                   "context": "tgtSubject",
-                  "element": "extension",
-                  "variable": "tgtSubjectExtension"
+                  "element": "identifier",
+                  "variable": "tgtSubjectIdentifier"
                 }
               ],
               "rule": [
@@ -482,37 +532,128 @@
                   ],
                   "target": [
                     {
-                      "parameter": [
-                        {
-                          "valueString": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-                        }
-                      ],
-                      "context": "tgtSubjectExtension",
                       "contextType": "variable",
-                      "element": "url",
-                      "transform": "copy"
+                      "context": "tgtSubjectIdentifier",
+                      "element": "system",
+                      "variable": "tgtSubjectIdentifierSystem"
                     },
                     {
-                      "parameter": [
-                        {
-                          "valueString": "not-permitted"
-                        },
-                        {
-                          "valueString": "code"
-                        }
-                      ],
-                      "context": "tgtSubjectExtension",
                       "contextType": "variable",
+                      "context": "tgtSubjectIdentifier",
                       "element": "value",
-                      "transform": "cast"
+                      "variable": "tgtSubjectIdentifierValue"
                     }
                   ],
-                  "name": "medicationRequestsubjectExtensionContent",
-                  "documentation": "Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren"
+                  "rule": [
+                    {
+                      "source": [
+                        {
+                          "context": "kbvMedicationRequest",
+                          "element": "subject",
+                          "variable": "srcSubject"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "contextType": "variable",
+                          "context": "tgtSubjectIdentifierSystem",
+                          "element": "extension",
+                          "variable": "tgtSubjectIdentifierSystemEx"
+                        },
+                        {
+                          "contextType": "variable",
+                          "context": "tgtSubjectIdentifierValue",
+                          "element": "extension",
+                          "variable": "tgtSubjectIdentifierValueEx"
+                        }
+                      ],
+                      "rule": [
+                        {
+                          "source": [
+                            {
+                              "context": "kbvMedicationRequest",
+                              "element": "subject",
+                              "variable": "srcSubject"
+                            }
+                          ],
+                          "target": [
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+                                }
+                              ],
+                              "context": "tgtSubjectIdentifierSystemEx",
+                              "contextType": "variable",
+                              "element": "url",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "not-permitted"
+                                },
+                                {
+                                  "valueString": "code"
+                                }
+                              ],
+                              "context": "tgtSubjectIdentifierSystemEx",
+                              "contextType": "variable",
+                              "element": "value",
+                              "transform": "cast"
+                            }
+                          ],
+                          "name": "medicationRequestsubjectIdentifierSystemExtension",
+                          "documentation": "Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren"
+                        },
+                        {
+                          "source": [
+                            {
+                              "context": "kbvMedicationRequest",
+                              "element": "subject",
+                              "variable": "srcSubject"
+                            }
+                          ],
+                          "target": [
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+                                }
+                              ],
+                              "context": "tgtSubjectIdentifierValueEx",
+                              "contextType": "variable",
+                              "element": "url",
+                              "transform": "copy"
+                            },
+                            {
+                              "parameter": [
+                                {
+                                  "valueString": "not-permitted"
+                                },
+                                {
+                                  "valueString": "code"
+                                }
+                              ],
+                              "context": "tgtSubjectIdentifierValueEx",
+                              "contextType": "variable",
+                              "element": "value",
+                              "transform": "cast"
+                            }
+                          ],
+                          "name": "medicationRequestsubjectIdentifierValueExtension",
+                          "documentation": "Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren"
+                        }
+                      ],
+                      "name": "medicationRequestsubjectIdentifierSystem",
+                      "documentation": "Erstellt data-absent-reason Extension für Subject Identifier"
+                    }
+                  ],
+                  "name": "medicationRequestsubjectIdentifierExtension",
+                  "documentation": "Erstellt data-absent-reason Extension für Subject Identifier"
                 }
               ],
-              "name": "medicationRequestsubjectExtension",
-              "documentation": "Erstellt data-absent-reason Extension für Subject"
+              "name": "medicationRequestsubjectIdentifier"
             }
           ],
           "name": "medicationRequestsubject",
@@ -621,17 +762,27 @@
                   "variable": "medicationReferenceValue"
                 }
               ],
-              "target": [
+              "rule": [
                 {
-                  "parameter": [
+                  "source": [
                     {
-                      "valueString": "iif(%medicationVar.reference.startsWith('urn:uuid:'), %medicationVar.reference, 'urn:uuid:' & %medicationVar.reference.replaceMatches('.*[:/]', ''))"
+                      "context": "medicationReferenceValue"
                     }
                   ],
-                  "context": "tgtMedicationReference",
-                  "contextType": "variable",
-                  "element": "reference",
-                  "transform": "evaluate"
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueString": "iif(medicationReferenceValue.startsWith('urn:uuid:'), medicationReferenceValue, 'urn:uuid:' & medicationReferenceValue.replaceMatches('.*[:/]', ''))"
+                        }
+                      ],
+                      "context": "tgtMedicationReference",
+                      "contextType": "variable",
+                      "element": "reference",
+                      "transform": "evaluate"
+                    }
+                  ],
+                  "name": "normalizeMedicationReferenceTransform"
                 }
               ],
               "name": "normalizeMedicationReference"

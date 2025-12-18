@@ -54,9 +54,29 @@
                     "valueBoolean": true
                   }
                 ],
-                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-teratogenic-extension"
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/teratogenic-extension"
               }
             ],
+            "subject": {
+              "identifier": {
+                "_system": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                      "valueCode": "not-permitted"
+                    }
+                  ]
+                },
+                "_value": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                      "valueCode": "not-permitted"
+                    }
+                  ]
+                }
+              }
+            },
             "medicationReference": {
               "reference": "Medication/TRP-Carbon-Copy-Medication"
             },
@@ -96,14 +116,6 @@
             },
             "status": "completed",
             "intent": "order",
-            "subject": {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                  "valueCode": "not-permitted"
-                }
-              ]
-            },
             "authoredOn": "2025-05-20"
           }
         },
