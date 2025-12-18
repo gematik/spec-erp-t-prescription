@@ -773,7 +773,7 @@
                     {
                       "parameter": [
                         {
-                          "valueString": "iif(medicationReferenceValue.startsWith('urn:uuid:'), medicationReferenceValue, 'urn:uuid:' & medicationReferenceValue.replaceMatches('.*[:/]', ''))"
+                          "valueString": "iif(%medicationReferenceValue.startsWith('urn:uuid:'), %medicationReferenceValue, 'urn:uuid:' & %medicationReferenceValue.replaceMatches('.*[:/]', ''))"
                         }
                       ],
                       "context": "tgtMedicationReference",
@@ -782,7 +782,7 @@
                       "transform": "evaluate"
                     }
                   ],
-                  "name": "normalizeMedicationReferenceTransform"
+                  "name": "normalizeMedicationReferenceTransformation"
                 }
               ],
               "name": "normalizeMedicationReference"

@@ -99,9 +99,7 @@ Nachdem der digitale Durchschlag E-T-Rezept erzeugt wurde, wird dieser RESTful �
 
 Vorgaben zur Authentifizierung des E-Rezept-Fachdienstes gegenüber dem Webdienst sind in der [Spezifikation des E-Rezept-Fachdienst](https://gemspec.gematik.de/docs/gemSpec/gemSpec_FD_eRp/latest/) beschrieben.
 
-Die folgende OpenAPI-Definition dient als Hilfestellung bei der Implementierung des Aufrufs am BfArM Webdienst:
-
-{% include openapi.html openapiurl="tprescription.yaml" %}
+Die API für den Endpunkt am BfArM Webdienst ist in [E-Rezept API Dokumentation zum Datenaustausch mit dem BfArM](https://github.com/gematik/api-erp/blob/master/docs/erp_bfarm.adoc) dokumentiert.
 
 ### Fehlerbehandlung der Übertragung
 

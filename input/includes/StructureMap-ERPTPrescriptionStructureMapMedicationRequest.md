@@ -24,13 +24,15 @@
 | `kbvMedicationRequest.extension [KBV_EX_ERP_Teratogenic].extension [ErklaerungSachkenntnis]` | `bfarmMedicationRequest.extension.extension` | Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise<br>→ erstellt neues Extension |
 | `kbvMedicationRequest.extension [KBV_EX_ERP_Teratogenic].extension [ErklaerungSachkenntnis]` | `bfarmMedicationRequest.extension.url` | Mappt ErklaerungSachkenntnis Extension zu declaration-of-expertise<br>→ setzt Wert 'declaration-of-expertise' |
 | `kbvMedicationRequest.extension [KBV_EX_ERP_Teratogenic].extension [ErklaerungSachkenntnis].value` | `bfarmMedicationRequest.extension.extension.value` | Übernimmt den Booleschen Wert für declaration-of-expertise<br>→ übernimmt Wert aus Quellvariable |
+| `kbvMedicationRequest.extension [GeneratedDosageInstructionsMeta]` | `bfarmMedicationRequest.extension` | Kopiert Dosage Metadata Extension<br>→ übernimmt Wert aus Quellvariable |
+| `kbvMedicationRequest.extension [extension-MedicationRequest.renderedDosageInstruction]` | `bfarmMedicationRequest.extension` | Kopiert RenderedDosageText<br>→ übernimmt Wert aus Quellvariable |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject` | Entfernt Patientenbezug durch data-absent-reason Extension für Datenschutz im digitalen Durchschlag |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system` | Erstellt data-absent-reason Extension für Subject Identifier |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.value` | Erstellt data-absent-reason Extension für Subject Identifier |
-| `kbvMedicationRequest.system` | `bfarmMedicationRequest.subject.identifier.system.extension` | Erstellt data-absent-reason Extension für Subject Identifier |
+| `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension` | Erstellt data-absent-reason Extension für Subject Identifier |
+| `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension` | Erstellt data-absent-reason Extension für Subject Identifier |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension.url` | Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren<br>→ setzt URL 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension.value` | Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren |
-| `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension` | Erstellt data-absent-reason Extension für Subject Identifier |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension.url` | Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren<br>→ setzt URL 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' |
 | `kbvMedicationRequest.subject` | `bfarmMedicationRequest.subject.identifier.system.extension.value` | Setzt data-absent-reason auf 'not-permitted' um Patientendaten zu anonymisieren |
 | `kbvMedicationRequest.authoredOn` | `bfarmMedicationRequest.authoredOn` | Übernimmt das Verschreibungsdatum unverändert vom KBV MedicationRequest<br>→ übernimmt Wert aus Quellvariable |

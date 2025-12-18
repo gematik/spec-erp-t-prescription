@@ -50,6 +50,12 @@
       "version": "1.3.0",
       "uri": "https://gematik.de/fhir/epa-medication/ImplementationGuide/de.gematik.epa.medication",
       "id": "de_gematik_epa_medication"
+    },
+    {
+      "packageId": "de.fhir.medication",
+      "version": "1.0.3",
+      "uri": "http://ig.fhir.de/igs/medication/ImplementationGuide/de.fhir.medication",
+      "id": "de_fhir_medication"
     }
   ],
   "definition": {

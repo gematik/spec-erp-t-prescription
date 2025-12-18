@@ -102,13 +102,25 @@ Usage: #inline
 * subject.identifier.value.extension[=].valueCode = #not-permitted
 * medicationReference.reference = "Medication/TRP-Carbon-Copy-Medication"
 * authoredOn = "2025-05-20"
-* dosageInstruction.
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 Stück"
+* extension[generatedDosageInstructionsMeta]
+  * extension[algorithmVersion].valueString = "1.0.1"
+  * extension[language].valueCode = #de-DE
+* dosageInstruction[+]
   * timing.repeat
+    * when[+] = #MORN
     * frequency = 1
     * period = 1
     * periodUnit = #d
-    * when = #EVE
-  * doseAndRate.doseQuantity = 1 https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT#1 "Stück"
+  * doseAndRate.doseQuantity = 1 $kbv-dosiereinheit#1 "Stück"
+* dosageInstruction[+]
+  * timing.repeat
+    * when[+] = #EVE
+    * frequency = 1
+    * period = 1
+    * periodUnit = #d
+  * doseAndRate.doseQuantity = 2 $kbv-dosiereinheit#1 "Stück"
+
 * dispenseRequest.quantity.value = 1
 * dispenseRequest.quantity.unit = "Packung"
 * dispenseRequest.expectedSupplyDuration.value = 3

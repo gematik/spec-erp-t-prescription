@@ -23,6 +23,7 @@ Alias: $bundeslaender = http://fhir.de/ValueSet/iso/bundeslaender
 Alias: $pzn = http://fhir.de/CodeSystem/ifa/pzn
 Alias: $versicherungsart-de-basis = http://fhir.de/CodeSystem/versicherungsart-de-basis
 Alias: $OrganizationProfessionOID = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID
+Alias: $kbv-dosiereinheit =  https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT
 
 // KBV Codesysteme und ValueSets
 Alias: $KBV_CS_ERP_Dosage_Category = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Dosage_Category
