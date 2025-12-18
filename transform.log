@@ -1,4 +1,0 @@
-Usage: python transform-bundle.py <mapping-bundle.json> <output-dir>
-
-Example:
-  python transform-bundle.py output/example-case-01/example-case-01-mapping-bundle.json output/example-case-01
