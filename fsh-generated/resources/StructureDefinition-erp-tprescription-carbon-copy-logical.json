@@ -4,7 +4,7 @@
   "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy-logical",
   "name": "ERP_TPrescription_CarbonCopy_Logical",
   "title": "Logisches Modell digitaler Durchschlag E-T-Rezept",
-  "status": "active",
+  "status": "draft",
   "description": "Logical Model zur Abbildung der im digitalen Durchschlag E-T-Rezept erforderlichen fachlichen Informationen.",
   "fhirVersion": "4.0.1",
   "kind": "logical",

@@ -685,8 +685,8 @@
       "documentation": "Mapping-Anweisungen zur Transformation von KBV Rezeptur-Medikamenten zu BfArM T-Prescription Format"
     }
   ],
-  "status": "active",
-  "version": "1.1.0",
+  "status": "draft",
+  "version": "1.2.0",
   "date": "2025-12-19",
   "name": "ERPTPrescriptionStructureMapKBVCompoundingMedication",
   "experimental": false

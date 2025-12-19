@@ -10,11 +10,11 @@ title: "E-T-Rezept Datenaustausch"
 description: Dieser IG Beschreibt Schnittstellen und Profile für den
   Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen
   E-Rezept-Fachdienst und BfArM T-Register
-status: active # draft | active | retired | unknown
-version: 1.1.0
+status: draft # draft | active | retired | unknown
+version: 1.2.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+
-releaseLabel: release # ci-build, ballot, release
+releaseLabel: ci-build # ci-build, ballot, release
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#DE "Germany" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 publisher:

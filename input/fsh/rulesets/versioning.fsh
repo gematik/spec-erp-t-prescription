@@ -3,13 +3,13 @@
 //WICHTIG: Auch die OpenAPI Version anpassen!
 
 RuleSet: Versioning
-* ^status = #active
-* ^version = "1.1.0"
+* ^status = #draft
+* ^version = "1.2.0"
 * ^date = "2025-12-19"
 
 RuleSet: InstanceVersioning
-* status = #active
-* version = "1.1.0"
+* status = #draft
+* version = "1.2.0"
 * date = "2025-12-19"
 
 // Dates for Examples (Date of actual release)
