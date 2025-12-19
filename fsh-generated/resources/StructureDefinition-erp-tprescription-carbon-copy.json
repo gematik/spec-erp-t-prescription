@@ -6,7 +6,7 @@
   "name": "ERP_TPrescription_CarbonCopy",
   "title": "Digitaler Durchschlag T-Rezept",
   "status": "active",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "description": "Dieses Profil beschreibt den digitalen Durchschlag T-Rezept der alle Informationen zusammenführt und verlinkt. Alle für den Anwendungsfall relevanten Ressourcen sind hier aufgelistet.",
   "fhirVersion": "4.0.1",
   "kind": "resource",

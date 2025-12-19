@@ -6,7 +6,7 @@
   "name": "ERP_TPrescription_MedicationRequest",
   "title": "E-T-Rezept Medication Request",
   "status": "active",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "description": "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept angegeben hat.",
   "fhirVersion": "4.0.1",
   "kind": "resource",

@@ -5,12 +5,12 @@
 RuleSet: Versioning
 * ^status = #active
 * ^version = "1.1.0"
-* ^date = "2025-12-18"
+* ^date = "2025-12-19"
 
 RuleSet: InstanceVersioning
-* status = #draft
+* status = #active
 * version = "1.1.0"
-* date = "2025-12-18"
+* date = "2025-12-19"
 
 // Dates for Examples (Date of actual release)
 RuleSet: Date(field)

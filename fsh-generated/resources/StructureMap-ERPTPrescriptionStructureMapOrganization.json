@@ -259,9 +259,9 @@
       "documentation": "Mapping-Anweisungen zur Erstellung einer BfArM Organization aus dem VZD SearchSet"
     }
   ],
-  "status": "draft",
+  "status": "active",
   "version": "1.1.0",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "name": "ERPTPrescriptionStructureMapOrganization",
   "experimental": false
 }

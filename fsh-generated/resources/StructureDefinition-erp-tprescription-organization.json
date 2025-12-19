@@ -6,7 +6,7 @@
   "name": "ERP_TPrescription_Organization",
   "title": "E-T-Rezept Organization",
   "status": "active",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "description": "Angaben zur Apotheke, die das T-Rezept beliefert hat.",
   "fhirVersion": "4.0.1",
   "kind": "resource",

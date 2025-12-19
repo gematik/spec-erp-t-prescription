@@ -6,7 +6,7 @@
   "name": "ERP_TPrescription_Medication",
   "title": "E-T-Rezept Medication",
   "status": "active",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "description": "Medikationsprofil, welches Informationen zum verordneten oder abgegebenen Arzneimittel enthält.",
   "fhirVersion": "4.0.1",
   "kind": "resource",

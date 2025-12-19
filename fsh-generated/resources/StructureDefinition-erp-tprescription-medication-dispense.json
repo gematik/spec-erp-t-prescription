@@ -6,7 +6,7 @@
   "name": "ERP_TPrescription_MedicationDispense",
   "title": "E-T-Rezept Medication Dispense",
   "status": "active",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "description": "Abgabeinformationen einer Apotheke, die es im Rahmen der Belieferung eines T-Rezeptes an den E-Rezept-Fachdienst übermittelt hat.",
   "fhirVersion": "4.0.1",
   "kind": "resource",

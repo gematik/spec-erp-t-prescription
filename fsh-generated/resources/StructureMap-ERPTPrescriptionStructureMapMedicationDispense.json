@@ -239,9 +239,9 @@
       "documentation": "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense"
     }
   ],
-  "status": "draft",
+  "status": "active",
   "version": "1.1.0",
-  "date": "2025-12-18",
+  "date": "2025-12-19",
   "name": "ERPTPrescriptionStructureMapMedicationDispense",
   "experimental": false
 }
