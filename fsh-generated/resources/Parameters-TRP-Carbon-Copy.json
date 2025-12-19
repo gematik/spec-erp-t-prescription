@@ -3,7 +3,7 @@
   "id": "TRP-Carbon-Copy",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.0"
+      "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"
     ]
   },
   "parameter": [
