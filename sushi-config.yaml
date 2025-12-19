@@ -3,35 +3,34 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: de.gematik.erp.t-prescription
+id: de.gematik.erp-t-prescription
 canonical: https://gematik.de/fhir/erp-t-prescription
 name: ERP-T-Prescription
-title: "E-Rezept T-Rezept Datenaustausch"
-description: Dieser IG Beschreibt schnittstellen und Profile für den Datenaustauch in Anwendungsfällen zwischen E-Rezept-Fachdienst und BfArM T-Register
-status: draft # draft | active | retired | unknown
-version: 0.1.0
+title: "E-T-Rezept Datenaustausch"
+description: Dieser IG Beschreibt Schnittstellen und Profile für den
+  Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen
+  E-Rezept-Fachdienst und BfArM T-Register
+status: active # draft | active | retired | unknown
+version: 1.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+
-releaseLabel: ci-build
+releaseLabel: release # ci-build, ballot, release
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
+jurisdiction: urn:iso:std:iso:3166#DE "Germany" # https://www.hl7.org/fhir/valueset-jurisdiction.html
 publisher:
   name: gematik GmbH
   url: https://gematik.de
-  # email: test@example.org
+  email: erp-umsetzung@gematik.de
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 #
 dependencies:
-  de.gematik.ti: 1.1.0
-  kbv.ita.erp: 1.3.1
-  de.gematik.fhir.directory: 0.14.0
-  de.gematik.erezept-workflow.r4: 1.5.0
-  kbv.all.st: 1.21.0
-#
-#
+  de.gematik.ti: 1.2.0
+  de.gematik.epa.medication: 1.3.0
+  hl7.fhir.extensions.r5: 4.0.1
+  de.fhir.medication: 1.0.3
 # The pages property corresponds to IG.definition.page. SUSHI can
 # auto-generate the page list, but if the author includes pages in
 # this file, it is assumed that the author will fully manage the
@@ -42,14 +41,13 @@ dependencies:
 # file name extension.  Any subproperties that are valid filenames
 # with supported extensions (e.g., .md/.xml) will be treated as
 # sub-pages.
-#
-pages:
-  index.md:
-    title: Einführung BfArM <> Gematik
-  datamodel.md:
-    title: Datenmodell
-  trezept.md:
-    title: Digitaler Durchschlag T-Rezept
+# pages:
+#   index.md:
+#     title: Einführung
+#   datamodel.md:
+#     title: Datenmodell
+#   trezept.md:
+#     title: Digitaler Durchschlag T-Rezept
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
@@ -74,12 +72,12 @@ pages:
 # │ property below.                                                                                │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Start: 
-    Einführung: index.html
-    Datenmodell: datamodel.html
-  Anwendungsfälle:
-    T-Rezept: trezept.html
-  Artifacts: artifacts.html
+  Start: index.html
+  Inhaltsverzeichnis: toc.html
+  Datenmodell: datamodel.html
+  Übertragung für E-T-Rezept: trezept.html
+  FHIR-Artefakte: artifacts.html
+  Beispiele: tests.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
@@ -214,3 +212,17 @@ instanceOptions:
   # if InstanceOf references a profile:
   #
   # setId: always # always | standalone-only
+
+parameters:
+  bundle-references-resolve: false
+  no-validate:
+    - Bundle/example-case-01-mapping-bundle
+    - Bundle/example-case-02-mapping-bundle
+    - Bundle/example-case-03-mapping-bundle
+    - Bundle/example-case-04-mapping-bundle
+  no-narrative:
+    - Medication/*
+    - MedicationRequest/*
+    - Bundle/*
+  path-pages:
+    - input/content

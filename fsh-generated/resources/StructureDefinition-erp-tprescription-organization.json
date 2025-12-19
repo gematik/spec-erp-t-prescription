@@ -1,0 +1,80 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "erp-tprescription-organization",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization",
+  "version": "1.1.0",
+  "name": "ERP_TPrescription_Organization",
+  "title": "E-T-Rezept Organization",
+  "status": "active",
+  "date": "2025-12-19",
+  "description": "Angaben zur Apotheke, die das T-Rezept beliefert hat.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "https://gematik.de/fhir/ti/StructureDefinition/ti-organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:IKNR",
+        "path": "Organization.identifier",
+        "sliceName": "IKNR",
+        "max": "1"
+      },
+      {
+        "id": "Organization.active",
+        "path": "Organization.active",
+        "max": "0"
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "max": "0"
+      },
+      {
+        "id": "Organization.type:providerType",
+        "path": "Organization.type",
+        "sliceName": "providerType",
+        "max": "0"
+      },
+      {
+        "id": "Organization.type:profession",
+        "path": "Organization.type",
+        "sliceName": "profession",
+        "max": "0"
+      },
+      {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "max": "0"
+      },
+      {
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
+        "max": "0"
+      },
+      {
+        "id": "Organization.contact",
+        "path": "Organization.contact",
+        "max": "0"
+      },
+      {
+        "id": "Organization.endpoint",
+        "path": "Organization.endpoint",
+        "max": "0"
+      }
+    ]
+  }
+}

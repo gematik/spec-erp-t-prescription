@@ -1,26 +1,33 @@
-Profile: BfArMMedicationRequest
-Parent: MedicationRequest
-Id: bfarm-medication-request
-Title: "BfArM Medication Request"
-Description: "MedicationRequest with Requestinformation for BfArM"
+Profile: ERP_TPrescription_MedicationRequest
+Parent: EPAMedicationRequest
+Id: erp-tprescription-medication-request
+Title: "E-T-Rezept Medication Request"
+Description: "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept angegeben hat."
+* insert Profile(erp-tprescription-medication-request)
 
 // Default FHIR Elements with 1..1 cardinality
 * status = #completed (exactly)
 * intent = #order (exactly)
 
-// Allow only the data-absent-reason extension on subject
-* subject.reference 0..0
-* subject.identifier 0..0
-* subject.display 0..0
-* subject.type 0..0
-* subject.extension contains data-absent-reason named dataAbsentReason 1..1
-* subject.extension[dataAbsentReason].valueCode 1..1
-* subject.extension[dataAbsentReason].valueCode = #not-permitted
+* extension MS
 
+// Allow only the data-absent-reason extension on subject
+* subject 
+  * reference 0..0
+  * display 0..0
+  * type 0..0
+  
 // Fields that are to be supported by systems
 * authoredOn MS
 * dosageInstruction MS
 * dispenseRequest MS
+  * expectedSupplyDuration MS
+  * quantity MS
+  * initialFill 0..0
+  * dispenseInterval 0..0
+  * validityPeriod 0..0
+  * numberOfRepeatsAllowed 0..0
+  * performer 0..0
 * medication[x] MS
 * medication[x] only Reference
 
@@ -50,4 +57,3 @@ Description: "MedicationRequest with Requestinformation for BfArM"
 * priorPrescription 0..0
 * detectedIssue 0..0
 * eventHistory 0..0
-

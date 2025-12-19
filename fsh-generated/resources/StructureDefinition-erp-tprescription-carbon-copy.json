@@ -1,0 +1,453 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "erp-tprescription-carbon-copy",
+  "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy",
+  "version": "1.1.0",
+  "name": "ERP_TPrescription_CarbonCopy",
+  "title": "Digitaler Durchschlag T-Rezept",
+  "status": "active",
+  "date": "2025-12-19",
+  "description": "Dieses Profil beschreibt den digitalen Durchschlag T-Rezept der alle Informationen zusammenführt und verlinkt. Alle für den Anwendungsfall relevanten Ressourcen sind hier aufgelistet.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Parameters",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Parameters",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Parameters.parameter",
+        "path": "Parameters.parameter",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "name"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 2
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription",
+        "path": "Parameters.parameter",
+        "sliceName": "rxPrescription",
+        "short": "Angaben zur Verordnung",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.name",
+        "path": "Parameters.parameter.name",
+        "fixedString": "rxPrescription",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.value[x]",
+        "path": "Parameters.parameter.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.resource",
+        "path": "Parameters.parameter.resource",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part",
+        "path": "Parameters.parameter.part",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "name"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 4,
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate",
+        "path": "Parameters.parameter.part",
+        "sliceName": "prescriptionSignatureDate",
+        "short": "Signaturzeitpunkt der Verordnung",
+        "comment": "Der Zeitpunkt wird aus der QES extrahiert (1.2.840.113549.1.9.5 signingTime) und muss in das FHIR Format für instant transformiert werden. Hierbei ist der höchstmögliche Genauigkeitsgrad anzugeben. Fachlich wird maximal Sekundengenauigkeit gefordert.",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate.name",
+        "path": "Parameters.parameter.part.name",
+        "fixedString": "prescriptionSignatureDate",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate.value[x]",
+        "path": "Parameters.parameter.part.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "instant"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate.resource",
+        "path": "Parameters.parameter.part.resource",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionSignatureDate.part",
+        "path": "Parameters.parameter.part.part",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionId",
+        "path": "Parameters.parameter.part",
+        "sliceName": "prescriptionId",
+        "short": "Rezept-ID der Verordnung",
+        "comment": "Das Format der Rezept ID wird in [gemSpec_DM_eRp#E-Rezept-ID](https://gemspec.gematik.de/docs/gemSpec/gemSpec_DM_eRp/latest/#2.2) beschrieben und hat das Format aaa.bbb.bbb.bbb.bbb.cc",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionId.name",
+        "path": "Parameters.parameter.part.name",
+        "fixedString": "prescriptionId",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionId.value[x]",
+        "path": "Parameters.parameter.part.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "https://gematik.de/fhir/ti/StructureDefinition/e-prescription-id"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionId.resource",
+        "path": "Parameters.parameter.part.resource",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:prescriptionId.part",
+        "path": "Parameters.parameter.part.part",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medicationRequest",
+        "path": "Parameters.parameter.part",
+        "sliceName": "medicationRequest",
+        "short": "Verordnung",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medicationRequest.name",
+        "path": "Parameters.parameter.part.name",
+        "fixedString": "medicationRequest",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medicationRequest.value[x]",
+        "path": "Parameters.parameter.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medicationRequest.resource",
+        "path": "Parameters.parameter.part.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "MedicationRequest",
+            "profile": [
+              "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medicationRequest.part",
+        "path": "Parameters.parameter.part.part",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medication",
+        "path": "Parameters.parameter.part",
+        "sliceName": "medication",
+        "short": "Verordnetes Medikament",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medication.name",
+        "path": "Parameters.parameter.part.name",
+        "fixedString": "medication",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medication.value[x]",
+        "path": "Parameters.parameter.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medication.resource",
+        "path": "Parameters.parameter.part.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Medication",
+            "profile": [
+              "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxPrescription.part:medication.part",
+        "path": "Parameters.parameter.part.part",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation",
+        "path": "Parameters.parameter",
+        "sliceName": "rxDispensation",
+        "short": "Angaben zur Dispensierung",
+        "min": 1,
+        "max": "*"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.name",
+        "path": "Parameters.parameter.name",
+        "fixedString": "rxDispensation",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.value[x]",
+        "path": "Parameters.parameter.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.resource",
+        "path": "Parameters.parameter.resource",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part",
+        "path": "Parameters.parameter.part",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "name"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 2,
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation",
+        "path": "Parameters.parameter.part",
+        "sliceName": "dispenseInformation",
+        "short": "Angaben zu medizinischen Daten der Dispensierung",
+        "min": 1,
+        "max": "*",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.name",
+        "path": "Parameters.parameter.part.name",
+        "fixedString": "dispenseInformation",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.value[x]",
+        "path": "Parameters.parameter.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.resource",
+        "path": "Parameters.parameter.part.resource",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part",
+        "path": "Parameters.parameter.part.part",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "name"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 2,
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense",
+        "path": "Parameters.parameter.part.part",
+        "sliceName": "medicationDispense",
+        "short": "Dispensierinformationen",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.name",
+        "path": "Parameters.parameter.part.part.name",
+        "fixedString": "medicationDispense",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.value[x]",
+        "path": "Parameters.parameter.part.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.resource",
+        "path": "Parameters.parameter.part.part.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "MedicationDispense",
+            "profile": [
+              "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medicationDispense.part",
+        "path": "Parameters.parameter.part.part.part",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication",
+        "path": "Parameters.parameter.part.part",
+        "sliceName": "medication",
+        "short": "Abgegebenes Medikament",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.name",
+        "path": "Parameters.parameter.part.part.name",
+        "fixedString": "medication",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.value[x]",
+        "path": "Parameters.parameter.part.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.resource",
+        "path": "Parameters.parameter.part.part.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Medication",
+            "profile": [
+              "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseInformation.part:medication.part",
+        "path": "Parameters.parameter.part.part.part",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization",
+        "path": "Parameters.parameter.part",
+        "sliceName": "dispenseOrganization",
+        "short": "Abgebende Apotheke",
+        "comment": "Bei der Dispensierung überträgt die Apotheke an den E-Rezept-Fachdienst nur die Telematik-ID. Angaben zu Name, Adresse und Telefonnummer bezieht der E-Rezept-Fachdienst aus dem FHIR-VZD der TI. Falls aktuelle Daten benötigt werden, können diese am FHIR-VZD unter bezugnahme der Telematik-ID bezogen werden. A_27825 beschreibt textuell den Abruf.",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.name",
+        "path": "Parameters.parameter.part.name",
+        "fixedString": "dispenseOrganization",
+        "mustSupport": true
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.value[x]",
+        "path": "Parameters.parameter.part.value[x]",
+        "max": "0"
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.resource",
+        "path": "Parameters.parameter.part.resource",
+        "min": 1,
+        "type": [
+          {
+            "code": "Organization",
+            "profile": [
+              "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Parameters.parameter:rxDispensation.part:dispenseOrganization.part",
+        "path": "Parameters.parameter.part.part",
+        "max": "0"
+      }
+    ]
+  }
+}

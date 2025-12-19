@@ -1,8 +1,10 @@
-Profile: BfArMMedicationDispense
+Profile: ERP_TPrescription_MedicationDispense
 Parent: MedicationDispense
-Id: bfarm-medication-dispense
-Title: "BfArM Medication Dispense"
-Description: "MedicationDispense with Dispenseinformation for BfArM"
+Id: erp-tprescription-medication-dispense
+Title: "E-T-Rezept Medication Dispense"
+Description: "Abgabeinformationen einer Apotheke, die es im Rahmen der Belieferung eines T-Rezeptes an den E-Rezept-Fachdienst übermittelt hat."
+* insert Profile(erp-tprescription-medication-dispense)
+
 // Default FHIR Elements with 1..1 cardinality
 * status = #completed (exactly)
 
@@ -15,18 +17,7 @@ Description: "MedicationDispense with Dispenseinformation for BfArM"
 * medicationReference MS
 
 // Forbidden Elements
-
-// Allow only the data-absent-reason extension on subject
-* subject
-  * reference 0..0
-  * identifier 0..0
-  * display 0..0
-  * type 0..0
-  * extension contains data-absent-reason named dataAbsentReason 1..1
-  * extension[dataAbsentReason].valueCode 1..1
-  * extension[dataAbsentReason].valueCode = #not-permitted
-
-// remaining
+* subject 0..0
 * identifier 0..0
 * partOf 0..0
 * statusReason[x] 0..0

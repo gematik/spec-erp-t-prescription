@@ -1,14 +1,17 @@
-Profile: BfArMOrganization
+Profile: ERP_TPrescription_Organization
 Parent: TIOrganization
-Id: bfarm-organization
-Title: "BfArM Organization"
-Description: "Organization Profile for exchange between E-Rezept-Fachdienst and BfArM"
+Id: erp-tprescription-organization
+Title: "E-T-Rezept Organization"
+Description: "Angaben zur Apotheke, die das T-Rezept beliefert hat."
+* insert Profile(erp-tprescription-organization)
+
 * telecom MS
 * name MS
 * address MS
+* identifier 1..1
+* identifier[TelematikID]
 
 // Forbidden Elements
-* identifier 0..0
 * active 0..0
 * type 0..0
 * alias 0..0

@@ -1,0 +1,363 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "de.gematik.erp-t-prescription",
+  "url": "https://gematik.de/fhir/erp-t-prescription/ImplementationGuide/de.gematik.erp-t-prescription",
+  "version": "1.1.0",
+  "name": "ERPTPrescription",
+  "title": "E-T-Rezept Datenaustausch",
+  "status": "active",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://gematik.de"
+        },
+        {
+          "system": "email",
+          "value": "erp-umsetzung@gematik.de"
+        }
+      ]
+    }
+  ],
+  "description": "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "code": "DE",
+          "system": "urn:iso:std:iso:3166",
+          "display": "Germany"
+        }
+      ]
+    }
+  ],
+  "packageId": "de.gematik.erp-t-prescription",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "packageId": "de.gematik.ti",
+      "version": "1.2.0",
+      "uri": "https://gematik.de/fhir/ti/ImplementationGuide/de.gematik.ti",
+      "id": "de_gematik_ti"
+    },
+    {
+      "packageId": "de.gematik.epa.medication",
+      "version": "1.3.0",
+      "uri": "https://gematik.de/fhir/epa-medication/ImplementationGuide/de.gematik.epa.medication",
+      "id": "de_gematik_epa_medication"
+    },
+    {
+      "packageId": "de.fhir.medication",
+      "version": "1.0.3",
+      "uri": "http://ig.fhir.de/igs/medication/ImplementationGuide/de.fhir.medication",
+      "id": "de_fhir_medication"
+    }
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "Medication/ExampleMedication2-Pomalidomid-T"
+        },
+        "name": "Beispiel BfArM Medication (Abgabe) - Pomalidomid",
+        "description": "Pomalidomid Accord 1 mg",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
+          "reference": "Medication/ExampleMedication1-Pomalidomid-T"
+        },
+        "name": "Beispiel BfArM Medication (Verordnung) - Pomalidomid",
+        "description": "Pomalidomid Hartkapseln",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
+          "reference": "MedicationDispense/ExampleMedicationDispense-T"
+        },
+        "name": "Beispiel BfArM MedicationDispense",
+        "description": "Ein MedicationDispense für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1 nach Bedarf",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense"
+      },
+      {
+        "reference": {
+          "reference": "MedicationRequest/ExampleMedicationRequest-T"
+        },
+        "name": "Beispiel BfArM MedicationRequest",
+        "description": "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
+      },
+      {
+        "reference": {
+          "reference": "Organization/ExampleOrganization-T"
+        },
+        "name": "Beispiel BfArM Organisation",
+        "description": "Beispiel, wie eine BfArM Organisation maximal ausgefüllt wäre",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-organization"
+      },
+      {
+        "reference": {
+          "reference": "Parameters/TRP-Carbon-Copy"
+        },
+        "name": "Beispiel digitaler Durchschlag E-T-Rezept",
+        "description": "Dieses Beispiel wurde manuell angelegt, um den Aufbau eines digitalen Durchschlags abzubilden",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
+      },
+      {
+        "reference": {
+          "reference": "Bundle/VZD-SearchSet-Bundle"
+        },
+        "name": "Beispiel VZD SearchSet Bundle",
+        "description": "Beispiel für eine Response des FHIR-VZD nach einer Suchanfrage zu Name, Telefonnummer und Adresse einer Apotheke via Telematik-ID",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/erp-tprescription-carbon-copy"
+        },
+        "name": "Digitaler Durchschlag T-Rezept",
+        "description": "Dieses Profil beschreibt den digitalen Durchschlag T-Rezept der alle Informationen zusammenführt und verlinkt. Alle für den Anwendungsfall relevanten Ressourcen sind hier aufgelistet.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/erp-tprescription-medication"
+        },
+        "name": "E-T-Rezept Medication",
+        "description": "Medikationsprofil, welches Informationen zum verordneten oder abgegebenen Arzneimittel enthält.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/erp-tprescription-medication-dispense"
+        },
+        "name": "E-T-Rezept Medication Dispense",
+        "description": "Abgabeinformationen einer Apotheke, die es im Rahmen der Belieferung eines T-Rezeptes an den E-Rezept-Fachdienst übermittelt hat.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/erp-tprescription-medication-request"
+        },
+        "name": "E-T-Rezept Medication Request",
+        "description": "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept angegeben hat.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/erp-tprescription-organization"
+        },
+        "name": "E-T-Rezept Organization",
+        "description": "Angaben zur Apotheke, die das T-Rezept beliefert hat.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapCarbonCopy"
+        },
+        "name": "E-T-Rezept Structure Map for CarbonCopy",
+        "description": "Diese Ressource beschreibt das Mapping und führt die Mappings aller Teilressourcen zusammen. Weitere Informationen und Beschreibungen zum Mapping können auf der Seite [Mapping des digitalen Durchschlag E-T-Rezept](./trezept.html#mapping-des-digitalen-durchschlags-e-t-rezept) eingesehen werden.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVCompoundingMedication"
+        },
+        "name": "E-T-Rezept Structure Map for KBV Compounding Medication",
+        "description": "Mapping-Anweisungen zur Transformation von KBV Rezeptur-Medikamenten zu BfArM T-Prescription Format",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVFreeTextMedication"
+        },
+        "name": "E-T-Rezept Structure Map for KBV FreeText Medication",
+        "description": "Maps KBV FreeText Medication to BfArM T-Prescription Medication format",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVIngredientMedication"
+        },
+        "name": "E-T-Rezept Structure Map for KBV Ingredient Medication",
+        "description": "Maps KBV-Ingredient ERP Medication to BfArM T-Prescription Medication format",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapKBVPZNMedication"
+        },
+        "name": "E-T-Rezept Structure Map for KBV PZN Medication",
+        "description": "Mapping-Anweisungen zur Transformation von KBV PZN-Medikamenten zu BfArM T-Prescription Format",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapGEMMedication"
+        },
+        "name": "E-T-Rezept Structure Map for Medication",
+        "description": "Maps GEM ERP Medication to BfArM T-Prescription Medication format",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapMedication"
+        },
+        "name": "E-T-Rezept Structure Map for Medication",
+        "description": "Router-Mapping zur Auswahl der korrekten Medication-Transformation basierend auf dem KBV/gematik Profil",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapMedicationDispense"
+        },
+        "name": "E-T-Rezept Structure Map for MedicationDispense",
+        "description": "Mapping-Anweisungen zur Transformation von gematik ERP MedicationDispense zu BfArM T-Prescription MedicationDispense",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapMedicationRequest"
+        },
+        "name": "E-T-Rezept Structure Map for MedicationRequest",
+        "description": "Mapping-Anweisungen zur Transformation von KBV MedicationRequest zu BfArM T-Prescription MedicationRequest",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapOrganization"
+        },
+        "name": "E-T-Rezept Structure Map for Organization",
+        "description": "Mapping-Anweisungen zur Erstellung einer BfArM Organization aus dem VZD SearchSet",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureMap/ERPTPrescriptionStructureMapTask"
+        },
+        "name": "E-T-Rezept Structure Map for Task",
+        "description": "Mappt die E-Rezept ID aus dem Task in ein Identifier Objekt",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "OperationOutcome/ERP-TPrescription-OperationOutcome-1"
+        },
+        "name": "Fehlermeldung BfArM Webdienst",
+        "description": "Beispielhafte Fehlermeldung des BfArM Webdienstes bei einem invaliden digitalen Durchschlag",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/erp-tprescription-carbon-copy-logical"
+        },
+        "name": "Logisches Modell digitaler Durchschlag E-T-Rezept",
+        "description": "Logical Model zur Abbildung der im digitalen Durchschlag E-T-Rezept erforderlichen fachlichen Informationen.",
+        "exampleBoolean": false
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Home",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "artifacts.html",
+          "title": "Artifacts",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "datamodel.html",
+          "title": "Datamodel",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "test-case-01.html",
+          "title": "Test Case 01",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "test-case-02.html",
+          "title": "Test Case 02",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "test-case-03.html",
+          "title": "Test Case 03",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "test-case-04.html",
+          "title": "Test Case 04",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "tests.html",
+          "title": "Tests",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "trezept.html",
+          "title": "Trezept",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2025+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "release"
+      },
+      {
+        "code": "bundle-references-resolve",
+        "value": "false"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-01-mapping-bundle"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-02-mapping-bundle"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-03-mapping-bundle"
+      },
+      {
+        "code": "no-validate",
+        "value": "Bundle/example-case-04-mapping-bundle"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Medication/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "MedicationRequest/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Bundle/*"
+      },
+      {
+        "code": "path-pages",
+        "value": "input/content"
+      }
+    ]
+  }
+}
