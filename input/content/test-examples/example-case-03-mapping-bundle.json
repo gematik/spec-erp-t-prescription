@@ -142,7 +142,7 @@
         "id": "a7e1d25f-0b0a-40f7-b529-afda48e51b46",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6"
           ]
         },
         "identifier": [
@@ -188,7 +188,7 @@
         "id": "8e2e5e65-4c5d-49f2-8efc-c30e40838273",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6"
           ]
         },
         "code": {

@@ -82,11 +82,26 @@
 
 | Source Field | Source Value | Target Field | Target Value | Status |
 |--------------|--------------|--------------|--------------|--------|
+| `dosageInstruction.doseAndRate.doseQuantity.code` | 1 | `dosageInstruction[0].doseAndRate[0].doseQuantity.code` | 1 | ✅ |
+| `dosageInstruction.doseAndRate.doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | `dosageInstruction[0].doseAndRate[0].doseQuantity.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP... | ✅ |
+| `dosageInstruction.doseAndRate.doseQuantity.unit` | Stück | `dosageInstruction[0].doseAndRate[0].doseQuantity.unit` | Stück | ✅ |
+| `dosageInstruction.doseAndRate.doseQuantity.value` | 1 | `dosageInstruction[0].doseAndRate[0].doseQuantity.value` | 1 | ✅ |
+| `dosageInstruction.timing.repeat.frequency` | 1 | `dosageInstruction[0].timing.repeat.frequency` | 1 | ✅ |
+| `dosageInstruction.timing.repeat.period` | 1 | `dosageInstruction[0].timing.repeat.period` | 1 | ✅ |
+| `dosageInstruction.timing.repeat.periodUnit` | d | `dosageInstruction[0].timing.repeat.periodUnit` | d | ✅ |
+| `extension[0].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | `extension[1].url` | http://hl7.org/fhir/5.0/StructureDefinition/ext... | ✅ |
+| `extension[0].valueMarkdown` | 0-0-1-0 Stück | `extension[1].valueMarkdown` | 0-0-1-0 Stück | ✅ |
+| `extension[1].extension[0].url` | algorithmVersion | `extension[0].extension[0].url` | algorithmVersion | ✅ |
+| `extension[1].extension[0].valueString` | 1.0.0 | `extension[0].extension[0].valueString` | 1.0.0 | ✅ |
+| `extension[1].extension[1].url` | language | `extension[0].extension[1].url` | language | ✅ |
+| `extension[1].extension[1].valueCode` | de-DE | `extension[0].extension[1].valueCode` | de-DE | ✅ |
+| `extension[1].url` | http://ig.fhir.de/igs/medication/StructureDefin... | `extension[0].url` | http://ig.fhir.de/igs/medication/StructureDefin... | ✅ |
 | `medicationReference.reference` | urn:uuid:8e2e5e65-4c5d-49f2-8efc-c30e40838273 | `medicationReference.reference` | urn:uuid:8e2e5e65-4c5d-49f2-8efc-c30e40838273 | ✅ |
 | `quantity.unit` | Packung | `quantity.unit` | Packung | ✅ |
 | `quantity.value` | 1 | `quantity.value` | 1 | ✅ |
 | `status` | completed | `status` | completed | ✅ |
 | `whenHandedOver` | 2025-10-30 | `whenHandedOver` | 2025-10-30 | ✅ |
+| `dosageInstruction.timing.repeat.when` | EVE | - | - | ⚠️ |
 | `id` | a7e1d25f-0b0a-40f7-b529-afda48e51b46 | - | - | ⚠️ |
 | `identifier[0].system` | https://gematik.de/fhir/erp/NamingSystem/GEM_ER... | - | - | ⚠️ |
 | `identifier[0].value` | 166.100.000.000.021.76 | - | - | ⚠️ |

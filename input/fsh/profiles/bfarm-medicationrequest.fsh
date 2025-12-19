@@ -57,4 +57,3 @@ Description: "Informationen zu einer Verordnung, die ein Arzt im E-T-Rezept ange
 * priorPrescription 0..0
 * detectedIssue 0..0
 * eventHistory 0..0
-

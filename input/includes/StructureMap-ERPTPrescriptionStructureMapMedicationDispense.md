@@ -5,6 +5,8 @@
 
 | Quelle (Eingangsdaten) | Ziel (Ausgabedaten) | Transformation & Beschreibung |
 |------------------------|---------------------|-------------------------------|
+| `gematikMedicationDispense.extension [GeneratedDosageInstructionsMeta]` | `bfarmMedicationDispense.extension` | Kopiert Dosage Metadata Extension<br>→ übernimmt Wert aus Quellvariable |
+| `gematikMedicationDispense.extension [extension-MedicationDispense.renderedDosageInstruction]` | `bfarmMedicationDispense.extension` | Kopiert RenderedDosageText<br>→ übernimmt Wert aus Quellvariable |
 | `gematikMedicationDispense.dosageInstruction` | `bfarmMedicationDispense.dosageInstruction` | Übernimmt die Dosierungsanweisungen aus der ursprünglichen Abgabe für den digitalen Durchschlag<br>→ übernimmt Wert aus Quellvariable |
 | `gematikMedicationDispense.whenHandedOver` | `bfarmMedicationDispense.whenHandedOver` | Kopiert das Abgabedatum zur Dokumentation des Zeitpunkts der Medikamentenausgabe<br>→ übernimmt Wert aus Quellvariable |
 | `gematikMedicationDispense.medication` | `bfarmMedicationDispense.medication` | Kopiert die Medikamentenreferenz - das referenzierte Medication wird separat gemappt<br>→ übernimmt Wert aus Quellvariable |

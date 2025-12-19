@@ -19,6 +19,20 @@ Description: "Mapping-Anweisungen zur Transformation von gematik ERP MedicationD
 
 // Rules for MedicationDispense
 
+// Copy Dosage Extensions
+  * rule[+]
+    * name = "medicationDispenseExt"
+    * documentation = "Kopiert Dosage Metadata Extension"
+    * insert treeSource(gematikMedicationDispense, extension, extDosageMetaVar)
+    * source[=].condition = "url='http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta'"
+    * insert targetSetIdVariable(bfarmMedicationDispense, extension, extDosageMetaVar)
+  * rule[+]
+    * name = "medicationDispenseExt"
+    * documentation = "Kopiert RenderedDosageText"
+    * insert treeSource(gematikMedicationDispense, extension, extDosageRenderedVar)
+    * source[=].condition = "url='http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction'"
+    * insert targetSetIdVariable(bfarmMedicationDispense, extension, extDosageRenderedVar)
+
 // dosageInstruction
   * rule[+]
     * name = "medicationDispenseDosageInstruction"

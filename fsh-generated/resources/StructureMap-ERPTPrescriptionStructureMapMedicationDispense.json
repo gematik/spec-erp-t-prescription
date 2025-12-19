@@ -35,6 +35,56 @@
           "source": [
             {
               "context": "gematikMedicationDispense",
+              "element": "extension",
+              "variable": "extDosageMetaVar",
+              "condition": "url='http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta'"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "extDosageMetaVar"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "extension",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationDispenseExt",
+          "documentation": "Kopiert Dosage Metadata Extension"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
+              "element": "extension",
+              "variable": "extDosageRenderedVar",
+              "condition": "url='http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction'"
+            }
+          ],
+          "target": [
+            {
+              "parameter": [
+                {
+                  "valueId": "extDosageRenderedVar"
+                }
+              ],
+              "context": "bfarmMedicationDispense",
+              "contextType": "variable",
+              "element": "extension",
+              "transform": "copy"
+            }
+          ],
+          "name": "medicationDispenseExt",
+          "documentation": "Kopiert RenderedDosageText"
+        },
+        {
+          "source": [
+            {
+              "context": "gematikMedicationDispense",
               "element": "dosageInstruction",
               "variable": "dosageInstructionVar"
             }
