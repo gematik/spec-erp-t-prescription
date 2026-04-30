@@ -1,55 +1,76 @@
-FROM mcr.microsoft.com/devcontainers/base:alpine-3.18
+FROM mcr.microsoft.com/devcontainers/base:alpine
 
-# Setzen der Umgebungsvariablen
-ENV FIRELY_TERMINAL_VERSION=3.1.0
-ENV JAVA_VALIDATOR_VERSION=6.0.11
-ENV SUSHI_VERSION=3.5.0
+# ENV CLOUD_SDK_VERSION=464.0.0
+# ENV JAVA_VALIDATOR_VERSION=6.3.25
 
-# Installieren der notwendige Tools
-# Add Microsoft's .NET SDK repository and install .NET SDK
-RUN wget https://dot.net/v1/dotnet-install.sh \
-    && chmod +x dotnet-install.sh \
-    && ./dotnet-install.sh --channel 6.0 --install-dir /usr/share/dotnet \
-    && ln -s /usr/share/dotnet/dotnet /usr/local/bin \
-    && rm dotnet-install.sh
+ARG TARGETPLATFORM
 
-# Install ICU libraries
-RUN apk add --no-cache icu-libs
+# Backup if a specific version will be needed again
+# google-cloud-cli-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
-# Install Node.js and npm
-RUN apk add --no-cache nodejs npm
+# Download and install gCloud CLI
+# This tries to use the architecture specific version
+RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+    curl -Lo google-cloud-cli-linux.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-arm.tar.gz; \
+    elif [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+    curl -Lo google-cloud-cli-linux.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz; \
+    else \
+    curl -Lo google-cloud-cli-linux.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86.tar.gz; \
+    fi \
+    && tar -xf google-cloud-cli-linux.tar.gz \
+    && ./google-cloud-sdk/install.sh --quiet \
+    && rm google-cloud-cli-linux.tar.gz
 
-# Install Java (OpenJDK)
-RUN apk add --no-cache openjdk11
+RUN apk add --no-cache \
+    # .NET SDK for Firely Terminal
+    dotnet8-sdk \
+    # icu-libs \
+    # Node.js and NPM for FSH Sushi
+    nodejs npm \
+    # Java (OpenJDK) and Jeykll for IG Publisher
+    openjdk21 jekyll \
+    # Additional dependencies
+    # jq findutils curl ca-certificates \
+    # PlantUML
+    graphviz fontconfig
 
-# Install Firely Terminal as vscode user
 # Switch to the vscode user
 USER vscode
 
-# Install Firely Terminal
-RUN dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION
+# Setup for FHIR Validator
+RUN mkdir -p /home/vscode/.fhir/validators
+RUN if [ -z ${JAVA_VALIDATOR_VERSION+x} ]; then \
+    curl -Lo /home/vscode/.fhir/validators/validator_cli.jar https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar; \
+    else \
+    curl -Lo /home/vscode/.fhir/validators/validator_cli.jar https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$JAVA_VALIDATOR_VERSION/validator_cli.jar; \
+    fi
 
-# Add .NET tools to PATH for vscode user
+# Add gcloud to user path
+ENV PATH="/google-cloud-sdk/bin:${PATH}"
+
+# Install UV for Python environments
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/home/vscode/.local/bin:${PATH}"
+
+RUN uv tool install git+https://github.com/gematik/fhir-scripts.git
+
+RUN fhirscripts install \
+    --sushi \
+    --firely-terminal
+
+# Add Firely Terminal to user path
 ENV PATH="/home/vscode/.dotnet/tools:${PATH}"
 
-# Switch back to root user to perform remaining installations
-USER root
+###########################
+# Labels
+###########################
 
-RUN npm install -g fsh-sushi@$SUSHI_VERSION
+ARG COMMIT_HASH=FromEnvironment
+ARG VERSION=FromEnvironment
 
-# Installieren der zusätzliche Abhängigkeiten
-RUN apk update && apk add --no-cache jq findutils curl ca-certificates
-
-# Setup for FHIR Validator
-RUN mkdir -p /home/vscode/.fhir/validators/
-RUN wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$JAVA_VALIDATOR_VERSION/validator_cli.jar -O /home/vscode/.fhir/validators/validator_cli.jar
-
-RUN mkdir -p /home/vscode/.fhir/settings/
-COPY codfsh-config.yaml /home/vscode/.fhir/settings/codfsh-config.yaml
-
-# Setzen des Arbeitsverzeichnis
-WORKDIR /workspace
-
-COPY . /workspace
-
-CMD [ "/bin/bash" ]
+LABEL de.gematik.commit-sha=$COMMIT_HASH \
+      de.gematik.version=$VERSION \
+      de.gematik.vendor="gematik GmbH" \
+      maintainer="patientteam@gematik.de" \
+      de.gematik.app="FHIR Scripts DevContainer" \
+      de.gematik.git-repo-name="https://github.com/gematik/fhir-scripts"

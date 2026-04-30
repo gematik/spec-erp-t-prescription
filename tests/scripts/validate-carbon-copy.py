@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 from typing import Any, Optional
 
-DEFAULT_HAPI_JAR = Path("/Users/gematik/dev/validators/current_hapi_validator.jar")
+DEFAULT_HAPI_JAR = Path("/home/vscode/.fhir/validators/validator_cli.jar")
 DEFAULT_PROFILE = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy"
 DEFAULT_FHIR_VERSION = "4.0.1"
 

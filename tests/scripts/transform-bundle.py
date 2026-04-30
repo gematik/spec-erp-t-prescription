@@ -135,14 +135,14 @@ def run_hapi_transform(
         "de.gematik.epa.medication",
     ]
     
-    # Build the command
+    # Build the command with modern HAPI 6.8+ syntax: transform URL input_file ...
     cmd = [
         "java",
         "-jar",
         str(hapi_jar_path),
-        str(input_bundle),
-        "-transform",
+        "transform",
         transform_url,
+        str(input_bundle),
         "-version",
         fhir_version,
         "-output",
@@ -196,7 +196,7 @@ def main():
     output_file = output_dir / f"{test_case_name}-digitaler-durchschlag.json"
     
     # Find HAPI validator
-    hapi_jar_path = Path("/Users/gematik/dev/validators/current_hapi_validator.jar")
+    hapi_jar_path = Path("/home/vscode/.fhir/validators/validator_cli.jar")
     
     if not hapi_jar_path.exists():
         print(f"❌ Error: HAPI validator not found at: {hapi_jar_path}")

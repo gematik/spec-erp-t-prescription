@@ -127,7 +127,7 @@
                         </itemCodeableConcept>
                         <strength>
                             <numerator>
-                                <value value="2,5"/>
+                                <value value="2.5"/>
                                 <unit value="mg"/>
                             </numerator>
                             <denominator>

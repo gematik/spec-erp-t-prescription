@@ -259,7 +259,10 @@
                       "repeat": {
                         "frequency": 1,
                         "period": 1,
-                        "periodUnit": "d"
+                        "periodUnit": "d",
+                        "when": [
+                          "EVE"
+                        ]
                       }
                     },
                     "doseAndRate": [

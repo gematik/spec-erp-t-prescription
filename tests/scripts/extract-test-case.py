@@ -29,7 +29,7 @@ def convert_to_xml(resource: Dict[str, Any], output_path: Path) -> bool:
     """Convert a FHIR JSON resource to XML using HAPI validator."""
     import tempfile
     
-    hapi_jar = Path("/Users/gematik/dev/validators/current_hapi_validator.jar")
+    hapi_jar = Path("/home/vscode/.fhir/validators/validator_cli.jar")
     
     if not hapi_jar.exists():
         print(f"  ⚠ HAPI validator not found, cannot convert to XML")
