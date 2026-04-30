@@ -10,11 +10,54 @@ Usage:
 """
 
 import json
+import os
 import sys
 import subprocess
 import tempfile
+from urllib.request import urlopen
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
+
+
+def resolve_hapi_jar() -> Path:
+    """Resolve HAPI validator path from env vars or HOME fallback."""
+    configured = os.getenv("FHIR_VALIDATOR_JAR") or os.getenv("HAPI_VALIDATOR_JAR")
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return (Path.home() / ".fhir" / "validators" / "validator_cli.jar").resolve()
+
+
+def ensure_hapi_jar(hapi_jar_path: Path) -> bool:
+    """Ensure validator jar exists, downloading it when missing."""
+    if hapi_jar_path.exists():
+        return True
+
+    download_url = os.getenv(
+        "FHIR_VALIDATOR_URL",
+        "https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar",
+    )
+
+    hapi_jar_path.parent.mkdir(parents=True, exist_ok=True)
+    print(f"ℹ HAPI validator not found at: {hapi_jar_path}")
+    print(f"⬇ Downloading validator_cli.jar from: {download_url}")
+
+    try:
+        with urlopen(download_url, timeout=120) as response:
+            data = response.read()
+
+        if not data:
+            print("❌ Download failed: empty response")
+            return False
+
+        tmp_path = hapi_jar_path.with_suffix(".jar.tmp")
+        with tmp_path.open("wb") as tmp_file:
+            tmp_file.write(data)
+        tmp_path.replace(hapi_jar_path)
+        print(f"✅ Downloaded validator jar to: {hapi_jar_path}")
+        return True
+    except Exception as exc:  # noqa: BLE001
+        print(f"❌ Failed to download HAPI validator: {exc}")
+        return False
 
 
 def sanitize_decimal_value(value):
@@ -196,10 +239,17 @@ def main():
     output_file = output_dir / f"{test_case_name}-digitaler-durchschlag.json"
     
     # Find HAPI validator
-    hapi_jar_path = Path("/home/vscode/.fhir/validators/validator_cli.jar")
+    hapi_jar_path = resolve_hapi_jar()
+
+    if not ensure_hapi_jar(hapi_jar_path):
+        print(f"❌ Error: Unable to provision HAPI validator at: {hapi_jar_path}")
+        print("Set FHIR_VALIDATOR_JAR (or HAPI_VALIDATOR_JAR), or place validator_cli.jar at ~/.fhir/validators/validator_cli.jar")
+        print("Optional override: set FHIR_VALIDATOR_URL to a custom download URL")
+        sys.exit(1)
     
     if not hapi_jar_path.exists():
         print(f"❌ Error: HAPI validator not found at: {hapi_jar_path}")
+        print("Set FHIR_VALIDATOR_JAR (or HAPI_VALIDATOR_JAR), or place validator_cli.jar at ~/.fhir/validators/validator_cli.jar")
         print("\nPlease ensure the HAPI FHIR validator JAR is available.")
         print("Download from: https://github.com/hapifhir/org.hl7.fhir.core/releases")
         sys.exit(1)

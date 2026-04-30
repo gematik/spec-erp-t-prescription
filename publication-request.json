@@ -12,5 +12,5 @@
   "registry-country" : "DE",
   "registry-authority" : "gematik GmbH",
   "category" : "gematik",
-  "introduction" : "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register",
+  "introduction" : "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register"
 }
