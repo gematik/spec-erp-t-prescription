@@ -735,7 +735,7 @@
           "source": [
             {
               "context": "kbvMedicationRequest",
-              "element": "medicationReference",
+              "element": "medication",
               "variable": "medicationVar"
             }
           ],
@@ -766,14 +766,15 @@
                 {
                   "source": [
                     {
-                      "context": "medicationReferenceValue"
+                      "context": "medicationReferenceValue",
+                      "variable": "currentMedicationReferenceValue"
                     }
                   ],
                   "target": [
                     {
                       "parameter": [
                         {
-                          "valueString": "iif(%medicationReferenceValue.startsWith('urn:uuid:'), %medicationReferenceValue, 'urn:uuid:' & %medicationReferenceValue.replaceMatches('.*[:/]', ''))"
+                          "valueString": "iif(%currentMedicationReferenceValue.startsWith('urn:uuid:'), %currentMedicationReferenceValue, 'urn:uuid:' & %currentMedicationReferenceValue.replaceMatches('.*[:/]', ''))"
                         }
                       ],
                       "context": "tgtMedicationReference",

@@ -181,19 +181,20 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
   // reference to Medication
   * rule[+]
     * name = "medicationReference"
-    * insert treeSource(kbvMedicationRequest, medicationReference, medicationVar)
+    * insert treeSource(kbvMedicationRequest, medication, medicationVar)
     * insert createType(bfarmMedicationRequest, medication, tgtMedicationReference, Reference)
     * rule[+]
       * name = "normalizeMedicationReference"
       * insert treeSource(medicationVar, reference, medicationReferenceValue)
       * rule[+]
         * name = "normalizeMedicationReferenceTransformation"
-        * source.context = "medicationReferenceValue"
+        * source[+].context = "medicationReferenceValue"
+        * source[=].variable = "currentMedicationReferenceValue"
         * target[+]
           * context = "tgtMedicationReference"
           * contextType = #variable
           * element = "reference"
           * transform = #evaluate
-          * parameter[+].valueString = "iif(%medicationReferenceValue.startsWith('urn:uuid:'), %medicationReferenceValue, 'urn:uuid:' & %medicationReferenceValue.replaceMatches('.*[:/]', ''))"
+          * parameter[+].valueString = "iif(%currentMedicationReferenceValue.startsWith('urn:uuid:'), %currentMedicationReferenceValue, 'urn:uuid:' & %currentMedicationReferenceValue.replaceMatches('.*[:/]', ''))"
     * documentation = "Transformiert die Medication-Referenz zu urn:uuid Format"
 
