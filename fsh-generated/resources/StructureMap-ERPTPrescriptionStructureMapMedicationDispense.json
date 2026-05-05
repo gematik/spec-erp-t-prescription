@@ -11,7 +11,7 @@
       "alias": "gematikMedicationDispense"
     },
     {
-      "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-dispense",
+      "url": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
       "mode": "target",
       "alias": "bfarmMedicationDispense"
     }

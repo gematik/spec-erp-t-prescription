@@ -144,8 +144,10 @@
                     {
                       "source": [
                         {
-                          "context": "srcEntryResourceVar",
+                          "context": "srcEntryVar",
+                          "element": "resource",
                           "variable": "srcEntryTaskVar",
+                          "type": "Task",
                           "condition": "ofType(Task)"
                         }
                       ],
@@ -200,8 +202,10 @@
                     {
                       "source": [
                         {
-                          "context": "srcEntryResourceVar",
+                          "context": "srcEntryVar",
+                          "element": "resource",
                           "variable": "srcEntryBundleMRVar",
+                          "type": "MedicationRequest",
                           "condition": "ofType(MedicationRequest)"
                         }
                       ],
@@ -302,7 +306,7 @@
                                 {
                                   "context": "srcEntryVar2",
                                   "variable": "srcEntryBundleMRMedIdVar",
-                                  "condition": "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medicationReference.reference.replace('urn:uuid:', '').split('/').last())"
+                                  "condition": "resource.ofType(Medication).where(id=%srcMedicationRequestId.resource.medication.reference.replace('urn:uuid:', '').split('/').last())"
                                 }
                               ],
                               "target": [
@@ -325,7 +329,8 @@
                                     {
                                       "context": "srcEntryBundleMRMedIdVar",
                                       "variable": "srcEntryBundleMRMedIdVarRes",
-                                      "element": "resource"
+                                      "element": "resource",
+                                      "type": "Medication"
                                     }
                                   ],
                                   "dependent": [
@@ -417,8 +422,10 @@
                     {
                       "source": [
                         {
-                          "context": "srcEntryResourceVar",
+                          "context": "srcEntryVar",
+                          "element": "resource",
                           "variable": "srcEntryBundleOrgVar",
+                          "type": "Bundle",
                           "condition": "ofType(Bundle).where(entry.first().fullUrl.contains('fhir-directory'))"
                         }
                       ],
@@ -486,8 +493,10 @@
                     {
                       "source": [
                         {
-                          "context": "srcEntryResourceVar",
+                          "context": "srcEntryVar",
+                          "element": "resource",
                           "variable": "srcEntryBundleMDVar",
+                          "type": "MedicationDispense",
                           "condition": "ofType(MedicationDispense)"
                         }
                       ],
@@ -643,7 +652,8 @@
                                             {
                                               "context": "srcEntryBundleMDMedIdVar",
                                               "variable": "srcEntryBundleMDMedIdVarRes",
-                                              "element": "resource"
+                                              "element": "resource",
+                                              "type": "Medication"
                                             }
                                           ],
                                           "dependent": [

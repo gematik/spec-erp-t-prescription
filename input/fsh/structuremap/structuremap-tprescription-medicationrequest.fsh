@@ -4,8 +4,10 @@ Usage: #definition
 Title: "E-T-Rezept Structure Map for MedicationRequest"
 Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest zu BfArM T-Prescription MedicationRequest"
 * insert Instance(StructureMap, ERPTPrescriptionStructureMapMedicationRequest)
-* insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription, source, kbvMedicationRequest)
-* insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
+// * insert sd_structure(https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription, source, kbvMedicationRequest)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/MedicationRequest, source, kbvMedicationRequest)
+// * insert sd_structure(https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request, target, bfarmMedicationRequest)
+* insert sd_structure(http://hl7.org/fhir/StructureDefinition/MedicationRequest, target, bfarmMedicationRequest)
 
 * group[+]
   * name = "ERPTPrescriptionStructureMapMedicationRequest"
@@ -193,4 +195,5 @@ Description: "Mapping-Anweisungen zur Transformation von KBV MedicationRequest z
           * element = "reference"
           * transform = #evaluate
           * parameter[+].valueString = "iif(%medicationReferenceValue.startsWith('urn:uuid:'), %medicationReferenceValue, 'urn:uuid:' & %medicationReferenceValue.replaceMatches('.*[:/]', ''))"
-     
+    * documentation = "Transformiert die Medication-Referenz zu urn:uuid Format"
+
