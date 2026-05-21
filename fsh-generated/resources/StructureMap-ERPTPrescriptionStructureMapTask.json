@@ -6,7 +6,7 @@
   "description": "Mappt die E-Rezept ID aus dem Task in ein Identifier Objekt",
   "structure": [
     {
-      "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task",
+      "url": "http://hl7.org/fhir/StructureDefinition/Task",
       "mode": "source",
       "alias": "task"
     },
@@ -87,8 +87,8 @@
     }
   ],
   "status": "active",
-  "version": "1.1.0",
-  "date": "2025-12-19",
+  "version": "1.1.1",
+  "date": "2026-05-08",
   "name": "ERPTPrescriptionStructureMapTask",
   "experimental": false
 }

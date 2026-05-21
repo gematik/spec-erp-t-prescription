@@ -40,10 +40,11 @@ tests/structuremap-pipeline/
 
 ### Prerequisites
 
-1. **HAPI FHIR Validator** must be installed at:
-   ```
-   /Users/gematik/dev/validators/current_hapi_validator.jar
-   ```
+1. **HAPI FHIR Validator** must be available either via:
+   - `FHIR_VALIDATOR_JAR` (preferred)
+   - `HAPI_VALIDATOR_JAR`
+   - default location: `~/.fhir/validators/validator_cli.jar`
+
    Download from: https://github.com/hapifhir/org.hl7.fhir.core/releases
 
 2. **Python 3** must be installed
@@ -211,7 +212,7 @@ python3 scripts/extract-test-case.py fsh-generated/resources/Bundle-Mapping-Bund
 Before adding to test cases, validate individual resources:
 
 ```bash
-java -jar /Users/gematik/dev/validators/current_hapi_validator.jar \
+java -jar "$FHIR_VALIDATOR_JAR" \
   test-cases/my-case/KBV_Prescription.json \
   -ig kbv.ita.erp
 ```
@@ -305,9 +306,10 @@ python3 tests/scripts/compare-mapping.py \
 
 ### HAPI Validator Not Found
 
-Ensure the validator is at the expected path:
+Ensure the validator path is configured and reachable:
 ```bash
-ls -la /Users/gematik/dev/validators/current_hapi_validator.jar
+echo "$FHIR_VALIDATOR_JAR"
+ls -la "$FHIR_VALIDATOR_JAR"
 ```
 
 ### Transformation Fails
