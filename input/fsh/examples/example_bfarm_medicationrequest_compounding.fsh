@@ -10,7 +10,7 @@ Description: "Ein MedicationRequest für die Ausgabe von Pomalidomid als Rezeptu
 * subject.identifier.value.extension[+].url = $data-absent-reason
 * subject.identifier.value.extension[=].valueCode = #not-permitted
 * medicationReference = Reference(ExampleMedication1-Thalidomid-T-Compounding)
-* dosageInstruction[+].text = "nach Bedarf"
+* dosageInstruction[+].text = "Nach Bedarf mit ausreichend Wasser einzunehmen."
 * dispenseRequest
   * quantity.value = 10
   * quantity.unit = "Tablette"

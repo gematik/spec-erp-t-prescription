@@ -28,7 +28,7 @@
   },
   "dosageInstruction": [
     {
-      "text": "1-1-1-1"
+      "text": "3x täglich mit ausreichend Wasser einnehmen"
     }
   ],
   "dispenseRequest": {
@@ -50,11 +50,11 @@
         },
         {
           "url": "security-compliance",
-          "valueBoolean": false
+          "valueBoolean": true
         },
         {
           "url": "hand-out-information-material",
-          "valueBoolean": false
+          "valueBoolean": true
         },
         {
           "url": "declaration-of-expertise",
