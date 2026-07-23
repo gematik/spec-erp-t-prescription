@@ -4,12 +4,12 @@
 
 RuleSet: Versioning
 * ^status = #active
-* ^version = "1.1.1"
+* ^version = "1.2.0"
 * ^date = "2026-05-08"
 
 RuleSet: InstanceVersioning
 * status = #active
-* version = "1.1.1"
+* version = "1.2.0"
 * date = "2026-05-08"
 
 // Dates for Examples (Date of actual release)
