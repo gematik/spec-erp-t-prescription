@@ -1,0 +1,17 @@
+{
+  "package-id": "de.gematik.erp-t-prescription",
+  "version": "1.1.1",
+  "path": "https://gematik.de/fhir/erp-t-prescription/1.1.1",
+  "status": "release",
+  "mode": "milestone",
+  "sequence": "eRP-T-Rezept 1.1.1",
+  "desc": "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register in Version 1.1.1",
+  "first": true,
+  "title" : "E-T-Rezept Datenaustausch",
+  "registry-description" : "Implementation Guide E-T-Rezept Datenaustausch",
+  "registry-country" : "DE",
+  "registry-authority" : "gematik GmbH",
+  "category" : "gematik",
+  "ci-build": "https://gematik.de/fhir/erp-t-prescription/build",
+  "introduction" : "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register"
+}

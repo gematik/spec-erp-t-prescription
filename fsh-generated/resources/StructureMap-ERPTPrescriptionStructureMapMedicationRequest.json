@@ -6,12 +6,12 @@
   "description": "Mapping-Anweisungen zur Transformation von KBV MedicationRequest zu BfArM T-Prescription MedicationRequest",
   "structure": [
     {
-      "url": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription",
+      "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
       "mode": "source",
       "alias": "kbvMedicationRequest"
     },
     {
-      "url": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request",
+      "url": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
       "mode": "target",
       "alias": "bfarmMedicationRequest"
     }
@@ -735,7 +735,7 @@
           "source": [
             {
               "context": "kbvMedicationRequest",
-              "element": "medicationReference",
+              "element": "medication",
               "variable": "medicationVar"
             }
           ],
@@ -766,14 +766,15 @@
                 {
                   "source": [
                     {
-                      "context": "medicationReferenceValue"
+                      "context": "medicationReferenceValue",
+                      "variable": "currentMedicationReferenceValue"
                     }
                   ],
                   "target": [
                     {
                       "parameter": [
                         {
-                          "valueString": "iif(%medicationReferenceValue.startsWith('urn:uuid:'), %medicationReferenceValue, 'urn:uuid:' & %medicationReferenceValue.replaceMatches('.*[:/]', ''))"
+                          "valueString": "iif(%currentMedicationReferenceValue.startsWith('urn:uuid:'), %currentMedicationReferenceValue, 'urn:uuid:' & %currentMedicationReferenceValue.replaceMatches('.*[:/]', ''))"
                         }
                       ],
                       "context": "tgtMedicationReference",
@@ -788,7 +789,8 @@
               "name": "normalizeMedicationReference"
             }
           ],
-          "name": "medicationReference"
+          "name": "medicationReference",
+          "documentation": "Transformiert die Medication-Referenz zu urn:uuid Format"
         }
       ],
       "name": "ERPTPrescriptionStructureMapMedicationRequest",
@@ -796,9 +798,9 @@
       "documentation": "Mapping-Anweisungen zur Transformation von KBV MedicationRequest zu BfArM T-Prescription MedicationRequest"
     }
   ],
-  "status": "draft",
-  "version": "1.2.0",
-  "date": "2025-12-19",
+  "status": "active",
+  "version": "1.1.1",
+  "date": "2026-05-08",
   "name": "ERPTPrescriptionStructureMapMedicationRequest",
   "experimental": false
 }
