@@ -39,10 +39,10 @@ Description: "Mapping-Anweisungen zur Transformation von KBV Rezeptur-Medikament
       * source[+].context = "extVar"
       * source[=].variable = "extMatchVar"
       * source[=].condition = "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_CompoundingInstruction'"
-      * insert targetSetStringVariable(tgtExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension)
+      * insert targetSetStringVariable(tgtExtVar, url, https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension)
       * rule[+]
         * name = "copyExtensionValue"
-        * documentation = "Übernimmt den Verpackungswert für die Rezeptur"
+        * documentation = "Übernimmt den Herstellungsanweisung für die Rezeptur"
         * insert treeSource(extMatchVar, value, extValVar)
         * insert targetSetIdVariable(tgtExtVar, value, extValVar)
 

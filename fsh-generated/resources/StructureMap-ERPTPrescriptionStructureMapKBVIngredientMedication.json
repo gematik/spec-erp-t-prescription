@@ -58,7 +58,7 @@
         {
           "source": [
             {
-              "context": "kbvMedicationPZN",
+              "context": "kbvMedicationIngredient",
               "element": "extension",
               "variable": "extVar"
             }

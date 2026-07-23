@@ -73,6 +73,14 @@
       },
       {
         "reference": {
+          "reference": "Medication/ExampleMedication1-Thalidomid-T-Compounding"
+        },
+        "name": "Beispiel BfArM Medication (Verordnung) - Rezeptur",
+        "description": "Thalidomid Kapseln",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication"
+      },
+      {
+        "reference": {
           "reference": "MedicationDispense/ExampleMedicationDispense-T"
         },
         "name": "Beispiel BfArM MedicationDispense",
@@ -85,6 +93,14 @@
         },
         "name": "Beispiel BfArM MedicationRequest",
         "description": "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer Dosierung von 1-1-1-1",
+        "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
+      },
+      {
+        "reference": {
+          "reference": "MedicationRequest/ExampleMedicationRequest-T-Compounding"
+        },
+        "name": "Beispiel BfArM MedicationRequest",
+        "description": "Ein MedicationRequest für die Ausgabe von Pomalidomid als Rezeptur",
         "exampleCanonical": "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
       },
       {

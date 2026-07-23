@@ -61,12 +61,6 @@
         "max": "0"
       },
       {
-        "id": "Medication.extension:manufacturingInstructions",
-        "path": "Medication.extension",
-        "sliceName": "manufacturingInstructions",
-        "max": "0"
-      },
-      {
         "id": "Medication.extension:type",
         "path": "Medication.extension",
         "sliceName": "type",
