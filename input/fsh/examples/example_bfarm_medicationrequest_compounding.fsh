@@ -31,7 +31,7 @@ Usage: #example
 * code.coding[+]
   * system = "http://www.whocc.no/atc"
   * code = #L04AX02
-  * display = "Thalidomid"
+  * display = "thalidomide"
 * form.coding[+]
   * system = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM
   * code = #HKP
