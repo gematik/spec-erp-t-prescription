@@ -29,6 +29,8 @@
 | `amount.numerator.extension[0].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | `amount.numerator.extension[0].url` | https://gematik.de/fhir/epa-medication/Structur... | ✅ |
 | `amount.numerator.extension[0].valueString` | 21 | `amount.numerator.extension[0].valueString` | 21 | ✅ |
 | `amount.numerator.unit` | Stück | `amount.numerator.unit` | Stück | ✅ |
+| `extension[2].url` | http://fhir.de/StructureDefinition/normgroesse | `extension[0].url` | http://fhir.de/StructureDefinition/normgroesse | ✅ |
+| `extension[2].valueCode` | N1 | `extension[0].valueCode` | N1 | ✅ |
 | `form.text` | Retardtabletten | `form.text` | Retardtabletten | ✅ |
 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | `id` | a3ccc266-b033-47cc-9361-98ec450f7db9 | ✅ |
 | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | `ingredient[0].itemCodeableConcept.text` | Lenalidomid | ✅ |
@@ -43,8 +45,6 @@
 | `extension[0].valueCoding.system` | https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medic... | - | - | ⚠️ |
 | `extension[1].url` | https://fhir.kbv.de/StructureDefinition/KBV_EX_... | - | - | ⚠️ |
 | `extension[1].valueBoolean` | false | - | - | ⚠️ |
-| `extension[2].url` | http://fhir.de/StructureDefinition/normgroesse | - | - | ⚠️ |
-| `extension[2].valueCode` | N1 | - | - | ⚠️ |
 
 ---
 

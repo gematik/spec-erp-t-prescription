@@ -59,6 +59,76 @@
           "source": [
             {
               "context": "kbvMedicationIngredient",
+              "element": "extension",
+              "variable": "extVar"
+            }
+          ],
+          "target": [
+            {
+              "contextType": "variable",
+              "context": "bfarmMedication",
+              "element": "extension",
+              "variable": "tgtExtVar"
+            }
+          ],
+          "rule": [
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "condition": "url='http://fhir.de/StructureDefinition/normgroesse'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "http://fhir.de/StructureDefinition/normgroesse"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "extVar",
+                      "element": "value",
+                      "variable": "extValVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "extValVar"
+                        }
+                      ],
+                      "context": "tgtExtVar",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "copyExtensionValue",
+                  "documentation": "Kopiert den Wert der Normgröße-Extension (N1, N2, N3)"
+                }
+              ],
+              "name": "copyNormgroesseExtensionUrl",
+              "documentation": "Übernimmt die Normgröße-Extension unverändert (deutsche Packungsgrößenangabe)"
+            }
+          ],
+          "name": "medicationExt",
+          "documentation": "Mappt Medication-Extensions von KBV- zu BfArM-Format"
+        },
+        {
+          "source": [
+            {
+              "context": "kbvMedicationIngredient",
               "element": "form",
               "variable": "formVar"
             }
@@ -342,7 +412,7 @@
     }
   ],
   "status": "active",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "date": "2026-05-08",
   "name": "ERPTPrescriptionStructureMapKBVIngredientMedication",
   "experimental": false

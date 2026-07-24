@@ -1,6 +1,6 @@
 {
   "resourceType": "MedicationRequest",
-  "id": "ExampleMedicationRequest-T",
+  "id": "ExampleMedicationRequest-T-Compounding",
   "meta": {
     "profile": [
       "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-medication-request"
@@ -28,7 +28,7 @@
   },
   "dosageInstruction": [
     {
-      "text": "3x täglich mit ausreichend Wasser einnehmen"
+      "text": "Nach Bedarf mit ausreichend Wasser einzunehmen."
     }
   ],
   "dispenseRequest": {
@@ -50,11 +50,11 @@
         },
         {
           "url": "security-compliance",
-          "valueBoolean": true
+          "valueBoolean": false
         },
         {
           "url": "hand-out-information-material",
-          "valueBoolean": true
+          "valueBoolean": false
         },
         {
           "url": "declaration-of-expertise",
@@ -68,6 +68,6 @@
   "intent": "order",
   "authoredOn": "2026-04-01",
   "medicationReference": {
-    "reference": "Medication/ExampleMedication1-Pomalidomid-T"
+    "reference": "Medication/ExampleMedication1-Thalidomid-T-Compounding"
   }
 }

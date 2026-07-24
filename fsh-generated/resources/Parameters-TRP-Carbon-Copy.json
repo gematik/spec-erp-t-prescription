@@ -3,7 +3,7 @@
   "id": "TRP-Carbon-Copy",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"
+      "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.2"
     ]
   },
   "parameter": [
@@ -43,11 +43,11 @@
                   },
                   {
                     "url": "security-compliance",
-                    "valueBoolean": false
+                    "valueBoolean": true
                   },
                   {
                     "url": "hand-out-information-material",
-                    "valueBoolean": false
+                    "valueBoolean": true
                   },
                   {
                     "url": "declaration-of-expertise",
@@ -58,7 +58,7 @@
               },
               {
                 "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
-                "valueMarkdown": "1-0-1-0 Stück"
+                "valueMarkdown": "1-0-2-0 Stück"
               },
               {
                 "extension": [

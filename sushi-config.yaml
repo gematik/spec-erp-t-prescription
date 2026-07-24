@@ -11,10 +11,10 @@ description: Dieser IG Beschreibt Schnittstellen und Profile für den
   Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen
   E-Rezept-Fachdienst und BfArM T-Register
 status: active # draft | active | retired | unknown
-version: 1.1.1
+version: 1.2.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2026+
-date: 2026-05-08
+date: 2026-07-28
 releaseLabel: release # ci-build, ballot, release
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#DE "Germany" # https://www.hl7.org/fhir/valueset-jurisdiction.html
@@ -27,6 +27,8 @@ publisher:
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 #
+
+
 dependencies:
   de.gematik.ti: 1.3.1
   de.gematik.epa.medication: 1.3.2
@@ -215,6 +217,7 @@ instanceOptions:
 
 parameters:
   bundle-references-resolve: false
+  i18n-default-lang: de
   no-validate:
     - Bundle/example-case-01-mapping-bundle
     - Bundle/example-case-02-mapping-bundle
