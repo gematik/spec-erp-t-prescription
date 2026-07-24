@@ -27,8 +27,8 @@ RuleSet: DateTimeStampPlus1Hr(field)
 
 RuleSet: setMetaProfileCC(context, to)
 * insert targetBase({context}, {to})
-* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.1"
+* target[=].parameter.valueString = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/erp-tprescription-carbon-copy|1.2"
 
 // Rules to set meta.profile in profiles and instances
 RuleSet: PackageMetaProfileExactly(profile)
-* meta.profile[+] = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/{profile}|1.1" (exactly)
+* meta.profile[+] = "https://gematik.de/fhir/erp-t-prescription/StructureDefinition/{profile}|1.2" (exactly)

@@ -338,6 +338,10 @@
         "value": "false"
       },
       {
+        "code": "i18n-default-lang",
+        "value": "de"
+      },
+      {
         "code": "no-validate",
         "value": "Bundle/example-case-01-mapping-bundle"
       },

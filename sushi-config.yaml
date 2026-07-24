@@ -27,6 +27,8 @@ publisher:
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 #
+
+
 dependencies:
   de.gematik.ti: 1.3.1
   de.gematik.epa.medication: 1.3.2
@@ -215,6 +217,7 @@ instanceOptions:
 
 parameters:
   bundle-references-resolve: false
+  i18n-default-lang: de
   no-validate:
     - Bundle/example-case-01-mapping-bundle
     - Bundle/example-case-02-mapping-bundle
