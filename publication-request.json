@@ -6,7 +6,7 @@
   "mode": "milestone",
   "sequence": "eRP-T-Rezept 1.2.0",
   "desc": "Dieser IG Beschreibt Schnittstellen und Profile für den Datenaustauch des digitalen Durchschlag E-T-Rezept zwischen E-Rezept-Fachdienst und BfArM T-Register in Version 1.2.0",
-  "first": true,
+  "first": false,
   "title" : "E-T-Rezept Datenaustausch",
   "registry-description" : "Implementation Guide E-T-Rezept Datenaustausch",
   "registry-country" : "DE",

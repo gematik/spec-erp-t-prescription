@@ -6,7 +6,7 @@
   "name": "ERPTPrescription",
   "title": "E-T-Rezept Datenaustausch",
   "status": "active",
-  "date": "2026-07-28",
+  "date": "2026-07-27",
   "publisher": "gematik GmbH",
   "contact": [
     {
@@ -48,7 +48,7 @@
     },
     {
       "packageId": "de.gematik.epa.medication",
-      "version": "1.3.2",
+      "version": "1.3.4",
       "uri": "https://gematik.de/fhir/epa-medication/ImplementationGuide/de.gematik.epa.medication",
       "id": "de_gematik_epa_medication"
     }
