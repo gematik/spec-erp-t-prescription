@@ -1,7 +1,9 @@
 [ExampleMedication2-Pomalidomid-T]: Medication-ExampleMedication2-Pomalidomid-T.html
 [ExampleMedication1-Pomalidomid-T]: Medication-ExampleMedication1-Pomalidomid-T.html
+[ExampleMedication1-Thalidomid-T-Compounding]: Medication-ExampleMedication1-Thalidomid-T-Compounding.html
 [ExampleMedicationDispense-T]: MedicationDispense-ExampleMedicationDispense-T.html
 [ExampleMedicationRequest-T]: MedicationRequest-ExampleMedicationRequest-T.html
+[ExampleMedicationRequest-T-Compounding]: MedicationRequest-ExampleMedicationRequest-T-Compounding.html
 [ExampleOrganization-T]: Organization-ExampleOrganization-T.html
 [TRP-Carbon-Copy]: Parameters-TRP-Carbon-Copy.html
 [VZD-SearchSet-Bundle]: Bundle-VZD-SearchSet-Bundle.html

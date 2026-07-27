@@ -10,15 +10,15 @@ Description: "Ein MedicationRequest für die Ausgabe von Pomalidomid mit einer D
 * subject.identifier.value.extension[+].url = $data-absent-reason
 * subject.identifier.value.extension[=].valueCode = #not-permitted
 * medicationReference = Reference(ExampleMedication1-Pomalidomid-T)
-* dosageInstruction[+].text = "1-1-1-1"
+* dosageInstruction[+].text = "3x täglich mit ausreichend Wasser einnehmen"
 * dispenseRequest
   * quantity.value = 10
   * quantity.unit = "Tablette"
 * extension[teratogenic]
   * extension[off-label].valueBoolean = true
   * extension[childbearing-potential].valueBoolean = true
-  * extension[security-compliance].valueBoolean = false
-  * extension[hand-out-information-material].valueBoolean = false
+  * extension[security-compliance].valueBoolean = true
+  * extension[hand-out-information-material].valueBoolean = true
   * extension[declaration-of-expertise].valueBoolean = true
 
 Instance: ExampleMedication1-Pomalidomid-T

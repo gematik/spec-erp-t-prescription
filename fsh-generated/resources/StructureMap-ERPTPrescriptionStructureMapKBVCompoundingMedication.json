@@ -97,6 +97,56 @@
               ],
               "name": "copyFormulaPackagingExtensionUrl",
               "documentation": "Transformiert KBV-Verpackungs-Extension in gematik-Formulierungs-Verpackungs-Extension"
+            },
+            {
+              "source": [
+                {
+                  "context": "extVar",
+                  "variable": "extMatchVar",
+                  "condition": "url='https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_CompoundingInstruction'"
+                }
+              ],
+              "target": [
+                {
+                  "parameter": [
+                    {
+                      "valueString": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension"
+                    }
+                  ],
+                  "context": "tgtExtVar",
+                  "contextType": "variable",
+                  "element": "url",
+                  "transform": "copy"
+                }
+              ],
+              "rule": [
+                {
+                  "source": [
+                    {
+                      "context": "extMatchVar",
+                      "element": "value",
+                      "variable": "extValVar"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "parameter": [
+                        {
+                          "valueId": "extValVar"
+                        }
+                      ],
+                      "context": "tgtExtVar",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "copy"
+                    }
+                  ],
+                  "name": "copyExtensionValue",
+                  "documentation": "Übernimmt den Herstellungsanweisung für die Rezeptur"
+                }
+              ],
+              "name": "copyFormulaInstructionExtensionUrl",
+              "documentation": "Transformiert KBV-Herstellungsanweisung-Extension in gematik-Formulierungs-Herstellungsanweisung-Extension"
             }
           ],
           "name": "medicationExt",
@@ -686,7 +736,7 @@
     }
   ],
   "status": "active",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "date": "2026-05-08",
   "name": "ERPTPrescriptionStructureMapKBVCompoundingMedication",
   "experimental": false

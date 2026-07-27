@@ -91,8 +91,8 @@ Usage: #inline
 * extension[teratogenic]
   * extension[off-label].valueBoolean = true
   * extension[childbearing-potential].valueBoolean = true
-  * extension[security-compliance].valueBoolean = false
-  * extension[hand-out-information-material].valueBoolean = false
+  * extension[security-compliance].valueBoolean = true
+  * extension[hand-out-information-material].valueBoolean = true
   * extension[declaration-of-expertise].valueBoolean = true
 * status = #completed
 * intent = #order
@@ -102,7 +102,7 @@ Usage: #inline
 * subject.identifier.value.extension[=].valueCode = #not-permitted
 * medicationReference.reference = "Medication/TRP-Carbon-Copy-Medication"
 * authoredOn = "2025-05-20"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 Stück"
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-2-0 Stück"
 * extension[generatedDosageInstructionsMeta]
   * extension[algorithmVersion].valueString = "1.0.1"
   * extension[language].valueCode = #de-DE
