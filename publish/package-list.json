@@ -10,7 +10,7 @@
             "path": "https://gematik.de/fhir/erp-t-prescription/1.2.0",
             "status": "release",
             "current": false,
-            "date": "2026-05-08",
+            "date": "2026-07-27",
             "sequence": "eRP-T-Rezept 1.2.0",
             "fhirversion": "4.0.1"
         },
