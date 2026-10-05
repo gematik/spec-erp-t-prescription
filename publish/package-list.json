@@ -11,7 +11,7 @@
             "status": "release",
             "current": false,
             "date": "2026-07-27",
-            "sequence": "eRP-T-Rezept 1.2.0",
+            "sequence": "E-Rezept",
             "fhirversion": "4.0.1"
         },
         {
